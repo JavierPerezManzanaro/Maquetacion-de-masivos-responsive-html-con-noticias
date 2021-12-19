@@ -85,6 +85,8 @@ except:
 
 
 #* mostramos la información
+print('##Trabajo en la bbdd##')
+print('')
 print(titulo)
 print(url[0])
 print(imagen[0])
@@ -94,7 +96,7 @@ print(contenido)
 
 #* conecxion bbdd y metemos noticia
 
-con = sqlite3.connect('bbdd.db')
+con = sqlite3.connect('bbdd.sqlite3')
 #'INSERT INTO employees(id, titular, url, imagen, tipo, contenido) VALUES(?, ?, ?, ?, ?, ?)', datos)
 
 datos = (titulo, url[0], imagen[0], tipo, contenido)

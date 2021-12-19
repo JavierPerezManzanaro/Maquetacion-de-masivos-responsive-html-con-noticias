@@ -1,9 +1,6 @@
-bbdd.db/
+bbdd.sqlite3/
 __pycache__/
-Informacion/
-Informavet ver 3 (noticias).py
-Informavet ver 3.1 (trabajos, noticias).py
-Inserción de noticias en bbdd.py
+Información/
 otras versiones/
 partes/
 versiones.txt
