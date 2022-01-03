@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 # /
 
-# Versión 3.1
-
 #! CUIDADO
 #todo por hacer
 #? aviso
@@ -25,10 +23,9 @@ import random
 import sqlite3
 
 #* liberias propias
-#import pb
-import Bloques
-import Datos_de_acceso
-#todo: sacar los datos personales a unas preferencias que no suben a la red
+import bloques
+import datos_de_acceso
+import banners
 
 longitud_de_noticia = 400
 noticias_mostradas = 20
@@ -62,7 +59,7 @@ def tabla_interior(tipo, imagen, titular, texto, url):
     """Genera cada tabla de html que contiene un trabajo o la noticia.
 
     Args:
-        tipo (str): el tipo que es: peq, gra, comun
+        tipo (str): el tipo que es: compania, produccion, comun
         imagen (str): url local (bbdd, trabajos) o absoluta (noticias)
         titular (str)
         texto (str)
@@ -73,18 +70,18 @@ def tabla_interior(tipo, imagen, titular, texto, url):
     """
     #todo: meter como tipo destacada
 
-    tabla_interior = Bloques.noticia_funcion_raw
+    tabla_interior = bloques.noticia_funcion_raw
     tabla_interior = tabla_interior.replace(
         '##noticia_titular##', titular)
 
-    if tipo == 'peq':  # izq, pequeños
+    if tipo == 'compania':  # izq, compañia
         tabla_interior = tabla_interior.replace(
             '##color##', '#881288')
         tabla_interior = tabla_interior.replace(
             '##posicion##', 'left')
         tabla_interior = tabla_interior.replace(
             '##imagen##', str(imagen))
-    elif tipo == 'gra':  # der. producción
+    elif tipo == 'produccion':  # der. producción
         tabla_interior = tabla_interior.replace(
             '##color##', '#0F7888')
         tabla_interior = tabla_interior.replace(
@@ -181,43 +178,36 @@ con = sqlite3.connect('bbdd.sqlite3')
 cursorObj = con.cursor()
 cursorObj.execute('SELECT * FROM hemeroteca ORDER BY "tipo", "titular";')
 trabajos_en_bbdd = cursorObj.fetchall()
-# trabajos de pequeño
+# trabajos de compañia
 cursorObj = con.cursor()
 cursorObj.execute(
     'SELECT * FROM hemeroteca WHERE tipo = "p" ORDER BY "titular";')
-trabajos_en_bbdd_peq = cursorObj.fetchall()
-# trabajos de grandes
+trabajos_en_bbdd_compania = cursorObj.fetchall()
+# trabajos de producción
 cursorObj = con.cursor()
 cursorObj.execute(
     'SELECT * FROM hemeroteca WHERE tipo = "g" ORDER BY "titular";')
-trabajos_en_bbdd_gra = cursorObj.fetchall()
+trabajos_en_bbdd_produccion = cursorObj.fetchall()
 # cerramos connexión con la bbdd
 cursorObj.close()
 
-print('Tabajos de pequeños:')
+print('Trabajos de compañía:')
 print(f"---|-{'-'*104}")
-for trabajo in trabajos_en_bbdd_peq:
+for trabajo in trabajos_en_bbdd_compania:
     print(f"{trabajo[0]:>2} | {trabajo[1][0:100]}")
 
 print()
-print('Tabajos de grandes:')
+print('Trabajos de producción:')
 print(f"---|-{'-'*104}")
-for trabajo in trabajos_en_bbdd_gra:
+for trabajo in trabajos_en_bbdd_produccion:
     print(f"{trabajo[0]:>2} | {trabajo[1][0:100]}")
 
 numero = len(trabajos_en_bbdd)
 
-#! código original
-# print("Tabajos:")
-# print("Nº | Título")
-# print(f"---|-{'-'*104}")
-# for trabajo in trabajos_en_bbdd:
-#     print(f"{trabajo[0]:>2} | {trabajo[4]} - {trabajo[1][0:100]}")
-#! código original fin
 
 #* recogemos las noticias de la web de axon
 sitio = "https://axoncomunicacion.net/xmlrpc.php"
-cliente = Client(sitio, Datos_de_acceso.usuario, Datos_de_acceso.contrasena)
+cliente = Client(sitio, datos_de_acceso.usuario, datos_de_acceso.contrasena)
 axon_entradas = cliente.call(posts.GetPosts(
     {'number': noticias_mostradas, 'offset': 0,  'post_status': 'publish'}))  #todo 'orderby': 'title',
 print()
@@ -242,9 +232,6 @@ if len(axon_entradas) > 0:
         #todo contenido_bruto = contenido_bruto.rstrip('\n')
         contenido_bruto = contenido_bruto.replace(entrada.title, '', 1)
         contenido_bruto = contenido_bruto[0:longitud_de_noticia] + '... '
-        # print(contenido_bruto)
-        # print('--------')
-        # asignamos el array
         axon[numero] = {'id': entrada.id, 'url': entrada.link,
                         'imagen': imagen, 'titulo': entrada.title, 'contenido': contenido_bruto}
         numero += 1
@@ -275,7 +262,7 @@ print()
 
 
 #* gestionamos la cabecera
-comienzo_en_curso = Bloques.comienzo
+comienzo_en_curso = bloques.comienzo
 comienzo_en_curso = comienzo_en_curso.replace(
     '##nombre_archivo##', nombre_archivo)
 comienzo_en_curso = comienzo_en_curso.replace('##numero##', str(boletin))
@@ -287,7 +274,7 @@ comienzo_en_curso = comienzo_en_curso.replace(
 #* gestión de noticia destacada
 noticia = int(input("¿Qué noticia es la destacada? "))
 if noticia != 0:
-    noticia_destacada = Bloques.noticia_destacada
+    noticia_destacada = bloques.noticia_destacada
     imagen_local, ancho, alto = descarga_imagen(axon[noticia]['imagen'], 320)
     noticia_destacada = noticia_destacada.replace(
         '##imagen##', str(imagen_local))
@@ -307,14 +294,15 @@ print('')
 print('Los trabajos/noticias separadas con espacios.')
 print('')
 
-#todo: y si pongo 0 me deja el hueco, hacer la prueba
+
 #* trabajos de animales de compañia
 trabajos = input('¿Qué trabajos de animales de compañía? ')
 trabajos = trabajos.split(' ')
+publicidad = bloques.publicidad.replace('##posicion##', 'right')
 cursorObj = con.cursor()
 for trabajo_seleccionado in trabajos:
     if trabajo_seleccionado == '0':
-        trabajos_compania.append('##publicidad##')
+        trabajos_compania.append(publicidad)
     else:
         cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' + trabajo_seleccionado + ';')
         trabajo_en_bbdd = cursorObj.fetchone()
@@ -323,30 +311,30 @@ for trabajo_seleccionado in trabajos:
         url = trabajo_en_bbdd[2]
         imagen = trabajo_en_bbdd[3]
         texto = trabajo_en_bbdd[5]
-        #*creamos la lista trabajos_compania que contiene todos los trabajos de peq
+        #*creamos la lista trabajos_compania que contiene todos los trabajos de compañia
         trabajos_compania.append(
-            tabla_interior('peq', imagen, titular, texto, url))
+            tabla_interior('compania', imagen, titular, texto, url))
 cursorObj.close()
 
-html_trabajos_peq = ''
-html_trabajos_peq = Bloques.bloque_exterior_funcion * len(trabajos_compania)
+html_trabajos_compania = ''
+html_trabajos_compania = bloques.bloque_exterior_funcion * len(trabajos_compania)
 
 for trabajo in trabajos_compania:
-    html_trabajos_peq = html_trabajos_peq.replace(
+    html_trabajos_compania = html_trabajos_compania.replace(
         '##bloque izq##', trabajo, 1)
-    html_trabajos_peq = html_trabajos_peq.replace(
-        '##bloque der##', '##publicidad##')
-
+    html_trabajos_compania = html_trabajos_compania.replace(
+        '##bloque der##', publicidad)
 
 
 #* trabajos de animales de producción
 trabajos = input(
     '¿Qué trabajos de animales de producción? ')
 trabajos = trabajos.split(' ')
+publicidad = bloques.publicidad.replace('##posicion##', 'left')
 cursorObj = con.cursor()
 for trabajo_seleccionado in trabajos:
     if trabajo_seleccionado == '0':
-        trabajos_compania.append('##publicidad##')
+        trabajos_compania.append(publicidad)
     else:
         #trabajo_seleccionado = int(trabajo_seleccionado)
         cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' +
@@ -357,18 +345,18 @@ for trabajo_seleccionado in trabajos:
         url = trabajo_en_bbdd[2]
         imagen = trabajo_en_bbdd[3]
         texto = trabajo_en_bbdd[5]
-        #*creamos la lista trabajos_produccion que contiene todos los trabajos de gra
+        #*creamos la lista trabajos_produccion que contiene todos los trabajos de producción
         trabajos_produccion.append(
-            tabla_interior('gra', imagen, titular, texto, url))
+            tabla_interior('produccion', imagen, titular, texto, url))
 cursorObj.close()
 
-html_trabajos_gra = ''
-html_trabajos_gra = Bloques.bloque_exterior_funcion * len(trabajos_produccion)
+html_trabajos_produccion = ''
+html_trabajos_produccion = bloques.bloque_exterior_funcion * len(trabajos_produccion)
 
 for trabajo in trabajos_produccion:
-    html_trabajos_gra = html_trabajos_gra.replace(
-        '##bloque izq##', '##publicidad##')
-    html_trabajos_gra = html_trabajos_gra.replace(
+    html_trabajos_produccion = html_trabajos_produccion.replace(
+        '##bloque izq##', publicidad)
+    html_trabajos_produccion = html_trabajos_produccion.replace(
         '##bloque der##', trabajo, 1)
 
 
@@ -377,17 +365,27 @@ print('')
 noticias = input("¿Qué noticias quieres publicar? ")
 
 noticias = noticias.split(' ')
+pase = 1
 for noticia in noticias:
     noticia = int(noticia)
     if noticia == 0:
-        noticias_colocadas.append('##publicidad##')
+        if pase % 2 != 0: 
+            publicidad = bloques.publicidad.replace(
+                '##posicion##', 'left')
+            noticias_colocadas.append(publicidad)
+        else:
+            publicidad = bloques.publicidad.replace(
+                '##posicion##', 'right')
+            noticias_colocadas.append(publicidad)
     else:
         noticias_colocadas.append(tabla_interior(
         'comun', axon[noticia]['imagen'], axon[noticia]['titulo'], axon[noticia]['contenido'], axon[noticia]['url']))  # es una lista
+    pase += 1
 
 longitud = len(noticias_colocadas)
 print(f"Noticias generadas: {longitud}")
 #pprint(noticias_colocadas)
+
 
 #* generamos el bloque general de las noticias
 numero = 0
@@ -396,20 +394,19 @@ numero = 0
 #* creamos el último si es impar
 ultimo_si_es_impar = ''
 if longitud % 2 != 0:
-    ultimo_si_es_impar = Bloques.bloque_exterior
+    ultimo_si_es_impar = bloques.bloque_exterior
     ultimo_si_es_impar = ultimo_si_es_impar.replace(
         '##bloque izq##', noticias_colocadas[-1], 1)  # usamos el último
     ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque izq##', '', 1)
     ultimo_si_es_impar = ultimo_si_es_impar.replace('##posicion##', 'left')
-    longitud = longitud - 1
+    longitud -= 1
 
 
 #* creamos el cuerpo sin las noticias
 bloque_final = ''
 bloque_final_con_noticias = ''
 for numero in range(0, (int(longitud/2))):
-    bloque_final_con_noticias = bloque_final_con_noticias + Bloques.bloque_exterior
-#!!bloque_final_con_noticias = Bloques.bloque_exterior * len(int(longitud/2))
+    bloque_final_con_noticias = bloque_final_con_noticias + bloques.bloque_exterior
 
 
 #* metemos las noticias menos la última
@@ -430,81 +427,27 @@ for numero in range(0, longitud):
 bloque_final_con_noticias = bloque_final_con_noticias + ultimo_si_es_impar
 
 
-
-'''
-A la hora de colocar nos tiene que llegar tres listas:
--trab de peq
--trab de grandes
--noticias_colocadas
-
-En un futuro también llegara la de la pb
-
-'''
-
-
-# #* gestión de los trabajos
-# longitud = len(trabajos_compania)+len(trabajos_produccion)
-# print(f"Trabajos generados: {longitud}")
-# # longitud pasa a ser la mas larga
-# if len(trabajos_compania) >= len(trabajos_produccion):
-#     print('Compañia es mayor o igual que Producción')
-#     longitud = len(trabajos_compania)
-# else:
-#     print('Compañia es menos que Producción')
-#     longitud = len(trabajos_produccion)
-
-# #* embebemos los trabajos y las pb
-# # nombramos la pb con un True
-# caso_1 = [False, False]
-# caso_2 = [True, False]
-# caso_3 = [False, True]
-# casos = [caso_1, caso_2, caso_3]
-# bloque_en_curso = Bloques.bloque_exterior_funcion
-# bloque_final_con_trabajos = ''
-# for i in range(longitud):
-#     caso = random.choice(casos)
-#     print(f'casos antes = {casos}')
-#     print(f'caso seleccionado = {caso}')
-#     if caso[0] == False and caso[1] == False:
-#         # caso 1 sin pb
-#         print('caso 1')
-#         bloque_en_curso = bloque_en_curso.replace(
-#             '##bloque##', trabajos_compania[i], 1)
-#         bloque_en_curso = bloque_en_curso.replace(
-#             '##bloque##', trabajos_produccion[i], 1)
-#     elif caso[0] == True and caso[1] == False:
-#         # caso 2: pb y grandes
-#         print('caso 2')
-#         bloque_en_curso = bloque_en_curso.replace(
-#             '##bloque##', Bloques.pb_320, 1)
-#         bloque_en_curso = bloque_en_curso.replace(
-#             '##bloque##', trabajos_produccion[i], 1)
-#     elif caso[0] == False and caso[1] == True:
-#         # caso 3: peq y pb
-#         print('caso 3')
-#         bloque_en_curso = bloque_en_curso.replace(
-#             '##bloque##', trabajos_compania[i], 1)
-#         bloque_en_curso = bloque_en_curso.replace(
-#             '##bloque##', Bloques.pb_320, 1)
-
-#     # eliminamos de la lista de caso el caso que ha salido
-#     casos = casos.remove(caso)
-#     print(f'casos despues = {casos}')
-#     # añadimos el bloque que acabamos de crear a la lista
-#     bloque_final_con_trabajos = bloque_en_curso + bloque_final_con_trabajos
-
-
-
 #* unimos todas las partes
 resultado = ''
 resultado = resultado + comienzo_en_curso
 resultado = resultado + noticia_destacada
 
-resultado = resultado + html_trabajos_peq
-resultado = resultado + html_trabajos_gra
+resultado = resultado + html_trabajos_compania
+resultado = resultado + html_trabajos_produccion
+
+#* gestión de la pb manual
+resultado = resultado + banners.libro_ecg
+resultado = resultado + banners.laser_horizontal
+resultado = resultado + banners.laser_vertical
+# banner de argentina
+argentina_banner_elegido = [banners.argentina_1,banners.argentina_2, banners.argentina_3, banners.argentina_4]
+argentina_banner_elegido = random.choice(argentina_banner_elegido)
+argentina_banner = banners.argentina_base.replace('**modulo_pb**', argentina_banner_elegido)
+resultado = resultado + argentina_banner
+
 
 resultado = resultado + bloque_final_con_noticias
-resultado = resultado + Bloques.fin
+resultado = resultado + bloques.fin
 
 
 #* codificamos a html
@@ -526,7 +469,6 @@ resultado = re.sub("¿", "&iquest;", resultado)
 resultado = re.sub("Â", "", resultado)
 resultado = re.sub("â€œ", "&quot;", resultado)
 resultado = re.sub("â€", "&quot;", resultado)
-
 #todo: añadir comillas simples y comillas dobles
 
 
@@ -542,12 +484,14 @@ resultado = re.sub("â€", "&quot;", resultado)
 # clipboard.copy(resultado)
 
 
+#* creamos el archivo
+archivo = str(boletin)+"c.html"
+with open(archivo, mode="w", encoding="utf-8") as fichero:
+    print(resultado, file=fichero)
+
+
 print()
 print('Archivo generado')
 print()
 
 
-#* creamos el archivo
-archivo = str(boletin)+"c.html"
-with open(archivo, mode="w", encoding="utf-8") as fichero:
-    print(resultado, file=fichero)

@@ -1,4 +1,8 @@
-# inserción en bbdd
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+# /
+
+
 #! CUIDADO
 #todo por hacer
 #? aviso
@@ -55,12 +59,14 @@ if '#881288' in resultado_raw:
 else:
     tipo = 'g'
 
+
 #*sacamos el título
 try:
     titulo = resultado.find('td', attrs={'class': 'heading'})
     titulo = titulo.text
 except:
     titulo = input("¿Introduce el título ? ")
+
 
 #*sacamos la url
 try:
@@ -69,6 +75,7 @@ try:
 except:
     url = input("¿Introduce la url de destino? ")
 
+
 #*sacamos el contenido
 try:
     contenido = resultado.find('td', attrs={'class': 'MsoNormal'})
@@ -76,12 +83,21 @@ try:
 except:
     contenido = input("¿Introduce el contenido de la noticia? ")
 
+
 #*sacamos la url de la imagen
 try:
     patron = "< *[img][^>]*[src] *= *[\"\']{0,1}([^\"\' >]*)"
     imagen = re.findall(patron, resultado_raw)
 except:
     imagen = input("¿Introduce la url de la imagen? ")
+
+
+#* conexión bbdd y metemos noticia
+con = sqlite3.connect('bbdd.sqlite3')
+
+datos = (titulo, url[0], imagen[0], tipo, contenido)
+
+sql_insert(con, datos)
 
 
 #* mostramos la información
@@ -92,13 +108,3 @@ print(url[0])
 print(imagen[0])
 print(tipo)
 print(contenido)
-
-
-#* conecxion bbdd y metemos noticia
-
-con = sqlite3.connect('bbdd.sqlite3')
-#'INSERT INTO employees(id, titular, url, imagen, tipo, contenido) VALUES(?, ?, ?, ?, ?, ?)', datos)
-
-datos = (titulo, url[0], imagen[0], tipo, contenido)
-
-sql_insert(con, datos)

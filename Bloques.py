@@ -2,221 +2,6 @@
 # -*- coding: utf-8 -*-
 # /
 
-trabajos = '''
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-        <tbody>
-          <tr>
-            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-              <tbody>
-                <tr>
-                  <td height="40"></td>
-                </tr>
-                <!-- ROW-1 START -->
-                <tr>
-                  <td><!--TABLE LEFT-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="middle" style="color:#666666;"><a href="mailto:coordinacion@impulsovet.es"><img src="pb/intermedical-abril-21-modelo4.gif" alt="Intermedical" width="320" height="397"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <!--TABLE MIDDLE-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td width="1" height="50"></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <!--TABLE RIGHT-->
-                    <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="middle" style="color:#666666;"><img src="440c/g1.jpg" alt="" width="320"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
-                        </tr>
-                        <tr>
-                          <td height="25"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" class="heading" style="color: #0F7888; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">XX</td>
-                        </tr>
-                        <tr>
-                          <td height="15"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;">xx</td>
-                        </tr>
-                        <tr>
-                          <td height="15"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/efecto-del-estres-del-transporte-sobre-las-bacterias-en-el-rumen-de-ganado-vacuno-3/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-                        </tr>
-                        </tbody>
-                    </table></td>
-                </tr>
-                <!-- ROW-1 END -->
-              </tbody>
-            </table></td>
-          </tr>
-        </tbody>
-      </table></td>
-    </tr>
-  </tbody>
-</table>
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-        <tbody>
-          <tr>
-            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-              <tbody>
-                <tr>
-                  <td height="40"></td>
-                </tr>
-                <!-- ROW-1 START -->
-                <tr>
-                  <td><!--TABLE LEFT-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="440c/p1.jpg" alt="" width="320" style="margin:0; padding:0; width:100%; height:auto;" /></td>
-                        </tr>
-                        <tr>
-                          <td height="25" bgcolor="#ffffff"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" bgcolor="#ffffff" class="heading" style="color: #881288; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">XX</td>
-                        </tr>
-                        <tr>
-                          <td height="15" bgcolor="#ffffff"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" bgcolor="#ffffff" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>xx</p></td>
-                        </tr>
-                        <tr>
-                          <td height="15"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/manejo-terapeutico-de-la-pancreatitis-en-perros-y-gatos-basado-en-la-evidencia-cientifica-2/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!--TABLE MIDDLE-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td width="1" height="50"></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <!--TABLE RIGHT-->
-                    <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="middle" style="color:#666666;"><a href="https://www.laservet.it/?lang=es"><img src="pb/laservet-320x320px_ver_5.gif" alt="LasetVET" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
-                        </tr>
-                      </tbody>
-                    </table></td>
-                </tr>
-                <!-- ROW-1 END -->
-              </tbody>
-            </table></td>
-          </tr>
-        </tbody>
-      </table></td>
-    </tr>
-  </tbody>
-</table>
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-        <tbody>
-          <tr>
-            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-              <tbody>
-                <tr>
-                  <td height="40"></td>
-                </tr>
-                <!-- ROW-1 START -->
-                <tr>
-                  <td><!--TABLE LEFT-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="440c/p2.jpg" alt="" width="320" style="margin:0; padding:0; width:100%; height:auto;" /></td>
-                        </tr>
-                        <tr>
-                          <td height="25" bgcolor="#ffffff"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" bgcolor="#ffffff" class="heading" style="color: #881288; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">XX</td>
-                        </tr>
-                        <tr>
-                          <td height="15" bgcolor="#ffffff"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" bgcolor="#ffffff" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>xx</p></td>
-                        </tr>
-                        <tr>
-                          <td height="15"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/manejo-terapeutico-de-la-pancreatitis-en-perros-y-gatos-basado-en-la-evidencia-cientifica-2/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <!--TABLE MIDDLE-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td width="1" height="50"></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <!--TABLE RIGHT-->
-                    <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="middle" style="color:#666666;"><img src="440c/g2.jpg" alt="" width="320"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
-                        </tr>
-                        <tr>
-                          <td height="25"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" class="heading" style="color: #0F7888; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">XX</td>
-                        </tr>
-                        <tr>
-                          <td height="15"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;">xx</td>
-                        </tr>
-                        <tr>
-                          <td height="15"></td>
-                        </tr>
-                        <tr>
-                          <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/efecto-del-estres-del-transporte-sobre-las-bacterias-en-el-rumen-de-ganado-vacuno-3/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-                        </tr>
-                      </tbody>
-                    </table></td>
-                </tr>
-                <!-- ROW-1 END -->
-              </tbody>
-            </table></td>
-          </tr>
-        </tbody>
-      </table></td>
-    </tr>
-  </tbody>
-</table>
-'''
 
 comienzo = '''
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -278,7 +63,7 @@ a {
 }
 
 /* MEDIA QUIRES */
-        
+
 @media only screen and (max-width: 640px) {
 body {
     width: auto !important;
@@ -494,7 +279,7 @@ table[class=main] {
                     </tr>
                     <tr>
                       <td width="7%" align="center" class="MsoNormal" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; "></td>
-                      <td width="93%" align="left" style="color:#0F7888; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:12px; " >N&uacute;mero ##numero## - ##mes## 2021</td>
+                      <td width="93%" align="left" style="color:#0F7888; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:12px; " >N&uacute;mero ##numero## - ##mes## 2022</td>
                     </tr>
                     <tr>
                       <td height="10" colspan="2"></td>
@@ -524,7 +309,7 @@ table[class=main] {
                         <td height="30"></td>
                       </tr>
                       <tr>
-                        <td><p><a href="https://axoncomunicacion.net"><img src="pb/navidad21-22-ver2.gif" alt="Navidad 21/22" width="700" height="150" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
+                        <td><p><a href="https://axoncomunicacion.net"><img src="pb/navidad21-22-ver3.gif" alt="Navidad 21/22" width="700" height="150" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
                       </tr>
                       <tr>
                         <td height="30"></td>
@@ -541,257 +326,11 @@ table[class=main] {
   </tbody>
 </table>
 
-
-
-'''
-
-noticia_destacada = '''
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-          <tbody>
-            <tr>
-              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-                  <tbody>
-                    <tr>
-                      <td height="40"></td>
-                    </tr>
-                    <!-- ROW-1 START -->
-                    <tr>
-                      <td><!--TABLE LEFT-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                          <tbody>
-                            <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="##imagen##" alt="" width="##ancho##" height="##alto##" style="margin:0; padding:0; width:100%; height:auto;" /></td>
-                            </tr>
-                            <tr>
-                              <td height="15" bgcolor="#ffffff"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <!--TABLE MIDDLE-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                          <tbody>
-                            <tr>
-                              <td width="1" height="50"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <!--TABLE RIGHT-->
-                        <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                          <tbody>
-                            <tr>
-                              <td align="left" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
-                            </tr>
-                            <tr>
-                              <td height="15"></td>
-                            </tr>
-                            <tr>
-                              <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>##contenido##</p></td>
-                            </tr>
-                            <tr>
-                              <td height="15"></td>
-                            </tr>
-                            <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="##noticia_enlace##" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-                            </tr>
-                          </tbody>
-                        </table></td>
-                    </tr>
-                    <!-- ROW-1 END -->
-                  </tbody>
-                </table></td>
-            </tr>
-          </tbody>
-        </table></td>
-    </tr>
-  </tbody>
-</table>
-'''
-
-bloque_exterior = '''
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-          <tbody>
-            <tr>
-              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-                  <tbody>
-                    <tr>
-                      <td height="40"></td>
-                    </tr>
-                    <!-- ROW-1 START -->
-                    <tr>
-                      <td><!--TABLE LEFT-->
-                        ##bloque izq##
-                        <!--TABLE MIDDLE-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                          <tbody>
-                            <tr>
-                              <td width="1" height="50"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <!--TABLE RIGHT-->
-                        ##bloque der##
-                     </td>
-                    </tr>
-                    <!-- ROW-1 END -->
-                  </tbody>
-                </table></td>
-            </tr>
-          </tbody>
-        </table></td>
-    </tr>
-  </tbody>
-</table>
-'''
-
-bloque_exterior_funcion = '''
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-          <tbody>
-            <tr>
-              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-                  <tbody>
-                    <tr>
-                      <td height="40"></td>
-                    </tr>
-                    <!-- ROW-1 START -->
-                    <tr>
-                      <td><!--TABLE LEFT-->
-                        ##bloque izq##
-                        <!--TABLE MIDDLE-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                          <tbody>
-                            <tr>
-                              <td width="1" height="50"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <!--TABLE RIGHT-->
-                        ##bloque der##
-                     </td>
-                    </tr>
-                    <!-- ROW-1 END -->
-                  </tbody>
-                </table></td>
-            </tr>
-          </tbody>
-        </table></td>
-    </tr>
-  </tbody>
-</table>
-'''
-
-
-pb_320 = '''
-<table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-  <tbody>
-    <tr>
-      <td align="left" valign="middle" style="color:#666666;"><a href="https://www.laservet.it/?lang=es"><img src="pb/laservet-320x320px_ver_5.gif" alt="LasetVET" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
-    </tr>
-  </tbody>
-</table>
-
-'''
-
-
-noticia_raw = '''
-<table align="##posicion##" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-  <tbody>
-    <tr>
-      <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="##imagen##" alt="" width="##ancho##" height="##alto##" style="margin:0; padding:0; width:100%; height:auto;" /></td>
-    </tr>
-    <tr>
-      <td height="25" bgcolor="#ffffff"></td>
-    </tr>
-    <tr>
-      <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
-    </tr>
-    <tr>
-      <td height="15" bgcolor="#ffffff"></td>
-    </tr>
-    <tr>
-      <td align="left" bgcolor="#ffffff" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>##noticia_texto##</p></td>
-    </tr>
-    <tr>
-      <td height="15" bgcolor="#ffffff"></td>
-    </tr>
-    <tr>
-      <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="##noticia_enlace##" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-    </tr>
-  </tbody>
-</table>
-'''
-
-noticia_funcion_raw = '''
-<table align="##posicion##" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-  <tbody>
-    <tr>
-      <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="##imagen##" alt="" width="##ancho##" height="##alto##" style="margin:0; padding:0; width:100%; height:auto;" /></td>
-    </tr>
-    <tr>
-      <td height="25" bgcolor="#ffffff"></td>
-    </tr>
-    <tr>
-      <td align="left" bgcolor="#ffffff" class="heading" style="color: ##color##; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
-    </tr>
-    <tr>
-      <td height="15" bgcolor="#ffffff"></td>
-    </tr>
-    <tr>
-      <td align="left" bgcolor="#ffffff" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>##noticia_texto##</p></td>
-    </tr>
-    <tr>
-      <td height="15" bgcolor="#ffffff"></td>
-    </tr>
-    <tr>
-      <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="##noticia_enlace##" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
-    </tr>
-  </tbody>
-</table>
-
 '''
 
 
 #todo: quitar los bloque de las revistas y ponerlos separados
 fin = '''
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-          <tbody>
-            <tr>
-              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-                  <tbody>
-                    <tr>
-                      <td height="30"></td>
-                    </tr>
-                    <tr>
-                      <td valign="middle" align="center" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
-                          <tbody>
-                            <tr>
-                              <td><a href="http://nozebra.ipapercms.dk/Kruuse/exp/Wound/WoundCatalogue/"><img src="pb/kruuse_700.jpg" alt="Kruuse" width="700" height="106" style="margin:0; padding:0; display:block; width:100%; height:auto;" /></a></td>
-                            </tr>
-                          </tbody>
-                        </table></td>
-                    </tr>
-                    <tr>
-                      <td height="30"></td>
-                    </tr>
-                  </tbody>
-                </table></td>
-            </tr>
-          </tbody>
-        </table></td>
-    </tr>
-  </tbody>
-</table>
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
@@ -866,25 +405,25 @@ fin = '''
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av90.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av91.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 90</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 91</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Enfermedades cong&eacute;nitas y hereditarias de las razas caninas y felinas (III) </li>
-                                  <li>Alimentaci&oacute;n de gal&aacute;pagos </li>
-                                  <li>Actuaci&oacute;n ante un animal perdido o abandonado</li>
-                                  <li>ANAVET:
+                                  <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas (IV)  </li>
+                                  <li>El papel del auxiliar de veterinaria en la cirugía de exóticos  </li>
+                                  <li>La responsabilidad y trabajo de un veterinario en salud humana </li>
+                                  <li>ANAVET
                                     <ul>
-                                      <li>WEBINARS ANAVET/HILL&rsquo;S PET NUTRITION 2021</li>
+                                      <li> Enfermería de cuidados intensivos (I) </li>
                                     </ul>
                                   </li>
                                   <li>Noticias</li>
@@ -895,7 +434,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no90-asistente-en-centro-veterinario/no90-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no91-asistente-en-centro-veterinario/no91-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -904,37 +443,6 @@ fin = '''
                         </td>
                     </tr>
                     <!-- ROW-1 END -->
-                  </tbody>
-                </table></td>
-            </tr>
-          </tbody>
-        </table></td>
-    </tr>
-  </tbody>
-</table>
-<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tbody>
-    <tr>
-      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-          <tbody>
-            <tr>
-              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-                  <tbody>
-                    <tr>
-                      <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
-                          <tbody>
-                            <tr>
-                              <td height="30"></td>
-                            </tr>
-                            <tr>
-                              <td><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><a href="https://www.setna.com/presentacion.htm"><img src="pb/setna_novalsam.jpg" alt="" style="margin: 0pt; padding: 0pt; display: block; width: 100%; height: auto;" height="90" width="700" /></a></span></td>
-                            </tr>
-                            <tr>
-                              <td height="30"></td>
-                            </tr>
-                          </tbody>
-                        </table></td>
-                    </tr>
                   </tbody>
                 </table></td>
             </tr>
@@ -1016,13 +524,13 @@ fin = '''
                        <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys90.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys91.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm;90</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm;91</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
@@ -1030,16 +538,20 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>ACTUALIDAD </li>
-                                  <li>ONE HEALTH:  Avanzando hacia un abordaje integral de la salud </li>
-                                  <li>PORCINO
+                                  <li>SYVA:  
                                     <ul>
-                                      <li>Factores antinutricionales de los ingredientes y su impacto en alimentación de aves y porcino</li>
+                                      <li>Evolucionamos para seguir avanzando juntos en la prevención y control del Mal Rojo</li>
                                     </ul>
                                   </li>
                                   <li>BOVINO
                                     <ul>
-                                      <li>Proteína en suero, pruebas hepáticas y pruebas de la función renal en bovinos </li>
-                                      <li>Poner en primer Lugar al consumidor: Clasificación de calidad de consumo de carne de vacuno</li>
+                                      <li>Diagnóstico de la gestación: pasado, presente y futuro </li>
+                                      <li>La insulina, la inflamación y la lactancia</li>
+                                    </ul>
+                                  </li>
+                                  <li>PORCINO
+                                    <ul>
+                                      <li>Ingredientes alimenticios alternativos: concentración energética y en nutrientes, digestibilidad y niveles recomendados de inclusión</li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -1048,7 +560,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-90-cria-y-salud-sumario/no-90-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-91-cria-y-salud-sumario/no-91-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -1275,3 +787,187 @@ fin = '''
 </body>
 </html>
 '''
+
+noticia_destacada = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+          <tbody>
+            <tr>
+              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+                  <tbody>
+                    <tr>
+                      <td height="40"></td>
+                    </tr>
+                    <!-- ROW-1 START -->
+                    <tr>
+                      <td><!--TABLE LEFT-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                          <tbody>
+                            <tr>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="##imagen##" alt="" width="##ancho##" height="##alto##" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                            </tr>
+                            <tr>
+                              <td height="15" bgcolor="#ffffff"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!--TABLE MIDDLE-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                          <tbody>
+                            <tr>
+                              <td width="1" height="50"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!--TABLE RIGHT-->
+                        <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                          <tbody>
+                            <tr>
+                              <td align="left" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
+                            </tr>
+                            <tr>
+                              <td height="15"></td>
+                            </tr>
+                            <tr>
+                              <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>##contenido##</p></td>
+                            </tr>
+                            <tr>
+                              <td height="15"></td>
+                            </tr>
+                            <tr>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="##noticia_enlace##" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                    <!-- ROW-1 END -->
+                  </tbody>
+                </table></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
+
+bloque_exterior = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+          <tbody>
+            <tr>
+              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+                  <tbody>
+                    <tr>
+                      <td height="40"></td>
+                    </tr>
+                    <!-- ROW-1 START -->
+                    <tr>
+                      <td><!--TABLE LEFT-->
+                        ##bloque izq##
+                        <!--TABLE MIDDLE-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                          <tbody>
+                            <tr>
+                              <td width="1" height="50"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!--TABLE RIGHT-->
+                        ##bloque der##
+                     </td>
+                    </tr>
+                    <!-- ROW-1 END -->
+                  </tbody>
+                </table></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
+
+bloque_exterior_funcion = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+          <tbody>
+            <tr>
+              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+                  <tbody>
+                    <tr>
+                      <td height="40"></td>
+                    </tr>
+                    <!-- ROW-1 START -->
+                    <tr>
+                      <td><!--TABLE LEFT-->
+                        ##bloque izq##
+                        <!--TABLE MIDDLE-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                          <tbody>
+                            <tr>
+                              <td width="1" height="50"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!--TABLE RIGHT-->
+                        ##bloque der##
+                     </td>
+                    </tr>
+                    <!-- ROW-1 END -->
+                  </tbody>
+                </table></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
+
+
+noticia_funcion_raw = '''
+<table align="##posicion##" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+  <tbody>
+    <tr>
+      <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="##imagen##" alt="" width="##ancho##" height="##alto##" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+    </tr>
+    <tr>
+      <td height="25" bgcolor="#ffffff"></td>
+    </tr>
+    <tr>
+      <td align="left" bgcolor="#ffffff" class="heading" style="color: ##color##; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
+    </tr>
+    <tr>
+      <td height="15" bgcolor="#ffffff"></td>
+    </tr>
+    <tr>
+      <td align="left" bgcolor="#ffffff" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><p>##noticia_texto##</p></td>
+    </tr>
+    <tr>
+      <td height="15" bgcolor="#ffffff"></td>
+    </tr>
+    <tr>
+      <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="##noticia_enlace##" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+    </tr>
+  </tbody>
+</table>
+
+'''
+
+
+
+publicidad = '''
+<table align="##posicion##" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tbody>
+      <tr>
+        <td align="center" bgcolor="#E613ED" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##publicidad## </td>
+      </tr>
+    </tbody>
+</table>'''
