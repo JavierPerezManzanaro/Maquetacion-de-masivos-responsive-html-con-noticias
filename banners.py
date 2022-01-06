@@ -73,6 +73,39 @@ laser_horizontal = '''
 </table>
 '''
 
+setna = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                      <tr>
+                        <td><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><a href="https://www.setna.com/presentacion.htm"><img src="pb/setna_novalsam.jpg" alt="" style="margin: 0pt; padding: 0pt; display: block; width: 100%; height: auto;" height="90" width="700" /></a></span></td>
+                      </tr>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
 
 #* banner argentina
 

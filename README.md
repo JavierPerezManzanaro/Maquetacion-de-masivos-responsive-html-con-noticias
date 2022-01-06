@@ -1,22 +1,22 @@
 
-![Versión 3.1](https://img.shields.io/badge/Versión-3.1-green) 
+![Versión 3.1](https://img.shields.io/badge/Versión-3.1.1-green) 
 ![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green) 
 ![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green) 
 ---
 
-# Creación de masivos *resposive*
+# Creación de masivos *resposive* para campañas de e-mail
 ## Descripción
-Este proyecto surge de la necesidad de automatizar la creación de un masivo *responsive* diario.
+Este proyecto surge de la necesidad de automatizar la creación de un masivo para campañas de e-mail *responsive* (se adapta a todas las pantallas) diario.
 
-La aplicación recopila trabajos (de una bbdd sqlite3), una serie de noticias de un blog de la empresa y los banners que tiene que salir publicados.
+La aplicación recopila trabajos (de una bbdd sqlite3), una serie de noticias de un blog de la empresa y los banners que tienen que salir publicados.
 
 Al final del proceso se obtiene:
-- un **archivo html** y
+- un **archivo html** 
 - una **carpeta con las imágenes nuevas**.
 
-Esta aplicación esta pensada para funcionar bajo la estructura de archivos de mi empresa, o sea, que para otros casos abra que realizar modificaciones.
+Esta aplicación esta pensada para funcionar bajo la estructura de archivos de mi empresa, por lo que para otros casos abra que realizar modificaciones.
 
-De hecho si se abre el archivo nada mas generarlo se vera algunos vínculos que fallan en su ordenador y en local. Obviamente son imágenes comunes que no se copian en cada masivo, se enlazan a un repositorio general.
+Si se abre el archivo nada mas generarlo se veran algunos vínculos que fallan en su ordenador (y en local). Obviamente son imágenes comunes que no se copian en cada masivo, se enlazan a un repositorio general.
 
 
 ---
@@ -24,15 +24,15 @@ De hecho si se abre el archivo nada mas generarlo se vera algunos vínculos que 
 ### Datos_de_acceso.py
 Tenemos que crear un archivo con ese nombre.
 
-Dentro tenemos que definir dos variables: usuario y contrasena (sin ñ) que deben ser los datos de acceso al blog de WordPress.
+Dentro tenemos que definir dos variables: "usuario" y "contrasena" (sin ñ) que deben ser los datos de acceso al blog de WordPress.
 
 
 ---
 ## Instrucciones de instalación
 - Clonar el repositorio en local
-- Hay una serie de módulos que hay que importar:
+- Módulos a importar:
     - Para "Informavet.py":
-      - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc)
+      - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc) puente entre Python y WordPress.
     - Para "Inserción de noticias en bbdd.py":
       - [gazpacho](https://pypi.org/project/gazpacho/) para hacer web scraping.
       - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la vebtana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd. 
@@ -45,11 +45,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### ¿Están los trabajos en la bbdd?
 1. Buscar si están en la base de datos los trabajos que tienen que salir publicados en el masivo diario abriendo "bbdd.sqlite3".
 
-    1.1. Si están los trabajos de compañía y de producción paso al punto 2.
+    1.1. Si están los trabajos de compañía y de producción paso al punto 2 (en Creación del masivo).
 
     1.2. Si no están: En este punto hay varias formas de actuar. La mas eficiente para mi es crear esos trabajos como noticias (en el fondo siguen la misma extructura, solo cambia el color del titular), después cambio el color del titular y las coloco en su sitio (todo esto con Dreamwaver, por ejemplo). Mas tarde introduzco ese trabajo en la bbdd ejecutando "Inserción de noticias en bbdd.py".
 
-### Creación del másivo 
+### Creación del masivo 
 2. Ejecuto la aplicación principal: "Informavet.py":
 
     2.1. La aplicación nos pregunta por el número del masivo. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una "c" al nombre: **"¿Qué número de InformaVet es? "**
@@ -64,13 +64,13 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
       - Si introducimos un 0 la aplicación se salta este paso.
 
-    2.4. **"¿Qué trabajos de animales de compañía? "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    2.4. **"¿Trabajos de animales de compañía para publicar? "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos un 0 la aplicación se salta este paso.
 
       - Al final, en el archivo html, se verán todos los trabajos de animales de compañía en la columna de la izquierda.
 
-    2.5. **"¿Qué trabajos de animales de producción? "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    2.5. **"¿Trabajos de animales de producción para publicar?  "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos un 0 la aplicación se salta este paso.
 
@@ -78,7 +78,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
     2.5. **"¿Qué noticias quieres publicar? "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
-      - Si introducimos solo un 0 la aplicación se salta este paso.
+      - Si introducimos solamente un 0 la aplicación se salta este paso.
 
       - Al final, en el archivo html, se verán todas estas noticias a dos columnas.
 
@@ -105,7 +105,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 - datos_de_acceso.py
 
-  Archivo donde e se guardan las claves para entrar el blog basado en WordPress.
+  Archivo donde se guardan las claves para entrar el blog basado en WordPress.
 
 - Informavet.py
 
@@ -126,11 +126,17 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 
 ---
-## Versionado
+## Historial de versiones
 
 ### Próxima
 - Incluir la librería: Logging
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
+- Si no introducimos nada en alguna de las tres preguntas saltamos a la siguiente pregunta dejando ese bloque vacio.
+
+### 3.1.1
+- Añado un try/except para evitar errores a la hora de tratar trabajos.
+- Correcciones en el README.md
+- Adaptación al flujo de trabajo.
 
 ### 3.1
 - Corrección de errores generales.
@@ -156,7 +162,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ---
 ## Licencias y derechos de autor
 CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada
-
+![CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada](https://raw.githubusercontent.com/JavierPerezManzanaro/Creacion-de-masivos-responsive-html-con-noticias/main/Reconocimiento-no-comercial-sin-obra-derivada.png)
 
 ---
 ## Información de contacto del autor

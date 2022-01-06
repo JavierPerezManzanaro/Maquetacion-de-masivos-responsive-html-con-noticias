@@ -146,7 +146,6 @@ def descarga_imagen(imagen_red, ancho_px):
         imagen = imagen.resize((ancho_px, alto))
         ancho = ancho_px
         imagen.save(imagen_local)
-        #print(f"Tamaño actual horizontal/vertical: {imagen.size[0]}px x {imagen.size[1]}px")
     return imagen_local, ancho, alto
 
 
@@ -164,7 +163,7 @@ print()
 #* creamos la carpeta
 nombre_archivo = str(boletin)+'c'
 try:
-    os.mkdir(nombre_archivo)  # (nombre_archivo+'c')
+    os.mkdir(nombre_archivo)
 except OSError as e:
     print("Borrando carpeta anterior.")
     if e.errno != errno.EEXIST:
@@ -255,7 +254,6 @@ meses = {
     "12": 'Diciembre'
 }
 ahora = datetime.now()
-dia = ahora.day
 
 print()
 print()
@@ -296,68 +294,74 @@ print('')
 
 
 #* trabajos de animales de compañia
-trabajos = input('¿Qué trabajos de animales de compañía? ')
-trabajos = trabajos.split(' ')
-publicidad = bloques.publicidad.replace('##posicion##', 'right')
-cursorObj = con.cursor()
-for trabajo_seleccionado in trabajos:
-    if trabajo_seleccionado == '0':
-        trabajos_compania.append(publicidad)
-    else:
-        cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' + trabajo_seleccionado + ';')
-        trabajo_en_bbdd = cursorObj.fetchone()
-        #pprint(trabajo_en_bbdd)
-        titular = trabajo_en_bbdd[1]
-        url = trabajo_en_bbdd[2]
-        imagen = trabajo_en_bbdd[3]
-        texto = trabajo_en_bbdd[5]
-        #*creamos la lista trabajos_compania que contiene todos los trabajos de compañia
-        trabajos_compania.append(
-            tabla_interior('compania', imagen, titular, texto, url))
-cursorObj.close()
-
-html_trabajos_compania = ''
-html_trabajos_compania = bloques.bloque_exterior_funcion * len(trabajos_compania)
-
-for trabajo in trabajos_compania:
-    html_trabajos_compania = html_trabajos_compania.replace(
-        '##bloque izq##', trabajo, 1)
-    html_trabajos_compania = html_trabajos_compania.replace(
-        '##bloque der##', publicidad)
+try:
+    trabajos = input('¿Trabajos de animales de compañía para publicar? ')
+    trabajos = trabajos.split(' ')
+    publicidad = bloques.publicidad.replace('##posicion##', 'right')
+    cursorObj = con.cursor()
+    for trabajo_seleccionado in trabajos:
+        if trabajo_seleccionado == '0':
+            trabajos_compania.append(publicidad)
+        else:
+            cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' + trabajo_seleccionado + ';')
+            trabajo_en_bbdd = cursorObj.fetchone()
+            #pprint(trabajo_en_bbdd)
+            titular = trabajo_en_bbdd[1]
+            url = trabajo_en_bbdd[2]
+            imagen = trabajo_en_bbdd[3]
+            texto = trabajo_en_bbdd[5]
+            #*creamos la lista trabajos_compania que contiene todos los trabajos de compañia
+            trabajos_compania.append(
+                tabla_interior('compania', imagen, titular, texto, url))
+    cursorObj.close()
+except:
+   html_trabajos_compania = ''
+   print('❌ Esta sección no se va a publicar')
+else:
+    html_trabajos_compania = ''
+    html_trabajos_compania = bloques.bloque_exterior_funcion * len(trabajos_compania)
+    for trabajo in trabajos_compania:
+        html_trabajos_compania = html_trabajos_compania.replace(
+            '##bloque izq##', trabajo, 1)
+        html_trabajos_compania = html_trabajos_compania.replace(
+            '##bloque der##', publicidad)
 
 
 #* trabajos de animales de producción
-trabajos = input(
-    '¿Qué trabajos de animales de producción? ')
-trabajos = trabajos.split(' ')
-publicidad = bloques.publicidad.replace('##posicion##', 'left')
-cursorObj = con.cursor()
-for trabajo_seleccionado in trabajos:
-    if trabajo_seleccionado == '0':
-        trabajos_compania.append(publicidad)
-    else:
-        #trabajo_seleccionado = int(trabajo_seleccionado)
-        cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' +
-                        trabajo_seleccionado + ';')
-        trabajo_en_bbdd = cursorObj.fetchone()
-        #pprint(trabajo_en_bbdd)
-        titular = trabajo_en_bbdd[1]
-        url = trabajo_en_bbdd[2]
-        imagen = trabajo_en_bbdd[3]
-        texto = trabajo_en_bbdd[5]
-        #*creamos la lista trabajos_produccion que contiene todos los trabajos de producción
-        trabajos_produccion.append(
-            tabla_interior('produccion', imagen, titular, texto, url))
-cursorObj.close()
-
-html_trabajos_produccion = ''
-html_trabajos_produccion = bloques.bloque_exterior_funcion * len(trabajos_produccion)
-
-for trabajo in trabajos_produccion:
-    html_trabajos_produccion = html_trabajos_produccion.replace(
-        '##bloque izq##', publicidad)
-    html_trabajos_produccion = html_trabajos_produccion.replace(
-        '##bloque der##', trabajo, 1)
+try:
+    trabajos = input(
+        '¿Trabajos de animales de producción para publicar? ')
+    trabajos = trabajos.split(' ')
+    publicidad = bloques.publicidad.replace('##posicion##', 'left')
+    cursorObj = con.cursor()
+    for trabajo_seleccionado in trabajos:
+        if trabajo_seleccionado == '0':
+            trabajos_produccion.append(publicidad)
+        else:
+            #trabajo_seleccionado = int(trabajo_seleccionado)
+            cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' +
+                            trabajo_seleccionado + ';')
+            trabajo_en_bbdd = cursorObj.fetchone()
+            #pprint(trabajo_en_bbdd)
+            titular = trabajo_en_bbdd[1]
+            url = trabajo_en_bbdd[2]
+            imagen = trabajo_en_bbdd[3]
+            texto = trabajo_en_bbdd[5]
+            #*creamos la lista trabajos_produccion que contiene todos los trabajos de producción
+            trabajos_produccion.append(
+                tabla_interior('produccion', imagen, titular, texto, url))
+    cursorObj.close()
+except:
+   html_trabajos_produccion = ''
+   print('❌ Esta sección no se va a publicar')
+else:
+    html_trabajos_produccion = ''
+    html_trabajos_produccion = bloques.bloque_exterior_funcion * len(trabajos_produccion)
+    for trabajo in trabajos_produccion:
+        html_trabajos_produccion = html_trabajos_produccion.replace(
+            '##bloque izq##', publicidad)
+        html_trabajos_produccion = html_trabajos_produccion.replace(
+            '##bloque der##', trabajo, 1)
 
 
 #* gestión de las noticias
@@ -445,8 +449,11 @@ argentina_banner_elegido = random.choice(argentina_banner_elegido)
 argentina_banner = banners.argentina_base.replace('**modulo_pb**', argentina_banner_elegido)
 resultado = resultado + argentina_banner
 
-
 resultado = resultado + bloque_final_con_noticias
+
+# pb de setna
+resultado = resultado + banners.setna
+
 resultado = resultado + bloques.fin
 
 
@@ -491,7 +498,7 @@ with open(archivo, mode="w", encoding="utf-8") as fichero:
 
 
 print()
-print('Archivo generado')
+print('Archivo generado: 👍')
 print()
 
 
