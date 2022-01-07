@@ -131,7 +131,6 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### Próxima
 - Incluir la librería: Logging
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
-- Si no introducimos nada en alguna de las tres preguntas saltamos a la siguiente pregunta dejando ese bloque vacio.
 
 ### 3.1.1
 - Añado un try/except para evitar errores a la hora de tratar trabajos.
