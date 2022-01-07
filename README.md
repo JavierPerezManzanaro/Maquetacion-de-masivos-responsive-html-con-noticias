@@ -4,7 +4,7 @@
 ![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green) 
 ---
 
-# Creación de masivos *resposive* para campañas de e-mail
+# Maquetación de masivos *resposive* para campañas de e-mail
 ## Descripción
 Este proyecto surge de la necesidad de automatizar la creación de un masivo para campañas de e-mail *responsive* (se adapta a todas las pantallas) diario.
 
@@ -109,7 +109,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 - Informavet.py
 
-  Aplicación que genera el masivo *responsive*.
+  Aplicación que genera el masivo *responsive* en html.
 
 - Inserción de noticias en bbdd.py
 
