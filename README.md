@@ -161,7 +161,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ---
 ## Licencias y derechos de autor
 CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada
-![CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada](https://raw.githubusercontent.com/JavierPerezManzanaro/Creacion-de-masivos-responsive-html-con-noticias/main/Reconocimiento-no-comercial-sin-obra-derivada.png)
+![CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada](https://raw.githubusercontent.com/JavierPerezManzanaro/Maquetacion-de-masivos-responsive-html-con-noticias/main/Reconocimiento-no-comercial-sin-obra-derivada.png)
 
 ---
 ## Información de contacto del autor
