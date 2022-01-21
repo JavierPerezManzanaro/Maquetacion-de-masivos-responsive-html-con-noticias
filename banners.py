@@ -73,6 +73,41 @@ laser_horizontal = '''
 </table>
 '''
 
+krusse = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td height="30"></td>
+                </tr>
+                <tr>
+                  <td valign="middle" align="center" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td><a href="http://nozebra.ipapercms.dk/Kruuse/exp/Wound/WoundCatalogue/"><img src="pb/kruuse_700.jpg" alt="Kruuse" width="700" height="106" style="margin:0; padding:0; display:block; width:100%; height:auto;" /></a></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td height="30"></td>
+                </tr>
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
+
+
 setna = '''
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
@@ -186,6 +221,39 @@ argentina_base = '''
 </table>
 '''
 
+iberzoo = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                      <tr>
+                        <td><p><a href="https://www.ifema.es/iberzoo-propet?utm_source=centroveterinario&amp;utm_medium=display&amp;utm_campaign=centroveterinario_display_iberzoo_dic-mar_esp&amp;utm_content=700x200"><img src="pb/ifema_ Iberzoo22 _21-12_700x200.jpg" alt="Iberzoo" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
+                      </tr>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
 
 #* banner verticales
 

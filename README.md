@@ -136,6 +136,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Añado un try/except para evitar errores a la hora de tratar trabajos.
 - Correcciones en el README.md
 - Adaptación al flujo de trabajo.
+- Cambio el trabajo con la fecha apara poder meter banners algunos días en concreto.
 
 ### 3.1
 - Corrección de errores generales.

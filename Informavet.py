@@ -8,7 +8,7 @@
 #* explicación
 
 
-from datetime import datetime
+import datetime
 from os import close, link
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc.methods import posts
@@ -22,7 +22,7 @@ import errno
 import random
 import sqlite3
 
-#* liberias propias
+#* librerias propias
 import bloques
 import datos_de_acceso
 import banners
@@ -191,17 +191,17 @@ trabajos_en_bbdd_produccion = cursorObj.fetchall()
 cursorObj.close()
 
 print('Trabajos de compañía:')
-print(f"---|-{'-'*104}")
+print(f"----|-{'-'*104}")
 for trabajo in trabajos_en_bbdd_compania:
-    print(f"{trabajo[0]:>2} | {trabajo[1][0:100]}")
+    print(f"{trabajo[0]:>3} | {trabajo[1][0:100]}")
 
 print()
 print('Trabajos de producción:')
-print(f"---|-{'-'*104}")
+print(f"----|-{'-'*104}")
 for trabajo in trabajos_en_bbdd_produccion:
-    print(f"{trabajo[0]:>2} | {trabajo[1][0:100]}")
+    print(f"{trabajo[0]:>3} | {trabajo[1][0:100]}")
 
-numero = len(trabajos_en_bbdd)
+numero = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 1 
 
 
 #* recogemos las noticias de la web de axon
@@ -211,7 +211,7 @@ axon_entradas = cliente.call(posts.GetPosts(
     {'number': noticias_mostradas, 'offset': 0,  'post_status': 'publish'}))  #todo 'orderby': 'title',
 print()
 print(f"Últimas {noticias_mostradas} noticias de Axón comunicación:")
-print(f"---|-{'-'*104}")
+print(f"----|-{'-'*104}")
 #? creados diccionario axon[noticia] con la entrada 0, el hueco y mostramos la tabla
 url = 'nulo'
 axon = {}
@@ -219,7 +219,7 @@ axon[0] = {'id': 0, 'url': 'https://axoncomunicacion.net', 'imagen': 'https://ax
            'titulo': 'vacio', 'contenido': '&nbsp;'}
 if len(axon_entradas) > 0:
     for entrada in axon_entradas:
-        print(f"{numero:>2} | {entrada.title[0:104]}")
+        print(f"{numero:>3} | {entrada.title[0:104]}")
         # sacamos la url de la imagen
         imagen = re.findall('img .*?src="(.*?)"', entrada.content)
         imagen = imagen[0]
@@ -234,6 +234,7 @@ if len(axon_entradas) > 0:
         axon[numero] = {'id': entrada.id, 'url': entrada.link,
                         'imagen': imagen, 'titulo': entrada.title, 'contenido': contenido_bruto}
         numero += 1
+
 else:
     print("No hay entradas para mostrar")
 
@@ -253,7 +254,7 @@ meses = {
     "11": 'Noviembre',
     "12": 'Diciembre'
 }
-ahora = datetime.now()
+ahora = datetime.date.today()
 
 print()
 print()
@@ -441,6 +442,7 @@ resultado = resultado + html_trabajos_produccion
 
 #* gestión de la pb manual
 resultado = resultado + banners.libro_ecg
+resultado = resultado + banners.krusse
 resultado = resultado + banners.laser_horizontal
 resultado = resultado + banners.laser_vertical
 # banner de argentina
@@ -448,6 +450,15 @@ argentina_banner_elegido = [banners.argentina_1,banners.argentina_2, banners.arg
 argentina_banner_elegido = random.choice(argentina_banner_elegido)
 argentina_banner = banners.argentina_base.replace('**modulo_pb**', argentina_banner_elegido)
 resultado = resultado + argentina_banner
+
+#banner de ifema
+# 31 ENERO
+# 7 FEBRERO
+# 14 FEBRERO
+# 21 FEBRERO
+if (ahora == datetime.date(2022, 1, 31)) or (ahora == datetime.date(2022, 2, 7)) or (ahora == datetime.date(2022, 2, 14)) or (ahora == datetime.date(2022, 2, 21)):
+    resultado = resultado + banners.iberzoo
+
 
 resultado = resultado + bloque_final_con_noticias
 

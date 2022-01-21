@@ -316,13 +316,13 @@ fin = '''
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv102.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv103.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 102</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 103</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -332,13 +332,12 @@ fin = '''
                                   <li>Editorial </li>
                                   <li>Art&iacute;culo de revisi&oacute;n:
                                     <ul>
-                                      <li>Enfermedad inflamatoria intestinal en un gato con infección por <em>toxocara cati </em>y <em>cryptosporidium spp</em></li>
+                                      <li>Estudio citol&oacute;gico de efusiones </li>
                                     </ul>
                                   </li>
-                                  <li>Enfermedad del desarrollo del codo II:
+                                  <li>Caso cl&iacute;nico: 
                                     <ul>
-                                      <li>Canine Unicompartmental Elbow (CUE) </li>
-                                      <li>Implante sintético para sustitución de la lesión osteocontral (OCD) de la superficie medial del cóndilo humeral (SynACART®)</li>
+                                      <li>Tratamiento de una f&iacute;stula enterohep&aacute;tica y un absceso hep&aacute;tico secundarios a una ulceraci&oacute;n duodenal                                  </li>
                                     </ul>
                                   </li>
                                   <li>Vetmadrid 2022:   &ldquo;El reencuentro&rdquo;</li>
@@ -349,7 +348,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no102-centro-veterinario/no102-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no103-centro-veterinario/no103-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
