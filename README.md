@@ -2,6 +2,8 @@
 ![Versión 3.1](https://img.shields.io/badge/Versión-3.1.1-green) 
 ![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green) 
 ![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green) 
+[![scraper: gazpacho](https://img.shields.io/badge/scraper-gazpacho-C6422C)](https://github.com/maxhumber/gazpacho)
+
 ---
 
 # Maquetación de masivos *resposive* para campañas de e-mail
@@ -131,6 +133,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### Próxima
 - Incluir la librería: Logging
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
+
+### 3.1.2
+- Mejoras en 'Inserción de noticias en bbdd.py':
+  - Ahora se puenden incluir etiquetas html (cursivas o subindices, por ejemplo) en el título o en el texto.
+- Correcciones en el README.md
 
 ### 3.1.1
 - Añado un try/except para evitar errores a la hora de tratar trabajos.

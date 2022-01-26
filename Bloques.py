@@ -133,9 +133,6 @@ td[class="lrpadding"], .auto-pad {
 }
 </style>
 <style>
-/*estilo SOLO para el logotipo de foro agro ganadero*/
-
-
 
 @media only screen and (max-width:640px) {
 body {
