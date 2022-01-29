@@ -168,7 +168,6 @@ except OSError as e:
     print("Borrando carpeta anterior.")
     if e.errno != errno.EEXIST:
         raise
-    #todo: borrar tambien la carpeta
 
 
 #* accedemos y mostramos los trabajos
@@ -228,7 +227,6 @@ if len(axon_entradas) > 0:
         contenido_bruto = re.sub('&nbsp;', ' ', contenido_bruto)
         contenido_bruto = re.sub('  ', ' ', contenido_bruto)
         contenido_bruto = contenido_bruto.strip(' ')
-        #todo contenido_bruto = contenido_bruto.rstrip('\n')
         contenido_bruto = contenido_bruto.replace(entrada.title, '', 1)
         contenido_bruto = contenido_bruto[0:longitud_de_noticia] + '... '
         axon[numero] = {'id': entrada.id, 'url': entrada.link,
@@ -289,9 +287,9 @@ else:
     noticia_destacada = ''
 
 
-print('')
+print()
 print('Los trabajos/noticias separadas con espacios.')
-print('')
+print()
 
 
 #* trabajos de animales de compañia
@@ -318,14 +316,6 @@ try:
 except:
    html_trabajos_compania = ''
    print('❌ Esta sección no se va a publicar')
-else:
-    html_trabajos_compania = ''
-    html_trabajos_compania = bloques.bloque_exterior_funcion * len(trabajos_compania)
-    for trabajo in trabajos_compania:
-        html_trabajos_compania = html_trabajos_compania.replace(
-            '##bloque izq##', trabajo, 1)
-        html_trabajos_compania = html_trabajos_compania.replace(
-            '##bloque der##', publicidad)
 
 
 #* trabajos de animales de producción
@@ -355,18 +345,34 @@ try:
 except:
    html_trabajos_produccion = ''
    print('❌ Esta sección no se va a publicar')
-else:
-    html_trabajos_produccion = ''
-    html_trabajos_produccion = bloques.bloque_exterior_funcion * len(trabajos_produccion)
-    for trabajo in trabajos_produccion:
-        html_trabajos_produccion = html_trabajos_produccion.replace(
-            '##bloque izq##', publicidad)
-        html_trabajos_produccion = html_trabajos_produccion.replace(
-            '##bloque der##', trabajo, 1)
+
+
+#* fusión de trabajos_compania y de trabajos_produccion
+longitud_produccion = len(trabajos_produccion)
+longitud_campania = len(trabajos_compania)
+mas_largo = longitud_campania if longitud_campania > longitud_produccion else longitud_produccion
+html_trabajos = ''
+html_trabajos = bloques.bloque_exterior_funcion * mas_largo
+for numero in range(mas_largo):
+    if longitud_campania > numero:
+        html_trabajos = html_trabajos.replace(
+            '##bloque izq##', trabajos_compania[numero], 1)
+    else:
+        #todo aqui va la pb vertical
+        html_trabajos = html_trabajos.replace(
+            '##bloque izq##', publicidad, 1)
+    if longitud_produccion > numero:
+        html_trabajos = html_trabajos.replace(
+            '##bloque der##', trabajos_produccion[numero], 1)
+    else:
+        #todo aqui va la pb vertical
+        html_trabajos = html_trabajos.replace(
+            '##bloque der##', publicidad, 1)
+    #todo aqui va la publicidad horizontal, en cada ciclo
 
 
 #* gestión de las noticias
-print('')
+print()
 noticias = input("¿Qué noticias quieres publicar? ")
 
 noticias = noticias.split(' ')
@@ -437,8 +443,9 @@ resultado = ''
 resultado = resultado + comienzo_en_curso
 resultado = resultado + noticia_destacada
 
-resultado = resultado + html_trabajos_compania
-resultado = resultado + html_trabajos_produccion
+# resultado = resultado + html_trabajos_compania
+# resultado = resultado + html_trabajos_produccion
+resultado = resultado + html_trabajos
 
 #* gestión de la pb manual
 resultado = resultado + banners.libro_ecg

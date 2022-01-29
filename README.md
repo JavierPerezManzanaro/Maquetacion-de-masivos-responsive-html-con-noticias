@@ -2,7 +2,7 @@
 ![Versión 3.1](https://img.shields.io/badge/Versión-3.1.1-green) 
 ![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green) 
 ![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green) 
-[![scraper: gazpacho](https://img.shields.io/badge/scraper-gazpacho-C6422C)](https://github.com/maxhumber/gazpacho)
+![![scraper: gazpacho](https://img.shields.io/badge/scraper-gazpacho-C6422C)](https://github.com/maxhumber/gazpacho)
 
 ---
 
@@ -133,6 +133,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### Próxima
 - Incluir la librería: Logging
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
+- Gestión de la publicidad.
+
+### 3.2
+- Fusión de trabajos compañía y de producción para mostrarlos en su ubicación final, enfrentados.
+- Correcciones de errores menores.
 
 ### 3.1.2
 - Mejoras en 'Inserción de noticias en bbdd.py':
