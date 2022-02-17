@@ -26,35 +26,35 @@ Si se abre el archivo nada mas generarlo se veran algunos vínculos que fallan e
 ### Datos_de_acceso.py
 Tenemos que crear un archivo con ese nombre.
 
-Dentro tenemos que definir dos variables: "usuario" y "contrasena" (sin ñ) que deben ser los datos de acceso al blog de WordPress.
+Dentro tenemos que definir dos variables: 'usuario' y 'contrasena' (sin ñ) que deben ser los datos de acceso al blog de WordPress.
 
 
 ---
 ## Instrucciones de instalación
 - Clonar el repositorio en local
 - Módulos a importar:
-    - Para "Informavet.py":
+    - Para 'Informavet.py':
       - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc) puente entre Python y WordPress.
-    - Para "Inserción de noticias en bbdd.py":
+    - Para 'Inserción de noticias en bbdd.py':
       - [gazpacho](https://pypi.org/project/gazpacho/) para hacer web scraping.
       - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la vebtana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd. 
 
 
 ---
-## Instrucciones de uso 
+## Instrucciones de uso
 Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi caso es así:
 
 ### ¿Están los trabajos en la bbdd?
-1. Buscar si están en la base de datos los trabajos que tienen que salir publicados en el masivo diario abriendo "bbdd.sqlite3".
+1. Buscar si están en la base de datos los trabajos que tienen que salir publicados en el masivo diario abriendo 'bbdd.sqlite3'.
 
     1.1. Si están los trabajos de compañía y de producción paso al punto 2 (en Creación del masivo).
 
-    1.2. Si no están: En este punto hay varias formas de actuar. La mas eficiente para mi es crear esos trabajos como noticias (en el fondo siguen la misma extructura, solo cambia el color del titular), después cambio el color del titular y las coloco en su sitio (todo esto con Dreamwaver, por ejemplo). Mas tarde introduzco ese trabajo en la bbdd ejecutando "Inserción de noticias en bbdd.py".
+    1.2. Si no están: En este punto hay varias formas de actuar. La mas eficiente para mi es crear esos trabajos como noticias (en el fondo siguen la misma extructura, solo cambia el color del titular), después cambio el color del titular y las coloco en su sitio (todo esto con Dreamwaver, por ejemplo). Mas tarde introduzco ese trabajo en la bbdd ejecutando 'Inserción de noticias en bbdd.py'.
 
-### Creación del masivo 
-2. Ejecuto la aplicación principal: "Informavet.py":
+### Creación del masivo
+2. Ejecuto la aplicación principal: 'Informavet.py':
 
-    2.1. La aplicación nos pregunta por el número del masivo. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una "c" al nombre: **"¿Qué número de InformaVet es? "**
+    2.1. La aplicación nos pregunta por el número del masivo. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una 'c' al nombre: **'¿Qué número de InformaVet es? '**
 
     2.2. La aplicación va a mostrar tres listas:
     
@@ -62,31 +62,35 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
       - Trabajos de producción (extraídos de la bbdd.sqlite3).
       - Últimas 20 noticias de Axón comunicación (extraídos de la web basada en WordPress).
 
-    2.3. La aplicación pregunta (**"¿Qué noticia es la destacada? "**) para colocar la primera noticia que va a salir. Esta sale publicada a dos columnas.
+    2.3. La aplicación pregunta (**'¿Qué noticia es la destacada? '**) para colocar la primera noticia que va a salir. Esta sale publicada a dos columnas.
 
-      - Si introducimos un 0 la aplicación se salta este paso.
+      - Si introducimos algo que no sea un número de una noticia la aplicación se salta este paso.
 
-    2.4. **"¿Trabajos de animales de compañía para publicar? "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
-
-      - Si introducimos un 0 la aplicación se salta este paso.
-
-      - Al final, en el archivo html, se verán todos los trabajos de animales de compañía en la columna de la izquierda.
-
-    2.5. **"¿Trabajos de animales de producción para publicar?  "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
-
-      - Si introducimos un 0 la aplicación se salta este paso.
-
-      - Al final, en el archivo html, se verán todos los trabajos de animales de producción en la columna de la derecha.
-
-    2.5. **"¿Qué noticias quieres publicar? "** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    2.4. **'¿Trabajos de animales de compañía para publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos solamente un 0 la aplicación se salta este paso.
 
+      - Si introducimos un 0 junto con otros trabajos la aplicación dejara en esa posición un hueco para un banner vertical.
+
+      - Al final, en el archivo html, se verán todos los trabajos de animales de compañía en la columna de la izquierda.
+
+    2.5. **'¿Trabajos de animales de producción para publicar?  '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+
+      - Si introducimos solamente un 0 la aplicación se salta este paso.
+
+      - Si introducimos un 0 junto con otros trabajos la aplicación dejara en esa posición un hueco para un banner vertical.
+
+      - Al final, en el archivo html, se verán todos los trabajos de animales de producción en la columna de la derecha.
+
+    2.5. **'¿Qué noticias quieres publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+
+      - Si introducimos solamente un 0 la aplicación se salta este paso.
+
+      - Si introducimos un 0 junto con otras noticias la aplicación dejara en esa posición un hueco para un banner vertical.
+
       - Al final, en el archivo html, se verán todas estas noticias a dos columnas.
 
-      - Si entre noticias ponemos un 0 la aplicación va a dejar ese hueco para un banner cuadrado o vertical.
-
-3. La aplicación genera el archivo html con los trabajos, los banner en el centro, las noticias y el bloque final (hemerotecas).
+3. La aplicación genera el archivo html con los trabajos, los banner, las noticias y el bloque final (hemerotecas).
 
 4. Hay que editar este archivo con cualquier editor html (Dreamweaver, por ejemplo) para enfrentar las noticias (las filas y columnas son celdas de tablas) y colocar los banners en su sitio.
 
@@ -115,12 +119,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 - Inserción de noticias en bbdd.py
 
-  Aplicación encargada de añadir trabajos a la bbdd "bbdd.sqlite3".
+  Aplicación encargada de añadir trabajos a la bbdd 'bbdd.sqlite3'.
 
   Como los trabajos ya se han aplicado en su inmensa mayoría esta aplicación me abre un cuadro de dialogo para que pueda pegar el código html que define la tabla que contiene el trabajo.
 
   Si el título se repite solo se queda grabado el último registro.
-
 
 - README.md
 
@@ -130,10 +133,16 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ---
 ## Historial de versiones
 
-### Próxima
+### Funciones para añadir
 - Incluir la librería: Logging
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
-- Gestión de la publicidad.
+
+### 4
+- Gestión de la publicidad. En esta versión solamente se trabajan los banners horizontales. Los verticales se ponen de forma manual. Ver punto 'Gestión de los banners'.
+- Añado un try/except para evitar errores a la hora de tratar la noticia destacada.
+- Añado un try/except para evitar errores a la hora de tratar las noticias.
+- Correcciones de errores menores.
+- Ampliación y correcciones en el README.md
 
 ### 3.2
 - Fusión de trabajos compañía y de producción para mostrarlos en su ubicación final, enfrentados.
@@ -154,10 +163,10 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Corrección de errores generales.
 - Incluimos una gestión básica de los 4 banners que van todos los días.
 - Añadimos la gestión de trabajos.
-- Sacamos a un archivo separado "datos_de_acceso.py" las contraseñas.
+- Sacamos a un archivo separado 'datos_de_acceso.py' las contraseñas.
 - Se limpia bien el cuerpo de las noticias que se cuelgan en la web: dobles espacios, espacios en bruto, etc.
-- Unificamos el uso del termino "grandes" que pasa a ser de "producción".
-- Unificamos el uso del termino de "peq" que pasa a ser de "compania".
+- Unificamos el uso del termino 'grandes' que pasa a ser de 'producción'.
+- Unificamos el uso del termino de 'peq' que pasa a ser de 'compania'.
 - Creamos la bbdd en sqlite3 con los trabajos.
 
 ### 3
@@ -169,6 +178,25 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ### 1
 - Versión base.
+
+
+---
+## Gestión de los banners
+Existen varios tipos de banners:
+
+### Horizontales con repetición semanal
+- Estos se gestionan de forma automátca. Solamente es necesario introducirlos en la bbdd sqlite3, tabla Publicidad. En el campo del día de la semana abra que poner un '1' si queremos que salga ese día.
+
+### Horizontales de forma aislada
+- Estos salen unos días en concreto y son tratados de forma manual.
+- El formato de la fecha es aaaa-mm-dd. Realiceros una lista con los días que queremos que sean publicados y al comparar con día actual los pondra o no.
+- Tenemos que crear el html del banner y pegarlo en el archivo 'banners.py'.
+- Buscar en la aplicación: '#* Banners Horizontales de forma aislada.' para ver los casos.
+
+### Verticales
+- Actualmente son pocos y diarios y su gestión es manual.
+- Es necesaria su colocación de forma manual.
+- En proximas versiones se meteran en la bbd.
 
 
 ---

@@ -17,7 +17,6 @@ import os
 import re
 from PIL import Image
 from pprint import pprint
-import pyperclip as clipboard
 import errno
 import random
 import sqlite3
@@ -40,15 +39,36 @@ trabajos_produccion = []
 posicion = 1
 longitud = 0
 
+ahora = datetime.date.today()
+
+meses = {
+    "1": 'Enero',
+    "2": 'Febrero',
+    "3": 'Marzo',
+    "4": 'Abril',
+    "5": 'Mayo',
+    "6": 'Junio',
+    "7": 'Julio',
+    "8": 'Agosto',
+    "9": 'Septiembre',
+    "10": 'Octubre',
+    "11": 'Noviembre',
+    "12": 'Diciembre'
+}
+
+
+#* *******************
+#* Funciones de la app
+#* *******************
 
 def strip_tags(value):
-    """Limpia del código html <…> y […]
+    """Limpia del código html <…> y […].
 
     Args:
-        value ([str]): [description]
+        value ([str]): Cadena a limpiar
 
     Returns:
-        [str]: [description]
+        [str]: Cadena limpia
     """
     value = re.sub(r'<[^>]*?>', ' ', value)  # elimina <...>
     value = re.sub(r'\[[^>]*?\]', ' ', value)  # elimina [...]
@@ -149,8 +169,41 @@ def descarga_imagen(imagen_red, ancho_px):
     return imagen_local, ancho, alto
 
 
+def creacion_banners(publicidad_horizontal):
+    """Va generando uno a uno cada uno de los banners horizontales periodicos.
+    Elige uno al azar, lo crea y lo elimina.
 
-#* empezamos con la app
+    Args:
+        publicidad_horizontal (list): lista compuesta por los datos de la bbdd sqlite3
+
+    Returns:
+        str: código html del banner
+    """
+    if len(publicidad_horizontal) >= 1:
+        banner_seleccionado = random.choice(publicidad_horizontal)
+        '''
+        aqui tengo que ver si es de calier solo puede mostrar uno según el criterio del cliente: por semana uno si otro no, etc.
+        seguramente tenga que hacer un paso o eliminar el que no salga seleccionado
+        '''
+        banner_en_curso = bloques.banner_horizontal_raw
+        banner_en_curso = banner_en_curso.replace(
+            '##url##', str(banner_seleccionado[3]))
+        banner_en_curso = banner_en_curso.replace(
+            '##imagen##', str(banner_seleccionado[2]))
+        banner_en_curso = banner_en_curso.replace(
+            '##alt##', str(banner_seleccionado[5]))
+        publicidad_horizontal = publicidad_horizontal.remove(
+            banner_seleccionado)
+        return banner_en_curso
+    elif len(publicidad_horizontal) < 1:
+        banner_en_curso = ''
+        return banner_en_curso
+
+
+#* ****************
+#* empezamos la app
+#* ****************
+
 os.system('clear')
 
 boletin = int(input("¿Qué número de InformaVet es? "))
@@ -170,12 +223,32 @@ except OSError as e:
         raise
 
 
+#* gestión de la publicidad
+if ahora.today().weekday() == 0:
+    dia = 'l'
+elif ahora.today().weekday() == 1:
+    dia = 'm'
+elif ahora.today().weekday() == 2:
+    dia = 'x'
+elif ahora.today().weekday() == 3:
+    dia = 'j'
+elif ahora.today().weekday() == 4:
+    dia = 'v'
+elif ahora.today().weekday() == 5: #solo esta por si programo un sábado
+    dia = 'v'
+elif ahora.today().weekday() == 6:  #solo esta por si programo un domingo
+    dia = 'v'
+
+con = sqlite3.connect('bbdd.sqlite3')
+cursorObj = con.cursor()
+cursorObj.execute(
+    'SELECT * FROM publicidad WHERE ' + dia + ' = "1" and exclusiva = "horizontal";')
+publicidad_horizontal = cursorObj.fetchall()
+cursorObj.close()
+
+
 #* accedemos y mostramos los trabajos
 con = sqlite3.connect('bbdd.sqlite3')
-# gestionamos la lista de trabajos completa
-cursorObj = con.cursor()
-cursorObj.execute('SELECT * FROM hemeroteca ORDER BY "tipo", "titular";')
-trabajos_en_bbdd = cursorObj.fetchall()
 # trabajos de compañia
 cursorObj = con.cursor()
 cursorObj.execute(
@@ -186,7 +259,6 @@ cursorObj = con.cursor()
 cursorObj.execute(
     'SELECT * FROM hemeroteca WHERE tipo = "g" ORDER BY "titular";')
 trabajos_en_bbdd_produccion = cursorObj.fetchall()
-# cerramos connexión con la bbdd
 cursorObj.close()
 
 print('Trabajos de compañía:')
@@ -237,40 +309,12 @@ else:
     print("No hay entradas para mostrar")
 
 
-#* gestión de comienzo
-meses = {
-    "1": 'Enero',
-    "2": 'Febrero',
-    "3": 'Marzo',
-    "4": 'Abril',
-    "5": 'Mayo',
-    "6": 'Junio',
-    "7": 'Julio',
-    "8": 'Agosto',
-    "9": 'Septiembre',
-    "10": 'Octubre',
-    "11": 'Noviembre',
-    "12": 'Diciembre'
-}
-ahora = datetime.date.today()
-
 print()
 print()
-
-
-#* gestionamos la cabecera
-comienzo_en_curso = bloques.comienzo
-comienzo_en_curso = comienzo_en_curso.replace(
-    '##nombre_archivo##', nombre_archivo)
-comienzo_en_curso = comienzo_en_curso.replace('##numero##', str(boletin))
-comienzo_en_curso = comienzo_en_curso.replace(
-    '##mes##', meses[str(ahora.month)])
-#todo: añadir año
-
 
 #* gestión de noticia destacada
-noticia = int(input("¿Qué noticia es la destacada? "))
-if noticia != 0:
+try:
+    noticia = int(input("¿Qué noticia es la destacada? "))
     noticia_destacada = bloques.noticia_destacada
     imagen_local, ancho, alto = descarga_imagen(axon[noticia]['imagen'], 320)
     noticia_destacada = noticia_destacada.replace(
@@ -283,8 +327,10 @@ if noticia != 0:
         '##noticia_enlace##', axon[noticia]['url'])    # entrada.link)
     noticia_destacada = noticia_destacada.replace(
         '##noticia_titular##', axon[noticia]['titulo'])    # entrada.title)
-else:
+    noticia_destacada = noticia_destacada + creacion_banners(publicidad_horizontal)
+except:
     noticia_destacada = ''
+    print('❌ Esta sección no se va a publicar')
 
 
 print()
@@ -351,51 +397,63 @@ except:
 longitud_produccion = len(trabajos_produccion)
 longitud_campania = len(trabajos_compania)
 mas_largo = longitud_campania if longitud_campania > longitud_produccion else longitud_produccion
+mas_corto = longitud_campania if longitud_campania < longitud_produccion else longitud_produccion
 html_trabajos = ''
-html_trabajos = bloques.bloque_exterior_funcion * mas_largo
-for numero in range(mas_largo):
-    if longitud_campania > numero:
+# creamos las que van enfrentadas
+for enfrentadas in range(mas_corto):
+    html_trabajos = html_trabajos + bloques.bloque_exterior_funcion
+    html_trabajos = html_trabajos.replace(
+        '##bloque izq##', trabajos_compania[enfrentadas], 1)
+    html_trabajos = html_trabajos.replace(
+        '##bloque der##', trabajos_produccion[enfrentadas], 1)
+    html_trabajos = html_trabajos + creacion_banners(publicidad_horizontal)
+# creamos las que NO van enfrentadas
+for sueltas in range(mas_largo-mas_corto):
+    html_trabajos = html_trabajos + bloques.bloque_exterior_funcion
+    sueltas = sueltas + enfrentadas + 1
+    html_trabajos = html_trabajos + creacion_banners(publicidad_horizontal)
+    if longitud_campania > sueltas:
         html_trabajos = html_trabajos.replace(
-            '##bloque izq##', trabajos_compania[numero], 1)
+            '##bloque izq##', trabajos_compania[sueltas], 1)
     else:
         #todo aqui va la pb vertical
         html_trabajos = html_trabajos.replace(
             '##bloque izq##', publicidad, 1)
-    if longitud_produccion > numero:
+    if longitud_produccion > sueltas:
         html_trabajos = html_trabajos.replace(
-            '##bloque der##', trabajos_produccion[numero], 1)
+            '##bloque der##', trabajos_produccion[sueltas], 1)
     else:
         #todo aqui va la pb vertical
         html_trabajos = html_trabajos.replace(
             '##bloque der##', publicidad, 1)
-    #todo aqui va la publicidad horizontal, en cada ciclo
 
 
 #* gestión de las noticias
 print()
 noticias = input("¿Qué noticias quieres publicar? ")
-
-noticias = noticias.split(' ')
-pase = 1
-for noticia in noticias:
-    noticia = int(noticia)
-    if noticia == 0:
-        if pase % 2 != 0: 
-            publicidad = bloques.publicidad.replace(
-                '##posicion##', 'left')
-            noticias_colocadas.append(publicidad)
+try:
+    noticias = noticias.split(' ')
+    pase = 1
+    for noticia in noticias:
+        noticia = int(noticia)
+        if noticia == 0:
+            if pase % 2 != 0: 
+                publicidad = bloques.publicidad.replace(
+                    '##posicion##', 'left')
+                noticias_colocadas.append(publicidad)
+            else:
+                publicidad = bloques.publicidad.replace(
+                    '##posicion##', 'right')
+                noticias_colocadas.append(publicidad)
         else:
-            publicidad = bloques.publicidad.replace(
-                '##posicion##', 'right')
-            noticias_colocadas.append(publicidad)
-    else:
-        noticias_colocadas.append(tabla_interior(
-        'comun', axon[noticia]['imagen'], axon[noticia]['titulo'], axon[noticia]['contenido'], axon[noticia]['url']))  # es una lista
-    pase += 1
-
-longitud = len(noticias_colocadas)
-print(f"Noticias generadas: {longitud}")
-#pprint(noticias_colocadas)
+            noticias_colocadas.append(tabla_interior(
+            'comun', axon[noticia]['imagen'], axon[noticia]['titulo'], axon[noticia]['contenido'], axon[noticia]['url']))  # es una lista
+        pase += 1
+    longitud = len(noticias_colocadas)
+    print(f"Noticias generadas: {longitud}")
+except:
+    noticias_colocadas = ''
+    print('❌ Esta sección no se va a publicar')
 
 
 #* generamos el bloque general de las noticias
@@ -418,11 +476,13 @@ bloque_final = ''
 bloque_final_con_noticias = ''
 for numero in range(0, (int(longitud/2))):
     bloque_final_con_noticias = bloque_final_con_noticias + bloques.bloque_exterior
+    bloque_final_con_noticias = bloque_final_con_noticias + \
+        creacion_banners(publicidad_horizontal)
 
 
 #* metemos las noticias menos la última
 for numero in range(0, longitud):
-    if numero % 2 == 0:    # numero par- DERECHA left
+    if numero % 2 == 0:    # numero par DERECHA left
         bloque_final_con_noticias = bloque_final_con_noticias.replace(
             '##bloque der##', noticias_colocadas[numero], 1)
         bloque_final_con_noticias = bloque_final_con_noticias.replace(
@@ -438,19 +498,49 @@ for numero in range(0, longitud):
 bloque_final_con_noticias = bloque_final_con_noticias + ultimo_si_es_impar
 
 
-#* unimos todas las partes
+#* gestionamos la cabecera
+comienzo_en_curso = bloques.comienzo
+comienzo_en_curso = comienzo_en_curso.replace(
+    '##nombre_archivo##', nombre_archivo)
+comienzo_en_curso = comienzo_en_curso.replace('##numero##', str(boletin))
+comienzo_en_curso = comienzo_en_curso.replace(
+    '##mes##', meses[str(ahora.month)])
+#todo: añadir año
+
+
+#* vamos uniendo las partes
 resultado = ''
 resultado = resultado + comienzo_en_curso
 resultado = resultado + noticia_destacada
 
-# resultado = resultado + html_trabajos_compania
-# resultado = resultado + html_trabajos_produccion
+
+#* Banners Horizontales de forma aislada. El formato de la fecha es aaaa-mm-dd
+#banner de ifema
+ifema_dias = ['2022-02-05', '2022-02-07', '2022-02-14',
+              '2022-02-21', '2022-02-04']
+if str(ahora) in ifema_dias:
+    print()
+    print('Hoy entra el banner de iberzoo, Poner el primero.')
+    resultado = resultado + banners.iberzoo
+#banner de geporc
+geporc_dias = ['2022-02-15', '2022-03-02', '2022-03-17',
+               '2022-04-01', '2022-04-15', '2022-05-02',
+               '2022-05-16', '2022-06-01', '2022-06-15',
+               '2022-06-30', '2022-07-15', '2022-09-01',
+               '2022-09-15', '2022-09-30', '2022-10-14',
+               '2022-10-31', '2022-11-15', '2022-11-30',
+               '2022-12-15', '2022-12-30' ]
+if str(ahora) in geporc_dias:
+    print()
+    print('Hoy entra el banner de geporc/centauto, Poner el primero.')
+    resultado = resultado + banners.centauto
+
+
+#* vamos uniendo las partes
 resultado = resultado + html_trabajos
 
-#* gestión de la pb manual
-resultado = resultado + banners.libro_ecg
-resultado = resultado + banners.krusse
-resultado = resultado + banners.laser_horizontal
+
+#* banners verticales
 resultado = resultado + banners.laser_vertical
 # banner de argentina
 argentina_banner_elegido = [banners.argentina_1,banners.argentina_2, banners.argentina_3, banners.argentina_4]
@@ -458,20 +548,19 @@ argentina_banner_elegido = random.choice(argentina_banner_elegido)
 argentina_banner = banners.argentina_base.replace('**modulo_pb**', argentina_banner_elegido)
 resultado = resultado + argentina_banner
 
-#banner de ifema
-# 31 ENERO
-# 7 FEBRERO
-# 14 FEBRERO
-# 21 FEBRERO
-if (ahora == datetime.date(2022, 1, 31)) or (ahora == datetime.date(2022, 2, 7)) or (ahora == datetime.date(2022, 2, 14)) or (ahora == datetime.date(2022, 2, 21)):
-    resultado = resultado + banners.iberzoo
+
+#* chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
+if len(publicidad_horizontal) >= 1:
+    print()
+    print('Cuidado: los banners horizontales no se han colocado bien')
+    print()
+    for n in range(len(publicidad_horizontal)):
+        resultado = resultado + creacion_banners(publicidad_horizontal)
 
 
+#* vamos uniendo las partes
 resultado = resultado + bloque_final_con_noticias
-
-# pb de setna
-resultado = resultado + banners.setna
-
+resultado = resultado + banners.setna # pb de setna
 resultado = resultado + bloques.fin
 
 
@@ -494,18 +583,18 @@ resultado = re.sub("¿", "&iquest;", resultado)
 resultado = re.sub("Â", "", resultado)
 resultado = re.sub("â€œ", "&quot;", resultado)
 resultado = re.sub("â€", "&quot;", resultado)
-#todo: añadir comillas simples y comillas dobles
 
 
 #* mostramos el resultado para copiar y pegar
-# print("<!--código generado para bloque de foro sin texto-->")
+# print("<!--COMIENZO código generado-->")
 # print()
 # print(resultado)
 # print()
-# print("<!--código generado para bloque de foro sin texto-->")
+# print("<!--FIN código generado-->")
 
 
 #* pegamos al portapapeles el resultado
+# import pyperclip as clipboard
 # clipboard.copy(resultado)
 
 
