@@ -169,6 +169,14 @@ def descarga_imagen(imagen_red, ancho_px):
     return imagen_local, ancho, alto
 
 
+def eliminar_elemento(tupla, elemento):
+  nueva = list()
+  for c in list(tupla):
+    if not c == elemento:
+      nueva.append(c)
+  return tuple(nueva)
+
+
 def creacion_banners(publicidad_horizontal):
     """Va generando uno a uno cada uno de los banners horizontales periodicos.
     Elige uno al azar, lo crea y lo elimina.
@@ -181,10 +189,6 @@ def creacion_banners(publicidad_horizontal):
     """
     if len(publicidad_horizontal) >= 1:
         banner_seleccionado = random.choice(publicidad_horizontal)
-        '''
-        aqui tengo que ver si es de calier solo puede mostrar uno según el criterio del cliente: por semana uno si otro no, etc.
-        seguramente tenga que hacer un paso o eliminar el que no salga seleccionado
-        '''
         banner_en_curso = bloques.banner_horizontal_raw
         banner_en_curso = banner_en_curso.replace(
             '##url##', str(banner_seleccionado[3]))
@@ -224,19 +228,19 @@ except OSError as e:
 
 
 #* gestión de la publicidad
-if ahora.today().weekday() == 0:
+if ahora.today().isoweekday() == 1:
     dia = 'l'
-elif ahora.today().weekday() == 1:
+elif ahora.today().isoweekday() == 2:
     dia = 'm'
-elif ahora.today().weekday() == 2:
+elif ahora.today().isoweekday() == 3:
     dia = 'x'
-elif ahora.today().weekday() == 3:
+elif ahora.today().isoweekday() == 4:
     dia = 'j'
-elif ahora.today().weekday() == 4:
+elif ahora.today().isoweekday() == 5:
     dia = 'v'
-elif ahora.today().weekday() == 5: #solo esta por si programo un sábado
+elif ahora.today().isoweekday() == 6: #solo esta por si programo un sábado
     dia = 'v'
-elif ahora.today().weekday() == 6:  #solo esta por si programo un domingo
+elif ahora.today().isoweekday() == 7:  # solo esta por si programo un domingo
     dia = 'v'
 
 con = sqlite3.connect('bbdd.sqlite3')
@@ -245,6 +249,16 @@ cursorObj.execute(
     'SELECT * FROM publicidad WHERE ' + dia + ' = "1" and exclusiva = "horizontal";')
 publicidad_horizontal = cursorObj.fetchall()
 cursorObj.close()
+
+#* eliminamos los banners que sobran al ser rotativos
+semana = datetime.date.today().isocalendar()[1]
+
+#* ejemplo, distintos cada semana
+# for banner in publicidad_horizontal:
+#     if semana % 2 == 0 and banner[1] == 'Elanco semana impar':
+#         publicidad_horizontal.remove(banner)
+#     if semana % 2 != 0 and banner[1] == 'Elanco semana par':
+#         publicidad_horizontal.remove(banner)
 
 
 #* accedemos y mostramos los trabajos

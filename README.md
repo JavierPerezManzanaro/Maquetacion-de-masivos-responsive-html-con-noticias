@@ -137,6 +137,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Incluir la librería: Logging
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
 
+### 4.1
+- Se gestiona los banners que rotan: por ejemplo una vez cada uno o cada semana.
+- Cambio weekday por isoweekday al ser más humano :-)
+- Correcciones de errores menores.
+
 ### 4
 - Gestión de la publicidad. En esta versión solamente se trabajan los banners horizontales. Los verticales se ponen de forma manual. Ver punto 'Gestión de los banners'.
 - Añado un try/except para evitar errores a la hora de tratar la noticia destacada.
@@ -186,6 +191,7 @@ Existen varios tipos de banners:
 
 ### Horizontales con repetición semanal
 - Estos se gestionan de forma automátca. Solamente es necesario introducirlos en la bbdd sqlite3, tabla Publicidad. En el campo del día de la semana abra que poner un '1' si queremos que salga ese día.
+- Si estos banners son rotativos (según días o semanas, por ejemplo): se crean los dos modelos en la bbdd y después del SELECT que hace la selección de los banners es donde son borrados, según los criterios del <code>if</code>, el que no se use.
 
 ### Horizontales de forma aislada
 - Estos salen unos días en concreto y son tratados de forma manual.
@@ -196,7 +202,7 @@ Existen varios tipos de banners:
 ### Verticales
 - Actualmente son pocos y diarios y su gestión es manual.
 - Es necesaria su colocación de forma manual.
-- En proximas versiones se meteran en la bbd.
+- En próximas versiones se meteran en la bbdd.
 
 
 ---
