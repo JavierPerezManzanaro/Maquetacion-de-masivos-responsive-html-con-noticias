@@ -20,6 +20,7 @@ from pprint import pprint
 import errno
 import random
 import sqlite3
+from playsound import playsound
 
 #* librerias propias
 import bloques
@@ -157,7 +158,6 @@ def descarga_imagen(imagen_red, ancho_px):
         # tratamos la imagen para Mostrar imagenes imagen.show()
         imagen = Image.open(imagen_local)
     except:
-        #todo: no abria que poner este error PIL.UnidentifiedImageError:
         imagen_local = 'spacer.gif'
         imagen = Image.open(imagen_local)
     finally:
@@ -259,6 +259,38 @@ semana = datetime.date.today().isocalendar()[1]
 #         publicidad_horizontal.remove(banner)
 #     if semana % 2 != 0 and banner[1] == 'Elanco semana par':
 #         publicidad_horizontal.remove(banner)
+
+#* purina: por meses
+#todo hacer este bloque mas elegante
+banner_Purina = ''
+paso = 0
+# si le toca lo metemos en una variable nueva
+for banner in publicidad_horizontal:
+    if semana in range(1, 21) and banner[1] == 'Purina hasta final mayo':
+        paso = 1
+        banner_Purina = banner
+    if semana in range(22, 35) and banner[1] == 'Purina junio hasta final agosto':
+        paso = 1
+        banner_Purina = banner
+    if semana in range(36, 51) and banner[1] == 'Purina a partir septiembre':
+        paso = 1
+        banner_Purina = banner
+for banner in publicidad_horizontal:
+    if banner[1] == 'Purina hasta final mayo':
+        paso = 1
+        purina_borrar_1 = banner
+    if banner[1] == 'Purina junio hasta final agosto':
+        paso = 1
+        purina_borrar_2 = banner
+    if banner[1] == 'Purina a partir septiembre':
+        paso = 1
+        purina_borrar_3 = banner
+if paso == 1:
+    publicidad_horizontal.remove(purina_borrar_1)
+    publicidad_horizontal.remove(purina_borrar_2)
+    publicidad_horizontal.remove(purina_borrar_3)
+    # añadimos el banner
+    publicidad_horizontal.append(banner_Purina)
 
 
 #* accedemos y mostramos los trabajos
@@ -534,7 +566,8 @@ ifema_dias = ['2022-02-05', '2022-02-07', '2022-02-14',
               '2022-02-21', '2022-02-04']
 if str(ahora) in ifema_dias:
     print()
-    print('Hoy entra el banner de iberzoo, Poner el primero.')
+    print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
+    playsound('alerta.mp3')
     resultado = resultado + banners.iberzoo
 #banner de geporc
 geporc_dias = ['2022-02-15', '2022-03-02', '2022-03-17',
@@ -546,7 +579,8 @@ geporc_dias = ['2022-02-15', '2022-03-02', '2022-03-17',
                '2022-12-15', '2022-12-30' ]
 if str(ahora) in geporc_dias:
     print()
-    print('Hoy entra el banner de geporc/centauto, Poner el primero.')
+    print('🟡 Hoy entra el banner de geporc/centauto, PONER EL PRIMERO')
+    playsound('alerta.mp3')
     resultado = resultado + banners.centauto
 
 
@@ -566,8 +600,9 @@ resultado = resultado + argentina_banner
 #* chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
 if len(publicidad_horizontal) >= 1:
     print()
-    print('Cuidado: los banners horizontales no se han colocado bien')
+    print('❌ Cuidado: los banners horizontales no se han colocado bien')
     print()
+    playsound('alerta.mp3')
     for n in range(len(publicidad_horizontal)):
         resultado = resultado + creacion_banners(publicidad_horizontal)
 

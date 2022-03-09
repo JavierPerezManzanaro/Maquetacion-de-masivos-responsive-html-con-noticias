@@ -34,7 +34,8 @@ Dentro tenemos que definir dos variables: 'usuario' y 'contrasena' (sin ñ) que 
 - Clonar el repositorio en local
 - Módulos a importar:
     - Para 'Informavet.py':
-      - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc) puente entre Python y WordPress.
+      - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc) Puente entre Python y WordPress.
+      - [playsound 1.3.0](https://pypi.org/project/playsound/) Permite el uso de sonidos, en este caso para los avisos de intervención.
     - Para 'Inserción de noticias en bbdd.py':
       - [gazpacho](https://pypi.org/project/gazpacho/) para hacer web scraping.
       - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la vebtana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd. 
@@ -134,8 +135,13 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ## Historial de versiones
 
 ### Funciones para añadir
-- Incluir la librería: Logging
+- Correcciones y mejoras en la gestión de los banners que rotan.
+- Incluir la librería: Logging.
 - Gestionar un tipo de trabajo de animales de producción que se repite semanalmente.
+
+### 4.2
+- Añadimos sonido en alertas que requieren nuestra intervención.
+- Correcciones de errores menores.
 
 ### 4.1
 - Se gestiona los banners que rotan: por ejemplo una vez cada uno o cada semana.

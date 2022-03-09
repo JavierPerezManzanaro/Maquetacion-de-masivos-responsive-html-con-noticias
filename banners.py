@@ -340,3 +340,36 @@ centauto = '''
   </tbody>
 </table>
 '''
+centauto_feria = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                      <tr>
+                        <td><p><img src="pb/centauro_2022-03-02_700px.jpg" alt="Centauro" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></p></td>
+                      </tr>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
