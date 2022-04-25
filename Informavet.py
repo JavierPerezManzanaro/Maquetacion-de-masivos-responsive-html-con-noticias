@@ -330,18 +330,18 @@ for trabajo in trabajos_en_bbdd_produccion:
 numero = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 1 
 
 
-#* recogemos las noticias de la web de axon
-sitio = "https://axoncomunicacion.net/xmlrpc.php"
-cliente = Client(sitio, datos_de_acceso.usuario, datos_de_acceso.contrasena)
+#* recogemos las noticias de la web
+cliente = Client(datos_de_acceso.sitio, datos_de_acceso.usuario,
+                 datos_de_acceso.contrasena)
 axon_entradas = cliente.call(posts.GetPosts(
     {'number': noticias_mostradas, 'offset': 0,  'post_status': 'publish'}))  #todo 'orderby': 'title',
 print()
-print(f"Últimas {noticias_mostradas} noticias de Axón comunicación:")
+print(f"Últimas {noticias_mostradas} noticias:")
 print(f"----|-{'-'*104}")
 #? creados diccionario axon[noticia] con la entrada 0, el hueco y mostramos la tabla
 url = 'nulo'
 axon = {}
-axon[0] = {'id': 0, 'url': 'https://axoncomunicacion.net', 'imagen': 'https://axoncomunicacion.net/masivos/spacer.gif',
+axon[0] = {'id': 0, 'url': datos_de_acceso.url_general, 'imagen': datos_de_acceso.imagen_en_blanco,
            'titulo': 'vacio', 'contenido': '&nbsp;'}
 if len(axon_entradas) > 0:
     for entrada in axon_entradas:
@@ -352,7 +352,7 @@ if len(axon_entradas) > 0:
         try:
             imagen = imagen[0]
         except IndexError:
-            imagen = 'https://axoncomunicacion.net/masivos/imagenes/spacer.gif'
+            imagen = datos_de_acceso.imagen_en_blanco
         # tratamos y limpiamos el contenido de la entrada
         contenido_bruto = strip_tags(entrada.content)
         contenido_bruto = re.sub('&nbsp;', ' ', contenido_bruto)

@@ -27,8 +27,11 @@ Si se abre el archivo nada mas generarlo se veran algunos vínculos que fallan e
 ### Datos_de_acceso.py
 Tenemos que crear un archivo con ese nombre.
 
-Dentro tenemos que definir dos variables: 'usuario' y 'contrasena' (sin ñ) que deben ser los datos de acceso al blog de WordPress.
-
+Dentro tenemos que definir estas variables
+- 'usuario' y 'contrasena' (sin ñ): deben ser los datos de acceso al blog de WordPress.
+- sitio: Tenemos que poner el string de la url del archivo xmlrpc.php del blog de Wordpress. Suele ser esta dirección: 'https://dominio.net/xmlrpc.php'
+- url_general = String del blog: 'https://dominio.net'
+- imagen_en_blanco = tiene que ser una url (string) que apunte a una imagen en blanco. Suelo usar un gif de 1x1 px en transparente.
 
 ---
 ## Instrucciones de instalación
@@ -114,7 +117,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 - datos_de_acceso.py
 
-  Archivo donde se guardan las claves para entrar el blog basado en WordPress.
+  Archivo donde se guardan las claves y otra infomación privada para entrar el blog basado en WordPress.
 
 - Informavet.py
 
@@ -140,6 +143,8 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Correcciones y mejoras en la gestión de los banners que rotan.
 - Incluir la librería: Logging.
 
+### 4.2.2
+- Llevo a datos_de_acceso.py las urls de la empresa por temas de privadad.
 
 ### 4.2.1
 - Gestión de un tipo de trabajo de animales de producción que se repite semanalmente.
