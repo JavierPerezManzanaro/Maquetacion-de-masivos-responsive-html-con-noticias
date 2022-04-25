@@ -7,9 +7,12 @@
 #? aviso
 #* explicación
 
+#! usar la versión de python MagicPython (Python 3.8.5) en el mac del com
+#! usar la versión de python 3.8.5 en el mac del cor
 
 import datetime
 from os import close, link
+from numpy import empty
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc.methods import posts
 import requests
@@ -250,15 +253,21 @@ cursorObj.execute(
 publicidad_horizontal = cursorObj.fetchall()
 cursorObj.close()
 
-#* eliminamos los banners que sobran al ser rotativos
+#* eliminamos los banners que sobran al ser rotativos por semanas
 semana = datetime.date.today().isocalendar()[1]
+#* Norely y Royal cannin: distintos cada semana
+for banner in publicidad_horizontal:
+    if semana % 2 == 0:
+        if banner[1] == 'Royal Canin perros semana impar':
+            publicidad_horizontal.remove(banner)
+        if banner[1] == 'Norel semana impar':
+            publicidad_horizontal.remove(banner)
+    else:
+        if banner[1] == 'Royal Canin gatos semana par':
+            publicidad_horizontal.remove(banner)
+        if banner[1] == 'Norel semana par':
+            publicidad_horizontal.remove(banner)
 
-#* ejemplo, distintos cada semana
-# for banner in publicidad_horizontal:
-#     if semana % 2 == 0 and banner[1] == 'Elanco semana impar':
-#         publicidad_horizontal.remove(banner)
-#     if semana % 2 != 0 and banner[1] == 'Elanco semana par':
-#         publicidad_horizontal.remove(banner)
 
 #* purina: por meses
 #todo hacer este bloque mas elegante
@@ -339,7 +348,11 @@ if len(axon_entradas) > 0:
         print(f"{numero:>3} | {entrada.title[0:104]}")
         # sacamos la url de la imagen
         imagen = re.findall('img .*?src="(.*?)"', entrada.content)
-        imagen = imagen[0]
+        # trabajamos la entrada sin imagen
+        try:
+            imagen = imagen[0]
+        except IndexError:
+            imagen = 'https://axoncomunicacion.net/masivos/imagenes/spacer.gif'
         # tratamos y limpiamos el contenido de la entrada
         contenido_bruto = strip_tags(entrada.content)
         contenido_bruto = re.sub('&nbsp;', ' ', contenido_bruto)
@@ -347,6 +360,7 @@ if len(axon_entradas) > 0:
         contenido_bruto = contenido_bruto.strip(' ')
         contenido_bruto = contenido_bruto.replace(entrada.title, '', 1)
         contenido_bruto = contenido_bruto[0:longitud_de_noticia] + '... '
+        # generalmos el diccionario
         axon[numero] = {'id': entrada.id, 'url': entrada.link,
                         'imagen': imagen, 'titulo': entrada.title, 'contenido': contenido_bruto}
         numero += 1
@@ -377,6 +391,7 @@ try:
 except:
     noticia_destacada = ''
     print('❌ Esta sección no se va a publicar')
+    playsound('alerta.mp3')
 
 
 print()
@@ -408,6 +423,7 @@ try:
 except:
    html_trabajos_compania = ''
    print('❌ Esta sección no se va a publicar')
+   playsound('alerta.mp3')
 
 
 #* trabajos de animales de producción
@@ -437,6 +453,7 @@ try:
 except:
    html_trabajos_produccion = ''
    print('❌ Esta sección no se va a publicar')
+   playsound('alerta.mp3')
 
 
 #* fusión de trabajos_compania y de trabajos_produccion
@@ -500,6 +517,7 @@ try:
 except:
     noticias_colocadas = ''
     print('❌ Esta sección no se va a publicar')
+    playsound('alerta.mp3')
 
 
 #* generamos el bloque general de las noticias
@@ -561,14 +579,14 @@ resultado = resultado + noticia_destacada
 
 
 #* Banners Horizontales de forma aislada. El formato de la fecha es aaaa-mm-dd
-#banner de ifema
-ifema_dias = ['2022-02-05', '2022-02-07', '2022-02-14',
-              '2022-02-21', '2022-02-04']
-if str(ahora) in ifema_dias:
-    print()
-    print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
-    playsound('alerta.mp3')
-    resultado = resultado + banners.iberzoo
+#banner de ifema, ya paso
+# ifema_dias = ['2022-02-05', '2022-02-07', '2022-02-14',
+#               '2022-02-21', '2022-02-04']
+# if str(ahora) in ifema_dias:
+#     print()
+#     print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
+#     playsound('alerta.mp3')
+#     resultado = resultado + banners.iberzoo
 #banner de geporc
 geporc_dias = ['2022-02-15', '2022-03-02', '2022-03-17',
                '2022-04-01', '2022-04-15', '2022-05-02',
@@ -588,13 +606,13 @@ if str(ahora) in geporc_dias:
 resultado = resultado + html_trabajos
 
 
-#* banners verticales
-resultado = resultado + banners.laser_vertical
-# banner de argentina
-argentina_banner_elegido = [banners.argentina_1,banners.argentina_2, banners.argentina_3, banners.argentina_4]
-argentina_banner_elegido = random.choice(argentina_banner_elegido)
-argentina_banner = banners.argentina_base.replace('**modulo_pb**', argentina_banner_elegido)
-resultado = resultado + argentina_banner
+#* banners verticales, desactivados
+# resultado = resultado + banners.laser_vertical
+# banner de argentina desactivado
+# argentina_banner_elegido = [banners.argentina_1,banners.argentina_2, banners.argentina_3, banners.argentina_4]
+# argentina_banner_elegido = random.choice(argentina_banner_elegido)
+# argentina_banner = banners.argentina_base.replace('**modulo_pb**', argentina_banner_elegido)
+# resultado = resultado + argentina_banner
 
 
 #* chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
