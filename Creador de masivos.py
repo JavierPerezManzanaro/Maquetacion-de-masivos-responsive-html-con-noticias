@@ -529,7 +529,7 @@ try:
     for noticia in noticias:
         noticia = int(noticia)
         if noticia == 0:
-            if pase % 2 != 0: 
+            if pase % 2 != 0:
                 publicidad = bloques.publicidad.replace(
                     '##posicion##', 'left')
                 noticias_colocadas.append(publicidad)
