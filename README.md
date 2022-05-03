@@ -1,8 +1,8 @@
 
-![Versión 3.1](https://img.shields.io/badge/Versión-3.1.1-green) 
-![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green) 
-![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green) 
-![Versión de Python 3.10.3](https://img.shields.io/badge/Versión%20de%20Python-3.10.3-green) 
+![Versión 3.1](https://img.shields.io/badge/Versión-3.1.1-green)
+![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green)
+![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green)
+![Versión de Python 3.10.3](https://img.shields.io/badge/Versión%20de%20Python-3.10.3-green)
 ![![scraper: gazpacho](https://img.shields.io/badge/scraper-gazpacho-C6422C)](https://github.com/maxhumber/gazpacho)
 
 ---
@@ -14,7 +14,7 @@ Este proyecto surge de la necesidad de automatizar la creación de un masivo par
 La aplicación recopila trabajos (de una bbdd sqlite3), una serie de noticias de un blog de la empresa y los banners que tienen que salir publicados.
 
 Al final del proceso se obtiene:
-- un **archivo html** 
+- un **archivo html**
 - una **carpeta con las imágenes nuevas**.
 
 Esta aplicación esta pensada para funcionar bajo la estructura de archivos de mi empresa, por lo que para otros casos abra que realizar modificaciones.
@@ -38,12 +38,12 @@ Dentro tenemos que definir estas variables
 - Clonar el repositorio en local
 - Tener instalado Python 3.8 al Python 3.10.3 o MagicPython de Visual Studio Code
 - Módulos a importar:
-    - Para 'Informavet.py':
+    - Para 'Creador de masivos.py.py':
       - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc) Puente entre Python y WordPress.
       - [playsound 1.3.0](https://pypi.org/project/playsound/) Permite el uso de sonidos, en este caso para los avisos de intervención.
     - Para 'Inserción de noticias en bbdd.py':
       - [gazpacho](https://pypi.org/project/gazpacho/) para hacer web scraping.
-      - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la vebtana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd. 
+      - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la vebtana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd.
 
 
 ---
@@ -58,12 +58,12 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
     1.2. Si no están: En este punto hay varias formas de actuar. La mas eficiente para mi es crear esos trabajos como noticias (en el fondo siguen la misma extructura, solo cambia el color del titular), después cambio el color del titular y las coloco en su sitio (todo esto con Dreamwaver, por ejemplo). Mas tarde introduzco ese trabajo en la bbdd ejecutando 'Inserción de noticias en bbdd.py'.
 
 ### Creación del masivo
-2. Ejecuto la aplicación principal: 'Informavet.py':
+2. Ejecuto la aplicación principal: 'Creador de masivos.py':
 
-    2.1. La aplicación nos pregunta por el número del masivo. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una 'c' al nombre: **'¿Qué número de InformaVet es? '**
+    2.1. La aplicación nos pregunta por el número del masivo. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una 'c' al nombre: **'¿Qué número vas a publicar? '**
 
     2.2. La aplicación va a mostrar tres listas:
-    
+
       - Trabajos de compañía (extraídos de la bbdd.sqlite3).
       - Trabajos de producción (extraídos de la bbdd.sqlite3).
       - Últimas 20 noticias de Axón comunicación (extraídos de la web basada en WordPress).
@@ -119,7 +119,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
   Archivo donde se guardan las claves y otra infomación privada para entrar el blog basado en WordPress.
 
-- Informavet.py
+- 'Creador de masivos.py'
 
   Aplicación que genera el masivo *responsive* en html.
 
@@ -142,6 +142,14 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### Funciones para añadir
 - Correcciones y mejoras en la gestión de los banners que rotan.
 - Incluir la librería: Logging.
+- Habilitar la posibilidad de poner varias noticias como destacadas.
+
+### 4.3
+- Novedades:
+  - Ahora es posible introducir en el apartado de trabajos de animales de compañia y de producción una noticia. Se podria automatizar su inclusión en la bbdd pero no lo realizo porque siempre hay que modificar el texto.
+  - Cambio de nombre el archivo principal. Ahora se llama: 'Creador de masivos.py'
+- Aplico la función strip() a los inputs para evitar este tipo de errores devidos a los espacios en blanco.
+- Correcciones de errores menores.
 
 ### 4.2.2
 - Llevo a datos_de_acceso.py las urls de la empresa por temas de privadad.

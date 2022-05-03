@@ -25,6 +25,7 @@ import random
 import sqlite3
 from playsound import playsound
 
+
 #* librerias propias
 import bloques
 import datos_de_acceso
@@ -121,7 +122,8 @@ def tabla_interior(tipo, imagen, titular, texto, url):
         tabla_interior = tabla_interior.replace(
             '##imagen##', str(imagen_local))
     else:
-        print('Elemento no generado porque no coincide el tipo con ninguno de los predefinidos!!!')
+        print('❌ ❌ ¡¡¡Elemento no generado porque no coincide el tipo con ninguno de los predefinidos!!!')
+        playsound('alerta.mp3')
 
     tabla_interior = tabla_interior.replace(
         '##ancho##', '320')
@@ -213,7 +215,7 @@ def creacion_banners(publicidad_horizontal):
 
 os.system('clear')
 
-boletin = int(input("¿Qué número de InformaVet es? "))
+boletin = int(input("¿Qué número vas a publicar? "))
 print()
 print("0 = Dejar hueco relleno")
 print("Nº | Título")
@@ -327,7 +329,6 @@ print(f"----|-{'-'*104}")
 for trabajo in trabajos_en_bbdd_produccion:
     print(f"{trabajo[0]:>3} | {trabajo[1][0:100]}")
 
-numero = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 1 
 
 
 #* recogemos las noticias de la web
@@ -339,13 +340,14 @@ print()
 print(f"Últimas {noticias_mostradas} noticias:")
 print(f"----|-{'-'*104}")
 #? creados diccionario axon[noticia] con la entrada 0, el hueco y mostramos la tabla
+numero_registros = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 1
 url = 'nulo'
 axon = {}
 axon[0] = {'id': 0, 'url': datos_de_acceso.url_general, 'imagen': datos_de_acceso.imagen_en_blanco,
            'titulo': 'vacio', 'contenido': '&nbsp;'}
 if len(axon_entradas) > 0:
     for entrada in axon_entradas:
-        print(f"{numero:>3} | {entrada.title[0:104]}")
+        print(f"{numero_registros:>3} | {entrada.title[0:104]}")
         # sacamos la url de la imagen
         imagen = re.findall('img .*?src="(.*?)"', entrada.content)
         # trabajamos la entrada sin imagen
@@ -361,15 +363,16 @@ if len(axon_entradas) > 0:
         contenido_bruto = contenido_bruto.replace(entrada.title, '', 1)
         contenido_bruto = contenido_bruto[0:longitud_de_noticia] + '... '
         # generalmos el diccionario
-        axon[numero] = {'id': entrada.id, 'url': entrada.link,
+        axon[numero_registros] = {'id': entrada.id, 'url': entrada.link,
                         'imagen': imagen, 'titulo': entrada.title, 'contenido': contenido_bruto}
-        numero += 1
+        numero_registros += 1
 
 else:
     print("No hay entradas para mostrar")
 
-
 print()
+print()
+print('Los trabajos/noticias separadas con espacios.')
 print()
 
 #* gestión de noticia destacada
@@ -387,7 +390,8 @@ try:
         '##noticia_enlace##', axon[noticia]['url'])    # entrada.link)
     noticia_destacada = noticia_destacada.replace(
         '##noticia_titular##', axon[noticia]['titulo'])    # entrada.title)
-    noticia_destacada = noticia_destacada + creacion_banners(publicidad_horizontal)
+    noticia_destacada = noticia_destacada + \
+        creacion_banners(publicidad_horizontal)
 except:
     noticia_destacada = ''
     print('❌ Esta sección no se va a publicar')
@@ -395,62 +399,86 @@ except:
 
 
 print()
-print('Los trabajos/noticias separadas con espacios.')
-print()
 
 
-#* trabajos de animales de compañia
+#* trabajos de animales de compañia, se crea la lista trabajos_compania
 try:
+    paso = 0
     trabajos = input('¿Trabajos de animales de compañía para publicar? ')
+    trabajos = trabajos.strip()
     trabajos = trabajos.split(' ')
     publicidad = bloques.publicidad.replace('##posicion##', 'right')
     cursorObj = con.cursor()
     for trabajo_seleccionado in trabajos:
-        if trabajo_seleccionado == '0':
+        trabajo_seleccionado = int(trabajo_seleccionado)
+        if trabajo_seleccionado == 0:
             trabajos_compania.append(publicidad)
-        else:
-            cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' + trabajo_seleccionado + ';')
+        if trabajo_seleccionado < (numero_registros - noticias_mostradas) and trabajo_seleccionado != 0:
+            #* entra si son trabajos
+            cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' + str(trabajo_seleccionado) + ';')
             trabajo_en_bbdd = cursorObj.fetchone()
             #pprint(trabajo_en_bbdd)
             titular = trabajo_en_bbdd[1]
             url = trabajo_en_bbdd[2]
             imagen = trabajo_en_bbdd[3]
             texto = trabajo_en_bbdd[5]
-            #*creamos la lista trabajos_compania que contiene todos los trabajos de compañia
             trabajos_compania.append(
                 tabla_interior('compania', imagen, titular, texto, url))
-    cursorObj.close()
-except:
+            cerramos_bbdd = 1
+        if trabajo_seleccionado >= (numero_registros - noticias_mostradas):
+            #* entra si son noticias tratadas como trabajos
+            trabajos_compania.append(tabla_interior(
+                'compania',
+                axon[trabajo_seleccionado]['imagen'],
+                axon[trabajo_seleccionado]['titulo'],
+                axon[trabajo_seleccionado]['contenido'],
+                axon[trabajo_seleccionado]['url']))
+    if cerramos_bbdd == 1:
+        cursorObj.close()
+except Exception as e:
+   print('Exception occurred while code execution: ' + repr(e))
    html_trabajos_compania = ''
    print('❌ Esta sección no se va a publicar')
    playsound('alerta.mp3')
 
 
-#* trabajos de animales de producción
+#* trabajos de animales de producción, se crea la lista trabajos_produccion
 try:
+    paso = 0
     trabajos = input(
         '¿Trabajos de animales de producción para publicar? ')
+    trabajos = trabajos.strip()
     trabajos = trabajos.split(' ')
     publicidad = bloques.publicidad.replace('##posicion##', 'left')
     cursorObj = con.cursor()
     for trabajo_seleccionado in trabajos:
-        if trabajo_seleccionado == '0':
+        trabajo_seleccionado = int(trabajo_seleccionado)
+        if trabajo_seleccionado == 0:
             trabajos_produccion.append(publicidad)
-        else:
-            #trabajo_seleccionado = int(trabajo_seleccionado)
+        if trabajo_seleccionado < (numero_registros - noticias_mostradas) and trabajo_seleccionado != 0:
+            #* entra si son trabajos
             cursorObj.execute('SELECT * FROM hemeroteca WHERE id=' +
-                            trabajo_seleccionado + ';')
+                            str(trabajo_seleccionado) + ';')
             trabajo_en_bbdd = cursorObj.fetchone()
-            #pprint(trabajo_en_bbdd)
             titular = trabajo_en_bbdd[1]
             url = trabajo_en_bbdd[2]
             imagen = trabajo_en_bbdd[3]
             texto = trabajo_en_bbdd[5]
-            #*creamos la lista trabajos_produccion que contiene todos los trabajos de producción
             trabajos_produccion.append(
                 tabla_interior('produccion', imagen, titular, texto, url))
-    cursorObj.close()
-except:
+            cerramos_bbdd = 1
+        if trabajo_seleccionado >= (numero_registros - noticias_mostradas):
+            #* entra si son noticias tratadas como trabajos
+            trabajos_produccion.append(tabla_interior(
+                'produccion',
+                axon[trabajo_seleccionado]['imagen'],
+                axon[trabajo_seleccionado]['titulo'],
+                axon[trabajo_seleccionado]['contenido'],
+                axon[trabajo_seleccionado]['url']))
+    if cerramos_bbdd == 1:
+        cursorObj.close()
+except Exception as e:
+   print('Exception occurred while code execution: ' + repr(e))
    html_trabajos_produccion = ''
    print('❌ Esta sección no se va a publicar')
    playsound('alerta.mp3')
@@ -494,6 +522,7 @@ for sueltas in range(mas_largo-mas_corto):
 #* gestión de las noticias
 print()
 noticias = input("¿Qué noticias quieres publicar? ")
+noticias = noticias.strip()
 try:
     noticias = noticias.split(' ')
     pase = 1
@@ -589,7 +618,7 @@ resultado = resultado + noticia_destacada
 #     resultado = resultado + banners.iberzoo
 #banner de geporc
 geporc_dias = ['2022-02-15', '2022-03-02', '2022-03-17',
-               '2022-04-01', '2022-04-15', '2022-05-02',
+               '2022-04-01', '2022-04-15', '2022-05-03',
                '2022-05-16', '2022-06-01', '2022-06-15',
                '2022-06-30', '2022-07-15', '2022-09-01',
                '2022-09-15', '2022-09-30', '2022-10-14',

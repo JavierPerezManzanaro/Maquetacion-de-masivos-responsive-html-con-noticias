@@ -55,7 +55,7 @@ laser_horizontal = '''
                               <td height="30"></td>
                             </tr>
                             <tr>
-                              <td><a href="https://www.laservet.it/?lang=es"><img src="pb/laservet_700x200px_ver_6.gif" alt="LaserVet" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
+                              <td><a href="https://www.laservet.it/?lang=es"><img src="pb/laservet_700x200px_ver_7.gif" alt="LaserVet" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
                             </tr>
                             <tr>
                               <td height="30"></td>

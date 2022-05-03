@@ -1,11 +1,7 @@
-bbdd.sqlite3/
+bbdd.sqlite3
 __pycache__/
-Información/
-otras versiones/
-partes/
+Informavet original.py
 versiones.txt
 .vscode/
-Navicat Premium
-Datos_de_acceso.py
-modelos.txt
+datos_de_acceso.py
 .gitignore
