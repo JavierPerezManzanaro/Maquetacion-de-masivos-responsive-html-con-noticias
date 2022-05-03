@@ -1,7 +1,7 @@
 
 ![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green)
-![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green)
-![scraper: gazpacho](https://img.shields.io/badge/scraper-gazpacho-C6422C)
+![Versión de Python 3.8.5 | 3.9](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green)
+
 
 ---
 
