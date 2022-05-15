@@ -1,6 +1,6 @@
 
 ![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green)
-![Versión de Python 3.8.5 | 3.9](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green)
+![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green)
 
 
 ---
@@ -141,6 +141,15 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Correcciones y mejoras en la gestión de los banners que rotan.
 - Incluir la librería: Logging.
 - Habilitar la posibilidad de poner varias noticias como destacadas.
+
+### 4.4
+- Novedades:
+  - Uno, en una función, el imput de trabajos de compañia y producción para no repetir código. La nueva función se llama 'trabajos_a_mostrar' y se encarga de preguntar por los trabajo/noticias de cada una de las secciones: Animales de compañia o animales de producción.
+  - Añado Type hints a las funciones.
+  - Refractoración de la función tabla_interior con respecto al origen de las imágenes.
+- Mejoras:
+  - Amplio, unifico y mejoro la documentación de la app.
+- Correcciones de errores menores.
 
 ### 4.3
 - Novedades:

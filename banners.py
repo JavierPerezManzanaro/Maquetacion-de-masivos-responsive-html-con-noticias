@@ -3,7 +3,7 @@
 # /
 
 
-#* banners horizontales
+# * banners horizontales
 
 libro_ecg = '''
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -142,7 +142,7 @@ setna = '''
 </table>
 '''
 
-#* banner argentina
+# * banner argentina
 
 argentina_1 = '''
 <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
@@ -255,7 +255,7 @@ iberzoo = '''
 </table>
 '''
 
-#* banner verticales
+# * banner verticales
 
 laser_vertical = '''
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -341,3 +341,53 @@ centauto = '''
 </table>
 '''
 
+vetnova = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td height="40"></td>
+                </tr>
+                <!-- ROW-1 START -->
+                <tr>
+                  <td><h1>Ver la url</h1><!--TABLE LEFT-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <tbody>
+                        <tr>
+                          <td align="left" valign="middle" style="color:#666666;"><a href="https://es.vetnova.net/Documentos/catalogos/RECONCILE%20Ficha%20T&eacute;cnica%20VetNova.pdf"><img src="pb/vetnova_2022-05-06_320x320.gif" alt="VetNova" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--TABLE MIDDLE-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <tbody>
+                        <tr>
+                          <td width="1" height="50"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--TABLE RIGHT-->
+                    <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <tbody>
+                        <tr>
+                          <td align="left" valign="middle" style="color:#666666;"><a href="https://es.vetnova.net/Documentos/catalogos/RECONCILE%20Ficha%20T&eacute;cnica%20VetNova.pdf"><img src="pb/vetnova_2022-05-06_320x320.gif" alt="VetNova" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <!-- ROW-1 END -->
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
