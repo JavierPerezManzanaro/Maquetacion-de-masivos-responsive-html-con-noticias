@@ -4,9 +4,9 @@
 
 
 #! CUIDADO
-#todo por hacer
-#? aviso
-#* explicación
+# todo por hacer
+# ? aviso
+# * explicación
 
 
 import sqlite3
@@ -45,10 +45,11 @@ def limpiar_html(cadena):
     return cadena
 
 
-#* creamos la ventana
+# * creamos la ventana
 def foo(root, texto):
     root.quit()
     root.destroy()
+
 
 root = tk.Tk()
 root.title("Introduce la noticia para ingresarla en la bbdd sqlite3")
@@ -56,23 +57,24 @@ root.geometry("600x400")
 
 
 def getTextInput():
-   global resultado
-   resultado = ventana.get("1.0", tk.END+"-1c")
-   foo(root, resultado)
+    global resultado
+    resultado = ventana.get("1.0", tk.END+"-1c")
+    foo(root, resultado)
 
 
 ventana = tk.Text(root, height=25)
 ventana.pack()
-btnRead = tk.Button(root, height=2, width=50, text="Introducir en la bbdd", command=getTextInput)
+btnRead = tk.Button(root, height=2, width=50,
+                    text="Introducir en la bbdd", command=getTextInput)
 btnRead.pack()
 root.mainloop()
 
 
-#* analizamos la noticia
+# * analizamos la noticia
 resultado = Soup(resultado)
 resultado_raw = str(resultado)
 
-#* tipo de noticia
+# * tipo de noticia
 # if '#881288' in resultado_raw:
 #     tipo = 'p'
 # else:
@@ -80,7 +82,7 @@ resultado_raw = str(resultado)
 # formato ternario: <bloque_true> if <condición> else <bloque_false>
 tipo = 'p' if ('#881288' in resultado_raw) else 'g'
 
-#*sacamos el título
+# *sacamos el título
 try:
     titulo = resultado.find('td', attrs={'class': 'heading'})
     titulo = titulo.html
@@ -92,14 +94,14 @@ except:
     titulo = input("¿Introduce el título ? ")
 
 
-#*sacamos la url
+# *sacamos la url
 try:
     url = re.findall(
         'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', resultado_raw)
 except:
     url = input("¿Introduce la url de destino? ")
 
-#*sacamos el contenido
+# *sacamos el contenido
 try:
     contenido = resultado.find('td', attrs={'class': 'MsoNormal'})
     contenido = contenido.html
@@ -108,19 +110,19 @@ try:
 except:
     contenido = input("¿Introduce el contenido de la noticia? ")
 
-#*sacamos la url de la imagen
+# *sacamos la url de la imagen
 try:
     patron = "< *[img][^>]*[src] *= *[\"\']{0,1}([^\"\' >]*)"
     imagen = re.findall(patron, resultado_raw)
 except:
     imagen = input("¿Introduce la url de la imagen? ")
 
-#* conexión bbdd y metemos noticia
+# * conexión bbdd y metemos noticia
 con = sqlite3.connect('bbdd.sqlite3')
 datos = (titulo, url[0], imagen[0], tipo, contenido)
 sql_insert(con, datos)
 
-#* mostramos la información
+# * mostramos la información
 print('## Trabajo en la bbdd ##')
 print()
 print(f'{titulo=}')

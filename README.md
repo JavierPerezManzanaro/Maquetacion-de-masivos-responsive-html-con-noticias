@@ -139,8 +139,14 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ### Funciones para añadir
 - Correcciones y mejoras en la gestión de los banners que rotan.
-- Incluir la librería: Logging.
 - Habilitar la posibilidad de poner varias noticias como destacadas.
+
+### 4.5
+- Novedades:
+  - Implemento el módulo **logging** para la depuración y control de errores de código.
+- Mejoras:
+  - Unifico nombre de las variables.
+- Correcciones de errores menores.
 
 ### 4.4
 - Novedades:

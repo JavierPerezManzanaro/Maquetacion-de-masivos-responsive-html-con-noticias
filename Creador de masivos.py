@@ -13,7 +13,6 @@
 
 import datetime
 from os import close, link
-#from numpy import empty
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc.methods import posts
 import requests
@@ -25,6 +24,7 @@ import errno
 import random
 import sqlite3
 from playsound import playsound
+import logging
 
 
 # * librerias propias
@@ -33,6 +33,16 @@ import datos_de_acceso
 import banners
 
 
+# Configuración de logging
+logging.basicConfig(level=logging.WARNING,
+                    format='-%(levelname)-8s Línea: %(lineno)-5s Función: %(funcName)-15s %(message)s')
+# logging.debug('Mensaje de traza')
+# logging.info('Mensaje Informativo, algo funciona como se espera')
+# logging.warning('Peligro')
+# logging.error('Error')
+
+
+logging.debug('Comienzo')
 longitud_de_noticia = 400
 noticias_mostradas = 20
 imagen_local = ''
@@ -77,6 +87,7 @@ def strip_tags(value: str) -> str:
     Returns:
         (str): Cadena limpia
     """
+    logging.debug('Entra')
     value = re.sub(r'<[^>]*?>', ' ', value)  # elimina <...>
     value = re.sub(r'\[[^>]*?\]', ' ', value)  # elimina [...]
     return value
@@ -95,6 +106,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     Returns:
         (srt): tabla en html con el trabajo o la noticia
     """
+    logging.debug('Entra')
     # todo: meter como tipo destacada
     tabla_interior = bloques.noticia_funcion_raw
 
@@ -107,7 +119,8 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     elif tipo == 'comun':  # noticias genericas, comunes
         tabla_interior = tabla_interior.replace('##color##', '#000000')
     else:
-        print('❌ ❌ ¡¡¡Elemento no generado porque no coincide el tipo con ninguno de los predefinidos!!!')
+        logging.warning(
+            '❌ Elemento no generado porque no coincide el tipo con ninguno de los predefinidos')
         playsound('alerta.mp3')
 
     # Analiza donde esta la imagen (en remoto o en local)
@@ -127,19 +140,20 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     return tabla_interior
 
 
-def descarga_imagen(url: str, nombre: int, ancho_px: int):
+def descarga_imagen(url: str, nombre: int, ancho: int):
     """Descarga las imagenes y las ajusta al tamaño
 
     Args:
         url (str): es la url: axon[noticia]['imagen']
         nombre (int): número de la noticia/trabajo que sera el nombre del archivo
-        ancho_px (int): ancho a usar
+        ancho (int): ancho a usar
 
     Returns:
         imagen_local (str): ruta de la imagen
         ancho (int): ancho de la imagen 320px
         alto (int): alto de la imágen
     """
+    logging.debug('Entra')
     # todo: quitar el ancho porque ya sabemos que es 320 px
     try:
         extension = url[len(url)-4:len(url)]
@@ -159,12 +173,12 @@ def descarga_imagen(url: str, nombre: int, ancho_px: int):
         imagen = Image.open(imagen_local)
     finally:
         imagen.convert("RGB")
-        alto = int((int(imagen.size[1]) * ancho_px) / int(imagen.size[0]))
-        imagen = imagen.resize((ancho_px, alto))
-        #ancho = ancho_px
+        alto = int((int(imagen.size[1]) * ancho) / int(imagen.size[0]))
+        imagen = imagen.resize((ancho, alto))
+        #ancho = ancho
         imagen.save(imagen_local)
 
-    return imagen_local, ancho_px, alto
+    return imagen_local, ancho, alto
 
 
 def eliminar_elemento(tupla: tuple, elemento: str) -> tuple:
@@ -177,6 +191,7 @@ def eliminar_elemento(tupla: tuple, elemento: str) -> tuple:
     Returns:
         tuple: tupla SIN el elemento
     """
+    logging.debug('Entra')
     nueva = list()
     for c in list(tupla):
         if not c == elemento:
@@ -195,6 +210,7 @@ def creacion_banners(publicidad_horizontal):
     Returns:
         str: código html del banner
     """
+    logging.debug('Entra')
     if len(publicidad_horizontal) >= 1:
         banner_seleccionado = random.choice(publicidad_horizontal)
         banner_en_curso = bloques.banner_horizontal_raw
@@ -221,6 +237,7 @@ def trabajos_a_mostrar(tipo: str):
     Returns:
         lista: Lista con los trabajo o noticias de cada función.
     """
+    logging.debug('Entra')
     if tipo == 'compania':
         posicion_publicidad = 'right'
         trabajos = input('¿Trabajos de animales de compañía para publicar? ')
@@ -240,6 +257,7 @@ def trabajos_a_mostrar(tipo: str):
                 trabajos_lista.append(publicidad)
             if trabajo_seleccionado < (numero_registros - noticias_mostradas) and trabajo_seleccionado != 0:
                 # * entra si son trabajos de la bbdd
+                logging.info('Trabajo en la bbdd')
                 cursorObj.execute(
                     'SELECT * FROM hemeroteca WHERE id=' + str(trabajo_seleccionado) + ';')
                 trabajo_en_bbdd = cursorObj.fetchone()
@@ -252,6 +270,7 @@ def trabajos_a_mostrar(tipo: str):
                 cerramos_bbdd = 1
             if trabajo_seleccionado >= (numero_registros - noticias_mostradas):
                 # * entra si es una noticia de la web y es tratada como trabajo
+                logging.info('Trabajo de la web')
                 imagen_local, ancho, alto = descarga_imagen(
                     axon[trabajo_seleccionado]['imagen'], trabajo_seleccionado, 320)
                 trabajos_lista.append(tabla_interior(
@@ -261,12 +280,13 @@ def trabajos_a_mostrar(tipo: str):
                     axon[trabajo_seleccionado]['contenido'],
                     axon[trabajo_seleccionado]['url'],
                     trabajo_seleccionado))
-                print('🟡 Noticia como trabajo: Recuerda editarla y meterla en la bbdd')
+                logging.warning(
+                    '🟡 Noticia como trabajo: Recuerda editarla y meterla en la bbdd')
         if cerramos_bbdd == 1:
             cursorObj.close()
     except Exception as e:
+        logging.warning('❌ Esta sección no se va a publicar')
         print('Exception occurred while code execution: ' + repr(e))
-        print('❌ Esta sección no se va a publicar')
         playsound('alerta.mp3')
 
     if tipo == 'compania':
@@ -429,7 +449,7 @@ if len(axon_entradas) > 0:
         numero_registros += 1
 
 else:
-    print("No hay entradas para mostrar")
+    logging.error('❌ No hay entradas para mostrar')
 
 print()
 print()
@@ -438,6 +458,7 @@ print()
 
 
 # * Gestión de noticia destacada
+logging.debug('Gestión de noticia destacada')
 try:
     noticia = int(input("¿Qué noticia es la destacada? "))
     noticia_destacada = bloques.noticia_destacada
@@ -456,22 +477,26 @@ try:
     noticia_destacada = noticia_destacada + \
         creacion_banners(publicidad_horizontal)
 except:
-    noticia_destacada = ''
-    print('❌ Esta sección no se va a publicar')
+    logging.warning('❌ Esta sección no se va a publicar')
     playsound('alerta.mp3')
+    noticia_destacada = ''
+
 
 print()
 
 
 # * Trabajos de animales de compañia, se crea la lista trabajos_compania
+logging.debug('Trabajos de animales de compañia')
 trabajos_compania = trabajos_a_mostrar('compania')
 
 
 # * Trabajos de animales de producción, se crea la lista trabajos_produccion
+logging.debug('Trabajos de animales de producción')
 trabajos_produccion = trabajos_a_mostrar('produccion')
 
 
 # * Fusión de trabajos_compania y de trabajos_produccion
+logging.debug('Fusión de trabajos_compania y de trabajos_produccion')
 longitud_campania = len(trabajos_compania)
 longitud_produccion = len(trabajos_produccion)
 mas_largo = longitud_campania if longitud_campania > longitud_produccion else longitud_produccion
@@ -507,6 +532,7 @@ for sueltas in range(mas_largo-mas_corto):
 
 
 # * Gestión de las noticias
+logging.debug('Gestión de las noticias')
 print()
 noticias = input("¿Qué noticias quieres publicar? ")
 noticias = noticias.strip()
@@ -530,9 +556,9 @@ try:
     longitud = len(noticias_colocadas)
     print(f"Noticias generadas: {longitud}")
 except:
-    noticias_colocadas = ''
-    print('❌ Esta sección no se va a publicar')
+    logging.warning('❌ Esta sección no se va a publicar')
     playsound('alerta.mp3')
+    noticias_colocadas = ''
 
 
 # * Generamos el bloque general de las noticias
@@ -633,9 +659,12 @@ resultado = resultado + html_trabajos
 # * Chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
 if len(publicidad_horizontal) >= 1:
     print()
-    print('❌ Cuidado: los banners horizontales no se han colocado bien')
     print()
+    logging.warning(
+        '❌ Cuidado: los banners horizontales no se han colocado bien')
     playsound('alerta.mp3')
+    print()
+    print()
     for n in range(len(publicidad_horizontal)):
         resultado = resultado + creacion_banners(publicidad_horizontal)
 
@@ -647,6 +676,7 @@ resultado = resultado + bloques.fin
 
 
 # * Codificamos a html
+logging.debug('Codificamos a html')
 # ? para cuerpos de email charset=ISO-8859-1
 resultado = re.sub("á", "&aacute;", resultado)
 resultado = re.sub("é", "&eacute;", resultado)
@@ -681,6 +711,7 @@ resultado = re.sub("â€", "&quot;", resultado)
 
 
 # * Creamos el archivo
+logging.debug('Creamos el archivo')
 archivo = str(boletin)+"c.html"
 with open(archivo, mode="w", encoding="utf-8") as fichero:
     print(resultado, file=fichero)
@@ -689,3 +720,4 @@ with open(archivo, mode="w", encoding="utf-8") as fichero:
 print()
 print('Archivo generado: 👍')
 print()
+logging.debug('Fin')
