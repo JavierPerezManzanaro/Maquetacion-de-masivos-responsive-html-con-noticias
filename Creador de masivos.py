@@ -11,7 +11,7 @@
 #! usar la versión de python MagicPython (Python 3.8.5)
 
 
-import datetime
+from datetime import datetime
 from os import close, link
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc.methods import posts
@@ -35,7 +35,7 @@ import banners
 
 # Configuración de logging
 logging.basicConfig(level=logging.WARNING,
-                    format='-%(levelname)-8s Línea: %(lineno)-5s Función: %(funcName)-15s %(message)s')
+                    format='-%(levelname)-8s [Línea: %(lineno)-4s Función: %(funcName)-18s] %(message)s')
 # logging.debug('Mensaje de traza')
 # logging.info('Mensaje Informativo, algo funciona como se espera')
 # logging.warning('Peligro')
@@ -55,8 +55,6 @@ trabajos_produccion = []
 
 posicion = 1
 longitud = 0
-
-ahora = datetime.date.today()
 
 meses = {
     "1": 'Enero',
@@ -181,25 +179,6 @@ def descarga_imagen(url: str, nombre: int, ancho: int):
     return imagen_local, ancho, alto
 
 
-def eliminar_elemento(tupla: tuple, elemento: str) -> tuple:
-    """Elimina el elmento que de pasa de la tupla
-
-    Args:
-        tupla (tuple): Tupla de entrada
-        elemento (str): Elemento que queremos eliminar
-
-    Returns:
-        tuple: tupla SIN el elemento
-    """
-    logging.debug('Entra')
-    nueva = list()
-    for c in list(tupla):
-        if not c == elemento:
-            nueva.append(c)
-
-    return tuple(nueva)
-
-
 def creacion_banners(publicidad_horizontal):
     """Va generando uno a uno cada uno de los banners horizontales periodicos.
     Elige uno al azar, lo crea y lo elimina.
@@ -211,8 +190,10 @@ def creacion_banners(publicidad_horizontal):
         str: código html del banner
     """
     logging.debug('Entra')
-    if len(publicidad_horizontal) >= 1:
+    if len(publicidad_horizontal) > 1:
         banner_seleccionado = random.choice(publicidad_horizontal)
+        logging.info(
+            f'{len(publicidad_horizontal)=} ==> {banner_seleccionado[1]}')
         banner_en_curso = bloques.banner_horizontal_raw
         banner_en_curso = banner_en_curso.replace(
             '##url##', str(banner_seleccionado[3]))
@@ -223,8 +204,17 @@ def creacion_banners(publicidad_horizontal):
         publicidad_horizontal = publicidad_horizontal.remove(
             banner_seleccionado)
         return banner_en_curso
-    elif len(publicidad_horizontal) < 1:
-        banner_en_curso = ''
+    elif len(publicidad_horizontal) == 1:
+        logging.info(
+            f'{len(publicidad_horizontal)=} ==> {publicidad_horizontal[0][1]}')  # [0][1] porque es una lista que contiene una tupla
+        banner_en_curso = bloques.banner_horizontal_raw
+        banner_en_curso = banner_en_curso.replace(
+            '##url##', str(publicidad_horizontal[0][3]))
+        banner_en_curso = banner_en_curso.replace(
+            '##imagen##', str(publicidad_horizontal[0][2]))
+        banner_en_curso = banner_en_curso.replace(
+            '##alt##', str(publicidad_horizontal[0][5]))
+        #publicidad_horizontal = ''
         return banner_en_curso
 
 
@@ -235,7 +225,7 @@ def trabajos_a_mostrar(tipo: str):
         tipo (str): Tipo de trabajo: 'compania' o 'produccion'
 
     Returns:
-        lista: Lista con los trabajo o noticias de cada función.
+        lista: Lista con los trabajo o noticias de cada función
     """
     logging.debug('Entra')
     if tipo == 'compania':
@@ -286,7 +276,7 @@ def trabajos_a_mostrar(tipo: str):
             cursorObj.close()
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
-        print('Exception occurred while code execution: ' + repr(e))
+        logging.warning('Exception occurred while code execution: ' + repr(e))
         playsound('alerta.mp3')
 
     if tipo == 'compania':
@@ -303,10 +293,123 @@ def trabajos_a_mostrar(tipo: str):
 
 os.system('clear')
 
+ahora = datetime.now()
+# * usar si queremos hacer el masivo otro día: aaaa/mm/dd
+#ahora = datetime.strptime('2022/06/9', '%Y/%m/%d')
+
+
+# * gestión de la publicidad
+if ahora.isoweekday() == 1:
+    dia = 'l'
+    dia_largo = 'Lunes'
+elif ahora.isoweekday() == 2:
+    dia = 'm'
+    dia_largo = 'Martes'
+elif ahora.isoweekday() == 3:
+    dia = 'x'
+    dia_largo = 'Miércoles'
+elif ahora.isoweekday() == 4:
+    dia = 'j'
+    dia_largo = 'Jueves'
+elif ahora.isoweekday() == 5:
+    dia = 'v'
+    dia_largo = 'Viernes'
+elif ahora.isoweekday() == 6:  # solo esta por si programo un sábado
+    dia = 'v'
+    dia_largo = 'Sábado'
+elif ahora.isoweekday() == 7:  # solo esta por si programo un domingo
+    dia = 'j'
+    dia_largo = 'Domingo'
+
+con = sqlite3.connect('bbdd.sqlite3')
+cursorObj = con.cursor()
+cursorObj.execute(
+    'SELECT * FROM publicidad WHERE ' + dia + ' = "1" and exclusiva = "horizontal";')
+publicidad_horizontal = cursorObj.fetchall()
+cursorObj.close()
+
+
+# * recorremos los bannes para ver si entran o no
+semana = ahora.isocalendar()[1]
+for banner in publicidad_horizontal:
+    # * Publicidad de Norel: distintos cada semana
+    if banner[1] == 'Norel semana impar' and semana % 2 == 0:
+        publicidad_horizontal.remove(banner)
+    else:
+        if banner[1] == 'Norel semana par':
+            publicidad_horizontal.remove(banner)
+
+'''estos banners que van por periodos funcionan asi: si toca se mete en una nueva variable,
+   después eliminamos todos los banner de esa empresa en publicidad_horizontal y
+   por último añadimos a publicidad_horizontal la nueva variable'''
+   #todo: se puede hacer de una forma mas elegante?
+
+# * Publicidad de Royal Canin: por periodos
+banner_Royal = ''
+paso_Royal = 0
+for banner in publicidad_horizontal:
+    if ahora <= datetime(2022, 6, 3, 0, 0, 0) and banner[1] == 'Royal Canin perros hasta 03/06':
+        paso_Royal = 1
+        banner_Royal = banner
+    if ahora <= datetime(2022, 6, 14, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 14/06':
+        paso_Royal = 1
+        banner_Royal = banner
+for banner in publicidad_horizontal:
+    if banner[1] == 'Royal Canin perros hasta 03/06':
+        paso_Royal = 1
+        Royal_borrar_1 = banner
+    if banner[1] == 'Royal Canin gatos hasta 14/06':
+        paso_Royal = 1
+        Royal_borrar_2 = banner
+if paso_Royal == 1:
+    publicidad_horizontal.remove(Royal_borrar_1)
+    publicidad_horizontal.remove(Royal_borrar_2)
+    publicidad_horizontal.append(banner_Royal)
+
+# * Publicidad de purina: por meses
+banner_Purina = ''
+paso_Purina = 0
+for banner in publicidad_horizontal:
+    if semana in range(1, 22) and banner[1] == 'Purina hasta final mayo':
+        paso_Purina = 1
+        banner_Purina = banner
+    if semana in range(23, 36) and banner[1] == 'Purina junio hasta final agosto':
+        paso_Purina = 1
+        banner_Purina = banner
+    if semana in range(36, 51) and banner[1] == 'Purina a partir septiembre':
+        paso_Purina = 1
+        banner_Purina = banner
+for banner in publicidad_horizontal:
+    if banner[1] == 'Purina hasta final mayo':
+        paso_Purina = 1
+        purina_borrar_1 = banner
+    if banner[1] == 'Purina junio hasta final agosto':
+        paso_Purina = 1
+        purina_borrar_2 = banner
+    if banner[1] == 'Purina a partir septiembre':
+        paso_Purina = 1
+        purina_borrar_3 = banner
+if paso_Purina == 1:
+    publicidad_horizontal.remove(purina_borrar_1)
+    publicidad_horizontal.remove(purina_borrar_2)
+    publicidad_horizontal.remove(purina_borrar_3)
+    # añadimos el banner
+    publicidad_horizontal.append(banner_Purina)
+
+
+print()
+print()
+print('Fecha del masivo: ' + dia_largo + ', ' +
+      str(ahora.day) + '/' + str(ahora.month))
+print()
+print('Hoy salen publicados ' + str(len(publicidad_horizontal)) + ' banners:')
+for banner in publicidad_horizontal:
+    print(f'  -{banner[1]}')
+print()
 boletin = int(input("¿Qué número del masivo vas a publicar? "))
 print()
 print("0 = Dejar hueco relleno")
-print("Nº | Título")
+print("Nº  | Título")
 print()
 
 
@@ -318,72 +421,6 @@ except OSError as e:
     print("Borrando carpeta anterior.")
     if e.errno != errno.EEXIST:
         raise
-
-
-# * gestión de la publicidad
-if ahora.today().isoweekday() == 1:
-    dia = 'l'
-elif ahora.today().isoweekday() == 2:
-    dia = 'm'
-elif ahora.today().isoweekday() == 3:
-    dia = 'x'
-elif ahora.today().isoweekday() == 4:
-    dia = 'j'
-elif ahora.today().isoweekday() == 5:
-    dia = 'v'
-elif ahora.today().isoweekday() == 6:  # solo esta por si programo un sábado
-    dia = 'v'
-elif ahora.today().isoweekday() == 7:  # solo esta por si programo un domingo
-    dia = 'j'
-
-con = sqlite3.connect('bbdd.sqlite3')
-cursorObj = con.cursor()
-cursorObj.execute(
-    'SELECT * FROM publicidad WHERE ' + dia + ' = "1" and exclusiva = "horizontal";')
-publicidad_horizontal = cursorObj.fetchall()
-cursorObj.close()
-
-# * Publicidad de Norel: distintos cada semana
-semana = datetime.date.today().isocalendar()[1]
-for banner in publicidad_horizontal:
-    if banner[1] == 'Norel semana impar' and semana % 2 == 0:
-        publicidad_horizontal.remove(banner)
-    else:
-        if banner[1] == 'Norel semana par':
-            publicidad_horizontal.remove(banner)
-
-
-# * Publicidad de purina: por meses
-# todo hacer este bloque mas elegante
-banner_Purina = ''
-paso_purina = 0
-# si le toca lo metemos en una variable nueva
-for banner in publicidad_horizontal:
-    if semana in range(1, 21) and banner[1] == 'Purina hasta final mayo':
-        paso_purina = 1
-        banner_Purina = banner
-    if semana in range(22, 35) and banner[1] == 'Purina junio hasta final agosto':
-        paso_purina = 1
-        banner_Purina = banner
-    if semana in range(36, 51) and banner[1] == 'Purina a partir septiembre':
-        paso_purina = 1
-        banner_Purina = banner
-for banner in publicidad_horizontal:
-    if banner[1] == 'Purina hasta final mayo':
-        paso_purina = 1
-        purina_borrar_1 = banner
-    if banner[1] == 'Purina junio hasta final agosto':
-        paso_purina = 1
-        purina_borrar_2 = banner
-    if banner[1] == 'Purina a partir septiembre':
-        paso_purina = 1
-        purina_borrar_3 = banner
-if paso_purina == 1:
-    publicidad_horizontal.remove(purina_borrar_1)
-    publicidad_horizontal.remove(purina_borrar_2)
-    publicidad_horizontal.remove(purina_borrar_3)
-    # añadimos el banner
-    publicidad_horizontal.append(banner_Purina)
 
 
 # * Accedemos a la bbdd y mostramos los trabajos
@@ -541,6 +578,7 @@ try:
     pase = 1
     for noticia in noticias:
         noticia = int(noticia)
+        logging.info(f'Tratanto la noticia: {noticia}')
         if noticia == 0:
             if pase % 2 != 0:
                 publicidad = bloques.publicidad.replace('##posicion##', 'left')
@@ -555,8 +593,9 @@ try:
         pase += 1
     longitud = len(noticias_colocadas)
     print(f"Noticias generadas: {longitud}")
-except:
+except Exception as e:
     logging.warning('❌ Esta sección no se va a publicar')
+    logging.warning('   Exception occurred while code execution: ' + repr(e))
     playsound('alerta.mp3')
     noticias_colocadas = ''
 

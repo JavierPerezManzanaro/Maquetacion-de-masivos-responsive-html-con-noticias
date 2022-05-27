@@ -488,13 +488,13 @@ fin = '''
                        <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys91.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys92.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm;91</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm;92</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
@@ -502,29 +502,26 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>ACTUALIDAD </li>
-                                  <li>SYVA:  
+                                  <li>PORCINO
                                     <ul>
-                                      <li>Evolucionamos para seguir avanzando juntos en la prevención y control del Mal Rojo</li>
+                                      <li>Efecto de la utilización de superdosis de fitasa en dietas de transición de cerdas reproductoras con minerales que lados y sus efectos a nivel productivo </li>
+                                      <li>Estudio de prevalencia de poliserositis en granjas españolas </li>
+                                      <li>La alimentación electrónica supervisada de cerdas lactantes según su voluntad mejora el rendimiento de los lechones al destete </li>
+                                      <li>Evaluación de diferentes fuentes y dosificaciones de zinc en dietas para lechones </li>
                                     </ul>
                                   </li>
                                   <li>BOVINO
                                     <ul>
-                                      <li>Diagnóstico de la gestación: pasado, presente y futuro </li>
-                                      <li>La insulina, la inflamación y la lactancia</li>
+                                      <li>¿Son posibles las altas tasas de fecundidad en rebaños de alta-producción?</li>
                                     </ul>
                                   </li>
-                                  <li>PORCINO
-                                    <ul>
-                                      <li>Ingredientes alimenticios alternativos: concentración energética y en nutrientes, digestibilidad y niveles recomendados de inclusión</li>
-                                    </ul>
-                                  </li>
-                                </ul></td>
+                              </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-91-cria-y-salud-sumario/no-91-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-92-cria-y-salud-sumario/no-92-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>

@@ -140,6 +140,15 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### Funciones para añadir
 - Correcciones y mejoras en la gestión de los banners que rotan.
 - Habilitar la posibilidad de poner varias noticias como destacadas.
+- Añadir formato de imagen webp que pasara a ser jpg.
+
+### 4.5.1
+- Novedades:
+  - Ahora es posible hacer el masivo de cualquier día.
+- Mejoras:
+  - Unifico logging.
+  - Mejoro el algoritmo que gestiona los banners de publicidad.
+- Cambios en los banners.
 
 ### 4.5
 - Novedades:
