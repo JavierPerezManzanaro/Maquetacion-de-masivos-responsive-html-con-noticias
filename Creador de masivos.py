@@ -419,7 +419,7 @@ for banner in publicidad_horizontal:
     if semana in range(1, 22) and banner[1] == 'Purina hasta final mayo':
         paso_Purina = 1
         banner_Purina = banner
-    if semana in range(23, 36) and banner[1] == 'Purina junio hasta final agosto':
+    if semana in range(22, 36) and banner[1] == 'Purina junio hasta final agosto':
         paso_Purina = 1
         banner_Purina = banner
     if semana in range(36, 51) and banner[1] == 'Purina a partir septiembre':
@@ -687,6 +687,7 @@ resultado = resultado + noticia_destacada
 
 
 # * Banners Horizontales de forma aislada. El formato de la fecha es aaaa-mm-dd
+# * Estos no estan metidos en la bbdd
 # banner de ifema, ya paso
 # ifema_dias = ['2022-02-05', '2022-02-07', '2022-02-14',
 #               '2022-02-21', '2022-02-04']
