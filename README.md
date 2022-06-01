@@ -142,6 +142,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Habilitar la posibilidad de poner varias noticias como destacadas.
 - Añadir formato de imagen webp que pasara a ser jpg.
 
+### 4.5.2
+- Mejoras:
+  - Refactorización de las funciones de entrada de trabajos.
+- Correcciones de errores menores.
+
 ### 4.5.1
 - Novedades:
   - Ahora es posible hacer el masivo de cualquier día.

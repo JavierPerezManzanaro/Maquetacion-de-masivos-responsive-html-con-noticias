@@ -34,7 +34,7 @@ import banners
 
 
 # Configuración de logging
-logging.basicConfig(level=logging.WARNING,
+logging.basicConfig(level=logging.INFO,
                     format='-%(levelname)-8s [Línea: %(lineno)-4s Función: %(funcName)-18s] %(message)s')
 # logging.debug('Mensaje de traza')
 # logging.info('Mensaje Informativo, algo funciona como se espera')
@@ -52,6 +52,7 @@ alto = 0
 noticias_colocadas = []
 trabajos_compania = []
 trabajos_produccion = []
+global publicidad_horizontal
 
 posicion = 1
 longitud = 0
@@ -214,31 +215,51 @@ def creacion_banners(publicidad_horizontal):
             '##imagen##', str(publicidad_horizontal[0][2]))
         banner_en_curso = banner_en_curso.replace(
             '##alt##', str(publicidad_horizontal[0][5]))
-        #publicidad_horizontal = ''
+        publicidad_horizontal = publicidad_horizontal.clear()
+        return banner_en_curso
+    elif len(publicidad_horizontal) == 0:
+        logging.info(f'{len(publicidad_horizontal)=} ==>')
+        banner_en_curso = ''
         return banner_en_curso
 
 
-def trabajos_a_mostrar(tipo: str):
+def trabajos_a_publicar(tipo: str):
     """Pregunta por los trabajos o noticias de cada una de las dos secciones.
 
     Args:
         tipo (str): Tipo de trabajo: 'compania' o 'produccion'
 
     Returns:
-        lista: Lista con los trabajo o noticias de cada función
+        trabajos: Lista con los trabajo o noticias de cada función
+    """
+    logging.debug('Entra')
+    if tipo == 'compania':
+        trabajos = input('¿Trabajos de animales de compañía para publicar?   ')
+    elif tipo == 'produccion':
+        trabajos = input('¿Trabajos de animales de producción para publicar? ')
+    trabajos = trabajos.strip()
+    trabajos = trabajos.split(' ')
+    return trabajos
+
+
+def trabajos_a_mostrar(tipo: str, trabajos: list):
+    """Crea el código html con los trabajos o noticias de compañia y de producción.
+
+    Args:
+        tipo (str): _description_
+        trabajos (list): _description_
+
+    Returns:
+        _type_: _description_
     """
     logging.debug('Entra')
     if tipo == 'compania':
         posicion_publicidad = 'right'
-        trabajos = input('¿Trabajos de animales de compañía para publicar? ')
     elif tipo == 'produccion':
         posicion_publicidad = 'left'
-        trabajos = input('¿Trabajos de animales de producción para publicar? ')
     try:
         cerramos_bbdd = 0
         trabajos_lista = []
-        trabajos = trabajos.strip()
-        trabajos = trabajos.split(' ')
         publicidad = bloques.publicidad.replace('##posicion##', posicion_publicidad)
         cursorObj = con.cursor()
         for trabajo_seleccionado in trabajos:
@@ -285,6 +306,31 @@ def trabajos_a_mostrar(tipo: str):
     elif tipo == 'produccion':
         trabajos_produccion = trabajos_lista
         return trabajos_produccion
+
+
+def igualar_listas(
+    trabajos_compania: list, trabajos_produccion: list):
+    """Iguala las dos listas
+
+    Args:
+        trabajos_compania (list): trabajos de animales de compañia
+        trabajos_produccion (list): trabajops de animales de producción
+
+    Returns:
+        trabajos_compania, trabajos_produccion: las dos listas con la misma longuitud
+    """
+    logging.debug('Entra')
+    #publicidad = bloques.publicidad
+    while len(trabajos_compania) > len(trabajos_produccion):
+        logging.info('Se añade una publicidad a la lista de trabajos_produccion')
+        publicidad = bloques.publicidad.replace('##posicion##', 'right')
+        trabajos_produccion.append(publicidad)
+    while len(trabajos_compania) < len(trabajos_produccion):
+        logging.info(
+            'Se añade una publicidad a la lista de trabajos_compania')
+        publicidad = bloques.publicidad.replace('##posicion##', 'left')
+        trabajos_compania.append(publicidad)
+    return trabajos_compania, trabajos_produccion
 
 
 # * ****************
@@ -351,7 +397,7 @@ for banner in publicidad_horizontal:
     if ahora <= datetime(2022, 6, 3, 0, 0, 0) and banner[1] == 'Royal Canin perros hasta 03/06':
         paso_Royal = 1
         banner_Royal = banner
-    if ahora <= datetime(2022, 6, 14, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 14/06':
+    if ahora > datetime(2022, 6, 4, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 14/06':
         paso_Royal = 1
         banner_Royal = banner
 for banner in publicidad_horizontal:
@@ -524,48 +570,31 @@ print()
 
 # * Trabajos de animales de compañia, se crea la lista trabajos_compania
 logging.debug('Trabajos de animales de compañia')
-trabajos_compania = trabajos_a_mostrar('compania')
+trabajos_compania = trabajos_a_publicar('compania')
+trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania)
 
 
 # * Trabajos de animales de producción, se crea la lista trabajos_produccion
 logging.debug('Trabajos de animales de producción')
-trabajos_produccion = trabajos_a_mostrar('produccion')
+trabajos_produccion = trabajos_a_publicar('produccion')
+trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion)
+
+# * Igualamos las dos listas
+trabajos_compania, trabajos_produccion = igualar_listas(
+    trabajos_compania, trabajos_produccion)
 
 
-# * Fusión de trabajos_compania y de trabajos_produccion
+# * Fusión de trabajos_compania y de trabajos_produccion y entremedias los banners
 logging.debug('Fusión de trabajos_compania y de trabajos_produccion')
-longitud_campania = len(trabajos_compania)
-longitud_produccion = len(trabajos_produccion)
-mas_largo = longitud_campania if longitud_campania > longitud_produccion else longitud_produccion
-mas_corto = longitud_campania if longitud_campania < longitud_produccion else longitud_produccion
 html_trabajos = ''
 # creamos las que van enfrentadas
-for enfrentadas in range(mas_corto):
-    html_trabajos = html_trabajos + bloques.bloque_exterior_funcion
+for enfrentadas in range(0, len(trabajos_compania)):
+    html_trabajos = html_trabajos + bloques.bloque_exterior_funcion + \
+        creacion_banners(publicidad_horizontal)
     html_trabajos = html_trabajos.replace(
         '##bloque izq##', trabajos_compania[enfrentadas], 1)
     html_trabajos = html_trabajos.replace(
         '##bloque der##', trabajos_produccion[enfrentadas], 1)
-    html_trabajos = html_trabajos + creacion_banners(publicidad_horizontal)
-# creamos las que NO van enfrentadas
-for sueltas in range(mas_largo-mas_corto):
-    html_trabajos = html_trabajos + bloques.bloque_exterior_funcion
-    sueltas = sueltas + mas_corto + 1
-    html_trabajos = html_trabajos + creacion_banners(publicidad_horizontal)
-    if longitud_campania > sueltas:
-        html_trabajos = html_trabajos.replace(
-            '##bloque izq##', trabajos_compania[sueltas], 1)
-    else:
-        # todo aqui va la pb vertical
-        html_trabajos = html_trabajos.replace(
-            '##bloque izq##', publicidad, 1)
-    if longitud_produccion > sueltas:
-        html_trabajos = html_trabajos.replace(
-            '##bloque der##', trabajos_produccion[sueltas], 1)
-    else:
-        # todo aqui va la pb vertical
-        html_trabajos = html_trabajos.replace(
-            '##bloque der##', publicidad, 1)
 
 
 # * Gestión de las noticias
