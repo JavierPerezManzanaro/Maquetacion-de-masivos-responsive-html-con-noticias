@@ -34,7 +34,7 @@ import banners
 
 
 # Configuración de logging
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.WARNING,
                     format='-%(levelname)-8s [Línea: %(lineno)-4s Función: %(funcName)-18s] %(message)s')
 # logging.debug('Mensaje de traza')
 # logging.info('Mensaje Informativo, algo funciona como se espera')
@@ -392,50 +392,50 @@ for banner in publicidad_horizontal:
 
 # * Publicidad de Royal Canin: por periodos
 banner_Royal = ''
-paso_Royal = 0
+paso_Royal = False
 for banner in publicidad_horizontal:
     if ahora <= datetime(2022, 6, 3, 0, 0, 0) and banner[1] == 'Royal Canin perros hasta 03/06':
-        paso_Royal = 1
+        paso_Royal = True
         banner_Royal = banner
     if ahora > datetime(2022, 6, 4, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 14/06':
-        paso_Royal = 1
+        paso_Royal = True
         banner_Royal = banner
 for banner in publicidad_horizontal:
     if banner[1] == 'Royal Canin perros hasta 03/06':
-        paso_Royal = 1
+        paso_Royal = True
         Royal_borrar_1 = banner
     if banner[1] == 'Royal Canin gatos hasta 14/06':
-        paso_Royal = 1
+        paso_Royal = True
         Royal_borrar_2 = banner
-if paso_Royal == 1:
+if paso_Royal == True:
     publicidad_horizontal.remove(Royal_borrar_1)
     publicidad_horizontal.remove(Royal_borrar_2)
     publicidad_horizontal.append(banner_Royal)
 
 # * Publicidad de purina: por meses
 banner_Purina = ''
-paso_Purina = 0
+paso_Purina = False
 for banner in publicidad_horizontal:
     if semana in range(1, 22) and banner[1] == 'Purina hasta final mayo':
-        paso_Purina = 1
+        paso_Purina = True
         banner_Purina = banner
     if semana in range(22, 36) and banner[1] == 'Purina junio hasta final agosto':
-        paso_Purina = 1
+        paso_Purina = True
         banner_Purina = banner
     if semana in range(36, 51) and banner[1] == 'Purina a partir septiembre':
-        paso_Purina = 1
+        paso_Purina = True
         banner_Purina = banner
 for banner in publicidad_horizontal:
     if banner[1] == 'Purina hasta final mayo':
-        paso_Purina = 1
+        paso_Purina = True
         purina_borrar_1 = banner
     if banner[1] == 'Purina junio hasta final agosto':
-        paso_Purina = 1
+        paso_Purina = True
         purina_borrar_2 = banner
     if banner[1] == 'Purina a partir septiembre':
-        paso_Purina = 1
+        paso_Purina = True
         purina_borrar_3 = banner
-if paso_Purina == 1:
+if paso_Purina == True:
     publicidad_horizontal.remove(purina_borrar_1)
     publicidad_horizontal.remove(purina_borrar_2)
     publicidad_horizontal.remove(purina_borrar_3)
@@ -448,7 +448,7 @@ print()
 print('Fecha del masivo: ' + dia_largo + ', ' +
       str(ahora.day) + '/' + str(ahora.month))
 print()
-print('Hoy salen publicados ' + str(len(publicidad_horizontal)) + ' banners:')
+print('Hoy salen publicados ' + str(len(publicidad_horizontal)) + ' banners (sin contar con los extra):')
 for banner in publicidad_horizontal:
     print(f'  -{banner[1]}')
 print()
@@ -702,7 +702,7 @@ geporc_dias = ['2022-05-13', '2022-06-01', '2022-06-15',
                '2022-09-15', '2022-09-30', '2022-10-14',
                '2022-10-31', '2022-11-15', '2022-11-30',
                '2022-12-15', '2022-12-30']
-if str(ahora) in geporc_dias:
+if str(ahora)[0:10] in geporc_dias:
     print()
     print('🟡 Hoy entra el banner de geporc/centauto, PONER EL PRIMERO')
     playsound('alerta.mp3')
