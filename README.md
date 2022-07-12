@@ -1,6 +1,5 @@
-
 ![Lenguaje Python](https://img.shields.io/badge/Lenguaje-Python-green)
-![Versión de Python 3.8.5](https://img.shields.io/badge/Versión%20de%20Python-3.8.5-green)
+![Versión de Python 3.10](https://img.shields.io/badge/Versión%20de%20Python-3.10-green)
 
 
 ---
@@ -31,17 +30,30 @@ Dentro tenemos que definir estas variables
 - url_general = String del blog: 'https://dominio.net'
 - imagen_en_blanco = tiene que ser una url (string) que apunte a una imagen en blanco. Suelo usar un gif de 1x1 px en transparente.
 
+
 ---
 ## Instrucciones de instalación
-- Clonar el repositorio en local
-- Tener instalado Python 3.8 al Python 3.10.3 o MagicPython de Visual Studio Code
+- Clonar el repositorio en local.
+- Tener instalado Python 3.10.
 - Módulos a importar:
     - Para 'Creador de masivos.py.py':
-      - [python-wordpress-xmlrpc 2.3](https://github.com/maxcutler/python-wordpress-xmlrpc) Puente entre Python y WordPress.
-      - [playsound 1.3.0](https://pypi.org/project/playsound/) Permite el uso de sonidos, en este caso para los avisos de intervención.
+      - [python-wordpress-xmlrpc 2.3](https://pypi.org/project/python-wordpress-xmlrpc/) Puente entre Python y WordPress.
+      - [requests 2.28.1](https://pypi.org/project/requests/)
+      - [Pillow (PIL Fork)](https://pillow.readthedocs.io/en/stable/installation.html) Tratamiento de las imágenes.
     - Para 'Inserción de noticias en bbdd.py':
       - [gazpacho](https://pypi.org/project/gazpacho/) para hacer web scraping.
-      - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la vebtana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd.
+      - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la ventana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd.
+
+
+---
+## Cambios necesarios en python-wordpress-xmlrpc
+Este módulo no es compatible con la versión Python 3.10. Hay que realizar un pequeño cambio en el código. 
+En el archivo "wordpress_xmlrpc/base.py" hay que modificar dos liéas:
+1: pasa a ser: **import collections.abc**
+128: pasa a ser: **elif isinstance(raw_result, collections.abc.Iterable):**
+Explicación:
+[https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148/files/69ba89706c47ac2c39fae41137bb2d38dee4ae5a](https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148/files/69ba89706c47ac2c39fae41137bb2d38dee4ae5a)
+[https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148](https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148)
 
 
 ---
@@ -141,6 +153,16 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Correcciones y mejoras en la gestión de los banners que rotan.
 - Habilitar la posibilidad de poner varias noticias como destacadas.
 - Añadir formato de imagen webp que pasara a ser jpg.
+- Ordenar bien (contando los acentos) los trabajos.
+- Pasar la lista de titulares en vez del número.
+- Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+
+### 4.6
+- Actualizo la aplicación a Python 3.10
+- Creo un entorno de desarrollo.
+- Cambio el sistema de sonido. Ahora uso "os.system("afplay " + sonido)" que funciona de forma nativa en nuestro sistema. En este caso solo en Mac. Ya se actualizara para otros sistemas.
+- Amplio y mejoro la documentación.
+- Correcciones de errores menores.
 
 ### 4.5.3
 - Mejoras:

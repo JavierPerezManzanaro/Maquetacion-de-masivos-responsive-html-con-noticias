@@ -323,7 +323,7 @@ centauto = '''
                         <td height="30"></td>
                       </tr>
                       <tr>
-                        <td><p><a href="https://shop.centauro.es/"><img src="pb/centauro_2022-04-13_700px.gif" alt="Centauro" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
+                        <td><p><a href="https://shop.centauro.es/es/search/?text=Mila+international"><img src="pb/centauro_2022-07-06_700x200px.jpg" alt="Centauro" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
                       </tr>
                       <tr>
                         <td height="30"></td>

@@ -327,14 +327,14 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial  </li>
-                                  <li>Gestión empresarial: 
+                                  <li>Gestión empresarial:
                                     <ul>
                                       <li>Experiencia del cliente ¿asignatura pendiente en veterinaria?. Parte 2  </li>
                                       <li>Quiero hacer una campaña de marketing… efectiva  </li>
                                       <li>AMVAC: ¿Cómo dar valor al veterinario? </li>
                                     </ul>
                                   </li>
-                                  <li>Vetmadrid 2022: 
+                                  <li>Vetmadrid 2022:
                                     <ul>
                                       <li>XXXIX Congreso organizado por AMVAC “Medicina y cirugía en animales geriátricos” </li>
                                       <li>Comunicaciones libres (PÓSTER)  </li>
@@ -355,7 +355,7 @@ fin = '''
 
 
                         <!--TABLE MIDDLE-->
-                        
+
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -363,32 +363,32 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-                        
+
                         <!--TABLE RIGHT-->
 
                         <!--av-->
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av93.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av94.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 93</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 94</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas  </li>
-                                  <li>Acondicionamiento de una jaula para psitacidas  </li>
-                                  <li>Plantas tóxicas </li>
-                                  <li>ANAVET: 
+                                  <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas</li>
+                                  <li>Alimentación, instalación y enriquecimiento ambiental del hámster ruso <em>(Phodopus sungorus)</em></li>
+                                  <li>La despedida</li>
+                                  <li>ANAVET:
                                     <ul>
-                                      <li>Nueva convocatoria: WEBINARS ANAVET/HILL’S PET NUTRITION 2022 Noticias</li>
+                                      <li>Comportamiento del gato. Introducción de un gato en el hogar, pautas para su adaptación. Enriquecimiento ambiental</li>
                                     </ul>
                                   </li>
                                   <li>Y mucho m&aacute;s&hellip;</li>
@@ -398,7 +398,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no93-asistente-en-centro-veterinario/no93-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no94-asistente-en-centro-veterinario/no94-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -452,7 +452,7 @@ fin = '''
                                       <li> ¿Me marcho de vacaciones?  </li>
                                     </ul>
                                   </li>
-                                  <li>Salud 
+                                  <li>Salud
                                     <ul>
                                       <li>Enfermedad vírica hemorrágica en los conejos: un nuevo virus</li>
                                     </ul>
@@ -577,7 +577,7 @@ fin = '''
                     <!-- ROW-1 START -->
                     <tr>
                       <td><!--TABLE LEFT-->
-                        
+
                         <table width="60%" border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -591,9 +591,9 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-                        
+
                         <!--TABLE MIDDLE-->
-                        
+
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -601,9 +601,9 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-                        
+
                         <!--TABLE RIGHT-->
-                        
+
                         <table width="30%" border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>

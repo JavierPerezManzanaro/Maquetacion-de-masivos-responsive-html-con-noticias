@@ -4,3 +4,8 @@ versiones.txt
 .vscode/
 datos_de_acceso.py
 .gitignore
+bin/
+include/
+lib/
+version de python a usar.png
+pyvenv.cfg

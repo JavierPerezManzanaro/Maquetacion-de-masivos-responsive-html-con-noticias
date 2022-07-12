@@ -1,14 +1,9 @@
 # !/usr/bin/env python
-# -*- coding: utf-8 -*-
-# /
 
 #! CUIDADO
 # todo por hacer
 # ? aviso
 # * explicación
-
-
-#! usar la versión de python MagicPython (Python 3.8.5)
 
 
 from datetime import datetime
@@ -23,7 +18,6 @@ from pprint import pprint
 import errno
 import random
 import sqlite3
-from playsound import playsound
 import logging
 
 
@@ -33,7 +27,7 @@ import datos_de_acceso
 import banners
 
 
-# Configuración de logging
+# * Configuración de logging
 logging.basicConfig(level=logging.WARNING,
                     format='-%(levelname)-8s [Línea: %(lineno)-4s Función: %(funcName)-18s] %(message)s')
 # logging.debug('Mensaje de traza')
@@ -72,13 +66,16 @@ meses = {
     "12": 'Diciembre'
 }
 
+ALERTA = "alerta.mp3"
+
 
 # * *******************
 # * Funciones de la app
 # * *******************
 
-def strip_tags(value: str) -> str:
-    """Limpia del código html <…> y […].
+def strip_tags(value: str): #-> str:
+    """
+    Limpia del código html <…> y […].
 
     Args:
         value (str): Cadena a limpiar
@@ -92,7 +89,7 @@ def strip_tags(value: str) -> str:
     return value
 
 
-def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, nombre: int) -> str:
+def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, nombre: int): #-> str:
     """Genera cada tabla de html que contiene un trabajo o la noticia.
 
     Args:
@@ -120,7 +117,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     else:
         logging.warning(
             '❌ Elemento no generado porque no coincide el tipo con ninguno de los predefinidos')
-        playsound('alerta.mp3')
+        os.system("afplay " + ALERTA)
 
     # Analiza donde esta la imagen (en remoto o en local)
     if 'https' in imagen:
@@ -174,7 +171,6 @@ def descarga_imagen(url: str, nombre: int, ancho: int):
         imagen.convert("RGB")
         alto = int((int(imagen.size[1]) * ancho) / int(imagen.size[0]))
         imagen = imagen.resize((ancho, alto))
-        #ancho = ancho
         imagen.save(imagen_local)
 
     return imagen_local, ancho, alto
@@ -298,7 +294,7 @@ def trabajos_a_mostrar(tipo: str, trabajos: list):
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
         logging.warning('Exception occurred while code execution: ' + repr(e))
-        playsound('alerta.mp3')
+        os.system("afplay " + ALERTA)
 
     if tipo == 'compania':
         trabajos_compania = trabajos_lista
@@ -320,7 +316,6 @@ def igualar_listas(
         trabajos_compania, trabajos_produccion: las dos listas con la misma longuitud
     """
     logging.debug('Entra')
-    #publicidad = bloques.publicidad
     while len(trabajos_compania) > len(trabajos_produccion):
         logging.info('Se añade una publicidad a la lista de trabajos_produccion')
         publicidad = bloques.publicidad.replace('##posicion##', 'right')
@@ -340,8 +335,8 @@ def igualar_listas(
 os.system('clear')
 
 ahora = datetime.now()
-# * usar si queremos hacer el masivo otro día: aaaa/mm/dd
-#ahora = datetime.strptime('2022/06/9', '%Y/%m/%d')
+# * Si queremos hacer el masivo de otro día: aaaa/mm/dd :
+# * ahora = datetime.strptime('2022/06/9', '%Y/%m/%d')
 
 
 # * gestión de la publicidad
@@ -390,27 +385,29 @@ for banner in publicidad_horizontal:
    por último añadimos a publicidad_horizontal la nueva variable'''
    #todo: se puede hacer de una forma mas elegante?
 
+
 # * Publicidad de Royal Canin: por periodos
 banner_Royal = ''
 paso_Royal = False
 for banner in publicidad_horizontal:
-    if ahora <= datetime(2022, 6, 3, 0, 0, 0) and banner[1] == 'Royal Canin perros hasta 03/06':
+    if ahora <= datetime(2022, 6, 24, 0, 0, 0) and banner[1] == 'Royal Canin perros hasta 24/06': #poner la fecha en el dataframe
         paso_Royal = True
         banner_Royal = banner
-    if ahora > datetime(2022, 6, 4, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 14/06':
+    if ahora > datetime(2022, 6, 25, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 05/07': #poner la fecha en el dataframe
         paso_Royal = True
         banner_Royal = banner
 for banner in publicidad_horizontal:
-    if banner[1] == 'Royal Canin perros hasta 03/06':
+    if banner[1] == 'Royal Canin perros hasta 24/06':
         paso_Royal = True
         Royal_borrar_1 = banner
-    if banner[1] == 'Royal Canin gatos hasta 14/06':
+    if banner[1] == 'Royal Canin gatos hasta 05/07':
         paso_Royal = True
         Royal_borrar_2 = banner
 if paso_Royal == True:
     publicidad_horizontal.remove(Royal_borrar_1)
     publicidad_horizontal.remove(Royal_borrar_2)
     publicidad_horizontal.append(banner_Royal)
+
 
 # * Publicidad de purina: por meses
 banner_Purina = ''
@@ -494,11 +491,12 @@ print(f"----|-{'-'*104}")
 for trabajo in trabajos_en_bbdd_produccion:
     print(f"{trabajo[0]:>3} | {trabajo[1][0:100]}")
 
+
 # * Recogemos las noticias de la web
 cliente = Client(datos_de_acceso.sitio, datos_de_acceso.usuario,
                  datos_de_acceso.contrasena)
 axon_entradas = cliente.call(posts.GetPosts(
-    {'number': noticias_mostradas, 'offset': 0,  'post_status': 'publish'}))  # todo 'orderby': 'title',
+    {'number': noticias_mostradas, 'offset': 0,  'post_status': 'publish'}))  # , 'order': 'ASC'
 print()
 print(f"Últimas {noticias_mostradas} noticias:")
 print(f"----|-{'-'*104}")
@@ -544,6 +542,8 @@ print()
 logging.debug('Gestión de noticia destacada')
 try:
     noticia = int(input("¿Qué noticia es la destacada? "))
+    if not noticia:
+        noticia =''
     noticia_destacada = bloques.noticia_destacada
     imagen_local, ancho, alto = descarga_imagen(
         axon[noticia]['imagen'], noticia, 320)
@@ -559,11 +559,10 @@ try:
         '##noticia_enlace##', axon[noticia]['url'])    # entrada.link)
     noticia_destacada = noticia_destacada + \
         creacion_banners(publicidad_horizontal)
-except:
+except ValueError:
     logging.warning('❌ Esta sección no se va a publicar')
-    playsound('alerta.mp3')
+    os.system("afplay " + ALERTA)
     noticia_destacada = ''
-
 
 print()
 
@@ -578,6 +577,7 @@ trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania)
 logging.debug('Trabajos de animales de producción')
 trabajos_produccion = trabajos_a_publicar('produccion')
 trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion)
+
 
 # * Igualamos las dos listas
 trabajos_compania, trabajos_produccion = igualar_listas(
@@ -625,7 +625,7 @@ try:
 except Exception as e:
     logging.warning('❌ Esta sección no se va a publicar')
     logging.warning('   Exception occurred while code execution: ' + repr(e))
-    playsound('alerta.mp3')
+    os.system("afplay " + ALERTA)
     noticias_colocadas = ''
 
 
@@ -694,7 +694,7 @@ resultado = resultado + noticia_destacada
 # if str(ahora) in ifema_dias:
 #     print()
 #     print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
-#     playsound('alerta.mp3')
+#     os.system("afplay " + ALERTA)
 #     resultado = resultado + banners.iberzoo
 # banner de geporc
 geporc_dias = ['2022-05-13', '2022-06-01', '2022-06-15',
@@ -705,7 +705,7 @@ geporc_dias = ['2022-05-13', '2022-06-01', '2022-06-15',
 if str(ahora)[0:10] in geporc_dias:
     print()
     print('🟡 Hoy entra el banner de geporc/centauto, PONER EL PRIMERO')
-    playsound('alerta.mp3')
+    os.system("afplay " + ALERTA)
     resultado = resultado + banners.centauto
 # banner de vetnova: solo los jueves
 if dia == 'j':
@@ -731,7 +731,7 @@ if len(publicidad_horizontal) >= 1:
     print()
     logging.warning(
         '❌ Cuidado: los banners horizontales no se han colocado bien')
-    playsound('alerta.mp3')
+    os.system("afplay " + ALERTA)
     print()
     print()
     for n in range(len(publicidad_horizontal)):
