@@ -313,13 +313,13 @@ fin = '''
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv105.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv106.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 105</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 106</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -327,18 +327,15 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial  </li>
-                                  <li>Gestión empresarial:
+                                  <li>Artículo de revisión:
                                     <ul>
-                                      <li>Experiencia del cliente ¿asignatura pendiente en veterinaria?. Parte 2  </li>
-                                      <li>Quiero hacer una campaña de marketing… efectiva  </li>
-                                      <li>AMVAC: ¿Cómo dar valor al veterinario? </li>
+                                      <li>Las mascotas y el SARS-CoV-2: ¿cuál es su papel en la epidemiología de la enfermedad? </li>
+                                      <li>Usos potenciales del ácido docosaexaenoico (DHA) en cría y reproducción</li>
                                     </ul>
                                   </li>
-                                  <li>Vetmadrid 2022:
+                                  <li>Vetmadrid 2023:
                                     <ul>
-                                      <li>XXXIX Congreso organizado por AMVAC “Medicina y cirugía en animales geriátricos” </li>
-                                      <li>Comunicaciones libres (PÓSTER)  </li>
-                                      <li>Comunicaciones libres (ORAL)  </li>
+                                      <li>Normas para la presentación de COMUNICACIONES LIBRES</li>
                                     </ul>
                                   </li>
                                   <li>Noticias de Empresa</li>
@@ -348,7 +345,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no105-centro-veterinario/no105-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no106-centro-veterinario/no106-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -370,13 +367,13 @@ fin = '''
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av94.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av95.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 94</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 95</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -384,21 +381,22 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas</li>
-                                  <li>Alimentación, instalación y enriquecimiento ambiental del hámster ruso <em>(Phodopus sungorus)</em></li>
-                                  <li>La despedida</li>
+                                  <li>Enfermedades más frecuentes en aves domésticas (I)</li>
+                                  <li>Terapia con animales</li>
                                   <li>ANAVET:
                                     <ul>
-                                      <li>Comportamiento del gato. Introducción de un gato en el hogar, pautas para su adaptación. Enriquecimiento ambiental</li>
+                                      <li>WEBINARS ANAVET/ HILL&rsquo;S PET NUTRITION 2022</li>
                                     </ul>
                                   </li>
-                                  <li>Y mucho m&aacute;s&hellip;</li>
+                                  <li>Noticias</li>
+                                  <li>Y mucho más…</li>
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no94-asistente-en-centro-veterinario/no94-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no95-asistente-en-centro-veterinario/no95-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -431,30 +429,26 @@ fin = '''
                       <td><!--TABLE LEFT-->
 
                         <!--uno mas-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_100.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_101.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 99</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 101</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Consejo
+                                  <li>Consejos 
                                     <ul>
-                                      <li> ¿Me marcho de vacaciones?  </li>
-                                    </ul>
-                                  </li>
-                                  <li>Salud
-                                    <ul>
-                                      <li>Enfermedad vírica hemorrágica en los conejos: un nuevo virus</li>
+                                      <li>Golpe de calor en perros  </li>
+                                      <li>Golpe de calor en conejos</li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -463,11 +457,10 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no100-uno-mas/no100-uno-mas-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no101-uno-mas/no101-uno-mas-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
-
 
 
                         <!--TABLE MIDDLE-->
@@ -483,17 +476,16 @@ fin = '''
                         <!--TABLE RIGHT-->
 
                         <!--cys-->
-
-                       <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys92.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys94.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm;92</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Consejoss, N&ordm; 94</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
@@ -501,26 +493,27 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>ACTUALIDAD </li>
-                                  <li>PORCINO
-                                    <ul>
-                                      <li>Efecto de la utilización de superdosis de fitasa en dietas de transición de cerdas reproductoras con minerales que lados y sus efectos a nivel productivo </li>
-                                      <li>Estudio de prevalencia de poliserositis en granjas españolas </li>
-                                      <li>La alimentación electrónica supervisada de cerdas lactantes según su voluntad mejora el rendimiento de los lechones al destete </li>
-                                      <li>Evaluación de diferentes fuentes y dosificaciones de zinc en dietas para lechones </li>
-                                    </ul>
-                                  </li>
+                                  <li>PORCINO </li>
+                                  <ul>
+                                    <li>Test de transferencia de inmunidad maternal-MDA TT: Herramienta de evaluación del encalostramiento  </li>
+                                    <li>Control de la prevalencia e incidencia de enfermedades y del uso asociado de antibióticos en granjas comerciales en tiempo real </li>
+                                    <li>Eficacia de las vacunas frente a la colibacilosis postdestete en una situación concomitante con el virus del PRRS</li>
+                                  </ul>
                                   <li>BOVINO
                                     <ul>
-                                      <li>¿Son posibles las altas tasas de fecundidad en rebaños de alta-producción?</li>
+                                      <li>La difícil distocia y complicaciones resultantes  </li>
+                                      <li>Leche desnatada o entera: ¿cual es más saludable? Reevaluación de las recomendaciones </li>
+                                      <li>Actualización sobre la relevancia del staphylococcus de tipo no-aureus para la salud de la ubre bovina</li>
                                     </ul>
                                   </li>
-                              </ul></td>
+                              </ul>
+                              </td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-92-cria-y-salud-sumario/no-92-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-94-cria-y-salud-sumario/no-94-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>

@@ -355,11 +355,12 @@ vetnova = '''
                 </tr>
                 <!-- ROW-1 START -->
                 <tr>
-                  <td><h1>Ver la url</h1><!--TABLE LEFT-->
+                  <td>
+                    <!--TABLE LEFT-->
                     <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                       <tbody>
                         <tr>
-                          <td align="left" valign="middle" style="color:#666666;"><a href="https://es.vetnova.net/Documentos/catalogos/RECONCILE%20Ficha%20T&eacute;cnica%20VetNova.pdf"><img src="pb/vetnova_2022-05-06_320x320.gif" alt="VetNova" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
+                          <td align="left" valign="middle" style="color:#666666;"><a href="https://es.vetnova.net"><img src="pb/vetnova_2022-05-06_320x320.gif" alt="VetNova" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -375,7 +376,7 @@ vetnova = '''
                     <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                       <tbody>
                         <tr>
-                          <td align="left" valign="middle" style="color:#666666;"><a href="https://es.vetnova.net/Documentos/catalogos/RECONCILE%20Ficha%20T&eacute;cnica%20VetNova.pdf"><img src="pb/vetnova_2022-05-06_320x320.gif" alt="VetNova" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
+                          <td align="left" valign="middle" style="color:#666666;"><a href="https://es.vetnova.net"><img src="pb/vetnova_2022-05-06_320x320.gif" alt="VetNova" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
                         </tr>
                       </tbody>
                     </table>

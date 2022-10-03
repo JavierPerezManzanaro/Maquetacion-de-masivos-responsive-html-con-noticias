@@ -73,6 +73,16 @@ ALERTA = "alerta.mp3"
 # * Funciones de la app
 # * *******************
 
+def execution_time(func):
+    def wrapper(*args, **kwargs):
+        initial_time = datetime.now()
+        func(*args, **kwargs)
+        final_time = datetime.now()
+        time_elapsed = final_time - initial_time
+        print(f'La función tardo: {time_elapsed.total_seconds()} segundos')
+    return wrapper
+
+
 def strip_tags(value: str): #-> str:
     """
     Limpia del código html <…> y […].
@@ -89,6 +99,7 @@ def strip_tags(value: str): #-> str:
     return value
 
 
+# decorador @execution_time
 def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, nombre: int): #-> str:
     """Genera cada tabla de html que contiene un trabajo o la noticia.
 
@@ -336,36 +347,36 @@ os.system('clear')
 
 ahora = datetime.now()
 # * Si queremos hacer el masivo de otro día: aaaa/mm/dd :
-# * ahora = datetime.strptime('2022/06/9', '%Y/%m/%d')
+# ahora = datetime.strptime('2022/09/27', '%Y/%m/%d')
 
 
 # * gestión de la publicidad
 if ahora.isoweekday() == 1:
-    dia = 'l'
-    dia_largo = 'Lunes'
+    DIA = 'l'
+    DIA_LARGO = 'Lunes'
 elif ahora.isoweekday() == 2:
-    dia = 'm'
-    dia_largo = 'Martes'
+    DIA = 'm'
+    DIA_LARGO = 'Martes'
 elif ahora.isoweekday() == 3:
-    dia = 'x'
-    dia_largo = 'Miércoles'
+    DIA = 'x'
+    DIA_LARGO = 'Miércoles'
 elif ahora.isoweekday() == 4:
-    dia = 'j'
-    dia_largo = 'Jueves'
+    DIA = 'j'
+    DIA_LARGO = 'Jueves'
 elif ahora.isoweekday() == 5:
-    dia = 'v'
-    dia_largo = 'Viernes'
+    DIA = 'v'
+    DIA_LARGO = 'Viernes'
 elif ahora.isoweekday() == 6:  # solo esta por si programo un sábado
-    dia = 'v'
-    dia_largo = 'Sábado'
+    DIA = 'v'
+    DIA_LARGO = 'Sábado'
 elif ahora.isoweekday() == 7:  # solo esta por si programo un domingo
-    dia = 'j'
-    dia_largo = 'Domingo'
+    DIA = 'j'
+    DIA_LARGO = 'Domingo'
 
 con = sqlite3.connect('bbdd.sqlite3')
 cursorObj = con.cursor()
 cursorObj.execute(
-    'SELECT * FROM publicidad WHERE ' + dia + ' = "1" and exclusiva = "horizontal";')
+    'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";')
 publicidad_horizontal = cursorObj.fetchall()
 cursorObj.close()
 
@@ -389,18 +400,21 @@ for banner in publicidad_horizontal:
 # * Publicidad de Royal Canin: por periodos
 banner_Royal = ''
 paso_Royal = False
+# * hay que cambiar también el nombre de los banner de la tabla de publicidad del sqlite3
+banner_perro = 'Royal Canin perros hasta 11/10'
+banner_gato = 'Royal Canin gatos desde 12/10 hasta 26/10'
 for banner in publicidad_horizontal:
-    if ahora <= datetime(2022, 6, 24, 0, 0, 0) and banner[1] == 'Royal Canin perros hasta 24/06': #poner la fecha en el dataframe
+    if ahora <= datetime(2022, 10, 11, 0, 0, 0) and banner[1] == banner_perro: #poner la fecha en el datetime
         paso_Royal = True
         banner_Royal = banner
-    if ahora > datetime(2022, 6, 25, 0, 0, 0) and banner[1] == 'Royal Canin gatos hasta 05/07': #poner la fecha en el dataframe
+    if ahora > datetime(2022, 10, 12, 0, 0, 0) and banner[1] == banner_gato: #poner la fecha en el datetime
         paso_Royal = True
         banner_Royal = banner
 for banner in publicidad_horizontal:
-    if banner[1] == 'Royal Canin perros hasta 24/06':
+    if banner[1] == banner_perro:
         paso_Royal = True
         Royal_borrar_1 = banner
-    if banner[1] == 'Royal Canin gatos hasta 05/07':
+    if banner[1] == banner_gato:
         paso_Royal = True
         Royal_borrar_2 = banner
 if paso_Royal == True:
@@ -442,7 +456,7 @@ if paso_Purina == True:
 
 print()
 print()
-print('Fecha del masivo: ' + dia_largo + ', ' +
+print('Fecha del masivo: ' + DIA_LARGO + ', ' +
       str(ahora.day) + '/' + str(ahora.month))
 print()
 print('Hoy salen publicados ' + str(len(publicidad_horizontal)) + ' banners (sin contar con los extra):')
@@ -559,7 +573,7 @@ try:
         '##noticia_enlace##', axon[noticia]['url'])    # entrada.link)
     noticia_destacada = noticia_destacada + \
         creacion_banners(publicidad_horizontal)
-except ValueError:
+except:
     logging.warning('❌ Esta sección no se va a publicar')
     os.system("afplay " + ALERTA)
     noticia_destacada = ''
@@ -584,7 +598,7 @@ trabajos_compania, trabajos_produccion = igualar_listas(
     trabajos_compania, trabajos_produccion)
 
 
-# * Fusión de trabajos_compania y de trabajos_produccion y entremedias los banners
+# * Fusión de trabajos_compania y de trabajos_produccion y entremeDIAs los banners
 logging.debug('Fusión de trabajos_compania y de trabajos_produccion')
 html_trabajos = ''
 # creamos las que van enfrentadas
@@ -689,26 +703,16 @@ resultado = resultado + noticia_destacada
 # * Banners Horizontales de forma aislada. El formato de la fecha es aaaa-mm-dd
 # * Estos no estan metidos en la bbdd
 # banner de ifema, ya paso
-# ifema_dias = ['2022-02-05', '2022-02-07', '2022-02-14',
+# ifema_DIAs = ['2022-02-05', '2022-02-07', '2022-02-14',
 #               '2022-02-21', '2022-02-04']
-# if str(ahora) in ifema_dias:
+# if str(ahora) in ifema_DIAs:
 #     print()
 #     print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
 #     os.system("afplay " + ALERTA)
 #     resultado = resultado + banners.iberzoo
-# banner de geporc
-geporc_dias = ['2022-05-13', '2022-06-01', '2022-06-15',
-               '2022-06-30', '2022-07-15', '2022-09-01',
-               '2022-09-15', '2022-09-30', '2022-10-14',
-               '2022-10-31', '2022-11-15', '2022-11-30',
-               '2022-12-15', '2022-12-30']
-if str(ahora)[0:10] in geporc_dias:
-    print()
-    print('🟡 Hoy entra el banner de geporc/centauto, PONER EL PRIMERO')
-    os.system("afplay " + ALERTA)
-    resultado = resultado + banners.centauto
+
 # banner de vetnova: solo los jueves
-if dia == 'j':
+if DIA == 'j':
     resultado = resultado + banners.vetnova
 
 
@@ -747,23 +751,23 @@ resultado = resultado + bloques.fin
 # * Codificamos a html
 logging.debug('Codificamos a html')
 # ? para cuerpos de email charset=ISO-8859-1
-resultado = re.sub("á", "&aacute;", resultado)
-resultado = re.sub("é", "&eacute;", resultado)
-resultado = re.sub("í", "&iacute;", resultado)
-resultado = re.sub("ó", "&oacute;", resultado)
-resultado = re.sub("ú", "&uacute;", resultado)
-resultado = re.sub("Á", "&Aacute;", resultado)
-resultado = re.sub("É", "&Eacute;", resultado)
-resultado = re.sub("Í", "&Iacute;", resultado)
-resultado = re.sub("Ó", "&Oacute;", resultado)
-resultado = re.sub("Ú", "&Uacute;", resultado)
-resultado = re.sub("ñ", "&ntilde;", resultado)
-resultado = re.sub("Ñ", "&Ntilde;", resultado)
-resultado = re.sub("¡", "&iexcl;", resultado)
-resultado = re.sub("¿", "&iquest;", resultado)
-resultado = re.sub("Â", "", resultado)
-resultado = re.sub("â€œ", "&quot;", resultado)
-resultado = re.sub("â€", "&quot;", resultado)
+resultado = resultado.replace("á", "&aacute;")
+resultado = resultado.replace("é", "&eacute;")
+resultado = resultado.replace("í", "&iacute;")
+resultado = resultado.replace("ó", "&oacute;")
+resultado = resultado.replace("ú", "&uacute;")
+resultado = resultado.replace("Á", "&Aacute;")
+resultado = resultado.replace("É", "&Eacute;")
+resultado = resultado.replace("Í", "&Iacute;")
+resultado = resultado.replace("Ó", "&Oacute;")
+resultado = resultado.replace("Ú", "&Uacute;")
+resultado = resultado.replace("ñ", "&ntilde;")
+resultado = resultado.replace("Ñ", "&Ntilde;")
+resultado = resultado.replace("¡", "&iexcl;")
+resultado = resultado.replace("¿", "&iquest;")
+resultado = resultado.replace("Â", "")
+resultado = resultado.replace("â€œ", "&quot;")
+resultado = resultado.replace("â€", "&quot;")
 
 
 # * Mostramos el resultado para copiar y pegar

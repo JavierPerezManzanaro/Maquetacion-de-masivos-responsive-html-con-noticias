@@ -153,9 +153,13 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Correcciones y mejoras en la gestión de los banners que rotan.
 - Habilitar la posibilidad de poner varias noticias como destacadas.
 - Añadir formato de imagen webp que pasara a ser jpg.
-- Ordenar bien (contando los acentos) los trabajos.
-- Pasar la lista de titulares en vez del número.
+- Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+
+### 4.6.1
+- Añado un decorador para medir el tiempo de una función.
+- Cambio la nomenclatura de las variables constantes.
+- Cambio 're.sub' por 'str.replace' (python:S5361).
 
 ### 4.6
 - Actualizo la aplicación a Python 3.10
