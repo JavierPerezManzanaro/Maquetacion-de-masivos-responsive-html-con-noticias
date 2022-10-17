@@ -6,7 +6,7 @@
 # * explicación
 
 
-from datetime import datetime
+from datetime import datetime, date
 from os import close, link
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc.methods import posts
@@ -19,6 +19,7 @@ import errno
 import random
 import sqlite3
 import logging
+import subprocess
 
 
 # * librerias propias
@@ -66,7 +67,7 @@ meses = {
     "12": 'Diciembre'
 }
 
-ALERTA = "alerta.mp3"
+ALERTA = "afplay alerta.mp3"
 
 
 # * *******************
@@ -128,7 +129,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     else:
         logging.warning(
             '❌ Elemento no generado porque no coincide el tipo con ninguno de los predefinidos')
-        os.system("afplay " + ALERTA)
+        os.system(ALERTA)
 
     # Analiza donde esta la imagen (en remoto o en local)
     if 'https' in imagen:
@@ -270,6 +271,8 @@ def trabajos_a_mostrar(tipo: str, trabajos: list):
         publicidad = bloques.publicidad.replace('##posicion##', posicion_publicidad)
         cursorObj = con.cursor()
         for trabajo_seleccionado in trabajos:
+            if trabajo_seleccionado == '' or trabajo_seleccionado == ' ':
+                continue
             trabajo_seleccionado = int(trabajo_seleccionado)
             if trabajo_seleccionado == 0:
                 trabajos_lista.append(publicidad)
@@ -305,7 +308,7 @@ def trabajos_a_mostrar(tipo: str, trabajos: list):
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
         logging.warning('Exception occurred while code execution: ' + repr(e))
-        os.system("afplay " + ALERTA)
+        os.system(ALERTA)
 
     if tipo == 'compania':
         trabajos_compania = trabajos_lista
@@ -346,8 +349,8 @@ def igualar_listas(
 os.system('clear')
 
 ahora = datetime.now()
-# * Si queremos hacer el masivo de otro día: aaaa/mm/dd :
-# ahora = datetime.strptime('2022/09/27', '%Y/%m/%d')
+# * Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
+# ahora = datetime.strptime('2022/10/13', '%Y/%m/%d')
 
 
 # * gestión de la publicidad
@@ -398,29 +401,31 @@ for banner in publicidad_horizontal:
 
 
 # * Publicidad de Royal Canin: por periodos
-banner_Royal = ''
-paso_Royal = False
-# * hay que cambiar también el nombre de los banner de la tabla de publicidad del sqlite3
-banner_perro = 'Royal Canin perros hasta 11/10'
-banner_gato = 'Royal Canin gatos desde 12/10 hasta 26/10'
-for banner in publicidad_horizontal:
-    if ahora <= datetime(2022, 10, 11, 0, 0, 0) and banner[1] == banner_perro: #poner la fecha en el datetime
-        paso_Royal = True
-        banner_Royal = banner
-    if ahora > datetime(2022, 10, 12, 0, 0, 0) and banner[1] == banner_gato: #poner la fecha en el datetime
-        paso_Royal = True
-        banner_Royal = banner
-for banner in publicidad_horizontal:
-    if banner[1] == banner_perro:
-        paso_Royal = True
-        Royal_borrar_1 = banner
-    if banner[1] == banner_gato:
-        paso_Royal = True
-        Royal_borrar_2 = banner
-if paso_Royal == True:
-    publicidad_horizontal.remove(Royal_borrar_1)
-    publicidad_horizontal.remove(Royal_borrar_2)
-    publicidad_horizontal.append(banner_Royal)
+# banner_Royal = ''
+# paso_Royal = False
+# # * hay que cambiar también el nombre de los banner de la tabla de publicidad del sqlite3
+# banner_perro = 'Royal Canin perros hasta 11-10'
+# banner_gato = 'Royal Canin gatos desde 12-10 hasta 26-10'
+# for banner in publicidad_horizontal:
+#     if ahora < datetime(2022, 10, 11, 0, 0, 0) and banner[1] == banner_perro: #poner la fecha en el datetime
+#         print('paso 1')
+#         paso_Royal = True
+#         banner_Royal = banner
+#     if ahora > datetime(2022, 12, 30, 0, 0, 0) and banner[1] == banner_gato: #poner la fecha en el datetime
+#         print('paso 2')
+#         paso_Royal = True
+#         banner_Royal = banner
+# for banner in publicidad_horizontal:
+#     if banner[1] == banner_perro:
+#         paso_Royal = True
+#         Royal_borrar_1 = banner
+#     if banner[1] == banner_gato:
+#         paso_Royal = True
+#         Royal_borrar_2 = banner
+# if paso_Royal == True:
+#     publicidad_horizontal.remove(Royal_borrar_1)
+#     publicidad_horizontal.remove(Royal_borrar_2)
+#     publicidad_horizontal.append(banner_Royal)
 
 
 # * Publicidad de purina: por meses
@@ -575,7 +580,7 @@ try:
         creacion_banners(publicidad_horizontal)
 except:
     logging.warning('❌ Esta sección no se va a publicar')
-    os.system("afplay " + ALERTA)
+    os.system(ALERTA)
     noticia_destacada = ''
 
 print()
@@ -594,8 +599,7 @@ trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion)
 
 
 # * Igualamos las dos listas
-trabajos_compania, trabajos_produccion = igualar_listas(
-    trabajos_compania, trabajos_produccion)
+trabajos_compania, trabajos_produccion = igualar_listas(trabajos_compania, trabajos_produccion)
 
 
 # * Fusión de trabajos_compania y de trabajos_produccion y entremeDIAs los banners
@@ -639,7 +643,7 @@ try:
 except Exception as e:
     logging.warning('❌ Esta sección no se va a publicar')
     logging.warning('   Exception occurred while code execution: ' + repr(e))
-    os.system("afplay " + ALERTA)
+    os.system(ALERTA)
     noticias_colocadas = ''
 
 
@@ -708,7 +712,7 @@ resultado = resultado + noticia_destacada
 # if str(ahora) in ifema_DIAs:
 #     print()
 #     print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
-#     os.system("afplay " + ALERTA)
+#     os.system(ALERTA)
 #     resultado = resultado + banners.iberzoo
 
 # banner de vetnova: solo los jueves
@@ -735,7 +739,7 @@ if len(publicidad_horizontal) >= 1:
     print()
     logging.warning(
         '❌ Cuidado: los banners horizontales no se han colocado bien')
-    os.system("afplay " + ALERTA)
+    os.system(ALERTA)
     print()
     print()
     for n in range(len(publicidad_horizontal)):
@@ -788,6 +792,15 @@ logging.debug('Creamos el archivo')
 archivo = str(boletin)+"c.html"
 with open(archivo, mode="w", encoding="utf-8") as fichero:
     print(resultado, file=fichero)
+
+
+# * Movemos el archivo y la carpeta de imágenes a la carpeta de destino y abrimos el archivo html
+os.replace(archivo, datos_de_acceso.ruta_local+archivo)
+os.replace(str(boletin)+'c', datos_de_acceso.ruta_local+str(boletin)+'c')
+comando = 'open ' + '"'+ datos_de_acceso.repositorio + '"'
+subprocess.run(comando, shell=True)
+comando = 'open ' + '"'+ datos_de_acceso.ruta_local + archivo + '"'
+subprocess.run(comando, shell=True)
 
 
 print()

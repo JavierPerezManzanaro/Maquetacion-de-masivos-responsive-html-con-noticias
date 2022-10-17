@@ -25,11 +25,11 @@ Si se abre el archivo nada mas generarlo se veran algunos vínculos que fallan e
 Tenemos que crear un archivo con ese nombre.
 
 Dentro tenemos que definir estas variables
-- 'usuario' y 'contrasena' (sin ñ): deben ser los datos de acceso al blog de WordPress.
+- usuario y contrasena (sin ñ): deben ser los datos de acceso al blog de WordPress.
 - sitio: Tenemos que poner el string de la url del archivo xmlrpc.php del blog de Wordpress. Suele ser esta dirección: 'https://dominio.net/xmlrpc.php'
 - url_general = String del blog: 'https://dominio.net'
 - imagen_en_blanco = tiene que ser una url (string) que apunte a una imagen en blanco. Suelo usar un gif de 1x1 px en transparente.
-
+- ruta_local: carpeta local donde se almacenan los documentos.
 
 ---
 ## Instrucciones de instalación
@@ -155,6 +155,14 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Añadir formato de imagen webp que pasara a ser jpg.
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+
+### 4.6.2
+- Si, por equivocación, el usuario mete dos espación para separar las noticias ya no da error.
+- Añado requirements.txt
+- Se mejora la documentación.
+- Se unifica el sonido de ALERTA.
+- El archivo HTML y la carpeta con las imágenes ahora son trasladados a la carpeta de trabajo. Esta ruta es datos_de_acceso.ruta_local
+- Apertura automática (en mac) del archivo HTML.
 
 ### 4.6.1
 - Añado un decorador para medir el tiempo de una función.
