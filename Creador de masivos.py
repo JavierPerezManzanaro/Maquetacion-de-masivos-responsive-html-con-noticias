@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+# source 'bin/activate'
 
 #! CUIDADO
 # todo por hacer
@@ -84,7 +84,7 @@ def execution_time(func):
     return wrapper
 
 
-def strip_tags(value: str): #-> str:
+def strip_tags(value: str) -> str:
     """
     Limpia del código html <…> y […].
 
@@ -101,7 +101,7 @@ def strip_tags(value: str): #-> str:
 
 
 # decorador @execution_time
-def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, nombre: int): #-> str:
+def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, nombre: int) -> str:
     """Genera cada tabla de html que contiene un trabajo o la noticia.
 
     Args:
@@ -349,11 +349,12 @@ def igualar_listas(
 os.system('clear')
 
 ahora = datetime.now()
-# * Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
-# ahora = datetime.strptime('2022/10/13', '%Y/%m/%d')
+# ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
+# ahora = datetime.strptime('2022/12/9', '%Y/%m/%d')
 
 
 # * gestión de la publicidad
+DIA = str
 if ahora.isoweekday() == 1:
     DIA = 'l'
     DIA_LARGO = 'Lunes'
@@ -438,7 +439,7 @@ for banner in publicidad_horizontal:
     if semana in range(22, 36) and banner[1] == 'Purina junio hasta final agosto':
         paso_Purina = True
         banner_Purina = banner
-    if semana in range(36, 51) and banner[1] == 'Purina a partir septiembre':
+    if semana in range(36, 53) and banner[1] == 'Purina a partir septiembre':
         paso_Purina = True
         banner_Purina = banner
 for banner in publicidad_horizontal:
@@ -502,13 +503,13 @@ cursorObj.close()
 print('Trabajos de compañía:')
 print(f"----|-{'-'*104}")
 for trabajo in trabajos_en_bbdd_compania:
-    print(f"{trabajo[0]:>3} | {trabajo[1][0:100]}")
+    print(f"{trabajo[0]:>3} | {trabajo[1][0:130]}")
 
 print()
 print('Trabajos de producción:')
 print(f"----|-{'-'*104}")
 for trabajo in trabajos_en_bbdd_produccion:
-    print(f"{trabajo[0]:>3} | {trabajo[1][0:100]}")
+    print(f"{trabajo[0]:>3} | {trabajo[1][0:130]}")
 
 
 # * Recogemos las noticias de la web
@@ -528,7 +529,7 @@ axon[0] = {'id': 0, 'url': datos_de_acceso.url_general, 'imagen': datos_de_acces
            'titulo': 'vacio', 'contenido': '&nbsp;'}
 if len(axon_entradas) > 0:
     for entrada in axon_entradas:
-        print(f"{numero_registros:>3} | {entrada.title[0:104]}")
+        print(f"{numero_registros:>3} | {entrada.title[0:130]}")
         # sacamos la url de la imagen
         imagen = re.findall('img .*?src="(.*?)"', entrada.content)
         # trabajamos la entrada sin imagen
@@ -576,8 +577,7 @@ try:
         '##contenido##', axon[noticia]['contenido'])
     noticia_destacada = noticia_destacada.replace(
         '##noticia_enlace##', axon[noticia]['url'])    # entrada.link)
-    noticia_destacada = noticia_destacada + \
-        creacion_banners(publicidad_horizontal)
+    noticia_destacada = noticia_destacada + creacion_banners(publicidad_horizontal)
 except:
     logging.warning('❌ Esta sección no se va a publicar')
     os.system(ALERTA)
@@ -701,21 +701,28 @@ comienzo_en_curso = comienzo_en_curso.replace(
 # * Vamos uniendo las partes
 resultado = ''
 resultado = resultado + comienzo_en_curso
+
+
+# * Banner Horizontales destacado. Sale solo L, X y V. No esta en la bbdd
+if DIA == 'l' or DIA == 'x' or DIA == 'v':
+    resultado = resultado + banners.boehringer_welovet
+
+
+# * Vamos uniendo las partes
 resultado = resultado + noticia_destacada
 
 
 # * Banners Horizontales de forma aislada. El formato de la fecha es aaaa-mm-dd
 # * Estos no estan metidos en la bbdd
-# banner de ifema, ya paso
-# ifema_DIAs = ['2022-02-05', '2022-02-07', '2022-02-14',
-#               '2022-02-21', '2022-02-04']
-# if str(ahora) in ifema_DIAs:
-#     print()
-#     print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
-#     os.system(ALERTA)
-#     resultado = resultado + banners.iberzoo
+# * banner de ifema
+ifema_DIAS = ['2022-12-19', '2023-01-10', '2023-01-17', '2023-01-31', '2023-02-14', '2023-02-21', '2023-02-28', '2023-03-07']
+if str(ahora)[:10] in ifema_DIAS:
+    print()
+    print('🟡 Hoy entra el banner de iberzoo, PONER EL PRIMERO')
+    os.system(ALERTA)
+    resultado = resultado + banners.iberzoo
 
-# banner de vetnova: solo los jueves
+# * Banner de vetnova: solo los jueves
 if DIA == 'j':
     resultado = resultado + banners.vetnova
 

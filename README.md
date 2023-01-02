@@ -156,6 +156,9 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 4.6.3
+- Correcciones de errores menores.
+
 ### 4.6.2
 - Si, por equivocación, el usuario mete dos espación para separar las noticias ya no da error.
 - Añado requirements.txt

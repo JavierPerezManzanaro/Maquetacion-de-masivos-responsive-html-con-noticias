@@ -5,6 +5,41 @@
 
 # * banners horizontales
 
+boehringer_welovet = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                      <tr>
+                        <td><p><a href="https://www.help4vets.es"><img src="pb/boehringer_Welovet_2022-11-3_700x200px.gif" alt="Boehringer - help4vets" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
+                      </tr>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+'''
+
+
 libro_ecg = '''
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
@@ -237,7 +272,7 @@ iberzoo = '''
                         <td height="30"></td>
                       </tr>
                       <tr>
-                        <td><p><a href="https://www.ifema.es/iberzoo-propet?utm_source=centroveterinario&amp;utm_medium=display&amp;utm_campaign=centroveterinario_display_iberzoo_dic-mar_esp&amp;utm_content=700x200"><img src="pb/ifema_ Iberzoo22 _21-12_700x200.jpg" alt="Iberzoo" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
+                        <td><p><a href="https://www.ifema.es/iberzoo-propet?utm_source=axon&amp;utm_medium=display&amp;utm_campaign=axon_display_iberzoo_nov_esp&amp;utm_content=700x200"><img src="pb/B-IBERZOO-700x200_2022-12.jpg" alt="iberzoo" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></p></td>
                       </tr>
                       <tr>
                         <td height="30"></td>
