@@ -37,9 +37,10 @@ Dentro tenemos que definir estas variables
 - Tener instalado Python 3.10.
 - Módulos a importar:
     - Para 'Creador de masivos.py.py':
-      - [python-wordpress-xmlrpc 2.3](https://pypi.org/project/python-wordpress-xmlrpc/) Puente entre Python y WordPress.
-      - [requests 2.28.1](https://pypi.org/project/requests/)
       - [Pillow (PIL Fork)](https://pillow.readthedocs.io/en/stable/installation.html) Tratamiento de las imágenes.
+      - Para versión menores de la 5:
+          - [python-wordpress-xmlrpc 2.3](https://pypi.org/project/python-wordpress-xmlrpc/) Puente entre Python y WordPress.
+          - [requests 2.28.1](https://pypi.org/project/requests/)
     - Para 'Inserción de noticias en bbdd.py':
       - [gazpacho](https://pypi.org/project/gazpacho/) para hacer web scraping.
       - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la ventana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd.
@@ -151,10 +152,20 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ### Funciones para añadir
 - Correcciones y mejoras en la gestión de los banners que rotan.
-- Habilitar la posibilidad de poner varias noticias como destacadas.
 - Añadir formato de imagen webp que pasara a ser jpg.
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+- Ordenar los banners por grupos según su importancia: clientes, internos y gratuitos.
+- Las funciones pasar a un archivo externo llamado: funciones.py
+
+
+### 5
+- Cambiamos el sistema de comunicación con el blog. A partir de esta versión se usa el API de WordPress
+- Mucha parte de la app central pasa a ser funciones.
+- Cambiamos la estructura de datos de las noticias: lista compuesta por diccionarios.
+- Implementamos las búsquedas mediante *list* y *filter*.
+- Refactorización de algunas funciones y procesos.
+- Correcciones de errores menores.
 
 ### 4.6.3
 - Correcciones de errores menores.
