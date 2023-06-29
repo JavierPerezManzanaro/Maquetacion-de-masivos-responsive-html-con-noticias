@@ -156,8 +156,14 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 - Ordenar los banners por grupos según su importancia: clientes, internos y gratuitos.
-- Las funciones pasar a un archivo externo llamado: funciones.py
+- Automatizar los nuevos trabajos para que se inserten en la bbdd sqlite3 de forma automática.
 
+
+### 5.01
+- Si noticias son impares en el último hueco metemos banner cuadrado del laser.
+- Mejoramos la documentación de las funciones.
+- Modificar la ubicación de algunas variables según su ambito.
+- Correcciones de errores menores.
 
 ### 5
 - Cambiamos el sistema de comunicación con el blog. A partir de esta versión se usa el API de WordPress

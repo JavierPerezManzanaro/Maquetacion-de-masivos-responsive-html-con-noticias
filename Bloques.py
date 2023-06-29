@@ -310,16 +310,16 @@ fin = '''
                       <td><!--TABLE LEFT-->
 
                         <!--cv-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv110.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv112.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 110</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 112</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -327,18 +327,10 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial  </li>
-                                  <li>Art&iacute;culo de revisi&oacute;n:
+                                  <li>Caso clínico: 
                                     <ul>
-                                      <li>¿Cómo valoramos ecocardiográficamente el ventrículo derecho? </li>
-                                    </ul>
-                                  </li>
-                                  <li>Vetmadrid 2023:
-                                    <ul>
-                                      <li>Acto inagural </li>
-                                      <li>Programa de Vetmadrid 2023 </li>
-                                      <li>Ponentes de Vetmadrid 2023 </li>
-                                      <li>Seminarios y talleres </li>
-                                      <li>Empresas PREMIUM PLUS</li>
+                                      <li>Diabetes mellitus en un gato con resistencia a la insulina por enfermsedad periodontal </li>
+                                      <li>Urolitiasis masiva en conejo doméstico <em>(Oryctolagus cuniculus):</em> Nefrectomía unilateral y cistotomía </li>
                                     </ul>
                                   </li>
                                   <li>Noticias de Empresa</li>
@@ -348,7 +340,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no109-centro-veterinario/no110-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no112-centro-veterinario/no112-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -566,31 +558,30 @@ fin = '''
                         <!--TABLE RIGHT-->
 
                          <!--cys-->
-                      <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                     <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys98.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys99.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm; 98</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm; 99</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>PORCINO
-                                    <ul>
-                                      <li>La porcicultura mundial necesita certificarse para acceder al mercado de exportación en el 2023 </li>
-                                    </ul>
-                                  </li>
                                   <li>BOVINO
                                     <ul>
-                                      <li>Evaluación de la calidad nutricional, fermentativa y microbiologica de forrajes y subproductos: evaluacion de la degradabilidad ruminal y desarrollo de un indice de calidad fermentativa </li>
-                                      <li>La disponibilidad de almidón, su medición e implicaciones para la formulación de racionesa</li>
+                                      <li>Explorando el potencial de herramientas de lechería de precisió</li>
+                                    </ul>
+                                  </li>
+                                  <li>PORCINO
+                                    <ul>
+                                      <li>Avances del siglo XXI en la nutrigenómica porcina (Parte 1) </li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -599,7 +590,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-98-cria-y-salud-sumario/no-98-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-99-cria-y-salud-sumario/no-99-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>

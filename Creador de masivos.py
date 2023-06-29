@@ -6,6 +6,7 @@
 # * explicación
 
 
+
 from datetime import datetime, date
 from os import close, link
 import requests
@@ -25,6 +26,7 @@ import locale
 import bloques
 import datos_de_acceso
 import banners
+import funciones
 
 
 
@@ -317,8 +319,15 @@ def recuperar_trabajos():
         os.system(ALERTA)
 
 
-def noticias_destacadas(numero_registros: int, axon: list)->str:
-    # * Gestión de noticia destacada
+def noticias_destacadas(axon: list)->str:
+    """Función que gestiona las noticias destacadas. Esta programado para admitir varias.
+
+    Args:
+        axon (list): Lista de noticias
+
+    Returns:
+        str: html con las noticias destacadas con banner entre medias
+    """
     logging.debug('Entra')
     noticias_destacadas = ''
     print()
@@ -332,7 +341,6 @@ def noticias_destacadas(numero_registros: int, axon: list)->str:
             logging.info(f'Tratanto la noticia destacada: {noticia}')
             criterio = lambda axon: axon["id"] == noticia
             noticia_filtrada = list(filter(criterio, axon))
-            #pprint(noticia_filtrada)
             imagen_local, ancho, alto = descarga_imagen(noticia_filtrada[0]['imagen'], noticia, 320)
             noticia_destacada = noticia_destacada.replace('##imagen##', str(imagen_local))
             noticia_destacada = noticia_destacada.replace('##ancho##', str(ancho))
@@ -344,7 +352,6 @@ def noticias_destacadas(numero_registros: int, axon: list)->str:
             noticias_destacadas = noticias_destacadas + noticia_destacada
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
-        logging.warning('   Exception occurred while code execution: ' + repr(e))
         noticias_destacadas = ''
     return noticias_destacadas
 
@@ -366,10 +373,10 @@ def read_wordpress_posts()-> list:
 
 
 def gestion_publicidad()->list:
-    """Se conecta a la bbdd sqlite3, a la tabla de "publicidad" para recoger todos los banner que se publican ese día
+    """Se conecta a la bbdd sqlite3, a la tabla de "publicidad", para recoger todos los banner que se publican ese día
 
     Returns:
-        list: _description_
+        list: Lista con los banners a publicar en el día
     """
     logging.debug('Entra')
     DIA = str
@@ -414,6 +421,7 @@ def creacion_lista_noticias(numero_registros: int, noticias: list)-> list:
     """
     logging.debug('Entra')
     axon = []
+    longitud_de_noticia = 400
     for noticia in noticias:
         contenido_tratado = ''
         contenido_tratado = noticia['content']['rendered']
@@ -511,9 +519,11 @@ def gestion_noticias(axon: list)-> str:
             '##bloque izq##', noticias_colocadas[-1], 1)  # usamos el último
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque izq##', '', 1)
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##posicion##', 'left')
+        # Agregamos pb cuadrada
+        ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque der##', banners.banner_laservet_vega_cuadrado)
+        logging.warning('Eliminar el banner del laser Vega porque usamos el banner cuadrado')
         longitud -= 1
     #  Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
-    #bloque_final = ''
     bloque_final_con_noticias = ''
     for numero in range(0, (int(longitud/2))):
         bloque_final_con_noticias = bloque_final_con_noticias + bloques.bloque_exterior
@@ -536,6 +546,14 @@ def gestion_noticias(axon: list)-> str:
 
 
 def pb_bioiberica(publicidad_horizontal: list)-> list:
+    """Se gestiona la publicación de Bioiberica.
+
+    Args:
+        publicidad_horizontal (list): lista de banners horizontales
+
+    Returns:
+        list: lista de banners horizontales actualizada
+    """
     logging.debug('Entra')
     semana = ahora.isocalendar()[1]
     paso_bioiberica = False
@@ -557,11 +575,18 @@ def pb_bioiberica(publicidad_horizontal: list)-> list:
 
 
 def pb_royal_canin(publicidad_horizontal: list)->list:
-    # * Publicidad de Royal Canin: por periodos
-    '''estos banners que van por periodos funcionan asi: si toca se mete en una nueva variable,
+    """Se gestiona la publicación de Royal Canin. Esta publicac va por periodos.
+    Funciona así: si toca se mete en una nueva variable,
     después eliminamos todos los banner de esa empresa en publicidad_horizontal y
-    por último añadimos a publicidad_horizontal la nueva variable'''
+    por último añadimos a publicidad_horizontal la nueva variable
     #todo: se puede hacer de una forma mas elegante?
+    
+    Args:
+        publicidad_horizontal (list): lista de banners horizontales
+
+    Returns:
+        list: lista de banners horizontales actualizada
+    """
     logging.debug('Entra')
     banner_Royal = ''
     paso_Royal = False
@@ -621,17 +646,13 @@ if __name__ == '__main__':
     # ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
     # ahora = datetime.strptime('2023/5/23', '%Y/%m/%d')
 
-    longitud_de_noticia = 400
+    # Variables usadas en mas de una función
     noticias_mostradas = 20
     imagen_local = ''
     ancho = 0
     alto = 0
-    noticias_colocadas = []
-    trabajos_compania = []
-    trabajos_produccion = []
-    publicidad_horizontal = ''
-    posicion = 1
-    longitud = 0
+    
+    # Varibles usadas en la app
     meses = {
         "1": 'Enero',
         "2": 'Febrero',
@@ -715,7 +736,7 @@ if __name__ == '__main__':
     print()
     print('Los trabajos/noticias separadas con espacios.')
     print()
-    noticias_destacadas = noticias_destacadas(numero_registros, axon) # type: ignore
+    noticias_destacadas = noticias_destacadas(axon) # type: ignore
     print()
 
 

@@ -427,3 +427,15 @@ vetnova = '''
   </tbody>
 </table>
 '''
+
+
+# * Banners cuadrados
+banner_laservet_vega_cuadrado = """
+<table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+  <tbody>
+    <tr>
+      <td align="left" valign="middle" style="color:#666666;"><a href="https://axoncomunicacion.net/masivos/laservet/formulario.html"><img src="pb/laservet-320x320px_ver_8-sin-precio-ver_2.gif" alt="LasetVET" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
+    </tr>
+  </tbody>
+</table>
+"""
