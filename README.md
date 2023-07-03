@@ -156,8 +156,11 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 - Ordenar los banners por grupos según su importancia: clientes, internos y gratuitos.
-- Automatizar los nuevos trabajos para que se inserten en la bbdd sqlite3 de forma automática.
 
+
+### 5.1
+- Automatizar los nuevos trabajos para que se inserten en la bbdd sqlite3 de forma automática.
+- Ya no es necesario usar "Inserción de noticias en bbdd.py"
 
 ### 5.01
 - Si noticias son impares en el último hueco metemos banner cuadrado del laser.

@@ -26,7 +26,6 @@ import locale
 import bloques
 import datos_de_acceso
 import banners
-import funciones
 
 
 
@@ -207,7 +206,7 @@ def trabajos_a_publicar(tipo: str)-> list:
     return trabajos
 
 
-def trabajos_a_mostrar(tipo: str, trabajos: list, axon:list)-> list:
+def trabajos_a_mostrar(tipo: str, trabajos: list, axon:list, numero_registros: int)-> list:
     """Crea el código html con los trabajos o noticias de compañia y de producción.
 
     Args:
@@ -231,7 +230,7 @@ def trabajos_a_mostrar(tipo: str, trabajos: list, axon:list)-> list:
             trabajo_seleccionado = int(trabajo_seleccionado)
             if trabajo_seleccionado == 0:
                 trabajos_lista.append(publicidad)
-            if trabajo_seleccionado < (numero_registros - noticias_mostradas) and trabajo_seleccionado != 0:
+            if trabajo_seleccionado < numero_registros and trabajo_seleccionado != 0:
                 # * entra si son trabajos de la bbdd
                 logging.info(f'Trabajo en la bbdd: {trabajo_seleccionado}')
                 cursorObj.execute(
@@ -244,19 +243,9 @@ def trabajos_a_mostrar(tipo: str, trabajos: list, axon:list)-> list:
                 trabajos_lista.append(
                     tabla_interior(tipo, imagen, titular, texto, url, trabajo_seleccionado))
                 cerramos_bbdd = 1
-            if trabajo_seleccionado >= (numero_registros - noticias_mostradas):
+            if trabajo_seleccionado >= numero_registros:
                 # * entra si es una noticia de la web y es tratada como trabajo
-                logging.info(f'Trabajo de la web: {trabajo_seleccionado}')
-                criterio = lambda axon: axon["id"] == trabajo_seleccionado
-                noticia_filtrada = list(filter(criterio, axon))
-                trabajos_lista.append(tabla_interior(   tipo,
-                                                        noticia_filtrada[0]['imagen'],
-                                                        noticia_filtrada[0]['titulo'],
-                                                        noticia_filtrada[0]['contenido'],
-                                                        noticia_filtrada[0]['url'],
-                                                        trabajo_seleccionado))
-                logging.warning(
-                    '🟡 Noticia como trabajo: Recuerda editarla y meterla en la bbdd')
+                trabajo_web(tipo, trabajo_seleccionado, trabajos_lista)
         if cerramos_bbdd == 1:
             cursorObj.close()
     except Exception as e:
@@ -264,6 +253,79 @@ def trabajos_a_mostrar(tipo: str, trabajos: list, axon:list)-> list:
         logging.warning('Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
     return trabajos_lista
+
+
+def getTextInput():
+    """Función para la gestión de la ventana a la hora drear un trabajo en la bbdd
+    """
+    global resultado
+    resultado = texto.get("1.0","end-1c")
+    ventana_principal.quit()
+    ventana_principal.destroy()
+
+
+def ventana_para_noticia():
+    """Función para la gestión de la ventana a la hora drear un trabajo en la bbdd
+    """
+    import tkinter as tk
+    global ventana_principal
+    global texto
+    ventana_principal = tk.Tk()
+    ventana_principal.geometry("600x400")
+    ventana_principal.title("Introduce el cuerpo de la noticia como html")
+    texto = tk.Text(ventana_principal, height=25)
+    texto.pack()
+    btnRead = tk.Button(ventana_principal, height=2, width=50,
+                    text="Introducir datos", command=getTextInput)
+    btnRead.pack()
+    ventana_principal.mainloop()
+
+
+def trabajo_web(tipo:str, trabajo_seleccionado: int, trabajos_lista: list):
+    logging.debug('Entra')
+    criterio = lambda axon: axon["id"] == trabajo_seleccionado
+    noticia_filtrada = list(filter(criterio, axon))
+    print()
+    print(f'Noticia {trabajo_seleccionado} para publicar y meter en la bbdd:')
+    print(f'        {noticia_filtrada[0]["url"]}')
+    ventana_para_noticia()
+    # * preparamos los datos para meter en la bbdd
+    noticia_filtrada[0]['contenido'] = resultado
+    tipo_bbdd = 'p' if 'compania' else 'g'
+    extension_imagen = ''
+    if noticia_filtrada[0]['imagen'][-5:] == '.jepg':
+        extension_imagen = 'jpg'
+    if noticia_filtrada[0]['imagen'][-4:] == '.jpg':
+        extension_imagen = 'jpg'
+    if noticia_filtrada[0]['imagen'][-4:] == '.png':
+        extension_imagen = 'png'
+    imagen_bbdd = f'{boletin}c/{trabajo_seleccionado}.{extension_imagen}'
+    datos = (noticia_filtrada[0]['titulo'], noticia_filtrada[0]['url'],
+             imagen_bbdd, tipo_bbdd, noticia_filtrada[0]['contenido'])
+    sql_insert(datos) # type: ignore
+    # pprint(datos)
+    # * Incluimos la noticia en la lista para mostar en el masivo
+    trabajos_lista.append(tabla_interior(   tipo,
+                                            noticia_filtrada[0]['imagen'],
+                                            noticia_filtrada[0]['titulo'],
+                                            noticia_filtrada[0]['contenido'],
+                                            noticia_filtrada[0]['url'],
+                                            trabajo_seleccionado))
+    return trabajos_lista
+
+
+def sql_insert(datos: str):
+    """Aplica el código SQL para incluir en la bbdd sqlite3
+
+    Args:
+        datos (str): Código SQL a ejecutar
+    """
+    logging.debug('Entra')
+    con = sqlite3.connect('bbdd.sqlite3')
+    cursorObj = con.cursor()
+    cursorObj.execute(
+        'INSERT INTO hemeroteca(titular, url, imagen, tipo, contenido) VALUES(?, ?, ?, ?, ?)', datos)
+    con.commit()
 
 
 def igualar_listas(trabajos_compania: list, trabajos_produccion: list)-> tuple:
@@ -580,7 +642,7 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
     después eliminamos todos los banner de esa empresa en publicidad_horizontal y
     por último añadimos a publicidad_horizontal la nueva variable
     #todo: se puede hacer de una forma mas elegante?
-    
+
     Args:
         publicidad_horizontal (list): lista de banners horizontales
 
@@ -589,6 +651,8 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
     """
     logging.debug('Entra')
     banner_Royal = ''
+    Royal_borrar_1 = ''
+    Royal_borrar_2 = ''
     paso_Royal = False
     # * hay que cambiar también el nombre de los banners de la tabla de publicidad del sqlite3
     banner_gato = 'Royal canin gato: del 1 al 14 de junio'
@@ -646,12 +710,12 @@ if __name__ == '__main__':
     # ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
     # ahora = datetime.strptime('2023/5/23', '%Y/%m/%d')
 
-    # Variables usadas en mas de una función
+    # Variables usadas en más de una función
     noticias_mostradas = 20
     imagen_local = ''
     ancho = 0
     alto = 0
-    
+
     # Varibles usadas en la app
     meses = {
         "1": 'Enero',
@@ -722,7 +786,7 @@ if __name__ == '__main__':
 
 
     # * Creamos el diccionario axon[noticia]
-    numero_registros = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 2 #! 1
+    numero_registros = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 1 #! 1
     axon = creacion_lista_noticias(numero_registros, noticias)
 
     print()
@@ -743,9 +807,9 @@ if __name__ == '__main__':
     # * Trabajos de animales de compañia y producción, se crean las listas
     logging.debug('Trabajos de animales de compañia y producción')
     trabajos_compania = trabajos_a_publicar('compania')
-    trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania, axon)
+    trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania, axon, numero_registros)
     trabajos_produccion = trabajos_a_publicar('produccion')
-    trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion, axon)
+    trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion, axon, numero_registros)
 
     # * Igualamos las dos listas
     if len(trabajos_compania) != len(trabajos_produccion): # type: ignore
