@@ -526,7 +526,7 @@ def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion:list 
 
 
 def gestion_noticias(axon: list)-> str:
-    """Es funciçon se encarga de toda la gestión de ls noticias:
+    """Es función se encarga de toda la gestión de las noticias:
     desde si untroducción hasta el fianl, cuando sale como html con los banners
 
     Args:
@@ -535,7 +535,6 @@ def gestion_noticias(axon: list)-> str:
     Returns:
         str: El html de las noticias con los banners
     """
-    # * Gestión de las noticias
     logging.debug('Entra')
     numero = 0
     print()
@@ -573,7 +572,7 @@ def gestion_noticias(axon: list)-> str:
         noticias_colocadas = ''
     longitud = len(noticias_colocadas)
     print(f"Noticias generadas: {longitud}")
-    # Creamos el último si es impar: noticia + banner cuadrado
+    # * Creamos el último si es impar: noticia + banner cuadrado
     ultimo_si_es_impar = ''
     if longitud % 2 != 0:
         ultimo_si_es_impar = bloques.bloque_exterior
@@ -585,7 +584,7 @@ def gestion_noticias(axon: list)-> str:
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque der##', banners.banner_laservet_vega_cuadrado)
         logging.warning('Eliminar el banner del laser Vega porque usamos el banner cuadrado')
         longitud -= 1
-    #  Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
+    # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
     bloque_final_con_noticias = ''
     for numero in range(0, (int(longitud/2))):
         bloque_final_con_noticias = bloque_final_con_noticias + bloques.bloque_exterior
@@ -655,20 +654,23 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
     Royal_borrar_2 = ''
     paso_Royal = False
     # * hay que cambiar también el nombre de los banners de la tabla de publicidad del sqlite3
-    banner_gato = 'Royal canin gato: del 1 al 14 de junio'
-    banner_perro = 'Royal canin perro: del 15 al 30 de junio'
+    banner_gato = 'Royal canin gato: del 1 al 14 de julio'
+    banner_perro = 'Royal canin perro: del 15 al 30 de julio'
     for banner in publicidad_horizontal:
         # * recorremos todos los banner y si esta dentro de la fecha lo selccionamos
-        # * y ha pasado de la fecha avisamos
-        if ahora < datetime(2023, 6, 15, 0, 0, 0) and banner[1] == banner_gato: #?poner la fecha en el datetime
+        # * y si paso la fecha avisamos
+        #? Es la fecha en la que se cambia de un banner a otro
+        fecha_de_cambio = datetime(2023, 7, 15, 0, 0, 0)
+        if ahora < fecha_de_cambio and banner[1] == banner_gato:
             #print(f'Hoy sale el {banner_gato}')
             paso_Royal = True
             banner_Royal = banner
-        if ahora >= datetime(2023, 6, 15, 0, 0, 0) and banner[1] == banner_perro: #?poner la fecha en el datetime
+        if ahora >= fecha_de_cambio and banner[1] == banner_perro:
             #print(f'Hoy sale el {banner_perro}')
             paso_Royal = True
             banner_Royal = banner
-        if ahora > datetime(2023, 6, 30, 0, 0, 0) and banner[1] == banner_perro: #?poner la fecha en el datetime
+        #? Fecha de fin del segundo banner, o sea cuando se termina el periodo
+        if ahora > datetime(2023, 7, 30, 0, 0, 0) and banner[1] == banner_perro:
             print()
             logging.warning('❌ Banner de royal Canin caducado')
             os.system(ALERTA)

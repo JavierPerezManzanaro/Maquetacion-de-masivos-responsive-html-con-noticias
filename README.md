@@ -157,6 +157,8 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 - Ordenar los banners por grupos según su importancia: clientes, internos y gratuitos.
 
+### 5.1.1
+- Correcciones de errores menores.
 
 ### 5.1
 - Automatizar los nuevos trabajos para que se inserten en la bbdd sqlite3 de forma automática.
