@@ -48,7 +48,7 @@ Dentro tenemos que definir estas variables
 
 ---
 ## Cambios necesarios en python-wordpress-xmlrpc
-Este módulo no es compatible con la versión Python 3.10. Hay que realizar un pequeño cambio en el código. 
+Este módulo no es compatible con la versión Python 3.10. Hay que realizar un pequeño cambio en el código.
 En el archivo "wordpress_xmlrpc/base.py" hay que modificar dos liéas:
 1: pasa a ser: **import collections.abc**
 128: pasa a ser: **elif isinstance(raw_result, collections.abc.Iterable):**
@@ -155,7 +155,14 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Añadir formato de imagen webp que pasara a ser jpg.
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
-- Ordenar los banners por grupos según su importancia: clientes, internos y gratuitos.
+
+### 5.2
+- Ordenar los banners por grupos según su importancia. Hay cuatro grupos:
+  -"destacado": los destacados que van a salir arriba, estos salen por orden de aparición en la bbdd
+  -"cliente": estos se seleccionan al azar dentro del día que les toque
+  -"interno": estos se seleccionan al azar dentro del día que les toque
+  -"final": Los últimos. Van en orden
+- Correcciones de errores menores.
 
 ### 5.1.1
 - Correcciones de errores menores.

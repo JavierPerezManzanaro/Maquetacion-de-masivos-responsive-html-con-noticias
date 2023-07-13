@@ -152,7 +152,7 @@ def descarga_imagen(url: str, nombre: int, ancho: int):
     return imagen_local, ancho, alto
 
 
-def creacion_banners(publicidad_horizontal):
+def creacion_banners(publicidad_horizontal: list)-> str: # type: ignore
     """Va generando uno a uno cada uno de los banners horizontales periodicos.
     Elige uno al azar, lo crea y lo elimina.
 
@@ -164,22 +164,24 @@ def creacion_banners(publicidad_horizontal):
     """
     logging.debug('Entra')
     if len(publicidad_horizontal) > 1:
-        banner_seleccionado = random.choice(publicidad_horizontal)
+        #todo banner_seleccionado sera el primero de la lista
+        #banner_seleccionado = random.choice(publicidad_horizontal)
+        banner_seleccionado = publicidad_horizontal[0]
         logging.info(f'Banner {len(publicidad_horizontal)}, {banner_seleccionado[1]} -> colocado')
         banner_en_curso = bloques.banner_horizontal_raw
-        banner_en_curso = banner_en_curso.replace('##url##', str(banner_seleccionado[3]))
-        banner_en_curso = banner_en_curso.replace('##imagen##', str(banner_seleccionado[2]))
-        banner_en_curso = banner_en_curso.replace('##alt##', str(banner_seleccionado[5]))
-        publicidad_horizontal = publicidad_horizontal.remove(banner_seleccionado)
+        banner_en_curso = banner_en_curso.replace('##url##', str(banner_seleccionado[4]))
+        banner_en_curso = banner_en_curso.replace('##imagen##', str(banner_seleccionado[3]))
+        banner_en_curso = banner_en_curso.replace('##alt##', str(banner_seleccionado[6]))
+        publicidad_horizontal = publicidad_horizontal.remove(banner_seleccionado) # type: ignore
         return banner_en_curso
     elif len(publicidad_horizontal) == 1:
         logging.info(
             f'Banner {len(publicidad_horizontal)}, {publicidad_horizontal[0][1]} -> colocado')  # [0][1] porque es una lista que contiene una tupla
         banner_en_curso = bloques.banner_horizontal_raw
-        banner_en_curso = banner_en_curso.replace('##url##', str(publicidad_horizontal[0][3]))
-        banner_en_curso = banner_en_curso.replace('##imagen##', str(publicidad_horizontal[0][2]))
-        banner_en_curso = banner_en_curso.replace('##alt##', str(publicidad_horizontal[0][5]))
-        publicidad_horizontal = publicidad_horizontal.clear()
+        banner_en_curso = banner_en_curso.replace('##url##', str(publicidad_horizontal[0][4]))
+        banner_en_curso = banner_en_curso.replace('##imagen##', str(publicidad_horizontal[0][3]))
+        banner_en_curso = banner_en_curso.replace('##alt##', str(publicidad_horizontal[0][6]))
+        publicidad_horizontal = publicidad_horizontal.clear() # type: ignore
         return banner_en_curso
     elif len(publicidad_horizontal) == 0:
         banner_en_curso = ''
@@ -435,10 +437,11 @@ def read_wordpress_posts()-> list:
 
 
 def gestion_publicidad()->list:
-    """Se conecta a la bbdd sqlite3, a la tabla de "publicidad", para recoger todos los banner que se publican ese día
+    """Se conecta a la bbdd sqlite3, a la tabla de "publicidad",
+    para recoger todos los banner que se publican ese día y los ordena según su prioridad
 
     Returns:
-        list: Lista con los banners a publicar en el día
+        list: Lista ordenada con los banners a publicar en el día
     """
     logging.debug('Entra')
     DIA = str
@@ -463,6 +466,28 @@ def gestion_publicidad()->list:
             'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";') # type: ignore
         publicidad_horizontal = cursorObj.fetchall()
         cursorObj.close()
+        # * desglosamos la lista en los 4 grupos
+        #? se puede hacer por filter o por comprension
+            # publicidad_final = [publicidad for publicidad in publicidad_horizontal if publicidad_horizontal[2] == 'final']
+            # criterio = lambda prioridad: publicidad_horizontal[2] == 'final'
+            # # Filtrar elementos utilizando la función lambda
+            # publicidad_cliente = list(filter(criterio, publicidad_horizontal))
+        destacado = []
+        cliente = []
+        interno = []
+        final = []
+        for publicidad in publicidad_horizontal:
+            if publicidad[2] == 'destacado':
+                destacado.append(publicidad)
+            elif publicidad[2] == 'cliente':
+                cliente.append(publicidad)
+            elif publicidad[2] == 'interno':
+                interno.append(publicidad)
+            elif publicidad[2] == 'final':
+                final.append(publicidad)
+        random.shuffle(cliente)
+        random.shuffle(interno)
+        publicidad_horizontal = destacado + cliente + interno + final
     except Exception as e:
         logging.warning('❌ No se pudo acceder a la tabla de publicidades')
         logging.warning('   Exception occurred while code execution: ' + repr(e))
@@ -502,13 +527,13 @@ def creacion_lista_noticias(numero_registros: int, noticias: list)-> list:
     return axon
 
 
-def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion:list , publicidad_horizontal)->str:
+def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion:list , publicidad_horizontal: list)->str:
     """Fusionamos los trabajos_compania y de trabajos_produccion y entre cada tabla horizontal colocamos un banner
 
     Args:
         trabajos_compania (list): _description_
         trabajos_produccion (list): _description_
-        publicidad_horizontal (_type_): _description_
+        publicidad_horizontal (list): _description_
 
     Returns:
         str: el html de la parte de los trabajos
