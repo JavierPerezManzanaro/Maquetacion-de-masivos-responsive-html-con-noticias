@@ -156,6 +156,10 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 5.2.1
+- Al automatizar los nuevos trabajos se abre la URL en el navegador para copiar y pegar el texto del cuero del trabajo directamente.
+- Correcciones de errores menores.
+
 ### 5.2
 - Ordenar los banners por grupos según su importancia. Hay cuatro grupos:
   -"destacado": los destacados que van a salir arriba, estos salen por orden de aparición en la bbdd

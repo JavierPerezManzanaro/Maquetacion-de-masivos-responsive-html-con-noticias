@@ -21,6 +21,7 @@ import logging
 import subprocess
 import base64
 import locale
+import webbrowser
 
 # * librerias propias
 import bloques
@@ -266,6 +267,15 @@ def getTextInput():
     ventana_principal.destroy()
 
 
+def abrir_pagina_web(url:str):
+    """Función que abre en el navegador una página web
+
+    Args:
+        url (str): URL a abrir
+    """
+    webbrowser.open(url, new=2)
+
+
 def ventana_para_noticia():
     """Función para la gestión de la ventana a la hora drear un trabajo en la bbdd
     """
@@ -290,6 +300,7 @@ def trabajo_web(tipo:str, trabajo_seleccionado: int, trabajos_lista: list):
     print()
     print(f'Noticia {trabajo_seleccionado} para publicar y meter en la bbdd:')
     print(f'        {noticia_filtrada[0]["url"]}')
+    abrir_pagina_web(noticia_filtrada[0]["url"])
     ventana_para_noticia()
     # * preparamos los datos para meter en la bbdd
     noticia_filtrada[0]['contenido'] = resultado
@@ -631,8 +642,8 @@ def gestion_noticias(axon: list)-> str:
     return bloque_final_con_noticias
 
 
-def pb_bioiberica(publicidad_horizontal: list)-> list:
-    """Se gestiona la publicación de Bioiberica.
+def pb_semanales_bioiberica_ecuphar(publicidad_horizontal: list)-> list:
+    """Se gestiona la publicación de Bioiberica y Ecuphar.
 
     Args:
         publicidad_horizontal (list): lista de banners horizontales
@@ -735,10 +746,10 @@ if __name__ == '__main__':
 
     ahora = datetime.now()
     # ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
-    # ahora = datetime.strptime('2023/5/23', '%Y/%m/%d')
+    # ahora = datetime.strptime('2023/7/21', '%Y/%m/%d')
 
     # Variables usadas en más de una función
-    noticias_mostradas = 20
+    noticias_mostradas = 50
     imagen_local = ''
     ancho = 0
     alto = 0
@@ -763,7 +774,7 @@ if __name__ == '__main__':
 
     # * Creamos y actualizamos la lista de banner a incluir
     publicidad_horizontal = gestion_publicidad()
-    publicidad_horizontal = pb_bioiberica(publicidad_horizontal)
+    publicidad_horizontal = pb_semanales_bioiberica_ecuphar(publicidad_horizontal)
     publicidad_horizontal = pb_royal_canin(publicidad_horizontal)
 
 
