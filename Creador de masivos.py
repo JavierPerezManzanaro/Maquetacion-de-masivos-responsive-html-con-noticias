@@ -7,29 +7,31 @@
 
 
 
-from datetime import datetime, date
-from os import close, link
-import requests
-import os
-import re
-from PIL import Image
-from pprint import pprint
-import errno
-import random
-import sqlite3
-import logging
-import subprocess
 import base64
+import errno
 import locale
+import logging
+import os
+import random
+import re
+import sqlite3
+import subprocess
 import webbrowser
+from datetime import date, datetime
+from os import close, link
+# https://github.com/PyImageSearch/imutils
+from pprint import pprint
+import cv2 as cv2
+# https://pypi.org/project/opencv-python/
+import imutils
+# https://github.com/PyImageSearch/imutils
+import requests
+
 
 # * librerias propias
 import bloques
 import datos_de_acceso
 import banners
-
-
-
 
 # * *******************
 # * Funciones de la app
@@ -98,7 +100,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
 
     # Analiza donde esta la imagen (en remoto o en local)
     if 'https' in imagen:
-        imagen_local, ancho, alto = descarga_imagen(imagen, nombre_imagen, 320)
+        imagen_local = descarga_imagen(imagen, nombre_imagen)
         tabla_interior = tabla_interior.replace('##alto##', str(alto))
     else:
         imagen_local = imagen
@@ -113,7 +115,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     return tabla_interior
 
 
-def descarga_imagen(url: str, nombre: int, ancho: int):
+def descarga_imagen(url: str, nombre: int):
     """Descarga las imagenes y las ajusta al tamaño.
 
     Args:
@@ -127,7 +129,6 @@ def descarga_imagen(url: str, nombre: int, ancho: int):
         alto (int): alto de la imágen
     """
     logging.debug('Entra')
-    # todo: quitar el ancho porque ya sabemos que es 320 px
     try:
         extension = url[len(url)-4:len(url)]
         if extension == "jpeg":
@@ -140,17 +141,23 @@ def descarga_imagen(url: str, nombre: int, ancho: int):
         with open(imagen_local, 'wb') as handler:
             handler.write(imagen)
         # tratamos la imagen para Mostrar imagenes imagen.show()
-        imagen = Image.open(imagen_local)
+        imagen = cv2.imread(imagen_local)
     except:
         imagen_local = 'spacer.gif'
-        imagen = Image.open(imagen_local)
+        imagen = cv2.imread(imagen_local)
     finally:
-        imagen.convert("RGB")
-        alto = int((int(imagen.size[1]) * ancho) / int(imagen.size[0]))
-        imagen = imagen.resize((ancho, alto))
-        imagen.save(imagen_local)
+        imagen_salida = imutils.resize(imagen, width=320)
+        #todo pasar a rbg 
+        #todo https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html#ga4e0972be5de079fed4e3a10e24ef5ef0
+        #todo cv2.cvtColor(input_image, flag) donde flag determina el tipo de conversión.
 
-    return imagen_local, ancho, alto
+        cv2.imwrite(imagen_local, imagen_salida)
+        # imagen.convert("RGB")
+        # alto = int((int(imagen.size[1]) * ancho) / int(imagen.size[0]))
+        # imagen = imagen.resize((ancho, alto))
+        # imagen.save(imagen_local)
+
+    return imagen_local
 
 
 def creacion_banners(publicidad_horizontal: list)-> str: # type: ignore
@@ -416,10 +423,10 @@ def noticias_destacadas(axon: list)->str:
             logging.info(f'Tratanto la noticia destacada: {noticia}')
             criterio = lambda axon: axon["id"] == noticia
             noticia_filtrada = list(filter(criterio, axon))
-            imagen_local, ancho, alto = descarga_imagen(noticia_filtrada[0]['imagen'], noticia, 320)
+            imagen_local = descarga_imagen(noticia_filtrada[0]['imagen'], noticia)
             noticia_destacada = noticia_destacada.replace('##imagen##', str(imagen_local))
-            noticia_destacada = noticia_destacada.replace('##ancho##', str(ancho))
-            noticia_destacada = noticia_destacada.replace('##alto##', str(alto))
+            noticia_destacada = noticia_destacada.replace('##ancho##', str(320))
+            #noticia_destacada = noticia_destacada.replace('##alto##', str(alto))
             noticia_destacada = noticia_destacada.replace('##noticia_titular##', noticia_filtrada[0]['titulo'])
             noticia_destacada = noticia_destacada.replace('##contenido##', noticia_filtrada[0]['contenido'])
             noticia_destacada = noticia_destacada.replace('##noticia_enlace##', noticia_filtrada[0]['url'])
@@ -617,8 +624,8 @@ def gestion_noticias(axon: list)-> str:
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque izq##', '', 1)
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##posicion##', 'left')
         # Agregamos pb cuadrada
-        ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque der##', banners.banner_laservet_vega_cuadrado)
-        logging.warning('Eliminar el banner del laser Vega porque usamos el banner cuadrado')
+        ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque der##', banners.banner_laservet_cuadrado)
+        logging.warning('Eliminar el banner del laser porque usamos el banner cuadrado')
         longitud -= 1
     # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
     bloque_final_con_noticias = ''
@@ -746,10 +753,10 @@ if __name__ == '__main__':
 
     ahora = datetime.now()
     # ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
-    # ahora = datetime.strptime('2023/7/21', '%Y/%m/%d')
+    # ahora = datetime.strptime('2023/9/4', '%Y/%m/%d')
 
     # Variables usadas en más de una función
-    noticias_mostradas = 50
+    noticias_mostradas = 100 # No puede ser mayor de 100
     imagen_local = ''
     ancho = 0
     alto = 0

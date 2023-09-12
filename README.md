@@ -37,7 +37,8 @@ Dentro tenemos que definir estas variables
 - Tener instalado Python 3.10.
 - Módulos a importar:
     - Para 'Creador de masivos.py.py':
-      - [Pillow (PIL Fork)](https://pillow.readthedocs.io/en/stable/installation.html) Tratamiento de las imágenes.
+      - [cv2](https://pypi.org/project/opencv-python/) Tratamiento de las imágenes.
+      - [imutils](https://github.com/PyImageSearch/imutils) Ayuda para el tratamiento de las imágenes.
       - Para versión menores de la 5:
           - [python-wordpress-xmlrpc 2.3](https://pypi.org/project/python-wordpress-xmlrpc/) Puente entre Python y WordPress.
           - [requests 2.28.1](https://pypi.org/project/requests/)
@@ -146,15 +147,24 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
   El archivo que estas leyendo.
 
+- requirements.txt
+
+  Módulos usados.
+
 
 ---
 ## Historial de versiones
 
 ### Funciones para añadir
-- Correcciones y mejoras en la gestión de los banners que rotan.
-- Añadir formato de imagen webp que pasara a ser jpg.
-- Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
-- Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+- Correcciones y mejoras en la gestión de los banners que rotan
+- Añadir formato de imagen webp que pasara a ser jpg
+- Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos
+- Actualizar el sistema de sonido para que sea compatible con el resto de sistemas
+
+### 5.3
+- Cambio el módulo encargado del tratamiento de las imagenes. El módulo anterior, Pillow, no esta actualixzados para el procesador M" de Apple. Lo cambio al CV2
+- Reflactorizo la función: descarga_imagen. Arora trabajo con encho fijo de 320px y quito el atributo de altura de la imagen en el archibo "bloques.py"
+- Correcciones de errores menores.
 
 ### 5.2.1
 - Al automatizar los nuevos trabajos se abre la URL en el navegador para copiar y pegar el texto del cuero del trabajo directamente.
