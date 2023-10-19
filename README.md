@@ -156,14 +156,25 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ## Historial de versiones
 
 ### Funciones para añadir
-- Correcciones y mejoras en la gestión de los banners que rotan
-- Añadir formato de imagen webp que pasara a ser jpg
-- Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos
-- Actualizar el sistema de sonido para que sea compatible con el resto de sistemas
+- Correcciones y mejoras en la gestión de los banners que rotan.
+- Añadir formato de imagen webp que pasara a ser jpg.
+- Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
+- Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+- Declarar las variables lo mas cerca de su uso.
+
+### 5.4
+- Forzamos a mostrar, dentro de las noticias, los últimos trabajos publicados para poder usarlos.
+- Reescribimos comentarios.
+- Eliminamos comentarios sobrantes.
+- Correcciones de errores menores.
+
+### 5.3.1
+- Refactorización la función que gentiona banners de dos empresas y los separo en dos funciones.
+- Correcciones de errores menores.
 
 ### 5.3
-- Cambio el módulo encargado del tratamiento de las imagenes. El módulo anterior, Pillow, no esta actualixzados para el procesador M" de Apple. Lo cambio al CV2
-- Reflactorizo la función: descarga_imagen. Arora trabajo con encho fijo de 320px y quito el atributo de altura de la imagen en el archibo "bloques.py"
+- Cambio el módulo encargado del tratamiento de las imagenes. El módulo anterior, Pillow, no esta actualixzados para el procesador M2 de Apple. Lo cambio por el módulo CV2.
+- Reflactorizo la función: descarga_imagen. Arora trabajo con encho fijo de 320px y quito el atributo de altura de la imagen en el archibo "bloques.py".
 - Correcciones de errores menores.
 
 ### 5.2.1

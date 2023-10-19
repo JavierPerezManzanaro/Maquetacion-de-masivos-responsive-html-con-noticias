@@ -327,7 +327,7 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial  </li>
-                                  <li>Caso clínico: 
+                                  <li>Caso clínico:
                                     <ul>
                                       <li>Piotórax en un gato de edad madura</li>
                                     </ul>
@@ -363,16 +363,16 @@ fin = '''
                         <!--TABLE RIGHT-->
 
                         <!--av-->
-                     <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                    <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av101.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av102.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 101</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 102</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -380,9 +380,9 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Enfermedades cong&eacute;nitas y hereditarias de las razas caninas y felinas </li>
-                                  <li>Diagnóstico por imagen </li>
-                                  <li>Acondicionamiento de una jaula para psitacidas </li>
-                                  <li>ANAVET: Intoxicaciones más frecuentes. manejo general</li>
+                                  <li>Estasis gastrointestinal en conejos </li>
+                                  <li>¿Qué es el neuromarketing? </li>
+                                  <li>ANAVET: Dispositivos clínicos </li>
                                   <li>Noticias</li>
                                 </ul></td>
                             </tr>
@@ -390,7 +390,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no101-asistente-en-centro-veterinario/no101-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no102-asistente-en-centro-veterinario/no102-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -422,20 +422,20 @@ fin = '''
                     <!-- ROW-1 START -->
                     <tr>
                       <td><!--TABLE LEFT-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par4.jpg" alt="Peque&ntilde;os Animales (R)evolution" width="842" height="595"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par5.jpg" alt="Pequeños Animales (R)evolution" width="842" height="595"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                           </tbody>
                         </table>
-
+                        
                         <!--TABLE MIDDLE-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -443,35 +443,32 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
+                        
                         <!--TABLE RIGHT-->
-
+                        
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Peque&ntilde;os Animales (R)evolution, N&ordm;4</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Peque&ntilde;os Animales (R)evolution, N&ordm;5</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li><em> Immunotherapeutic Strategies for Canine Lymphoma: Changing the Odds Against Non-Hodgkin Lymphoma 
-                                    </em>
+                                  <li><em>Case report: Treatment of congenital lobar emphysema with lung lobectomy in a puppy </em>
                                     <ul>
-                                      <li>Estrategias inmunoterapéuticas para el linfoma canino: cambiar las probabilidades contra el linfoma no Hodgkin </li>
+                                      <li>Caso clínico: Tratamiento del enfisema lobar congénito con lobectomía pulmonar en un cachorro </li>
                                     </ul>
                                   </li>
-                                  <li><em> Animal models of cancer metastasis to the bone 
-                                    </em>
+                                  <li><em>Canine circovirus: An emerging or an endemic undiagnosed enteritis virus? </em>
                                     <ul>
-                                      <li>Modelos animales de metástasis del cáncer al hueso </li>
+                                      <li>Circovirus canino: ¿un virus de enteritis emergente o endémico no diagnosticado? </li>
                                     </ul>
                                   </li>
-                                  <li><em>Animal models in osteosarcoma 
-                                    </em>
+                                  <li><em>Serum and Tissue Expression Levels of Leptin and Leptin Receptor Are Putative Markers of Specific Feline Mammary Carcinoma Subtypes </em>
                                     <ul>
-                                      <li>Modelos animales en osteosarcoma                                  </li>
+                                      <li>Los niveles de expresión sérica y tisular de la leptina y el receptor de leptina son marcadores putativos de subtipos específicos de carcinoma mamario felino</li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -513,33 +510,35 @@ fin = '''
                       <td><!--TABLE LEFT-->
 
                         <!--uno mas-->
-               <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_107.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_108.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 107</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 108</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li> Salud: 
+                                 <li>Recuerda:
                                     <ul>
-                                      <li>¿Cómo mantener a raya el peso de tu perro? Prevención de la obesidad   </li>
+                                      <li>Los reptiles (II)</li>
                                     </ul>
                                   </li>
-                                  <li>Recuerda:
+                                  <li> Consejo:
                                     <ul>
-                                      <li> Los reptiles </li>
+                                      <li>Actuación ante un animal perdido o abandonado</li>
                                     </ul>
                                   </li>
-                              </ul></td>
+
+                                </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -549,6 +548,12 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
+
+
+                        <!--fin de uno mas-->
+
+
+
 
 
                         <!--TABLE MIDDLE-->
