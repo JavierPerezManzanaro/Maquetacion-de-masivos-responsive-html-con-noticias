@@ -36,7 +36,7 @@ Dentro tenemos que definir estas variables
 - Clonar el repositorio en local.
 - Tener instalado Python 3.10.
 - Módulos a importar:
-    - Para 'Creador de masivos.py.py':
+    - Para 'Creador de masivos.py':
       - [cv2](https://pypi.org/project/opencv-python/) Tratamiento de las imágenes.
       - [imutils](https://github.com/PyImageSearch/imutils) Ayuda para el tratamiento de las imágenes.
       - Para versión menores de la 5:
@@ -153,6 +153,12 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 
 ---
+## Errores conocidos
+- A la hora de añadir trabajos que estan como noticias se abre: por una parte en el navegador con el trabajo; y por otra, -en una ventana de "Python Launcher"- una ventana de dialogo para introducir el cuerpo de la noticia. Pues bien, en esa ventana de dialogo (por lo menos sobre Mac con el sistema Sonoma (14.0)) no se activa siempre el botón de "Introducir datos". Parece que es un problema más de "Python Launcher" que de la aplicación. En cualquier caso con cambiar el tamaño de la ventana queda solucionado.
+- [SOLUCIONADO]: Al acceder a las noticias publicadas en el blog los borradores generar un error. La solución temporal consiste en entrar en el blog como administrador y eliminar esas noticias. Después las podemos sacar de la papelera y dejarlas como borrador otra vez.
+
+
+---
 ## Historial de versiones
 
 ### Funciones para añadir
@@ -160,10 +166,15 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Añadir formato de imagen webp que pasara a ser jpg.
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
-- Declarar las variables lo mas cerca de su uso.
+
+### 5.4.1
+- Mejoramos la gestión de la publicidad.
+- Se declaran las variables lo mas cerca de su uso.
+- Eliminación de comentarios sobrantes.
+- Correcciones de errores menores.
 
 ### 5.4
-- Forzamos a mostrar, dentro de las noticias, los últimos trabajos publicados para poder usarlos.
+- Forzamos a mostrar, dentro de las noticias, los últimos trabajos publicados para poder usarlos. Hace dos peticiones mas al API de Wordpress que lleva su tiempo pero es menor que generad un trabajo de nuevo.
 - Reescribimos comentarios.
 - Eliminamos comentarios sobrantes.
 - Correcciones de errores menores.
@@ -359,15 +370,11 @@ Existen varios tipos de banners:
 CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada
 ![CC (Creative Commons) de Reconocimiento – NoComercial – SinObraDerivada](https://raw.githubusercontent.com/JavierPerezManzanaro/Maquetacion-de-masivos-responsive-html-con-noticias/main/Reconocimiento-no-comercial-sin-obra-derivada.png)
 
+
 ---
 ## Información de contacto del autor
 Javier Pérez
 javierperez@perasalvino.es
-
-
----
-## Errores conocidos
-- Al acceder a las noticias publicadas en el blog los borradores generar un error. La solución temporal consiste en entrar en el blog como administrador y eliminar esas noticias. Después las podemos sacar de la papelera y dejarlas como borrador otra vez.
 
 
 ---

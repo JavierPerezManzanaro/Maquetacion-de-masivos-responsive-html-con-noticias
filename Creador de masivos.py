@@ -7,7 +7,6 @@
 
 
 
-import base64
 import errno
 import locale
 import logging
@@ -17,8 +16,8 @@ import re
 import sqlite3
 import subprocess
 import webbrowser
-from datetime import date, datetime
-from os import close, link
+from datetime import datetime
+import os
 # https://github.com/PyImageSearch/imutils
 from pprint import pprint
 import cv2 as cv2
@@ -197,7 +196,7 @@ def trabajos_a_publicar(tipo: str)-> list:
     return trabajos
 
 
-def trabajos_a_mostrar(tipo: str, trabajos: list, axon: list, numero_registros: int)-> list:
+def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int)-> list:
     """Crea el código html con los trabajos o noticias de compañia y de producción.
 
     Args:
@@ -426,64 +425,6 @@ def read_wordpress(api_url: str)-> list:
     return response_json
 
 
-def gestion_publicidad()->list:
-    """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad
-
-    Returns:
-        list: Lista ordenada con los banners a publicar en el día
-    """
-    DIA = str
-    if ahora.isoweekday() == 1:
-        DIA = 'l'
-    elif ahora.isoweekday() == 2:
-        DIA = 'm'
-    elif ahora.isoweekday() == 3:
-        DIA = 'x'
-    elif ahora.isoweekday() == 4:
-        DIA = 'j'
-    elif ahora.isoweekday() == 5:
-        DIA = 'v'
-    elif ahora.isoweekday() == 6:  # solo esta por si programo un sábado
-        DIA = 'l' #? esta para el lunes, cambiar si es otro día
-    elif ahora.isoweekday() == 7:  # solo esta por si programo un domingo
-        DIA = 'l' #? esta para el lunes, cambiar si es otro día
-    try:
-        con = sqlite3.connect('bbdd.sqlite3')
-        cursorObj = con.cursor()
-        cursorObj.execute(
-            'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";') # type: ignore
-        publicidad_horizontal = cursorObj.fetchall()
-        cursorObj.close()
-        # * desglosamos la lista en los 4 grupos
-        #? se puede hacer por filter o por comprension
-        # publicidad_final = [publicidad for publicidad in publicidad_horizontal if publicidad_horizontal[2] == 'final']
-        # criterio = lambda prioridad: publicidad_horizontal[2] == 'final'
-        # # Filtrar elementos utilizando la función lambda
-        # publicidad_cliente = list(filter(criterio, publicidad_horizontal))
-        destacado = []
-        cliente = []
-        interno = []
-        final = []
-        for publicidad in publicidad_horizontal:
-            if publicidad[2] == 'destacado':
-                destacado.append(publicidad)
-            elif publicidad[2] == 'cliente':
-                cliente.append(publicidad)
-            elif publicidad[2] == 'interno':
-                interno.append(publicidad)
-            elif publicidad[2] == 'final':
-                final.append(publicidad)
-        random.shuffle(cliente)
-        random.shuffle(interno)
-        publicidad_horizontal = destacado + cliente + interno + final
-    except Exception as e:
-        logging.warning('❌ No se pudo acceder a la tabla de publicidades')
-        logging.warning('   Exception occurred while code execution: ' + repr(e))
-        os.system(ALERTA)
-        publicidad_horizontal = []
-    return publicidad_horizontal
-
-
 def creacion_lista_noticias(numero_registros: int, noticias: list)-> list:
     """Crea la lista que contiene el diccionario con cada noticia por separado
 
@@ -536,6 +477,22 @@ def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion:list,
     return html_trabajos
 
 
+def eliminar_noticias_duplicadas(bbdd_a_tratar: list) -> list:
+    """Eliminamos las noticias y trabajos que estan en la lista de noticias
+
+    Args:
+        bbdd_a_tratar (list): _description_
+
+    Returns:
+        list: _description_
+    """
+    lista_de_noticias_unicas = []
+    for noticia in bbdd_a_tratar:
+        if noticia not in lista_de_noticias_unicas:
+            lista_de_noticias_unicas.append(noticia)
+    return lista_de_noticias_unicas
+
+
 def gestion_noticias(axon: list)-> str:
     """Es función se encarga de toda la gestión de las noticias: desde su introducción hasta el final, cuando sale como html con los banners
 
@@ -545,7 +502,6 @@ def gestion_noticias(axon: list)-> str:
     Returns:
         str: El html de las noticias con los banners
     """
-    numero = 0
     print()
     noticias = input("¿Qué noticias quieres publicar? ")
     noticias = noticias.strip()
@@ -595,6 +551,7 @@ def gestion_noticias(axon: list)-> str:
         longitud -= 1
     # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
     bloque_final_con_noticias = ''
+    numero = 0
     for numero in range(0, (int(longitud/2))):
         bloque_final_con_noticias = bloque_final_con_noticias + bloques.bloque_exterior
         bloque_final_con_noticias = bloque_final_con_noticias + creacion_banners(publicidad_horizontal) # type: ignore
@@ -613,6 +570,71 @@ def gestion_noticias(axon: list)-> str:
     # Unimos los dos bloques (la noticias por pares y la última)
     bloque_final_con_noticias = bloque_final_con_noticias + ultimo_si_es_impar
     return bloque_final_con_noticias
+
+
+def gestion_publicidad()->list:
+    """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad
+
+    Returns:
+        list: Lista ordenada con los banners a publicar en el día
+    """
+    DIA = str
+    if ahora.isoweekday() == 1:
+        DIA = 'l'
+    elif ahora.isoweekday() == 2:
+        DIA = 'm'
+    elif ahora.isoweekday() == 3:
+        DIA = 'x'
+    elif ahora.isoweekday() == 4:
+        DIA = 'j'
+    elif ahora.isoweekday() == 5:
+        DIA = 'v'
+    elif ahora.isoweekday() == 6:
+        DIA = 'l'
+    elif ahora.isoweekday() == 7:
+        DIA = 'l'
+    try:
+        con = sqlite3.connect('bbdd.sqlite3')
+        cursorObj = con.cursor()
+        cursorObj.execute(
+            'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";') # type: ignore
+        publicidad_horizontal = cursorObj.fetchall()
+        cursorObj.close()
+        # * desglosamos la lista en los 4 grupos
+        #? se puede hacer por filter o por comprension
+        # publicidad_final = [publicidad for publicidad in publicidad_horizontal if publicidad_horizontal[2] == 'final']
+        # criterio = lambda prioridad: publicidad_horizontal[2] == 'final'
+        # # Filtrar elementos utilizando la función lambda
+        # publicidad_cliente = list(filter(criterio, publicidad_horizontal))
+        destacado = []
+        cliente = []
+        interno = []
+        final = []
+        for publicidad in publicidad_horizontal:
+            if publicidad[2] == 'destacado':
+                destacado.append(publicidad)
+            elif publicidad[2] == 'cliente':
+                cliente.append(publicidad)
+            elif publicidad[2] == 'interno':
+                interno.append(publicidad)
+            elif publicidad[2] == 'final':
+                final.append(publicidad)
+
+        cliente = pb_royal_canin(cliente)
+        cliente = pb_ecuphar(cliente)
+        cliente = pb_bioiberica(cliente)
+        random.shuffle(cliente)
+        random.shuffle(interno)
+
+        publicidad_horizontal = destacado + cliente + interno + final
+
+    except Exception as e:
+        logging.warning('❌ No se pudo acceder a la tabla de publicidades')
+        logging.warning('   Exception occurred while code execution: ' + repr(e))
+        os.system(ALERTA)
+        publicidad_horizontal = []
+
+    return publicidad_horizontal
 
 
 def pb_ecuphar(publicidad_horizontal: list)-> list:
@@ -651,14 +673,6 @@ def pb_bioiberica(publicidad_horizontal: list)-> list:
     return publicidad_horizontal
 
 
-def eliminar_noticias_duplicadas(bbdd_a_tratar: list) -> list:
-    lista_de_noticias_unicas = []
-    for noticia in bbdd_a_tratar:
-        if noticia not in lista_de_noticias_unicas:
-            lista_de_noticias_unicas.append(noticia)
-    return lista_de_noticias_unicas
-
-
 def pb_royal_canin(publicidad_horizontal: list)->list:
     """Se gestiona la publicación de Royal Canin. Esta publicidad va por periodos. Funciona así: si toca se mete en una nueva variable, después eliminamos todos los banner de esa empresa en publicidad_horizontal y por último añadimos a publicidad_horizontal la nueva variable
     #todo: se puede hacer de una forma mas elegante?
@@ -677,7 +691,7 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
     banner_gato = 'Royal canin gato: del 1 al 14 de julio'
     banner_perro = 'Royal canin perro: del 15 al 30 de julio'
     for banner in publicidad_horizontal:
-        # * recorremos todos los banner y si esta dentro de la fecha lo selccionamos
+        # * recorremos todos los banner y si esta dentro de la fecha lo seleccionamos
         # * y si paso la fecha avisamos
         #? Es la fecha en la que se cambia de un banner a otro
         fecha_de_cambio = datetime(2023, 12, 15, 0, 0, 0)
@@ -730,33 +744,15 @@ if __name__ == '__main__':
     # ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
     # ahora = datetime.strptime('2023/10/13', '%Y/%m/%d')
 
-    NOTICIAS_MOSTRADAS = 100 # No puede ser mayor de 100
+    # * Variables usadas en funciones
     imagen_local = ''
     ancho = 0
     alto = 0
-    meses = {
-        "1": 'Enero',
-        "2": 'Febrero',
-        "3": 'Marzo',
-        "4": 'Abril',
-        "5": 'Mayo',
-        "6": 'Junio',
-        "7": 'Julio',
-        "8": 'Agosto',
-        "9": 'Septiembre',
-        "10": 'Octubre',
-        "11": 'Noviembre',
-        "12": 'Diciembre'
-    }
     ALERTA = "afplay alerta.mp3"
 
-    # * Creamos y actualizamos la lista de banner a incluir
+    # * Creamos la lista de banner a incluir
     publicidad_horizontal = gestion_publicidad()
-    publicidad_horizontal = pb_ecuphar(publicidad_horizontal)
-    publicidad_horizontal = pb_bioiberica(publicidad_horizontal)
-    publicidad_horizontal = pb_royal_canin(publicidad_horizontal)
 
-    # * Empezamos con la app
     print()
     print()
     print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
@@ -766,7 +762,6 @@ if __name__ == '__main__':
         print(f'  -{banner[1]}')
     print()
 
-    # * Creamos la carpeta
     boletin = int(input("¿Qué número del masivo vas a publicar? "))
     nombre_archivo = str(boletin)+'c'
     try:
@@ -781,15 +776,12 @@ if __name__ == '__main__':
     print("Nº  | Título")
     print()
 
-    # * Mostramos los trabajos
     trabajos_en_bbdd_compania,trabajos_en_bbdd_produccion = recuperar_trabajos() # type: ignore
-
     print('Trabajos de compañía:')
     print(f"----|-{'-'*110}")
     for trabajo in trabajos_en_bbdd_compania:
         print(f"{trabajo[0]:>3} | {trabajo[1][0:130]}")
     print()
-
     print('Trabajos de producción:')
     print(f"----|-{'-'*110}")
     for trabajo in trabajos_en_bbdd_produccion:
@@ -818,6 +810,7 @@ if __name__ == '__main__':
     """
 
     # * Recogemos las noticias de la web
+    NOTICIAS_MOSTRADAS = 100 # No puede ser mayor de 100
     noticias = read_wordpress(f'https://axoncomunicacion.net/wp-json/wp/v2/posts?page=1&per_page={NOTICIAS_MOSTRADAS}')
 
     # * Creamos el diccionario axon[noticia] y eliminamos duplicados
@@ -840,9 +833,9 @@ if __name__ == '__main__':
     print()
     logging.debug('Trabajos de animales de compañia y producción')
     trabajos_compania = trabajos_a_publicar('compania')
-    trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania, axon, numero_registros)
+    trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania, numero_registros)
     trabajos_produccion = trabajos_a_publicar('produccion')
-    trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion, axon, numero_registros)
+    trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion, numero_registros)
 
     # * Igualamos las dos listas
     if len(trabajos_compania) != len(trabajos_produccion): # type: ignore
@@ -856,6 +849,20 @@ if __name__ == '__main__':
     comienzo_en_curso = bloques.comienzo
     comienzo_en_curso = comienzo_en_curso.replace('##nombre_archivo##', nombre_archivo)
     comienzo_en_curso = comienzo_en_curso.replace('##numero##', str(boletin))
+    meses = {
+                "1": 'Enero',
+                "2": 'Febrero',
+                "3": 'Marzo',
+                "4": 'Abril',
+                "5": 'Mayo',
+                "6": 'Junio',
+                "7": 'Julio',
+                "8": 'Agosto',
+                "9": 'Septiembre',
+                "10": 'Octubre',
+                "11": 'Noviembre',
+                "12": 'Diciembre'
+            }
     comienzo_en_curso = comienzo_en_curso.replace(
         '##mes##', meses[str(ahora.month)])
     # todo: añadir año

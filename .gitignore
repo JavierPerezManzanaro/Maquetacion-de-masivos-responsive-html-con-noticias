@@ -1,13 +1,7 @@
 __pycache__/
-Informavet original.py
-versiones.txt
 .vscode/
-datos_de_acceso.py
+venv_informavet/
 .gitignore
-bin/
-include/
-lib/
-version de python a usar.png
-pyvenv.cfg
-bbdd 2022.sqlite3
+
+datos_de_acceso.py
 modulos de pb sin usar.py
