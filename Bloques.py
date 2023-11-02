@@ -310,16 +310,16 @@ fin = '''
                       <td><!--TABLE LEFT-->
 
                         <!--cv-->
-                     <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv113.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv114.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 113</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 114</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -327,16 +327,17 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial  </li>
-                                  <li>Caso clínico:
+                                  <li>Gestión:
                                     <ul>
-                                      <li>Piotórax en un gato de edad madura</li>
+                                      <li>Protocolo de deuda cero y paneles de servicios, nuevas estrategias de gestión en la clínica veterinaria </li>
                                     </ul>
                                   </li>
-                                  <li>Así se hace:
-                                    <ul>
-                                      <li>Toma de muestra de vías aéreas. ¿Cómo se hace un lavado traqueobronquial?</li>
-                                    </ul>
-                                  </li>
+                                  <li>VETMADRID 2024: </li>
+                                  <ul>
+                                    <li>Avance de PROGRAMA VETMADRID 2024 </li>
+                                    <li>Avance de PROGRAMA FORMACIÓN EMPRESARIAL </li>
+                                    <li>Normas para la presentación de Comunicaciones Libres Noticias de Empresa</li>
+                                  </ul>
                                   <li>Noticias de Empresa</li>
                                 </ul></td>
                             </tr>
@@ -344,7 +345,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no113-centro-veterinario/no113-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no114-centro-veterinario/no114-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -422,7 +423,7 @@ fin = '''
                     <!-- ROW-1 START -->
                     <tr>
                       <td><!--TABLE LEFT-->
-                        
+
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -433,9 +434,9 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-                        
+
                         <!--TABLE MIDDLE-->
-                        
+
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -443,9 +444,9 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-                        
+
                         <!--TABLE RIGHT-->
-                        
+
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -596,7 +597,7 @@ fin = '''
                                       <li>¿Sigue siendo todavía el SCC el indicador principal de la salud de la ubre?</li>
                                     </ul>
                                   </li>
-                                  
+
                                 </ul></td>
                             </tr>
                             <tr>

@@ -14,9 +14,11 @@ import os
 import random
 import re
 import sqlite3
+import json
 import subprocess
 import webbrowser
 from datetime import datetime
+import sys
 import os
 # https://github.com/PyImageSearch/imutils
 from pprint import pprint
@@ -571,9 +573,29 @@ def gestion_noticias(axon: list)-> str:
     bloque_final_con_noticias = bloque_final_con_noticias + ultimo_si_es_impar
     return bloque_final_con_noticias
 
+def leer_preferencias():
+    """Función para leer las preferencias. Se usa así: print(preferencias['key'])
+    Estas preferencias hay que crearlas manualmente
+
+    Returns:
+        _type_: JSON de las preferencias
+    """
+    try:
+        with open("preferencias.json", "r") as archivo_preferencias:
+            preferencias = json.load(archivo_preferencias)
+        return preferencias
+    except Exception as e:
+        logging.warning('❌ No se pudo acceder a las preferencias.json')
+        logging.warning('   Exception occurred while code execution: ' + repr(e))
+        os.system(ALERTA)
+    finally:
+        pass
+        #todo: que hacer al final
+
 
 def gestion_publicidad()->list:
-    """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad
+    """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad.
+    Después manda la lista a cada una de las funciones que gestionan los banners de las empresas. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, alterna, etc.
 
     Returns:
         list: Lista ordenada con los banners a publicar en el día
@@ -629,7 +651,7 @@ def gestion_publicidad()->list:
         publicidad_horizontal = destacado + cliente + interno + final
 
     except Exception as e:
-        logging.warning('❌ No se pudo acceder a la tabla de publicidades')
+        logging.warning('❌ Error en la función: gestion_publicidad')
         logging.warning('   Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
         publicidad_horizontal = []
@@ -647,11 +669,19 @@ def pb_ecuphar(publicidad_horizontal: list)-> list:
         list: lista de banners horizontales actualizada
     """
     semana = ahora.isocalendar()[1]
+    ecuphar_banner = ''
+    paso = False
     for banner in publicidad_horizontal:
         if banner[1] == 'Ecuphar: Daxocox' and semana % 2 == 0:
-            publicidad_horizontal.remove(banner)
+            ecuphar_banner = banner
+            paso = True
+            #publicidad_horizontal.remove(banner)
         if banner[1] == 'Ecuphar: Leisguard' and semana % 2 != 0:
-            publicidad_horizontal.remove(banner)
+            ecuphar_banner = banner
+            paso = True
+            #publicidad_horizontal.remove(banner)
+    if paso:
+        publicidad_horizontal.remove(ecuphar_banner)
     return publicidad_horizontal
 
 
@@ -665,17 +695,23 @@ def pb_bioiberica(publicidad_horizontal: list)-> list:
         list: lista de banners horizontales actualizada
     """
     es_seleccionado = random.randint(0, 1)
+    bioiberica_banner = ''
+    paso = False
     for banner in publicidad_horizontal:
         if banner[1] == 'Bio Iberica' and es_seleccionado == 0:
-            publicidad_horizontal.remove(banner)
+            bioiberica_banner = banner
+            paso = True
         if banner[1] == 'Bio Iberica: Atopivet Collar' and es_seleccionado == 1:
-            publicidad_horizontal.remove(banner)
+            bioiberica_banner = banner
+            paso = True
+    if paso:
+        publicidad_horizontal.remove(bioiberica_banner)
     return publicidad_horizontal
 
 
 def pb_royal_canin(publicidad_horizontal: list)->list:
-    """Se gestiona la publicación de Royal Canin. Esta publicidad va por periodos. Funciona así: si toca se mete en una nueva variable, después eliminamos todos los banner de esa empresa en publicidad_horizontal y por último añadimos a publicidad_horizontal la nueva variable
-    #todo: se puede hacer de una forma mas elegante?
+    """Se gestiona la publicación de Royal Canin. Esta publicidad va por periodos.
+    Cada semana toca uno de los tres. Proceso: si encuentra el banner en la lista los guarada en varibles; borra esos banners de la lista y añanade el que toca
 
     Args:
         publicidad_horizontal (list): lista de banners horizontales
@@ -683,44 +719,43 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
     Returns:
         list: lista de banners horizontales actualizada
     """
-    banner_Royal = ''
-    Royal_borrar_1 = ''
-    Royal_borrar_2 = ''
-    paso_Royal = False
-    # * hay que cambiar también el nombre de los banners de la tabla de publicidad del sqlite3
-    banner_gato = 'Royal canin gato: del 1 al 14 de julio'
-    banner_perro = 'Royal canin perro: del 15 al 30 de julio'
+    semana = ahora.isocalendar()[1]
+    royal_baner_1_semanas = {43, 44, 47, 50}
+    royal_baner_2_semanas = {45, 48, 51}
+    royal_baner_3_semanas = {46, 49, 52}
+    royal_banner_1 = 'royal canin - fibre response gato'
+    royal_banner_2 = 'royal canin - low fat small dogs'
+    royal_banner_3 = 'royal canin - high fibre perro'
+    royal_banner_a_publicar = ''
+    royal_banner_borrar_1 = ''
+    royal_banner_borrar_2 = ''
+    royal_banner_borrar_3 = ''
+    paso = False
     for banner in publicidad_horizontal:
-        # * recorremos todos los banner y si esta dentro de la fecha lo seleccionamos
-        # * y si paso la fecha avisamos
-        #? Es la fecha en la que se cambia de un banner a otro
-        fecha_de_cambio = datetime(2023, 12, 15, 0, 0, 0)
-        if ahora < fecha_de_cambio and banner[1] == banner_gato:
-            #print(f'Hoy sale el {banner_gato}')
-            paso_Royal = True
-            banner_Royal = banner
-        if ahora >= fecha_de_cambio and banner[1] == banner_perro:
-            #print(f'Hoy sale el {banner_perro}')
-            paso_Royal = True
-            banner_Royal = banner
-        #? Fecha de fin del segundo banner, o sea cuando se termina el periodo
-        if ahora > datetime(2023, 12, 30, 0, 0, 0) and banner[1] == banner_perro:
-            print()
-            logging.warning('❌ Banner de royal Canin caducado')
-            os.system(ALERTA)
-    for banner in publicidad_horizontal:
-        # * marcamos los dos bannes de royal canin para borrarlos despues
-        if banner[1] == banner_perro:
-            paso_Royal = True
-            Royal_borrar_1 = banner
-        if banner[1] == banner_gato:
-            paso_Royal = True
-            Royal_borrar_2 = banner
-    if paso_Royal == True:
-        # * borramos los dos banners de Royal canin y añadimos el seleccionado
-        publicidad_horizontal.remove(Royal_borrar_1)
-        publicidad_horizontal.remove(Royal_borrar_2)
-        publicidad_horizontal.append(banner_Royal)
+        # * Primero los seleccionamos si aparecen para borrarlos
+        if banner[1] == royal_banner_1:
+            royal_banner_borrar_1 = banner
+            paso = True
+        if banner[1] == royal_banner_2:
+            royal_banner_borrar_2 = banner
+            paso = True
+        if banner[1] == royal_banner_3:
+            royal_banner_borrar_3 = banner
+            paso = True
+        if banner[1] == royal_banner_1 and semana in royal_baner_1_semanas:
+            royal_banner_a_publicar = banner
+        if banner[1] == royal_banner_2 and semana in royal_baner_2_semanas:
+            royal_banner_a_publicar = banner
+        if banner[1] == royal_banner_3 and semana in royal_baner_3_semanas:
+            royal_banner_a_publicar = banner
+    if paso is True:
+        # * Borramos los tres
+        publicidad_horizontal.remove(royal_banner_borrar_1)
+        publicidad_horizontal.remove(royal_banner_borrar_2)
+        publicidad_horizontal.remove(royal_banner_borrar_3)
+        # * Y añadimos el nuevo
+        publicidad_horizontal.append(royal_banner_a_publicar)
+
     return publicidad_horizontal
 
 
@@ -740,20 +775,34 @@ if __name__ == '__main__':
     os.system('clear')
     locale.setlocale(locale.LC_ALL, "es_ES")
 
-    ahora = datetime.now()
-    # ? Si queremos hacer el masivo de otro día descomentamos la línea inferior (aaaa/mm/dd):
-    # ahora = datetime.strptime('2023/10/13', '%Y/%m/%d')
-
-    # * Variables usadas en funciones
+    # * Variables globales
     imagen_local = ''
     ancho = 0
     alto = 0
     ALERTA = "afplay alerta.mp3"
 
-    # * Creamos la lista de banner a incluir
-    publicidad_horizontal = gestion_publicidad()
-
+    print('------------------')
+    print('Creador de masivos')
+    print('------------------')
     print()
+    print()
+
+    ahora = input('Fecha de emisión (aaaa/mm/dd)? ')
+    if not ahora:
+        ahora = datetime.now()
+    else:
+        try:
+            ahora = datetime.strptime(ahora, '%Y/%m/%d')
+        except:
+            logging.warning(
+            '❌ Cuidado: Hay un error en la fecha. Se sale de la aplicación')
+            os.system(ALERTA)
+            sys.exit(1)
+
+
+    publicidad_horizontal = gestion_publicidad()
+    # cliente = pb_royal_canin(publicidad_horizontal)
+
     print()
     print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
     print()

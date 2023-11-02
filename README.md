@@ -47,60 +47,50 @@ Dentro tenemos que definir estas variables
       - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la ventana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd.
 
 
----
-## Cambios necesarios en python-wordpress-xmlrpc
-Este módulo no es compatible con la versión Python 3.10. Hay que realizar un pequeño cambio en el código.
-En el archivo "wordpress_xmlrpc/base.py" hay que modificar dos liéas:
-1: pasa a ser: **import collections.abc**
-128: pasa a ser: **elif isinstance(raw_result, collections.abc.Iterable):**
-Explicación:
-[https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148/files/69ba89706c47ac2c39fae41137bb2d38dee4ae5a](https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148/files/69ba89706c47ac2c39fae41137bb2d38dee4ae5a)
-[https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148](https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148)
-
 
 ---
 ## Instrucciones de uso
 Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi caso es así:
 
-### ¿Están los trabajos en la bbdd?
-1. Buscar si están en la base de datos los trabajos que tienen que salir publicados en el masivo diario abriendo 'bbdd.sqlite3'.
-
-    1.1. Si están los trabajos de compañía y de producción paso al punto 2 (en Creación del masivo).
-
-    1.2. Si no están: En este punto hay varias formas de actuar. La mas eficiente para mi es crear esos trabajos como noticias (en el fondo siguen la misma extructura, solo cambia el color del titular), después cambio el color del titular y las coloco en su sitio (todo esto con Dreamwaver, por ejemplo). Mas tarde introduzco ese trabajo en la bbdd ejecutando 'Inserción de noticias en bbdd.py'.
 
 ### Creación del masivo
-2. Ejecuto la aplicación principal: 'Creador de masivos.py':
+1. Ejecuto la aplicación principal: 'Creador de masivos.py':
 
-    2.1. La aplicación nos pregunta por el número del masivo. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una 'c' al nombre: **'¿Qué número vas a publicar? '**
+    1.1. La aplicación nos pregunta por el día. Si no introducimos nada se entiene que es para el día de hoy. Si ponemos "+1", "1" o "mañana" a el día actual se le suma uno.
 
-    2.2. La aplicación va a mostrar tres listas:
+    1.2. La aplicación nos pregunta por el número del masivo: **'¿Qué número vas a publicar? '**. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una 'c' al nombre.
+
+    1.3. La aplicación va a mostrar tres listas:
 
       - Trabajos de compañía (extraídos de la bbdd.sqlite3).
       - Trabajos de producción (extraídos de la bbdd.sqlite3).
-      - Últimas 20 noticias de Axón comunicación (extraídos de la web basada en WordPress).
+      - Últimas noticias y/o trabajos de Axón comunicación (extraídos de la web basada en WordPress).
 
-    2.3. La aplicación pregunta (**'¿Qué noticia es la destacada? '**) para colocar la primera noticia que va a salir. Esta sale publicada a dos columnas.
+    1.4. La aplicación pregunta (**'¿Qué noticia es la destacada? '**) para colocar la primera noticia que va a salir. Esta sale publicada a dos columnas.
 
       - Si introducimos algo que no sea un número de una noticia la aplicación se salta este paso.
 
-    2.4. **'¿Trabajos de animales de compañía para publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    1.5. **'¿Trabajos de animales de compañía para publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos solamente un 0 la aplicación se salta este paso.
 
       - Si introducimos un 0 junto con otros trabajos la aplicación dejara en esa posición un hueco para un banner vertical.
+
+      - Si el número esta en la lista de noticias y/o trabajos de la web nos abrira una ventana para introducir el cuerpo de esa noticia en la bbdd de forma automática
 
       - Al final, en el archivo html, se verán todos los trabajos de animales de compañía en la columna de la izquierda.
 
-    2.5. **'¿Trabajos de animales de producción para publicar?  '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    1.6. **'¿Trabajos de animales de producción para publicar?  '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos solamente un 0 la aplicación se salta este paso.
 
       - Si introducimos un 0 junto con otros trabajos la aplicación dejara en esa posición un hueco para un banner vertical.
 
+      - Si el número esta en la lista de noticias y/o trabajos de la web nos abrira una ventana para introducir el cuerpo de esa noticia en la bbdd de forma automática
+
       - Al final, en el archivo html, se verán todos los trabajos de animales de producción en la columna de la derecha.
 
-    2.5. **'¿Qué noticias quieres publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    1.7. **'¿Qué noticias quieres publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos solamente un 0 la aplicación se salta este paso.
 
@@ -108,9 +98,9 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
       - Al final, en el archivo html, se verán todas estas noticias a dos columnas.
 
-3. La aplicación genera el archivo html con los trabajos, los banner, las noticias y el bloque final (hemerotecas).
+2. La aplicación genera el archivo html con los trabajos, los banner, las noticias y el bloque final (hemerotecas).
 
-4. Hay que editar este archivo con cualquier editor html (Dreamweaver, por ejemplo) para enfrentar las noticias (las filas y columnas son celdas de tablas) y colocar los banners en su sitio.
+3. Hay que editar este archivo con cualquier editor html (Dreamweaver, por ejemplo) para enfrentar las noticias (las filas y columnas son celdas de tablas) y colocar los banners en su sitio.
 
 
 ---
@@ -147,6 +137,10 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
   El archivo que estas leyendo.
 
+- preferencias.json
+
+  Preferencias de la aplicación. Por ahora sin uso.
+
 - requirements.txt
 
   Módulos usados.
@@ -162,10 +156,16 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ## Historial de versiones
 
 ### Funciones para añadir
-- Correcciones y mejoras en la gestión de los banners que rotan.
 - Añadir formato de imagen webp que pasara a ser jpg.
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
+
+### 5.5
+- Mejoro y unfifico la gestión de los banners: Ahora los tres funcionan igual:
+    De la bbdd pasan todos los modelos de cada empresa a la lista. En cada función (una por cada empresa) se selcciona un banner por alguno de los criterios (o bien al azar, o por fechas, etc) y se borran el resto de banner de esa empresa.
+- Cambio la forma de modificar el día de creación. Antes era una variable, ahora pregunta. Si no se pone nada se entiende que el dia actual.
+- Añado un archivo de preferencias en JSON para gestionar mejor los banners. Todavía sin uso.
+- Correcciones de errores menores.
 
 ### 5.4.1
 - Mejoramos la gestión de la publicidad.
@@ -220,6 +220,15 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Implementamos las búsquedas mediante *list* y *filter*.
 - Refactorización de algunas funciones y procesos.
 - Correcciones de errores menores.
+
+### Cambios necesarios en python-wordpress-xmlrpc si se usan versiones anteriores a la 5
+Este módulo no es compatible con la versión Python 3.10. Hay que realizar un pequeño cambio en el código.
+En el archivo "wordpress_xmlrpc/base.py" hay que modificar dos liéas:
+1: pasa a ser: **import collections.abc**
+128: pasa a ser: **elif isinstance(raw_result, collections.abc.Iterable):**
+Explicación:
+[https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148/files/69ba89706c47ac2c39fae41137bb2d38dee4ae5a](https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148/files/69ba89706c47ac2c39fae41137bb2d38dee4ae5a)
+[https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148](https://github.com/maxcutler/python-wordpress-xmlrpc/pull/148)
 
 ### 4.6.3
 - Correcciones de errores menores.
@@ -345,6 +354,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Versión base.
 
 
+
 ---
 ## Gestión de los banners
 Existen varios tipos de banners:
@@ -361,7 +371,6 @@ Existen varios tipos de banners:
 
 ### Verticales
 - Actualmente son pocos y diarios y su gestión es manual.
-- Es necesaria su colocación de forma manual.
 - En próximas versiones se meteran en la bbdd.
 
 
