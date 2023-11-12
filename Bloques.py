@@ -1057,3 +1057,37 @@ banner_horizontal_raw = '''
   </tbody>
 </table>
 '''
+
+pb_laservet = '''
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+          <tbody>
+            <tr>
+              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <tr>
+                              <td height="30"></td>
+                            </tr>
+                            <tr>
+                              <td><a href="https://axoncomunicacion.net/masivos/laservet/formulario.html"><img src="pb/laservet_700x200px_ivet_ver_4-sin-precio.gif" alt="LaserVet" width="700" height="200" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
+                            </tr>
+                            <tr>
+                              <td height="30"></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </tbody>
+</table>
+'''

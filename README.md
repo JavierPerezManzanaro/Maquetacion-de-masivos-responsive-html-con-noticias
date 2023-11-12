@@ -160,11 +160,15 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 5.5.1
+- Añado la función de "+1", "1" o "mañana" a la hora de introducir la fecha de lanzamiento del masivo.
+
 ### 5.5
 - Mejoro y unfifico la gestión de los banners: Ahora los tres funcionan igual:
     De la bbdd pasan todos los modelos de cada empresa a la lista. En cada función (una por cada empresa) se selcciona un banner por alguno de los criterios (o bien al azar, o por fechas, etc) y se borran el resto de banner de esa empresa.
 - Cambio la forma de modificar el día de creación. Antes era una variable, ahora pregunta. Si no se pone nada se entiende que el dia actual.
 - Añado un archivo de preferencias en JSON para gestionar mejor los banners. Todavía sin uso.
+- Otras mejoras menores.
 - Correcciones de errores menores.
 
 ### 5.4.1
@@ -181,6 +185,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ### 5.3.1
 - Refactorización la función que gentiona banners de dos empresas y los separo en dos funciones.
+- Otras mejoras menores.
 - Correcciones de errores menores.
 
 ### 5.3

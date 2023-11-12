@@ -18,6 +18,7 @@ import json
 import subprocess
 import webbrowser
 from datetime import datetime
+from datetime import timedelta
 import sys
 import os
 # https://github.com/PyImageSearch/imutils
@@ -792,16 +793,18 @@ if __name__ == '__main__':
         ahora = datetime.now()
     else:
         try:
-            ahora = datetime.strptime(ahora, '%Y/%m/%d')
+            if ahora == '1' or ahora =='+1' or ahora.lower() == 'mañana':
+                ahora = datetime.now()
+                ahora = ahora + timedelta(days=1)
+            else:
+                ahora = datetime.strptime(ahora, '%Y/%m/%d')
         except:
             logging.warning(
             '❌ Cuidado: Hay un error en la fecha. Se sale de la aplicación')
             os.system(ALERTA)
             sys.exit(1)
 
-
     publicidad_horizontal = gestion_publicidad()
-    # cliente = pb_royal_canin(publicidad_horizontal)
 
     print()
     print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
@@ -918,7 +921,8 @@ if __name__ == '__main__':
 
     # * Vamos uniendo las partes
     resultado = ''
-    resultado = resultado + comienzo_en_curso + noticias_destacadas + html_trabajos # type: ignore
+    resultado = resultado + comienzo_en_curso + noticias_destacadas
+    resultado = resultado + bloques.pb_laservet + html_trabajos
 
     # * Chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
     if len(publicidad_horizontal) >= 1:
