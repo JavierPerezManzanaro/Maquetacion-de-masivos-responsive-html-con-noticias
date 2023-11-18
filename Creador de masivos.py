@@ -760,6 +760,56 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
     return publicidad_horizontal
 
 
+def fecha_lanzamiento():
+    """Gestionamos la fecha de salida del masivo. Podemos poner una fecha (aaa/mm/dd) o cualquiera de estas tres expresiones: 'mañana', 1 o +1.
+
+    Returns:
+        fecha_salida (fecha): Fecha de publicación del masivo
+    """
+    fecha_salida = input('¿Fecha de emisión? (nada o aaaa/mm/dd o 1 -para un día más-): ')
+    if not fecha_salida:
+        fecha_salida = datetime.now()
+    else:
+        try:
+            if fecha_salida == '1' or fecha_salida =='+1' or fecha_salida.lower() == 'mañana':
+                fecha_salida = datetime.now()
+                fecha_salida = fecha_salida + timedelta(days=1)
+            else:
+                fecha_salida = datetime.strptime(fecha_salida, '%Y/%m/%d')
+        except:
+            logging.warning(
+            '❌ Cuidado: Hay un error en la fecha. Se sale de la aplicación')
+            os.system(ALERTA)
+            sys.exit(1)
+    return fecha_salida
+
+
+def nombre_del_archivo():
+    """Lee la carpeta donde se almacena los masivos y crea el nombre del siguiente documento.
+
+    Returns:
+        nombre_archivo (str)
+        numero (int)
+    """
+    contenido = os.listdir(datos_de_acceso.ruta_local)
+    archivos_html = []
+    for fichero in contenido:
+        if os.path.isfile(os.path.join(datos_de_acceso.ruta_local, fichero)) and fichero.endswith('.html'):
+            fichero = fichero[:-6]
+            if fichero.isdigit():
+                archivos_html.append(int(fichero))
+    archivos_html.sort()
+    ultimo_publicado = archivos_html[-1]
+    nombre_archivo = str(ultimo_publicado+1)+'c'
+
+    try:
+        os.mkdir(nombre_archivo)
+    except OSError as e:
+        print("Error creando la carpeta.")
+        if e.errno != errno.EEXIST:
+            raise
+
+    return nombre_archivo, ultimo_publicado+1
 
 
 if __name__ == '__main__':
@@ -788,42 +838,6 @@ if __name__ == '__main__':
     print()
     print()
 
-    ahora = input('Fecha de emisión (aaaa/mm/dd)? ')
-    if not ahora:
-        ahora = datetime.now()
-    else:
-        try:
-            if ahora == '1' or ahora =='+1' or ahora.lower() == 'mañana':
-                ahora = datetime.now()
-                ahora = ahora + timedelta(days=1)
-            else:
-                ahora = datetime.strptime(ahora, '%Y/%m/%d')
-        except:
-            logging.warning(
-            '❌ Cuidado: Hay un error en la fecha. Se sale de la aplicación')
-            os.system(ALERTA)
-            sys.exit(1)
-
-    publicidad_horizontal = gestion_publicidad()
-
-    print()
-    print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
-    print()
-    print(f'Hoy salen publicados {str(len(publicidad_horizontal))} banners (sin contar con los extras):')
-    for banner in publicidad_horizontal:
-        print(f'  -{banner[1]}')
-    print()
-
-    boletin = int(input("¿Qué número del masivo vas a publicar? "))
-    nombre_archivo = str(boletin)+'c'
-    try:
-        os.mkdir(nombre_archivo)
-    except OSError as e:
-        print("Borrando carpeta anterior.")
-        if e.errno != errno.EEXIST:
-            raise
-
-    print()
     print("0 = Dejar hueco relleno")
     print("Nº  | Título")
     print()
@@ -876,7 +890,20 @@ if __name__ == '__main__':
     print(f"----|-{'-'*104}")
     for noticia in axon:
         print(f"{noticia['id']:>3} | {noticia['titulo'][0:130]}")
+        
     print()
+    print()
+    ahora = fecha_lanzamiento()
+    publicidad_horizontal = gestion_publicidad()
+    print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
+    print()
+    nombre_archivo, boletin = nombre_del_archivo()
+    print(f'Se va a publicar: {nombre_archivo}')
+    print()
+    print(f'Hoy salen publicados {str(len(publicidad_horizontal))} banners (sin contar con los extras):')
+    for banner in publicidad_horizontal:
+        print(f'  -{banner[1]}')
+        
     print()
     print()
     print('Los trabajos/noticias separadas con espacios.')

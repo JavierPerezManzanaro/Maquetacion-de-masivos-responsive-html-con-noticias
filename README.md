@@ -160,6 +160,12 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 5.5.2
+- Cambio el orden a la hora de mostar los datos en la terminal.
+- Ya no es necesario introducir el nombre del archivo html. Ahora lee la carpera que los contiene y saca el siguente número.
+- La fecha de salida: Reflactorizo la parte de la fecha y creo una función.
+- Otras mejoras menores.
+
 ### 5.5.1
 - Añado la función de "+1", "1" o "mañana" a la hora de introducir la fecha de lanzamiento del masivo.
 
