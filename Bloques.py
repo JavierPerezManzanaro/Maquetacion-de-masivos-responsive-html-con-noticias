@@ -292,7 +292,7 @@ table[class=main] {
 '''
 
 
-#todo: quitar los bloque de las revistas y ponerlos separados
+# todo: quitar los bloque de las revistas y ponerlos separados
 fin = '''
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
@@ -319,7 +319,7 @@ fin = '''
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Centro Veterinario, N&ordm; 114</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, N&ordm; 114</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -373,7 +373,7 @@ fin = '''
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 102</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 102</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -427,7 +427,7 @@ fin = '''
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par5.jpg" alt="Pequeños Animales (R)evolution" width="842" height="595"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par6.jpg" alt="Peque&ntilde;os Animales (R)evolution" width="842" height="595"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
@@ -450,26 +450,26 @@ fin = '''
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Peque&ntilde;os Animales (R)evolution, N&ordm;5</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Peque&ntilde;os Animales (R)evolution, N&ordm;6</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li><em>Case report: Treatment of congenital lobar emphysema with lung lobectomy in a puppy </em>
+                                  <li><em>Instrument shank-assisted ovariohysterectomy: a randomized clinical trial of surgical and pain alleviation efficiency of a single-person modified technique</em>
                                     <ul>
-                                      <li>Caso clínico: Tratamiento del enfisema lobar congénito con lobectomía pulmonar en un cachorro </li>
+                                      <li>Ovariohisterectomía asistida por vástago instrumental</li>
                                     </ul>
                                   </li>
-                                  <li><em>Canine circovirus: An emerging or an endemic undiagnosed enteritis virus? </em>
+                                  <li><em>Comparative analysis of the aberrant immunophenotype and clinical characteristics in dogs with lymphoma: a study of 27 cases</em>
                                     <ul>
-                                      <li>Circovirus canino: ¿un virus de enteritis emergente o endémico no diagnosticado? </li>
+                                      <li>Análisis comparativo del inmunofenotipo en perros con linfoma</li>
                                     </ul>
                                   </li>
-                                  <li><em>Serum and Tissue Expression Levels of Leptin and Leptin Receptor Are Putative Markers of Specific Feline Mammary Carcinoma Subtypes </em>
+                                  <li><em>Natural History of Histopathologic Changes in Cardiomyopathy of Golden Retriever Muscular Dystrophy</em>
                                     <ul>
-                                      <li>Los niveles de expresión sérica y tisular de la leptina y el receptor de leptina son marcadores putativos de subtipos específicos de carcinoma mamario felino</li>
+                                      <li>Cambios histopatológicos en la miocardiopatía de la distrofia muscular del Golden Retriever                                  </li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -478,7 +478,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no4-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no6-pequenos-animales-revolution/no6-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table></td>
@@ -515,13 +515,13 @@ fin = '''
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_108.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_109.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 108</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 109</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -530,14 +530,14 @@ fin = '''
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                  <li>Recuerda:
                                     <ul>
-                                      <li>Los reptiles (II)</li>
+                                      <li>Otitis externas </li>
                                     </ul>
-                                  </li>
-                                  <li> Consejo:
-                                    <ul>
-                                      <li>Actuación ante un animal perdido o abandonado</li>
-                                    </ul>
-                                  </li>
+                                 </li>
+                                 <li>Salud
+                                   <ul>
+                                     <li>Requisitos nutricionales para perros y gatos</li>
+                                   </ul>
+                                 </li>
 
                                 </ul></td>
                             </tr>
@@ -545,7 +545,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no107-uno-mas/no107-uno-mas-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no109-uno-mas/no109-uno-mas-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -579,7 +579,7 @@ fin = '''
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm; 101</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm; 101</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
@@ -875,7 +875,7 @@ noticia_destacada = '''
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
+                              <td align="left" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">##noticia_titular##</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -992,7 +992,7 @@ noticia_funcion_raw = '''
       <td height="25" bgcolor="#ffffff"></td>
     </tr>
     <tr>
-      <td align="left" bgcolor="#ffffff" class="heading" style="color: ##color##; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##noticia_titular##</td>
+      <td align="left" bgcolor="#ffffff" class="heading" style="color: ##color##; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">##noticia_titular##</td>
     </tr>
     <tr>
       <td height="15" bgcolor="#ffffff"></td>
@@ -1012,16 +1012,14 @@ noticia_funcion_raw = '''
 '''
 
 
-
 publicidad = '''
 <table align="##posicion##" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
     <tbody>
       <tr>
-        <td align="center" bgcolor="#E613ED" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400;   letter-spacing: 1px;">##publicidad## </td>
+        <td align="center" bgcolor="#E613ED" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">##publicidad## </td>
       </tr>
     </tbody>
 </table>'''
-
 
 
 banner_horizontal_raw = '''

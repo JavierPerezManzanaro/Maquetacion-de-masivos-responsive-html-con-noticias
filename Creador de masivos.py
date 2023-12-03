@@ -20,13 +20,11 @@ import webbrowser
 from datetime import datetime
 from datetime import timedelta
 import sys
+import time
 import os
-# https://github.com/PyImageSearch/imutils
 from pprint import pprint
-import cv2 as cv2
-# https://pypi.org/project/opencv-python/
-import imutils
-# https://github.com/PyImageSearch/imutils
+import cv2 as cv2 # https://pypi.org/project/opencv-python/
+import imutils # https://github.com/PyImageSearch/imutils
 import requests
 
 
@@ -180,7 +178,7 @@ def creacion_banners(publicidad_horizontal: list)-> str: # type: ignore
         return banner_en_curso
 
 
-def trabajos_a_publicar(tipo: str)-> list:
+def input_trabajos_a_publicar(tipo: str)-> list:
     """Pregunta por los trabajos o noticias de cada una de las dos secciones
 
     Args:
@@ -194,9 +192,23 @@ def trabajos_a_publicar(tipo: str)-> list:
         trabajos = input('¿Trabajos de animales de compañía para publicar?   ')
     elif tipo == 'produccion':
         trabajos = input('¿Trabajos de animales de producción para publicar? ')
-    trabajos = trabajos.strip()
-    trabajos = trabajos.split(' ')
+    trabajos = limpiar_input(trabajos)
     return trabajos
+
+
+def limpiar_input(texto)-> list:
+    """Deja la lista que el usuario intordce peparada: quita espacios antes y despues, elminia espacios dobles y separa el resultado conviertiendolo en un alista
+
+    Args:
+        texto (str): cadena que introduce el usuario
+
+    Returns:
+        list: lista con los trabajos/noticias
+    """
+    texto = texto.strip()
+    texto = texto.replace('  ', ' ')
+    texto = texto.split(' ')
+    return texto
 
 
 def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int)-> list:
@@ -207,10 +219,10 @@ def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int)-> list:
         trabajos (list): _description_
 
     Returns:
-        _type_: _description_
+        list: lista de cada una de los trabajos en html
     """
     posicion_publicidad = 'right' if tipo == 'compania' else 'left'
-    cerramos_bbdd = 0
+    cerramos_bbdd = False
     trabajos_lista = []
     publicidad = bloques.publicidad.replace('##posicion##', posicion_publicidad)
     try:
@@ -234,11 +246,11 @@ def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int)-> list:
                 texto = trabajo_en_bbdd[5]
                 trabajos_lista.append(
                     tabla_interior(tipo, imagen, titular, texto, url, trabajo_seleccionado))
-                cerramos_bbdd = 1
+                cerramos_bbdd = True
             if trabajo_seleccionado >= numero_registros:
                 # * entra si es una noticia de la web y es tratada como trabajo
                 trabajo_web(tipo, trabajo_seleccionado, trabajos_lista)
-        if cerramos_bbdd == 1:
+        if cerramos_bbdd == True:
             cursorObj.close()
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
@@ -370,8 +382,13 @@ def recuperar_trabajos():
         cursorObj.execute(
             'SELECT * FROM hemeroteca WHERE tipo = "g" ORDER BY "titular";')
         trabajos_en_bbdd_produccion = cursorObj.fetchall()
+        # obtenemos el registro mas alto
+        cursorObj = con.cursor()
+        cursorObj.execute(
+            'SELECT max(id) FROM hemeroteca;')
+        ultimo_id = cursorObj.fetchone()[0]
         cursorObj.close()
-        return trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion
+        return trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion, ultimo_id
     except Exception as e:
         logging.warning('❌ No se pudo acceder a la tabla de trabajos')
         logging.warning('Exception occurred while code execution: ' + repr(e))
@@ -390,9 +407,8 @@ def noticias_destacadas(axon: list)->str:
     noticias_destacadas = ''
     print()
     noticias = input("¿Qué noticias son las destacadas?  ")
-    noticias = noticias.strip()
+    noticias = limpiar_input(noticias)
     try:
-        noticias = noticias.split(' ')
         for noticia in noticias:
             noticia_destacada = bloques.noticia_destacada
             noticia = int(noticia)
@@ -420,7 +436,7 @@ def read_wordpress(api_url: str)-> list:
     Returns:
         list: Lista en bruto con todos los post solicitados
     """
-    wordpress_credentials = datos_de_acceso.wordpress_user + ":" + datos_de_acceso.wordpress_password
+    wordpress_credentials = datos_de_acceso.WORDPRESS_USER + ":" + datos_de_acceso.WORDPRESS_PASSWORD
     # wordpress_token = base64.b64encode(wordpress_credentials.encode())
     # wordpress_header = {'Authorization': 'Basic ' + wordpress_token.decode('utf-8')}
     response = requests.get(api_url)
@@ -507,10 +523,9 @@ def gestion_noticias(axon: list)-> str:
     """
     print()
     noticias = input("¿Qué noticias quieres publicar? ")
-    noticias = noticias.strip()
+    noticias = limpiar_input(noticias)
     noticias_colocadas = []
     try:
-        noticias = noticias.split(' ')
         pase = 1
         for noticia in noticias:
             noticia = int(noticia)
@@ -573,6 +588,7 @@ def gestion_noticias(axon: list)-> str:
     # Unimos los dos bloques (la noticias por pares y la última)
     bloque_final_con_noticias = bloque_final_con_noticias + ultimo_si_es_impar
     return bloque_final_con_noticias
+
 
 def leer_preferencias():
     """Función para leer las preferencias. Se usa así: print(preferencias['key'])
@@ -766,7 +782,7 @@ def fecha_lanzamiento():
     Returns:
         fecha_salida (fecha): Fecha de publicación del masivo
     """
-    fecha_salida = input('¿Fecha de emisión? (nada o aaaa/mm/dd o 1 -para un día más-): ')
+    fecha_salida = input('¿Fecha de emisión? (nada o para otro día: aaaa/mm/dd ó +1): ')
     if not fecha_salida:
         fecha_salida = datetime.now()
     else:
@@ -777,10 +793,7 @@ def fecha_lanzamiento():
             else:
                 fecha_salida = datetime.strptime(fecha_salida, '%Y/%m/%d')
         except:
-            logging.warning(
-            '❌ Cuidado: Hay un error en la fecha. Se sale de la aplicación')
-            os.system(ALERTA)
-            sys.exit(1)
+            salir_app()
     return fecha_salida
 
 
@@ -791,10 +804,10 @@ def nombre_del_archivo():
         nombre_archivo (str)
         numero (int)
     """
-    contenido = os.listdir(datos_de_acceso.ruta_local)
+    contenido = os.listdir(datos_de_acceso.RUTA_LOCAL)
     archivos_html = []
     for fichero in contenido:
-        if os.path.isfile(os.path.join(datos_de_acceso.ruta_local, fichero)) and fichero.endswith('.html'):
+        if os.path.isfile(os.path.join(datos_de_acceso.RUTA_LOCAL, fichero)) and fichero.endswith('.html'):
             fichero = fichero[:-6]
             if fichero.isdigit():
                 archivos_html.append(int(fichero))
@@ -810,6 +823,105 @@ def nombre_del_archivo():
             raise
 
     return nombre_archivo, ultimo_publicado+1
+
+
+def createCampaign(name, subject, content, date_send):
+    """Crea y manda (a no ser que la fecha sea diferente) una campaña. Solo se pide los argumentos que cambian de una campaña a otra.
+    Una vez creada la campaña se lanza automaticamente a no ser que se ponga una date_send.
+    https://acumbamail.com/apidoc/function/createCampaign/
+
+    Esta es la ayuda que manda Acumbamail: https://acumbamail.com/api/1/createCampaign/?auth_token=XXXXX&name=XXXXXX&from_name=my_name&from_email=XXXXXX&subject=XXXXX&lists[0]=XXXX
+
+    Args:
+        name (string): Nombre de la campaña (no es público)
+        subject (string): El asunto de la campaña
+        content (string): El html que contendrá la campaña
+        date_send (date): (Opcional) Fecha de comienzo del envío. Sólo para envíos programados. (YYYY-MM-DD HH:MM)
+
+    Args que son comunes y no se piden:
+        auth_token (string): Tu token de autenticación de cliente
+        from_name (string): Nombre del remitente de la campaña
+        listas (dict): Los identificadores de las listas a las que se enviará la campaña, o de los segmentos a los que se quiera enviar precedidos de s. No se puede enviar a más de un segmento de una misma lista, ni a un segmento y a una lista a la que pertenezca
+        from_email (string): El email desde el que se enviará la campaña, se puede usar Nombre <email@dominio.com>
+        tracking_urls (integer): (Opcional) Sustituir enlaces para seguimiento de clicks. Por defecto=1
+        complete_json (integer): Para que devuelva un json completo con formato completo. Por defecto=0
+
+    Returns:
+        respuesta (json)
+    """
+    respuesta =''
+    api_url = "https://acumbamail.com/api/1/createCampaign/"
+    # Parámetros de la solicitud
+    params = {
+                "auth_token": datos_de_acceso.TOKEN_ACUMBAMAIL,
+                "name": name, #"prueba",
+                "from_name": "Suscripciones",
+                "from_email": "suscripciones@axoncomunicacion.net",
+                "subject": subject,
+                "content": content,
+                "date_send": date_send
+    }
+    # añadimos las listas necesarias
+    params_combinado = params | datos_de_acceso.DICCIONARIO_DE_LISTAS
+    try:
+        # Realizar la solicitud POST a la API
+        response = requests.post(api_url, data=params_combinado)
+        # Verificar el estado de la respuesta
+        if response.status_code == 200:
+            print()
+            print("Campaña creada en Acumbamil con exito")
+            # Puedes imprimir o manejar la respuesta de la API aquí
+            respuesta = json.loads(response.text)
+        else:
+            print(f"Error en la solicitud. Código de estado: {response.status_code}")
+            salir_app()
+    except Exception as e:
+        print(f"Error a la hora de solicitar POST a la API: {str(e)}")
+        salir_app()
+    return respuesta
+
+
+def salir_app():
+    """Sale de la aplicación si ocurre un error grave y emite un solnido de alerta
+    """
+    logging.warning('❌ Cuidado: Hay un error grave. Se procede a salir de la aplicación.')
+    os.system(ALERTA)
+    sys.exit(1)
+
+
+def print_response(response):
+    """Chequeo del funcionamiento de la API de Acumbamail con su respuesta.
+
+    Args:
+        response (json): Respuesta de la API de Acumbamail.
+    """
+    print(f'{response.text=}')
+    pprint(response.json())
+    print(f'{response.status_code=}')
+    print(f'{response.headers=}')
+
+
+def obtener_asunto(html):
+    """Obtiene de la bbdd el asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañia.
+
+    Args:
+        html (str): html del archivo
+
+    Returns:
+        str: Asunto de la campaña si encuentra la etiqueta, si no, solamente 'In-formaVET: ' pero avista del error
+    """
+    etiqueta_apertura = '<td align="left" bgcolor="#ffffff" class="heading" style="color: ##color##; font-family: \'Segoe UI\', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">'
+    patron = r"<{}>(.*?)</td>".format(etiqueta_apertura)
+    match = re.search(patron, html)
+    if match:
+        return 'In-formaVET: ' + match.group(1)
+    else:
+        print()
+        logging.warning('❌ Cuidado: No hay asunto.')
+        os.system(ALERTA)
+        return 'In-formaVET: '
+
+
 
 
 if __name__ == '__main__':
@@ -842,7 +954,7 @@ if __name__ == '__main__':
     print("Nº  | Título")
     print()
 
-    trabajos_en_bbdd_compania,trabajos_en_bbdd_produccion = recuperar_trabajos() # type: ignore
+    trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion, ultimo_id = recuperar_trabajos() # type: ignore
     print('Trabajos de compañía:')
     print(f"----|-{'-'*110}")
     for trabajo in trabajos_en_bbdd_compania:
@@ -880,7 +992,7 @@ if __name__ == '__main__':
     noticias = read_wordpress(f'https://axoncomunicacion.net/wp-json/wp/v2/posts?page=1&per_page={NOTICIAS_MOSTRADAS}')
 
     # * Creamos el diccionario axon[noticia] y eliminamos duplicados
-    numero_registros = len(trabajos_en_bbdd_compania) + len(trabajos_en_bbdd_produccion) + 3
+    numero_registros = ultimo_id + 1
     bbdd_a_tratar =  trabajos_web_peq + trabajos_web_gra + noticias
     bbdd_a_tratar = eliminar_noticias_duplicadas(bbdd_a_tratar)
     axon = creacion_lista_noticias(numero_registros, bbdd_a_tratar)
@@ -890,7 +1002,7 @@ if __name__ == '__main__':
     print(f"----|-{'-'*104}")
     for noticia in axon:
         print(f"{noticia['id']:>3} | {noticia['titulo'][0:130]}")
-        
+
     print()
     print()
     ahora = fecha_lanzamiento()
@@ -903,7 +1015,7 @@ if __name__ == '__main__':
     print(f'Hoy salen publicados {str(len(publicidad_horizontal))} banners (sin contar con los extras):')
     for banner in publicidad_horizontal:
         print(f'  -{banner[1]}')
-        
+
     print()
     print()
     print('Los trabajos/noticias separadas con espacios.')
@@ -911,9 +1023,9 @@ if __name__ == '__main__':
     noticias_destacadas = noticias_destacadas(axon) # type: ignore
     print()
     logging.debug('Trabajos de animales de compañia y producción')
-    trabajos_compania = trabajos_a_publicar('compania')
+    trabajos_compania = input_trabajos_a_publicar('compania')
     trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania, numero_registros)
-    trabajos_produccion = trabajos_a_publicar('produccion')
+    trabajos_produccion = input_trabajos_a_publicar('produccion')
     trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion, numero_registros)
 
     # * Igualamos las dos listas
@@ -948,25 +1060,24 @@ if __name__ == '__main__':
 
     # * Vamos uniendo las partes
     resultado = ''
-    resultado = resultado + comienzo_en_curso + noticias_destacadas
-    resultado = resultado + bloques.pb_laservet + html_trabajos
+    resultado += comienzo_en_curso + noticias_destacadas # type: ignore
+    resultado += bloques.pb_laservet + html_trabajos
 
     # * Chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
     if len(publicidad_horizontal) >= 1:
         print()
         print()
-        logging.warning(
-            '❌ Cuidado: los banners horizontales no se han colocado bien')
+        logging.warning('❌ Cuidado: los banners horizontales no se han colocado bien')
         os.system(ALERTA)
         print()
         print()
         for n in range(len(publicidad_horizontal)):
-            resultado = resultado + creacion_banners(publicidad_horizontal)
+            resultado += creacion_banners(publicidad_horizontal)
 
     # * Vamos uniendo las partes
-    resultado = resultado + bloque_final_con_noticias
-    resultado = resultado + banners.setna
-    resultado = resultado + bloques.fin
+    resultado += bloque_final_con_noticias
+    resultado += banners.setna
+    resultado += bloques.fin
 
     # * Codificamos a html
     logging.debug('Codificamos a html')
@@ -989,17 +1100,6 @@ if __name__ == '__main__':
     resultado = resultado.replace("â€œ", "&quot;")
     resultado = resultado.replace("â€", "&quot;")
 
-    # * Mostramos el resultado para copiar y pegar
-    # print("<!--COMIENZO código generado-->")
-    # print()
-    # print(resultado)
-    # print()
-    # print("<!--FIN código generado-->")
-
-    # * Pegamos al portapapeles el resultado
-    # import pyperclip as clipboard
-    # clipboard.copy(resultado)
-
     # * Creamos el archivo
     logging.debug('Creamos el archivo')
     archivo = str(boletin)+"c.html"
@@ -1007,13 +1107,38 @@ if __name__ == '__main__':
         print(resultado, file=fichero)
 
     # * Movemos el archivo y la carpeta de imágenes a la carpeta de destino y abrimos los archivos html
-    os.replace(archivo, datos_de_acceso.ruta_local+archivo)
-    os.replace(str(boletin)+'c', datos_de_acceso.ruta_local+str(boletin)+'c')
-    comando = 'open ' + '"'+ datos_de_acceso.repositorio + '"'
+    os.replace(archivo, datos_de_acceso.RUTA_LOCAL+archivo)
+    os.replace(str(boletin)+'c', datos_de_acceso.RUTA_LOCAL+str(boletin)+'c')
+    comando = 'open ' + '"'+ datos_de_acceso.REPOSITORIO + '"'
     subprocess.run(comando, shell=True)
-    comando = 'open ' + '"'+ datos_de_acceso.ruta_local + archivo + '"'
+    comando = 'open ' + '"'+ datos_de_acceso.RUTA_LOCAL + archivo + '"'
     subprocess.run(comando, shell=True)
 
     print()
-    print('Archivo generado: 👍')
+    print('Archivo generado con exito: 👍')
+    print()
+    print('Edita el archivo abierto en Dreamweaver.')
+    print()
+    input('Pulsa RETORNO cuanto termines de editar y guardar el archivo en Dreamweaver. ')
+
+    # * Creamos la campaña
+    name = 'Informa-vet ' + str(boletin)
+    date_send='2023-12-30 23:00'
+    # Guardamos el archivo que esta en la web (después de su edición en Dreamweaver)
+    html_content = requests.get(datos_de_acceso.RUTA_PLANTILAS + archivo)
+    if html_content.status_code != 200:
+        print('❌ Cuidado: Error al leer la plantilla de la web. Sigue de forma manual.')
+        salir_app()
+    html_content = html_content.text.replace('<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
+    subject = obtener_asunto(html_content)
+    respuesta = createCampaign(name, subject, html_content, date_send)
+    # Solo continua si la campaña se creo con exito, si no fue así en la función createCampaign se salio de la aplicación
+    url = 'https://acumbamail.com/app/campaign/' + str(respuesta['id']) +'/summary/' # type: ignore
+    print()
+    print('Esperando dos segundos a que Acumbamail cree la campaña.')
+    time.sleep(2)
+    abrir_pagina_web(url)
+
+    print()
+    print('Fin de la aplicación: 👍')
     print()
