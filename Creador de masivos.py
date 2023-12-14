@@ -6,7 +6,6 @@
 # * Explicación
 
 
-
 import errno
 import locale
 import logging
@@ -21,10 +20,9 @@ from datetime import datetime
 from datetime import timedelta
 import sys
 import time
-import os
 from pprint import pprint
-import cv2 as cv2 # https://pypi.org/project/opencv-python/
-import imutils # https://github.com/PyImageSearch/imutils
+import cv2 as cv2  # https://pypi.org/project/opencv-python/
+import imutils  # https://github.com/PyImageSearch/imutils
 import requests
 
 
@@ -135,9 +133,9 @@ def descarga_imagen(url: str, nombre: int):
         imagen = cv2.imread(imagen_local)
     finally:
         imagen_salida = imutils.resize(imagen, width=320)
-        #todo pasar a rgb
-        #todo https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html#ga4e0972be5de079fed4e3a10e24ef5ef0
-        #todo cv2.cvtColor(input_image, flag) donde flag determina el tipo de conversión.
+        # todo pasar a rgb
+        # todo https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html#ga4e0972be5de079fed4e3a10e24ef5ef0
+        # todo cv2.cvtColor(input_image, flag) donde flag determina el tipo de conversión.
         cv2.imwrite(imagen_local, imagen_salida)
         # imagen.convert("RGB")
         # alto = int((int(imagen.size[1]) * ancho) / int(imagen.size[0]))
@@ -146,7 +144,7 @@ def descarga_imagen(url: str, nombre: int):
     return imagen_local
 
 
-def creacion_banners(publicidad_horizontal: list)-> str: # type: ignore
+def creacion_banners(publicidad_horizontal: list) -> str:  # type: ignore
     """Va generando los banners horizontales. Elige uno al azar, lo crea y lo elimina de la lista hasta terminar con todos los banners
 
     Args:
@@ -157,28 +155,36 @@ def creacion_banners(publicidad_horizontal: list)-> str: # type: ignore
     """
     if len(publicidad_horizontal) > 1:
         banner_seleccionado = publicidad_horizontal[0]
-        logging.info(f'Banner {len(publicidad_horizontal)}, {banner_seleccionado[1]} -> colocado')
+        logging.info(
+            f'Banner {len(publicidad_horizontal)}, {banner_seleccionado[1]} -> colocado')
         banner_en_curso = bloques.banner_horizontal_raw
-        banner_en_curso = banner_en_curso.replace('##url##', str(banner_seleccionado[4]))
-        banner_en_curso = banner_en_curso.replace('##imagen##', str(banner_seleccionado[3]))
-        banner_en_curso = banner_en_curso.replace('##alt##', str(banner_seleccionado[6]))
-        publicidad_horizontal = publicidad_horizontal.remove(banner_seleccionado) # type: ignore
+        banner_en_curso = banner_en_curso.replace(
+            '##url##', str(banner_seleccionado[4]))
+        banner_en_curso = banner_en_curso.replace(
+            '##imagen##', str(banner_seleccionado[3]))
+        banner_en_curso = banner_en_curso.replace(
+            '##alt##', str(banner_seleccionado[6]))
+        publicidad_horizontal = publicidad_horizontal.remove(
+            banner_seleccionado)  # type: ignore
         return banner_en_curso
     elif len(publicidad_horizontal) == 1:
         logging.info(
             f'Banner {len(publicidad_horizontal)}, {publicidad_horizontal[0][1]} -> colocado')  # [0][1] porque es una lista que contiene una tupla
         banner_en_curso = bloques.banner_horizontal_raw
-        banner_en_curso = banner_en_curso.replace('##url##', str(publicidad_horizontal[0][4]))
-        banner_en_curso = banner_en_curso.replace('##imagen##', str(publicidad_horizontal[0][3]))
-        banner_en_curso = banner_en_curso.replace('##alt##', str(publicidad_horizontal[0][6]))
-        publicidad_horizontal = publicidad_horizontal.clear() # type: ignore
+        banner_en_curso = banner_en_curso.replace(
+            '##url##', str(publicidad_horizontal[0][4]))
+        banner_en_curso = banner_en_curso.replace(
+            '##imagen##', str(publicidad_horizontal[0][3]))
+        banner_en_curso = banner_en_curso.replace(
+            '##alt##', str(publicidad_horizontal[0][6]))
+        publicidad_horizontal = publicidad_horizontal.clear()  # type: ignore
         return banner_en_curso
     elif len(publicidad_horizontal) == 0:
         banner_en_curso = ''
         return banner_en_curso
 
 
-def input_trabajos_a_publicar(tipo: str)-> list:
+def input_trabajos_a_publicar(tipo: str) -> list:
     """Pregunta por los trabajos o noticias de cada una de las dos secciones
 
     Args:
@@ -196,7 +202,7 @@ def input_trabajos_a_publicar(tipo: str)-> list:
     return trabajos
 
 
-def limpiar_input(texto)-> list:
+def limpiar_input(texto) -> list:
     """Deja la lista que el usuario intordce peparada: quita espacios antes y despues, elminia espacios dobles y separa el resultado conviertiendolo en un alista
 
     Args:
@@ -211,8 +217,8 @@ def limpiar_input(texto)-> list:
     return texto
 
 
-def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int)-> list:
-    """Crea el código html con los trabajos o noticias de compañia y de producción.
+def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int) -> list:
+    """Crea el código html con los trabajos o noticias de compañia y de producción
 
     Args:
         tipo (str): _description_
@@ -224,7 +230,8 @@ def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int)-> list:
     posicion_publicidad = 'right' if tipo == 'compania' else 'left'
     cerramos_bbdd = False
     trabajos_lista = []
-    publicidad = bloques.publicidad.replace('##posicion##', posicion_publicidad)
+    publicidad = bloques.publicidad.replace(
+        '##posicion##', posicion_publicidad)
     try:
         con = sqlite3.connect('bbdd.sqlite3')
         cursorObj = con.cursor()
@@ -263,7 +270,7 @@ def getTextInput():
     """Función para la gestión de la ventana a la hora crear un trabajo en la bbdd
     """
     global resultado
-    resultado = texto.get("1.0","end-1c")
+    resultado = texto.get("1.0", "end-1c")
     ventana_principal.quit()
     ventana_principal.destroy()
 
@@ -289,13 +296,23 @@ def ventana_para_noticia():
     texto = tk.Text(ventana_principal, height=25)
     texto.pack()
     btnRead = tk.Button(ventana_principal, height=2, width=50,
-                    text="Introducir datos", command=getTextInput)
+                        text="Introducir datos", command=getTextInput)
     btnRead.pack()
     ventana_principal.mainloop()
 
 
-def trabajo_web(tipo:str, trabajo_seleccionado: int, trabajos_lista: list):
-    criterio = lambda axon: axon["id"] == trabajo_seleccionado
+def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> list:
+    """Gestiona los trabajos que estan en la web. Los inserta en la bbdd y los pone en la lista para publicar
+
+    Args:
+        tipo (str): si es de compañía o de producción
+        trabajo_seleccionado (int): Trabajo a tratar
+        trabajos_lista (list): Lista de tabajos a publicar
+
+    Returns:
+        list: Lista de tabajos a publicar
+    """
+    def criterio(axon): return axon["id"] == trabajo_seleccionado
     noticia_filtrada = list(filter(criterio, axon))
     print()
     print(f'Noticia {trabajo_seleccionado} para publicar y meter en la bbdd:')
@@ -315,14 +332,14 @@ def trabajo_web(tipo:str, trabajo_seleccionado: int, trabajos_lista: list):
     imagen_bbdd = f'{boletin}c/{trabajo_seleccionado}.{extension_imagen}'
     datos = (noticia_filtrada[0]['titulo'], noticia_filtrada[0]['url'],
              imagen_bbdd, tipo_bbdd, noticia_filtrada[0]['contenido'])
-    sql_insert(datos) # type: ignore
+    sql_insert(datos)  # type: ignore
     # * Incluimos la noticia en la lista para mostar en el masivo
-    trabajos_lista.append(tabla_interior(   tipo,
-                                            noticia_filtrada[0]['imagen'],
-                                            noticia_filtrada[0]['titulo'],
-                                            noticia_filtrada[0]['contenido'],
-                                            noticia_filtrada[0]['url'],
-                                            trabajo_seleccionado))
+    trabajos_lista.append(tabla_interior(tipo,
+                                         noticia_filtrada[0]['imagen'],
+                                         noticia_filtrada[0]['titulo'],
+                                         noticia_filtrada[0]['contenido'],
+                                         noticia_filtrada[0]['url'],
+                                         trabajo_seleccionado))
     return trabajos_lista
 
 
@@ -339,7 +356,7 @@ def sql_insert(datos: str):
     con.commit()
 
 
-def igualar_listas(trabajos_compania: list, trabajos_produccion: list)-> tuple:
+def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
     """Iguala las dos listas
 
     Args:
@@ -350,7 +367,8 @@ def igualar_listas(trabajos_compania: list, trabajos_produccion: list)-> tuple:
         trabajos_compania, trabajos_produccion: las dos listas con la misma longuitud
     """
     while len(trabajos_compania) > len(trabajos_produccion):
-        logging.info('Se añade una publicidad a la lista de trabajos_produccion')
+        logging.info(
+            'Se añade una publicidad a la lista de trabajos_produccion')
         publicidad = bloques.publicidad.replace('##posicion##', 'right')
         trabajos_produccion.append(publicidad)
     while len(trabajos_compania) < len(trabajos_produccion):
@@ -369,7 +387,7 @@ def recuperar_trabajos():
             trabajos_en_bbdd_produccion -> lista con todos los trabajos
     """
     trabajos_en_bbdd_compania = []
-    trabajos_en_bbdd_produccion  = []
+    trabajos_en_bbdd_produccion = []
     try:
         con = sqlite3.connect('bbdd.sqlite3')
         # trabajos de compañia
@@ -395,7 +413,7 @@ def recuperar_trabajos():
         os.system(ALERTA)
 
 
-def noticias_destacadas(axon: list)->str:
+def noticias_destacadas(axon: list) -> str:
     """Gestión de las noticias destacadas. Esta programado para admitir varias
 
     Args:
@@ -413,16 +431,23 @@ def noticias_destacadas(axon: list)->str:
             noticia_destacada = bloques.noticia_destacada
             noticia = int(noticia)
             logging.info(f'Tratanto la noticia destacada: {noticia}')
-            criterio = lambda axon: axon["id"] == noticia
+            def criterio(axon): return axon["id"] == noticia
             noticia_filtrada = list(filter(criterio, axon))
-            imagen_local = descarga_imagen(noticia_filtrada[0]['imagen'], noticia)
-            noticia_destacada = noticia_destacada.replace('##imagen##', str(imagen_local))
-            noticia_destacada = noticia_destacada.replace('##ancho##', str(320))
-            #noticia_destacada = noticia_destacada.replace('##alto##', str(alto))
-            noticia_destacada = noticia_destacada.replace('##noticia_titular##', noticia_filtrada[0]['titulo'])
-            noticia_destacada = noticia_destacada.replace('##contenido##', noticia_filtrada[0]['contenido'])
-            noticia_destacada = noticia_destacada.replace('##noticia_enlace##', noticia_filtrada[0]['url'])
-            noticia_destacada = noticia_destacada + creacion_banners(publicidad_horizontal)
+            imagen_local = descarga_imagen(
+                noticia_filtrada[0]['imagen'], noticia)
+            noticia_destacada = noticia_destacada.replace(
+                '##imagen##', str(imagen_local))
+            noticia_destacada = noticia_destacada.replace(
+                '##ancho##', str(320))
+            # noticia_destacada = noticia_destacada.replace('##alto##', str(alto))
+            noticia_destacada = noticia_destacada.replace(
+                '##noticia_titular##', noticia_filtrada[0]['titulo'])
+            noticia_destacada = noticia_destacada.replace(
+                '##contenido##', noticia_filtrada[0]['contenido'])
+            noticia_destacada = noticia_destacada.replace(
+                '##noticia_enlace##', noticia_filtrada[0]['url'])
+            noticia_destacada = noticia_destacada + \
+                creacion_banners(publicidad_horizontal)
             noticias_destacadas = noticias_destacadas + noticia_destacada
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
@@ -430,13 +455,14 @@ def noticias_destacadas(axon: list)->str:
     return noticias_destacadas
 
 
-def read_wordpress(api_url: str)-> list:
+def read_wordpress(api_url: str) -> list:
     """Lee los post en WordPress
 
     Returns:
         list: Lista en bruto con todos los post solicitados
     """
-    wordpress_credentials = datos_de_acceso.WORDPRESS_USER + ":" + datos_de_acceso.WORDPRESS_PASSWORD
+    wordpress_credentials = datos_de_acceso.WORDPRESS_USER + \
+        ":" + datos_de_acceso.WORDPRESS_PASSWORD
     # wordpress_token = base64.b64encode(wordpress_credentials.encode())
     # wordpress_header = {'Authorization': 'Basic ' + wordpress_token.decode('utf-8')}
     response = requests.get(api_url)
@@ -444,7 +470,7 @@ def read_wordpress(api_url: str)-> list:
     return response_json
 
 
-def creacion_lista_noticias(numero_registros: int, noticias: list)-> list:
+def creacion_lista_noticias(numero_registros: int, noticias: list) -> list:
     """Crea la lista que contiene el diccionario con cada noticia por separado
 
     Args:
@@ -463,24 +489,25 @@ def creacion_lista_noticias(numero_registros: int, noticias: list)-> list:
         contenido_tratado = re.sub('&nbsp;', ' ', contenido_tratado)
         contenido_tratado = re.sub('  ', ' ', contenido_tratado)
         contenido_tratado = contenido_tratado.strip(' ')
-        contenido_tratado = contenido_tratado.replace(noticia['title']['rendered'], '', 1)
+        contenido_tratado = contenido_tratado.replace(
+            noticia['title']['rendered'], '', 1)
         contenido_tratado = contenido_tratado[0:longitud_de_noticia] + '... '
-        axon.append( { 'id': numero_registros,
-                        'url': noticia['link'],
-                        'imagen': noticia['yoast_head_json']['og_image'][0]['url'],
-                        'titulo': noticia['title']['rendered'],
-                        'contenido': contenido_tratado} )
+        axon.append({'id': numero_registros,
+                     'url': noticia['link'],
+                     'imagen': noticia['yoast_head_json']['og_image'][0]['url'],
+                     'titulo': noticia['title']['rendered'],
+                     'contenido': contenido_tratado})
         numero_registros += 1
     return axon
 
 
-def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion:list, publicidad_horizontal: list)->str:
+def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion: list, publicidad_horizontal: list) -> str:
     """Fusionamos los trabajos_compania y de trabajos_produccion y entre cada tabla horizontal colocamos un banner
 
     Args:
-        trabajos_compania (list): _description_
-        trabajos_produccion (list): _description_
-        publicidad_horizontal (list): _description_
+        trabajos_compania (list): lista de trabajos a publicar de animales de compañia
+        trabajos_produccion (list): lista de trabajos a publicar de animales de produccion
+        publicidad_horizontal (list): Lista de banners a incluir
 
     Returns:
         str: el html de la parte de los trabajos
@@ -488,7 +515,8 @@ def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion:list,
     html_trabajos = ''
     # creamos las que van enfrentadas
     for enfrentadas in range(0, len(trabajos_compania)):
-        html_trabajos = html_trabajos + bloques.bloque_exterior_funcion + creacion_banners(publicidad_horizontal) # type: ignore
+        html_trabajos = html_trabajos + bloques.bloque_exterior_funcion + \
+            creacion_banners(publicidad_horizontal)  # type: ignore
         html_trabajos = html_trabajos.replace(
             '##bloque izq##', trabajos_compania[enfrentadas], 1)
         html_trabajos = html_trabajos.replace(
@@ -512,7 +540,7 @@ def eliminar_noticias_duplicadas(bbdd_a_tratar: list) -> list:
     return lista_de_noticias_unicas
 
 
-def gestion_noticias(axon: list)-> str:
+def gestion_noticias(axon: list) -> str:
     """Es función se encarga de toda la gestión de las noticias: desde su introducción hasta el final, cuando sale como html con los banners
 
     Args:
@@ -533,24 +561,27 @@ def gestion_noticias(axon: list)-> str:
             if noticia == 0:
                 # * Si es 0 es un bloque de pb cuadrado
                 if pase % 2 != 0:
-                    publicidad = bloques.publicidad.replace('##posicion##', 'left')
+                    publicidad = bloques.publicidad.replace(
+                        '##posicion##', 'left')
                     noticias_colocadas.append(publicidad)
                 else:
-                    publicidad = bloques.publicidad.replace('##posicion##', 'right')
+                    publicidad = bloques.publicidad.replace(
+                        '##posicion##', 'right')
                     noticias_colocadas.append(publicidad)
             else:
                 # * Si no es pb, es una noticia
-                criterio = lambda axon: axon["id"] == noticia
+                def criterio(axon): return axon["id"] == noticia
                 noticia_filtrada = list(filter(criterio, axon))
                 noticias_colocadas.append(
-                    tabla_interior( 'comun',
-                                    noticia_filtrada[0]['imagen'], noticia_filtrada[0]['titulo'],
-                                    noticia_filtrada[0]['contenido'], noticia_filtrada[0]['url'],
-                                    noticia_filtrada[0]['id']))
+                    tabla_interior('comun',
+                                   noticia_filtrada[0]['imagen'], noticia_filtrada[0]['titulo'],
+                                   noticia_filtrada[0]['contenido'], noticia_filtrada[0]['url'],
+                                   noticia_filtrada[0]['id']))
             pase += 1
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
-        logging.warning('   Exception occurred while code execution: ' + repr(e))
+        logging.warning(
+            '   Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
         noticias_colocadas = ''
     longitud = len(noticias_colocadas)
@@ -561,18 +592,22 @@ def gestion_noticias(axon: list)-> str:
         ultimo_si_es_impar = bloques.bloque_exterior
         ultimo_si_es_impar = ultimo_si_es_impar.replace(
             '##bloque izq##', noticias_colocadas[-1], 1)  # usamos el último
-        ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque izq##', '', 1)
+        ultimo_si_es_impar = ultimo_si_es_impar.replace(
+            '##bloque izq##', '', 1)
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##posicion##', 'left')
         # Agregamos pb cuadrada
-        ultimo_si_es_impar = ultimo_si_es_impar.replace('##bloque der##', banners.banner_laservet_cuadrado)
-        logging.warning('Eliminar el banner del laser porque usamos el banner cuadrado')
+        ultimo_si_es_impar = ultimo_si_es_impar.replace(
+            '##bloque der##', banners.banner_laservet_cuadrado)
+        logging.warning(
+            'Eliminar el banner del laser porque usamos el banner cuadrado')
         longitud -= 1
     # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
     bloque_final_con_noticias = ''
     numero = 0
     for numero in range(0, (int(longitud/2))):
         bloque_final_con_noticias = bloque_final_con_noticias + bloques.bloque_exterior
-        bloque_final_con_noticias = bloque_final_con_noticias + creacion_banners(publicidad_horizontal) # type: ignore
+        bloque_final_con_noticias = bloque_final_con_noticias + \
+            creacion_banners(publicidad_horizontal)  # type: ignore
     # Metemos las noticias menos la última
     for numero in range(0, longitud):
         if numero % 2 == 0:    # numero par DERECHA left
@@ -603,14 +638,15 @@ def leer_preferencias():
         return preferencias
     except Exception as e:
         logging.warning('❌ No se pudo acceder a las preferencias.json')
-        logging.warning('   Exception occurred while code execution: ' + repr(e))
+        logging.warning(
+            '   Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
     finally:
         pass
-        #todo: que hacer al final
+        # todo: que hacer al final
 
 
-def gestion_publicidad()->list:
+def gestion_publicidad(ahora) -> list:
     """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad.
     Después manda la lista a cada una de las funciones que gestionan los banners de las empresas. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, alterna, etc.
 
@@ -636,11 +672,11 @@ def gestion_publicidad()->list:
         con = sqlite3.connect('bbdd.sqlite3')
         cursorObj = con.cursor()
         cursorObj.execute(
-            'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";') # type: ignore
+            'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";')  # type: ignore
         publicidad_horizontal = cursorObj.fetchall()
         cursorObj.close()
         # * desglosamos la lista en los 4 grupos
-        #? se puede hacer por filter o por comprension
+        # ? se puede hacer por filter o por comprension
         # publicidad_final = [publicidad for publicidad in publicidad_horizontal if publicidad_horizontal[2] == 'final']
         # criterio = lambda prioridad: publicidad_horizontal[2] == 'final'
         # # Filtrar elementos utilizando la función lambda
@@ -658,25 +694,23 @@ def gestion_publicidad()->list:
                 interno.append(publicidad)
             elif publicidad[2] == 'final':
                 final.append(publicidad)
-
         cliente = pb_royal_canin(cliente)
         cliente = pb_ecuphar(cliente)
         cliente = pb_bioiberica(cliente)
         random.shuffle(cliente)
         random.shuffle(interno)
-
         publicidad_horizontal = destacado + cliente + interno + final
-
     except Exception as e:
         logging.warning('❌ Error en la función: gestion_publicidad')
-        logging.warning('   Exception occurred while code execution: ' + repr(e))
+        logging.warning(
+            '   Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
         publicidad_horizontal = []
 
     return publicidad_horizontal
 
 
-def pb_ecuphar(publicidad_horizontal: list)-> list:
+def pb_ecuphar(publicidad_horizontal: list) -> list:
     """Se gestiona la publicación de Ecuphar. Cambian cada semana
 
     Args:
@@ -685,24 +719,24 @@ def pb_ecuphar(publicidad_horizontal: list)-> list:
     Returns:
         list: lista de banners horizontales actualizada
     """
-    semana = ahora.isocalendar()[1]
+    semana = ahora.isocalendar()[1] # type: ignore
     ecuphar_banner = ''
     paso = False
     for banner in publicidad_horizontal:
         if banner[1] == 'Ecuphar: Daxocox' and semana % 2 == 0:
             ecuphar_banner = banner
             paso = True
-            #publicidad_horizontal.remove(banner)
+            # publicidad_horizontal.remove(banner)
         if banner[1] == 'Ecuphar: Leisguard' and semana % 2 != 0:
             ecuphar_banner = banner
             paso = True
-            #publicidad_horizontal.remove(banner)
+            # publicidad_horizontal.remove(banner)
     if paso:
         publicidad_horizontal.remove(ecuphar_banner)
     return publicidad_horizontal
 
 
-def pb_bioiberica(publicidad_horizontal: list)-> list:
+def pb_bioiberica(publicidad_horizontal: list) -> list:
     """Se gestiona la publicación de Bioiberica. Son aleatorios
 
     Args:
@@ -726,7 +760,7 @@ def pb_bioiberica(publicidad_horizontal: list)-> list:
     return publicidad_horizontal
 
 
-def pb_royal_canin(publicidad_horizontal: list)->list:
+def pb_royal_canin(publicidad_horizontal: list) -> list:
     """Se gestiona la publicación de Royal Canin. Esta publicidad va por periodos.
     Cada semana toca uno de los tres. Proceso: si encuentra el banner en la lista los guarada en varibles; borra esos banners de la lista y añanade el que toca
 
@@ -777,17 +811,18 @@ def pb_royal_canin(publicidad_horizontal: list)->list:
 
 
 def fecha_lanzamiento():
-    """Gestionamos la fecha de salida del masivo. Podemos poner una fecha (aaa/mm/dd) o cualquiera de estas tres expresiones: 'mañana', 1 o +1.
+    """Gestionamos la fecha de salida del masivo. Podemos poner una fecha (aaa/mm/dd) o cualquiera de estas tres expresiones: 'mañana', 1 o +1
 
     Returns:
         fecha_salida (fecha): Fecha de publicación del masivo
     """
-    fecha_salida = input('¿Fecha de emisión? (nada o para otro día: aaaa/mm/dd ó +1): ')
+    fecha_salida = input(
+        '¿Fecha de emisión? (nada o para otro día: aaaa/mm/dd ó +1): ')
     if not fecha_salida:
         fecha_salida = datetime.now()
     else:
         try:
-            if fecha_salida == '1' or fecha_salida =='+1' or fecha_salida.lower() == 'mañana':
+            if fecha_salida == '1' or fecha_salida == '+1' or fecha_salida.lower() == 'mañana':
                 fecha_salida = datetime.now()
                 fecha_salida = fecha_salida + timedelta(days=1)
             else:
@@ -798,7 +833,7 @@ def fecha_lanzamiento():
 
 
 def nombre_del_archivo():
-    """Lee la carpeta donde se almacena los masivos y crea el nombre del siguiente documento.
+    """Lee la carpeta donde se almacena los masivos y crea el nombre del siguiente documento
 
     Returns:
         nombre_archivo (str)
@@ -849,17 +884,17 @@ def createCampaign(name, subject, content, date_send):
     Returns:
         respuesta (json)
     """
-    respuesta =''
+    respuesta = ''
     api_url = "https://acumbamail.com/api/1/createCampaign/"
     # Parámetros de la solicitud
     params = {
-                "auth_token": datos_de_acceso.TOKEN_ACUMBAMAIL,
-                "name": name, #"prueba",
-                "from_name": "Suscripciones",
-                "from_email": "suscripciones@axoncomunicacion.net",
-                "subject": subject,
-                "content": content,
-                "date_send": date_send
+        "auth_token": datos_de_acceso.TOKEN_ACUMBAMAIL,
+        "name": name,  # "prueba",
+        "from_name": "Suscripciones",
+        "from_email": "suscripciones@axoncomunicacion.net",
+        "subject": subject,
+        "content": content,
+        "date_send": date_send
     }
     # añadimos las listas necesarias
     params_combinado = params | datos_de_acceso.DICCIONARIO_DE_LISTAS
@@ -873,7 +908,8 @@ def createCampaign(name, subject, content, date_send):
             # Puedes imprimir o manejar la respuesta de la API aquí
             respuesta = json.loads(response.text)
         else:
-            print(f"Error en la solicitud. Código de estado: {response.status_code}")
+            print(
+                f"Error en la solicitud. Código de estado: {response.status_code}")
             salir_app()
     except Exception as e:
         print(f"Error a la hora de solicitar POST a la API: {str(e)}")
@@ -884,16 +920,17 @@ def createCampaign(name, subject, content, date_send):
 def salir_app():
     """Sale de la aplicación si ocurre un error grave y emite un solnido de alerta
     """
-    logging.warning('❌ Cuidado: Hay un error grave. Se procede a salir de la aplicación.')
+    logging.warning(
+        '❌ Cuidado: Hay un error grave. Se procede a salir de la aplicación.')
     os.system(ALERTA)
     sys.exit(1)
 
 
 def print_response(response):
-    """Chequeo del funcionamiento de la API de Acumbamail con su respuesta.
+    """Chequeo del funcionamiento de la API de Acumbamail con su respuesta
 
     Args:
-        response (json): Respuesta de la API de Acumbamail.
+        response (json): Respuesta de la API de Acumbamail
     """
     print(f'{response.text=}')
     pprint(response.json())
@@ -902,7 +939,7 @@ def print_response(response):
 
 
 def obtener_asunto(html):
-    """Obtiene de la bbdd el asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañia.
+    """Obtiene de la bbdd el asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañia
 
     Args:
         html (str): html del archivo
@@ -910,18 +947,32 @@ def obtener_asunto(html):
     Returns:
         str: Asunto de la campaña si encuentra la etiqueta, si no, solamente 'In-formaVET: ' pero avista del error
     """
-    etiqueta_apertura = '<td align="left" bgcolor="#ffffff" class="heading" style="color: ##color##; font-family: \'Segoe UI\', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">'
-    patron = r"<{}>(.*?)</td>".format(etiqueta_apertura)
-    match = re.search(patron, html)
+    pattern = r'<td\s[^>]*class="heading"[^>]*>(.*?)<\/td>'
+    match = re.search(pattern, html)
     if match:
-        return 'In-formaVET: ' + match.group(1)
+        asunto = match.group(1)
+        asunto = asunto.replace("&aacute;", "á")
+        asunto = asunto.replace("&eacute;", "é")
+        asunto = asunto.replace("&iacute;", "í")
+        asunto = asunto.replace("&oacute;", "ó")
+        asunto = asunto.replace("&uacute;", "ú")
+        asunto = asunto.replace("&Aacute;", "Á")
+        asunto = asunto.replace("&Eacute;", "É")
+        asunto = asunto.replace("&Iacute;", "Í")
+        asunto = asunto.replace("&Oacute;", "Ó")
+        asunto = asunto.replace("&Uacute;", "Ú")
+        asunto = asunto.replace("&ntilde;", "ñ")
+        asunto = asunto.replace("&Ntilde;", "Ñ")
+        asunto = asunto.replace("&iexcl;", "¡")
+        asunto = asunto.replace("&iquest;", "¿")
+        asunto = asunto.replace("&quot;", "â€œ")
+        asunto = asunto.replace("&quot;", "â€")
     else:
         print()
         logging.warning('❌ Cuidado: No hay asunto.')
         os.system(ALERTA)
         return 'In-formaVET: '
-
-
+    return 'In-formaVET: ' + asunto
 
 
 if __name__ == '__main__':
@@ -954,7 +1005,7 @@ if __name__ == '__main__':
     print("Nº  | Título")
     print()
 
-    trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion, ultimo_id = recuperar_trabajos() # type: ignore
+    trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion, ultimo_id = recuperar_trabajos()  # type: ignore
     print('Trabajos de compañía:')
     print(f"----|-{'-'*110}")
     for trabajo in trabajos_en_bbdd_compania:
@@ -967,11 +1018,13 @@ if __name__ == '__main__':
 
     TRABAJOS_A_MOSTRAR = 35
     # todo &offset=10") # con esta añadido nos saltamos los 10 primeros porque siempre hay un desfase. ¿Merece la pena usarlo?: Por ejemplo si no la encuentra a lo mejor si es buena idea añadirlo
-     # * Recogemos los últimos trabajos de pequeños animales de la web
-    trabajos_web_peq = read_wordpress(f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=477&page=1&per_page={TRABAJOS_A_MOSTRAR}")
+    # * Recogemos los últimos trabajos de pequeños animales de la web
+    trabajos_web_peq = read_wordpress(
+        f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=477&page=1&per_page={TRABAJOS_A_MOSTRAR}")
 
     # * Recogemos los últimos trabajos de producción de la web
-    trabajos_web_gra = read_wordpress(f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=476&page=1&per_page={TRABAJOS_A_MOSTRAR}")
+    trabajos_web_gra = read_wordpress(
+        f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=476&page=1&per_page={TRABAJOS_A_MOSTRAR}")
 
     """Si en un futuro vemos necesario separa la lista de noticias completas en tres
     print()
@@ -988,17 +1041,19 @@ if __name__ == '__main__':
     """
 
     # * Recogemos las noticias de la web
-    NOTICIAS_MOSTRADAS = 100 # No puede ser mayor de 100
-    noticias = read_wordpress(f'https://axoncomunicacion.net/wp-json/wp/v2/posts?page=1&per_page={NOTICIAS_MOSTRADAS}')
+    NOTICIAS_MOSTRADAS = 100  # No puede ser mayor de 100
+    noticias = read_wordpress(
+        f'https://axoncomunicacion.net/wp-json/wp/v2/posts?page=1&per_page={NOTICIAS_MOSTRADAS}')
 
     # * Creamos el diccionario axon[noticia] y eliminamos duplicados
     numero_registros = ultimo_id + 1
-    bbdd_a_tratar =  trabajos_web_peq + trabajos_web_gra + noticias
+    bbdd_a_tratar = trabajos_web_peq + trabajos_web_gra + noticias
     bbdd_a_tratar = eliminar_noticias_duplicadas(bbdd_a_tratar)
     axon = creacion_lista_noticias(numero_registros, bbdd_a_tratar)
 
     print()
-    print(f"Últimas {NOTICIAS_MOSTRADAS} noticias y {TRABAJOS_A_MOSTRAR} trabajos:")
+    print(
+        f"Últimas {NOTICIAS_MOSTRADAS} noticias y {TRABAJOS_A_MOSTRAR} trabajos:")
     print(f"----|-{'-'*104}")
     for noticia in axon:
         print(f"{noticia['id']:>3} | {noticia['titulo'][0:130]}")
@@ -1006,13 +1061,14 @@ if __name__ == '__main__':
     print()
     print()
     ahora = fecha_lanzamiento()
-    publicidad_horizontal = gestion_publicidad()
+    publicidad_horizontal = gestion_publicidad(ahora)
     print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
     print()
     nombre_archivo, boletin = nombre_del_archivo()
     print(f'Se va a publicar: {nombre_archivo}')
     print()
-    print(f'Hoy salen publicados {str(len(publicidad_horizontal))} banners (sin contar con los extras):')
+    print(
+        f'Hoy salen publicados {str(len(publicidad_horizontal))} banners (sin contar con los extras):')
     for banner in publicidad_horizontal:
         print(f'  -{banner[1]}')
 
@@ -1020,54 +1076,60 @@ if __name__ == '__main__':
     print()
     print('Los trabajos/noticias separadas con espacios.')
     print()
-    noticias_destacadas = noticias_destacadas(axon) # type: ignore
+    noticias_destacadas = noticias_destacadas(axon)  # type: ignore
     print()
     logging.debug('Trabajos de animales de compañia y producción')
     trabajos_compania = input_trabajos_a_publicar('compania')
-    trabajos_compania = trabajos_a_mostrar('compania', trabajos_compania, numero_registros)
+    trabajos_compania = trabajos_a_mostrar(
+        'compania', trabajos_compania, numero_registros)
     trabajos_produccion = input_trabajos_a_publicar('produccion')
-    trabajos_produccion = trabajos_a_mostrar('produccion', trabajos_produccion, numero_registros)
+    trabajos_produccion = trabajos_a_mostrar(
+        'produccion', trabajos_produccion, numero_registros)
 
     # * Igualamos las dos listas
-    if len(trabajos_compania) != len(trabajos_produccion): # type: ignore
-        trabajos_compania, trabajos_produccion = igualar_listas(trabajos_compania, trabajos_produccion) # type: ignore
+    if len(trabajos_compania) != len(trabajos_produccion):  # type: ignore
+        trabajos_compania, trabajos_produccion = igualar_listas(
+            trabajos_compania, trabajos_produccion)  # type: ignore
 
-    html_trabajos = fusion_trabajos_y_banners(trabajos_compania, trabajos_produccion, publicidad_horizontal)
+    html_trabajos = fusion_trabajos_y_banners(
+        trabajos_compania, trabajos_produccion, publicidad_horizontal)
 
     bloque_final_con_noticias = gestion_noticias(axon)
 
     # * Gestionamos la cabecera
     comienzo_en_curso = bloques.comienzo
-    comienzo_en_curso = comienzo_en_curso.replace('##nombre_archivo##', nombre_archivo)
+    comienzo_en_curso = comienzo_en_curso.replace(
+        '##nombre_archivo##', nombre_archivo)
     comienzo_en_curso = comienzo_en_curso.replace('##numero##', str(boletin))
     meses = {
-                "1": 'Enero',
-                "2": 'Febrero',
-                "3": 'Marzo',
-                "4": 'Abril',
-                "5": 'Mayo',
-                "6": 'Junio',
-                "7": 'Julio',
-                "8": 'Agosto',
-                "9": 'Septiembre',
-                "10": 'Octubre',
-                "11": 'Noviembre',
-                "12": 'Diciembre'
-            }
+        "1": 'Enero',
+        "2": 'Febrero',
+        "3": 'Marzo',
+        "4": 'Abril',
+        "5": 'Mayo',
+        "6": 'Junio',
+        "7": 'Julio',
+        "8": 'Agosto',
+        "9": 'Septiembre',
+        "10": 'Octubre',
+        "11": 'Noviembre',
+        "12": 'Diciembre'
+    }
     comienzo_en_curso = comienzo_en_curso.replace(
         '##mes##', meses[str(ahora.month)])
     # todo: añadir año
 
     # * Vamos uniendo las partes
     resultado = ''
-    resultado += comienzo_en_curso + noticias_destacadas # type: ignore
+    resultado += comienzo_en_curso + noticias_destacadas  # type: ignore
     resultado += bloques.pb_laservet + html_trabajos
 
     # * Chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
     if len(publicidad_horizontal) >= 1:
         print()
         print()
-        logging.warning('❌ Cuidado: los banners horizontales no se han colocado bien')
+        logging.warning(
+            '❌ Cuidado: los banners horizontales no se han colocado bien')
         os.system(ALERTA)
         print()
         print()
@@ -1109,9 +1171,9 @@ if __name__ == '__main__':
     # * Movemos el archivo y la carpeta de imágenes a la carpeta de destino y abrimos los archivos html
     os.replace(archivo, datos_de_acceso.RUTA_LOCAL+archivo)
     os.replace(str(boletin)+'c', datos_de_acceso.RUTA_LOCAL+str(boletin)+'c')
-    comando = 'open ' + '"'+ datos_de_acceso.REPOSITORIO + '"'
+    comando = 'open ' + '"' + datos_de_acceso.REPOSITORIO + '"'
     subprocess.run(comando, shell=True)
-    comando = 'open ' + '"'+ datos_de_acceso.RUTA_LOCAL + archivo + '"'
+    comando = 'open ' + '"' + datos_de_acceso.RUTA_LOCAL + archivo + '"'
     subprocess.run(comando, shell=True)
 
     print()
@@ -1123,17 +1185,19 @@ if __name__ == '__main__':
 
     # * Creamos la campaña
     name = 'Informa-vet ' + str(boletin)
-    date_send='2023-12-30 23:00'
+    date_send = '2024-12-30 23:00'
     # Guardamos el archivo que esta en la web (después de su edición en Dreamweaver)
     html_content = requests.get(datos_de_acceso.RUTA_PLANTILAS + archivo)
     if html_content.status_code != 200:
         print('❌ Cuidado: Error al leer la plantilla de la web. Sigue de forma manual.')
         salir_app()
-    html_content = html_content.text.replace('<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
+    html_content = html_content.text.replace(
+        '<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
     subject = obtener_asunto(html_content)
     respuesta = createCampaign(name, subject, html_content, date_send)
     # Solo continua si la campaña se creo con exito, si no fue así en la función createCampaign se salio de la aplicación
-    url = 'https://acumbamail.com/app/campaign/' + str(respuesta['id']) +'/summary/' # type: ignore
+    url = 'https://acumbamail.com/app/campaign/' + \
+        str(respuesta['id']) + '/summary/'  # type: ignore
     print()
     print('Esperando dos segundos a que Acumbamail cree la campaña.')
     time.sleep(2)

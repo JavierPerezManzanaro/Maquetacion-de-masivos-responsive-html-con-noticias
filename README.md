@@ -160,6 +160,12 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 6.1
+- Aplico formato Autopep8.
+- Otras mejoras menores.
+- Corrrijo la función obtener_asunto().
+- Correcciones de errores menores.
+
 ### 6
 - Añadimos la API de Acumbamail (empresa con la que tenemos la gestión de los masivos) para la creación automática de cada campaña. Para impedir su lanzamiento se programa para finales de año. Esto abra que cambiarlo desde la web cuando queramos lanzar la campaña.
 - Renombro las variables globales que estan definidas en "datos_de_acceso.py" (no esta subido al repositorio) a MAYÚSCULAS.

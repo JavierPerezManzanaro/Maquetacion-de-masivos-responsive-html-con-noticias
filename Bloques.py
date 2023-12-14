@@ -253,7 +253,7 @@ table[class=main] {
               <td align="center" bgcolor="#006580" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
                   <tbody>
                     <tr bgcolor="#006580">
-                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3.png" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3_navidad.gif" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
                     </tr>
                   </tbody>
                 </table></td>
@@ -573,38 +573,37 @@ fin = '''
                  <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys101.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys102.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm; 101</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Cr&iacute;a y Salud, N&ordm; 102</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
+                                  <li>BOVINO
+                                    <ul>
+                                      <li>La amenaza de la enfermedad hemorrágica epizoótica a rumiantes domésticos y silvestres </li>
+                                      <li>Evaluación del estado nutricional micromineral de los rebaños lecheros. La intuición no siempre es una aliada…</li>
+                                    </ul>
+                                  </li>
                                   <li>PORCINO
                                     <ul>
-                                      <li>Sindrome dilatación intestinal porcino</li>
-                                      <li>Avances del siglo XXI en la nutrigen&oacute;mica porcina (Parte 3) </li>
+                                      <li>Ponencias del VII Congreso de la Asociación Nacional de Veterinarios de Porcino</li>
                                     </ul>
                                   </li>
-                                  <li>BOVINO
-                                    <ul><li>Predicción de la mastitis mediante un almacén de datos en tiempo real </li>
-                                      <li>¿Sigue siendo todavía el SCC el indicador principal de la salud de la ubre?</li>
-                                    </ul>
-                                  </li>
-
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-101-cria-y-salud-sumario/no-101-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-102-cria-y-salud-sumario/no-102-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
