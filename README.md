@@ -160,6 +160,10 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 6.2
+- Extraigo las funciones de la gestion de los banners a otro archivo.
+- Correcciones de errores menores.
+
 ### 6.1
 - Aplico formato Autopep8.
 - Otras mejoras menores.

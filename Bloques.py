@@ -367,13 +367,13 @@ fin = '''
                     <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av102.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av103.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 102</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Asistente en Centro Veterinario, N&ordm; 103</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -381,9 +381,9 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Enfermedades cong&eacute;nitas y hereditarias de las razas caninas y felinas </li>
-                                  <li>Estasis gastrointestinal en conejos </li>
-                                  <li>¿Qué es el neuromarketing? </li>
-                                  <li>ANAVET: Dispositivos clínicos </li>
+                                  <li>Preparándonos para el invierno </li>
+                                  <li>Hepatopatías en aves </li>
+                                  <li>ANAVET: Vetmadrid 2024 </li>
                                   <li>Noticias</li>
                                 </ul></td>
                             </tr>
@@ -391,7 +391,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no102-asistente-en-centro-veterinario/no102-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no103-asistente-en-centro-veterinario/no103-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -691,7 +691,7 @@ fin = '''
                         <table width="30%" border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" style="color:#666666;"><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><img src="comun/sobre2.gif" alt="" width="200" height="200"   style="margin:0; padding:0; width:100%; height:auto;" /></span></td>
+                              <td align="left" valign="middle" style="color:#666666;"><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><img src="comun/sobre3.gif" alt="" width="200" height="200"   style="margin:0; padding:0; width:100%; height:auto;" /></span></td>
                             </tr>
                           </tbody>
                         </table></td>
@@ -768,11 +768,11 @@ fin = '''
                                   <tbody>
                                     <!-- ROW-1 START -->
                                     <tr>
-                                      <td  valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;"><p>ADVERTENCIA LEGAL: La informaci&oacute;n contenida en este mensaje de correo electr&oacute;nico es confidencial. Los datos contenidos en el mismo son de inter&eacute;s y uso exclusivo de su destinatario, por tratarse de informaci&oacute;n confidencial, privilegiada y reservada. Si ha recibido esta comunicaci&oacute;n por error, agradecemos su colaboraci&oacute;n y solicitamos que la elimine definitivamente. Si ud. no es la persona a la que va dirigido, le informamos que cualquier divulgaci&oacute;n, copia, distribuci&oacute;n de la informaci&oacute;n queda prohibida y puede ser ilegal.</p>
+                                      <td  valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;"><p>ADVERTENCIA LEGAL:&nbsp;La informaci&oacute;n contenida en este&nbsp;mensaje de correo electr&oacute;nico es&nbsp;confidencial. Los datos contenidos en el&nbsp;mismo son de inter&eacute;s y uso exclusivo de&nbsp;su destinatario, por tratarse de&nbsp;informaci&oacute;n confidencial, privilegiada y&nbsp;reservada. Si ha recibido esta&nbsp;comunicaci&oacute;n por error, agradecemos su&nbsp;colaboraci&oacute;n y solicitamos que la&nbsp;elimine definitivamente. Si ud. no es la&nbsp;persona a la que va dirigido, le&nbsp;informamos que cualquier divulgaci&oacute;n,&nbsp;copia, distribuci&oacute;n de la informaci&oacute;n&nbsp;queda prohibida y puede ser ilegal.</p>
+                                        <p>&nbsp;</p>
+                                        <p>Le recordamos que sus datos han sido incorporados en el sistema de tratamiento de AXON VET S.L., con CIF B42795203, con la finalidad de remitirle la informaci&oacute;n que usted ha solicitado recibir, y que podr&aacute; ejercer sus derechos de acceso,  rectificaci&oacute;n, limitaci&oacute;n  de  tratamiento, supresi&oacute;n, portabilidad y  oposici&oacute;n/ revocaci&oacute;n,  en  los t&eacute;rminos que establece la normativa vigente en materia de protecci&oacute;n de datos, dirigiendo su petici&oacute;n a la direcci&oacute;n postal: Calle Ram&oacute;n G&oacute;mez de la Serna, 19; 28810 Villalbilla; Madrid; Espa&ntilde;a o bien a trav&eacute;s del correo electr&oacute;nico: <a href="mailto:axonvet@axonvet.es">axonvet@axonvet.es</a></p>
                                         <p> </p>
-                                        <p>Le recordamos que sus datos han sido incorporados en el sistema de tratamiento de SINAPSIS POSITIVA, S.L., con CIF B86907474, con la finalidad de remitirle la informaci&oacute;n que usted ha solicitado recibir, y que podr&aacute; ejercer sus derechos de acceso,  rectificaci&oacute;n, limitaci&oacute;n  de  tratamiento, supresi&oacute;n, portabilidad y  oposici&oacute;n/ revocaci&oacute;n,  en  los t&eacute;rminos que establece la normativa vigente en materia de protecci&oacute;n de datos, dirigiendo su petici&oacute;n a la direcci&oacute;n postal: Calle de Fuerteventura, 15, bajo B; 28703 San Sebasti&aacute;n de los Reyes (Madrid) o bien a trav&eacute;s del correo electr&oacute;nico: <a href="mailto:axoncomunicacion@axoncomunicacion.net">axoncomunicacion@axoncomunicacion.net</a></p>
-                                        <p> </p>
-                                        <p>De conformidad con la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n, si no desea seguir recibiendo informaci&oacute;n o ha recibido este mensaje por error, rogamos remita un correo a <a href="mailto:baja@axoncomunicacion.net%20">baja@axoncomunicacion.net </a> y daremos de baja su direcci&oacute;n de correo electr&oacute;nico/ puede responder a este correo electr&oacute;nico indicando &ldquo;Baja&rdquo; en el Asunto. </p></td>
+                                      <p>De conformidad con la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n, si no desea seguir recibiendo informaci&oacute;n o ha recibido este mensaje por error, rogamos remita un correo a <a href="mailto:baja@axoncomunicacion.net%20">baja@axoncomunicacion.net </a> y daremos de baja su direcci&oacute;n de correo electr&oacute;nico/ puede responder a este correo electr&oacute;nico indicando &ldquo;Baja&rdquo; en el Asunto. </p></td>
                                     </tr>
                                     <!-- ROW-1 END -->
                                   </tbody>
@@ -781,21 +781,18 @@ fin = '''
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                   <tbody>
                                     <tr>
-                                      <td align="center" valign="middle" bgcolor="#FFFFFF"><table width="564" border="0" cellspacing="0" cellpadding="5">
-                                          <tr bgcolor="#FFFFFF">
-                                            <td width="329" valign="top"><a href="http://www.axoncomunicacion.net"><img src="imagenes/3_logos_2021.gif" alt="Axon" width="329" height="44" style="margin:0; padding:0; width:100%; height:auto;" border="0" /></a></td>
-                                            <td width="0" valign="top"></td>
-                                            <td width="205" align="center" valign="top" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><p>Calle Fuerteventura 15, bajo B.<br/>
-                                                28703 San Sebasti&aacute;n de los Reyes (Madrid) </p>
-                                              Tel&eacute;fono: <span class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;">678498310</span><br />
-                                              <a href="mailto:axoncomunicacion@axoncomunicacion.net">axoncomunicacion@axoncomunicacion.net</a><br />
-                                              <a href="http://www.axoncomunicacion.net">http://www.axoncomunicacion.net</a></td>
-                                          </tr>
-                                        </table></td>
+                                      <td align="center" valign="middle" bgcolor="#FFFFFF"><table width="376" border="0" cellspacing="0" cellpadding="5">
+                                        <tr bgcolor="#FFFFFF">
+                                          <td width="55" valign="top"><a href="http://www.axoncomunicacion.net"><img src="imagenes/AxonVet.png" alt="Axon" width="50" height="83" border="0" /></a></td>
+                                          <td width="301" align="center" valign="top" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><p>Calle Ram&oacute;n G&oacute;mez de la Serna, 19; 28810 Villalbilla; Madrid</p>
+                                            Tel&eacute;fono:<span class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"> <a href="tel:+34678498310">678498310</a></span><br />
+                                            <a href="mailto:axonvet@axonvet.es">axonvet@axonvet.es</a><br />
+                                            <a href="http://www.axoncomunicacion.net">http://www.axoncomunicacion.net</a></td>
+                                        </tr>
+                                      </table></td>
                                     </tr>
                                   </tbody>
-                                </table>
-                                <hr /></td>
+                              </table>                                <hr /></td>
                             </tr>
                             <tr>
                               <td align="center" valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;">Si te quieres dar de baja <a href="*|UNSUBSCRIBE_URL|*">pulsa este enlace.</a></td>

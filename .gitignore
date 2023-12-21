@@ -4,4 +4,4 @@ venv_informavet/
 .gitignore
 
 datos_de_acceso.py
-modulos de pb sin usar.py
+banners_gestion.py

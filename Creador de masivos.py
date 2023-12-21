@@ -30,6 +30,7 @@ import requests
 import bloques
 import datos_de_acceso
 import banners
+from banners_gestion import pb_royal_canin, pb_ecuphar, pb_bioiberica
 
 
 def execution_time(func):
@@ -646,9 +647,9 @@ def leer_preferencias():
         # todo: que hacer al final
 
 
-def gestion_publicidad(ahora) -> list:
+def banners_gestion(ahora) -> list:
     """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad.
-    Después manda la lista a cada una de las funciones que gestionan los banners de las empresas. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, alterna, etc.
+    Después manda la lista a cada una de las funciones que gestionan los banners de las empresas que estan en el archivo 'banners_gestion.py'. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, etc.
 
     Returns:
         list: Lista ordenada con los banners a publicar en el día
@@ -694,8 +695,8 @@ def gestion_publicidad(ahora) -> list:
                 interno.append(publicidad)
             elif publicidad[2] == 'final':
                 final.append(publicidad)
-        cliente = pb_royal_canin(cliente)
-        cliente = pb_ecuphar(cliente)
+        cliente = pb_royal_canin(cliente, ahora)
+        cliente = pb_ecuphar(cliente, ahora)
         cliente = pb_bioiberica(cliente)
         random.shuffle(cliente)
         random.shuffle(interno)
@@ -706,106 +707,6 @@ def gestion_publicidad(ahora) -> list:
             '   Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
         publicidad_horizontal = []
-
-    return publicidad_horizontal
-
-
-def pb_ecuphar(publicidad_horizontal: list) -> list:
-    """Se gestiona la publicación de Ecuphar. Cambian cada semana
-
-    Args:
-        publicidad_horizontal (list): lista de banners horizontales
-
-    Returns:
-        list: lista de banners horizontales actualizada
-    """
-    semana = ahora.isocalendar()[1] # type: ignore
-    ecuphar_banner = ''
-    paso = False
-    for banner in publicidad_horizontal:
-        if banner[1] == 'Ecuphar: Daxocox' and semana % 2 == 0:
-            ecuphar_banner = banner
-            paso = True
-            # publicidad_horizontal.remove(banner)
-        if banner[1] == 'Ecuphar: Leisguard' and semana % 2 != 0:
-            ecuphar_banner = banner
-            paso = True
-            # publicidad_horizontal.remove(banner)
-    if paso:
-        publicidad_horizontal.remove(ecuphar_banner)
-    return publicidad_horizontal
-
-
-def pb_bioiberica(publicidad_horizontal: list) -> list:
-    """Se gestiona la publicación de Bioiberica. Son aleatorios
-
-    Args:
-        publicidad_horizontal (list): lista de banners horizontales
-
-    Returns:
-        list: lista de banners horizontales actualizada
-    """
-    es_seleccionado = random.randint(0, 1)
-    bioiberica_banner = ''
-    paso = False
-    for banner in publicidad_horizontal:
-        if banner[1] == 'Bio Iberica' and es_seleccionado == 0:
-            bioiberica_banner = banner
-            paso = True
-        if banner[1] == 'Bio Iberica: Atopivet Collar' and es_seleccionado == 1:
-            bioiberica_banner = banner
-            paso = True
-    if paso:
-        publicidad_horizontal.remove(bioiberica_banner)
-    return publicidad_horizontal
-
-
-def pb_royal_canin(publicidad_horizontal: list) -> list:
-    """Se gestiona la publicación de Royal Canin. Esta publicidad va por periodos.
-    Cada semana toca uno de los tres. Proceso: si encuentra el banner en la lista los guarada en varibles; borra esos banners de la lista y añanade el que toca
-
-    Args:
-        publicidad_horizontal (list): lista de banners horizontales
-
-    Returns:
-        list: lista de banners horizontales actualizada
-    """
-    semana = ahora.isocalendar()[1]
-    royal_baner_1_semanas = {43, 44, 47, 50}
-    royal_baner_2_semanas = {45, 48, 51}
-    royal_baner_3_semanas = {46, 49, 52}
-    royal_banner_1 = 'royal canin - fibre response gato'
-    royal_banner_2 = 'royal canin - low fat small dogs'
-    royal_banner_3 = 'royal canin - high fibre perro'
-    royal_banner_a_publicar = ''
-    royal_banner_borrar_1 = ''
-    royal_banner_borrar_2 = ''
-    royal_banner_borrar_3 = ''
-    paso = False
-    for banner in publicidad_horizontal:
-        # * Primero los seleccionamos si aparecen para borrarlos
-        if banner[1] == royal_banner_1:
-            royal_banner_borrar_1 = banner
-            paso = True
-        if banner[1] == royal_banner_2:
-            royal_banner_borrar_2 = banner
-            paso = True
-        if banner[1] == royal_banner_3:
-            royal_banner_borrar_3 = banner
-            paso = True
-        if banner[1] == royal_banner_1 and semana in royal_baner_1_semanas:
-            royal_banner_a_publicar = banner
-        if banner[1] == royal_banner_2 and semana in royal_baner_2_semanas:
-            royal_banner_a_publicar = banner
-        if banner[1] == royal_banner_3 and semana in royal_baner_3_semanas:
-            royal_banner_a_publicar = banner
-    if paso is True:
-        # * Borramos los tres
-        publicidad_horizontal.remove(royal_banner_borrar_1)
-        publicidad_horizontal.remove(royal_banner_borrar_2)
-        publicidad_horizontal.remove(royal_banner_borrar_3)
-        # * Y añadimos el nuevo
-        publicidad_horizontal.append(royal_banner_a_publicar)
 
     return publicidad_horizontal
 
@@ -1061,8 +962,8 @@ if __name__ == '__main__':
     print()
     print()
     ahora = fecha_lanzamiento()
-    publicidad_horizontal = gestion_publicidad(ahora)
-    print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}')
+    publicidad_horizontal = banners_gestion(ahora)
+    print(f'Fecha del masivo: {ahora.strftime("%A, %d de %B de %Y")}') # type: ignore
     print()
     nombre_archivo, boletin = nombre_del_archivo()
     print(f'Se va a publicar: {nombre_archivo}')
@@ -1116,7 +1017,7 @@ if __name__ == '__main__':
         "12": 'Diciembre'
     }
     comienzo_en_curso = comienzo_en_curso.replace(
-        '##mes##', meses[str(ahora.month)])
+        '##mes##', meses[str(ahora.month)])  # type: ignore
     # todo: añadir año
 
     # * Vamos uniendo las partes
