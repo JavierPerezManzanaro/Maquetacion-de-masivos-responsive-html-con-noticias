@@ -160,6 +160,12 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 6.3
+- Cambio de año de forma automática.
+- Añando otro criterio para la ordenación de los banner: 'cliente final': ver nota de la versión 5.2
+- Correcciones de errores menores.
+
+
 ### 6.2
 - Extraigo las funciones de la gestion de los banners a otro archivo.
 - Correcciones de errores menores.

@@ -253,7 +253,7 @@ table[class=main] {
               <td align="center" bgcolor="#006580" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
                   <tbody>
                     <tr bgcolor="#006580">
-                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3_navidad.gif" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3.png" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
                     </tr>
                   </tbody>
                 </table></td>
@@ -276,7 +276,7 @@ table[class=main] {
                     </tr>
                     <tr>
                       <td width="7%" align="center" class="MsoNormal" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; "></td>
-                      <td width="93%" align="left" style="color:#0F7888; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:12px; " >N&uacute;mero ##numero## - ##mes## 2023</td>
+                      <td width="93%" align="left" style="color:#0F7888; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:12px; " >N&uacute;mero ##numero## - ##mes## 2024</td>
                     </tr>
                     <tr>
                       <td height="10" colspan="2"></td>
@@ -310,16 +310,16 @@ fin = '''
                       <td><!--TABLE LEFT-->
 
                         <!--cv-->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                   <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv114.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv115.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, N&ordm; 114</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, N&ordm; 115</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -327,16 +327,21 @@ fin = '''
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial  </li>
-                                  <li>Gestión:
+                                  <li>Caso clínico:
                                     <ul>
-                                      <li>Protocolo de deuda cero y paneles de servicios, nuevas estrategias de gestión en la clínica veterinaria </li>
+                                      <li>Neumotórax espontáneo en un perro derivado de una neumonía por aspiración
+                                      </li>
+                                    </ul>
+                                  </li>
+                                  <li>Trabajo de revisión:
+                                    <ul>
+                                      <li>Tumores cardiacos, ¿qué hay de nuevo?</li>
                                     </ul>
                                   </li>
                                   <li>VETMADRID 2024: </li>
                                   <ul>
-                                    <li>Avance de PROGRAMA VETMADRID 2024 </li>
-                                    <li>Avance de PROGRAMA FORMACIÓN EMPRESARIAL </li>
-                                    <li>Normas para la presentación de Comunicaciones Libres Noticias de Empresa</li>
+                                    <li>Programa Científico de VETMADRID 2024</li>
+                                    <li>Presentación a las Empresas</li>
                                   </ul>
                                   <li>Noticias de Empresa</li>
                                 </ul></td>
@@ -512,16 +517,16 @@ fin = '''
 
                         <!--uno mas-->
 
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                       <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_109.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_110.jpg" alt="" width="320" height="262"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 109</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno M&aacute;s, N&ordm; 110 Especial Navidad</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -530,22 +535,23 @@ fin = '''
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                  <li>Recuerda:
                                     <ul>
-                                      <li>Otitis externas </li>
-                                    </ul>
-                                 </li>
-                                 <li>Salud
+                                      <li>Cómo controlar el miedo a los petardos de nuestras mascotas en Navidad</li>
+                                      <li>Qué hacer frente a la posibilidad de regalar mascotas en Navidad</li>
+                                      <li>¿Qué estilos musicales son los que más ayudan a tu perro a relajarse?</li>
+                                      </ul></li>
+                                 <li>Consejos
                                    <ul>
-                                     <li>Requisitos nutricionales para perros y gatos</li>
+                                     <li>5 claves para que tu mascota viva la ilusión de la Navidad</li>
+                                     <li>Decálogo de consejos para cuidar de las mascotas durante las Navidades</li>
                                    </ul>
                                  </li>
-
-                                </ul></td>
+                              </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no109-uno-mas/no109-uno-mas-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no110-uno-mas-especial-navidad/no110-uno-mas-especial-navidad-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>

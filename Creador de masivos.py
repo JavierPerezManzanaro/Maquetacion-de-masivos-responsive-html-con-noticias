@@ -30,7 +30,7 @@ import requests
 import bloques
 import datos_de_acceso
 import banners
-from banners_gestion import pb_royal_canin, pb_ecuphar, pb_bioiberica
+from banners_gestion import pb_talleres_del_sur
 
 
 def execution_time(func):
@@ -684,6 +684,7 @@ def banners_gestion(ahora) -> list:
         # publicidad_cliente = list(filter(criterio, publicidad_horizontal))
         destacado = []
         cliente = []
+        cliente_final = []
         interno = []
         final = []
         for publicidad in publicidad_horizontal:
@@ -691,16 +692,18 @@ def banners_gestion(ahora) -> list:
                 destacado.append(publicidad)
             elif publicidad[2] == 'cliente':
                 cliente.append(publicidad)
+            elif publicidad[2] == 'cliente final':
+                cliente_final.append(publicidad)
             elif publicidad[2] == 'interno':
                 interno.append(publicidad)
             elif publicidad[2] == 'final':
                 final.append(publicidad)
-        cliente = pb_royal_canin(cliente, ahora)
-        cliente = pb_ecuphar(cliente, ahora)
-        cliente = pb_bioiberica(cliente)
+        # * Añadimos las funciones de cada campaña publicitaria
+        cliente = pb_talleres_del_sur(cliente, ahora)
+
         random.shuffle(cliente)
         random.shuffle(interno)
-        publicidad_horizontal = destacado + cliente + interno + final
+        publicidad_horizontal = destacado + cliente + cliente_final + interno + final
     except Exception as e:
         logging.warning('❌ Error en la función: gestion_publicidad')
         logging.warning(
@@ -805,7 +808,7 @@ def createCampaign(name, subject, content, date_send):
         # Verificar el estado de la respuesta
         if response.status_code == 200:
             print()
-            print("Campaña creada en Acumbamil con exito")
+            print("Campaña creada en Acumbamail con exito")
             # Puedes imprimir o manejar la respuesta de la API aquí
             respuesta = json.loads(response.text)
         else:
