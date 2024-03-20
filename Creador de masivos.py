@@ -30,7 +30,7 @@ import requests
 import bloques
 import datos_de_acceso
 import banners
-from banners_gestion import pb_talleres_del_sur
+from banners_gestion import pb_boehringer_combo_hasta_SEP, pb_boehringer_nexgard_spectra_hasta_SEP, pb_elanco_hasta_JUN
 
 
 def execution_time(func):
@@ -598,7 +598,7 @@ def gestion_noticias(axon: list) -> str:
         ultimo_si_es_impar = ultimo_si_es_impar.replace('##posicion##', 'left')
         # Agregamos pb cuadrada
         ultimo_si_es_impar = ultimo_si_es_impar.replace(
-            '##bloque der##', banners.banner_laservet_cuadrado)
+            '##bloque der##', banners.banner_kit_digital_cuadrado)
         logging.warning(
             'Eliminar el banner del laser porque usamos el banner cuadrado')
         longitud -= 1
@@ -686,6 +686,7 @@ def banners_gestion(ahora) -> list:
         cliente = []
         cliente_final = []
         interno = []
+        interno_destacado = []
         final = []
         for publicidad in publicidad_horizontal:
             if publicidad[2] == 'destacado':
@@ -694,23 +695,28 @@ def banners_gestion(ahora) -> list:
                 cliente.append(publicidad)
             elif publicidad[2] == 'cliente final':
                 cliente_final.append(publicidad)
+            elif publicidad[2] == 'interno destacado':
+                interno_destacado.append(publicidad)
             elif publicidad[2] == 'interno':
                 interno.append(publicidad)
             elif publicidad[2] == 'final':
                 final.append(publicidad)
         # * Añadimos las funciones de cada campaña publicitaria
-        cliente = pb_talleres_del_sur(cliente, ahora)
+        #cliente = pb_talleres_del_sur(cliente, ahora)
+        cliente = pb_boehringer_combo_hasta_SEP(cliente, ahora)
+        cliente = pb_boehringer_nexgard_spectra_hasta_SEP(cliente, ahora)
+        cliente = pb_elanco_hasta_JUN(cliente, ahora)
 
+        # * Seguimos con la app
         random.shuffle(cliente)
         random.shuffle(interno)
-        publicidad_horizontal = destacado + cliente + cliente_final + interno + final
+        publicidad_horizontal = destacado + cliente + cliente_final + interno_destacado + interno + final
     except Exception as e:
         logging.warning('❌ Error en la función: gestion_publicidad')
         logging.warning(
             '   Exception occurred while code execution: ' + repr(e))
         os.system(ALERTA)
         publicidad_horizontal = []
-
     return publicidad_horizontal
 
 
@@ -760,7 +766,6 @@ def nombre_del_archivo():
         print("Error creando la carpeta.")
         if e.errno != errno.EEXIST:
             raise
-
     return nombre_archivo, ultimo_publicado+1
 
 
@@ -1072,18 +1077,20 @@ if __name__ == '__main__':
     with open(archivo, mode="w", encoding="utf-8") as fichero:
         print(resultado, file=fichero)
 
-    # * Movemos el archivo y la carpeta de imágenes a la carpeta de destino y abrimos los archivos html
+    # * Movemos el archivo y la carpeta de imágenes a la carpeta de destino y abrimos los archivos html en dreamwaver y en Safari
     os.replace(archivo, datos_de_acceso.RUTA_LOCAL+archivo)
     os.replace(str(boletin)+'c', datos_de_acceso.RUTA_LOCAL+str(boletin)+'c')
     comando = 'open ' + '"' + datos_de_acceso.REPOSITORIO + '"'
     subprocess.run(comando, shell=True)
     comando = 'open ' + '"' + datos_de_acceso.RUTA_LOCAL + archivo + '"'
     subprocess.run(comando, shell=True)
+    subprocess.run(["open", "-a", "Safari", f'{datos_de_acceso.RUTA_LOCAL}{archivo}'])
 
     print()
     print('Archivo generado con exito: 👍')
     print()
     print('Edita el archivo abierto en Dreamweaver.')
+    print()
     print()
     input('Pulsa RETORNO cuanto termines de editar y guardar el archivo en Dreamweaver. ')
 
@@ -1106,6 +1113,7 @@ if __name__ == '__main__':
     print('Esperando dos segundos a que Acumbamail cree la campaña.')
     time.sleep(2)
     abrir_pagina_web(url)
+    print('Recuerda cambiar a HTTPS en Acumba')
 
     print()
     print('Fin de la aplicación: 👍')
