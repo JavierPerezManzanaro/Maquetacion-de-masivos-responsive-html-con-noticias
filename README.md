@@ -160,6 +160,15 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+# 6.3.3
+- Mejoras menores.
+- Mejoramos como se muestran las noticias en el terminal. Ahora las comillas de sargento se muestran como comilas simples, los dobles espacios y los espacios antes y después desaparecen.
+
+# 6.3.2
+- Si hay una noticia destacada da a elgir que asunto hay que usar.
+- Importamos el módulo "html" para mejorar la codificación. Se usa en el asunto y en cuerpo.
+
+
 # 6.3.1
 - Añando otro criterio para la ordenación de los banner: 'interno destacado': ver nota de la versión 5.2
 - Abrimos la página web del masivo para en local para comprobar si es correcta
@@ -181,7 +190,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Correcciones de errores menores.
 
 ### 6
-- Añadimos la API de Acumbamail (empresa con la que tenemos la gestión de los masivos) para la creación automática de cada campaña. Para impedir su lanzamiento se programa para finales de año. Esto abra que cambiarlo desde la web cuando queramos lanzar la campaña.
+- Añadimos la API de Acumbamail (empresa con la que tenemos la gestión de los masivos) para la creación automática de cada campaña. Para impedir su lanzamiento se programa para finales de año. Esto abra que cambiarlo desde la web cuando queramos lanzar la campaña. Documentación oficial: https://acumbamail.com/apidoc/
 - Renombro las variables globales que estan definidas en "datos_de_acceso.py" (no esta subido al repositorio) a MAYÚSCULAS.
 - Cambio la obtención del último trabajo añadido mediante un "SELECT MAX(id)" para optimizar la lista de trabajos y noticias.
 - Creamos la función limpiar_input para limpiar y depurar las listas de noticias o trabajos.

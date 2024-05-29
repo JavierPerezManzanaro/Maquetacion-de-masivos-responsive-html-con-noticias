@@ -24,13 +24,18 @@ from pprint import pprint
 import cv2 as cv2  # https://pypi.org/project/opencv-python/
 import imutils  # https://github.com/PyImageSearch/imutils
 import requests
+import html
+
 
 
 # * librerias propias
 import bloques
 import datos_de_acceso
 import banners
-from banners_gestion import pb_boehringer_combo_hasta_SEP, pb_boehringer_nexgard_spectra_hasta_SEP, pb_elanco_hasta_JUN
+from banners_gestion import pb_boehringer_combo_hasta_SEP, \
+                            pb_boehringer_nexgard_spectra_hasta_SEP, \
+                            pb_elanco_hasta_JUN, \
+                            pb_stangest
 
 
 def execution_time(func):
@@ -414,7 +419,7 @@ def recuperar_trabajos():
         os.system(ALERTA)
 
 
-def noticias_destacadas(axon: list) -> str:
+def noticias_destacadas(axon: list):
     """Gestión de las noticias destacadas. Esta programado para admitir varias
 
     Args:
@@ -422,11 +427,13 @@ def noticias_destacadas(axon: list) -> str:
 
     Returns:
         str: html con las noticias destacadas con banner entre medias
+        hay_noticia_destacada: bool -> indica si hay o no noticia destacada
     """
     noticias_destacadas = ''
     print()
     noticias = input("¿Qué noticias son las destacadas?  ")
     noticias = limpiar_input(noticias)
+    hay_noticia_destacada = False
     try:
         for noticia in noticias:
             noticia_destacada = bloques.noticia_destacada
@@ -450,10 +457,11 @@ def noticias_destacadas(axon: list) -> str:
             noticia_destacada = noticia_destacada + \
                 creacion_banners(publicidad_horizontal)
             noticias_destacadas = noticias_destacadas + noticia_destacada
+        hay_noticia_destacada = True
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
         noticias_destacadas = ''
-    return noticias_destacadas
+    return noticias_destacadas, hay_noticia_destacada
 
 
 def read_wordpress(api_url: str) -> list:
@@ -484,6 +492,14 @@ def creacion_lista_noticias(numero_registros: int, noticias: list) -> list:
     axon = []
     longitud_de_noticia = 400
     for noticia in noticias:
+        titulo = noticia['title']['rendered'].strip()
+        titulo = titulo.replace("  "," ")
+        titulo = titulo.replace("&#8216;","'")
+        titulo = titulo.replace("&#8217;","'")
+        titulo = titulo.replace("&#171;","'") # comillas angulaes apertura
+        titulo = titulo.replace("&#187;","'") # comillas angulaes cierre
+        titulo = titulo.replace("«","'") # comillas angulaes apertura
+        titulo = titulo.replace("»","'") # comillas angulaes cierre
         contenido_tratado = ''
         contenido_tratado = noticia['content']['rendered']
         contenido_tratado = strip_tags(contenido_tratado)
@@ -496,7 +512,7 @@ def creacion_lista_noticias(numero_registros: int, noticias: list) -> list:
         axon.append({'id': numero_registros,
                      'url': noticia['link'],
                      'imagen': noticia['yoast_head_json']['og_image'][0]['url'],
-                     'titulo': noticia['title']['rendered'],
+                     'titulo': titulo, #noticia['title']['rendered'],
                      'contenido': contenido_tratado})
         numero_registros += 1
     return axon
@@ -685,8 +701,8 @@ def banners_gestion(ahora) -> list:
         destacado = []
         cliente = []
         cliente_final = []
-        interno = []
         interno_destacado = []
+        interno = []
         final = []
         for publicidad in publicidad_horizontal:
             if publicidad[2] == 'destacado':
@@ -697,15 +713,18 @@ def banners_gestion(ahora) -> list:
                 cliente_final.append(publicidad)
             elif publicidad[2] == 'interno destacado':
                 interno_destacado.append(publicidad)
-            elif publicidad[2] == 'interno':
-                interno.append(publicidad)
             elif publicidad[2] == 'final':
                 final.append(publicidad)
+            else: # publicidad[2] == 'interno'
+                interno.append(publicidad)
         # * Añadimos las funciones de cada campaña publicitaria
         #cliente = pb_talleres_del_sur(cliente, ahora)
         cliente = pb_boehringer_combo_hasta_SEP(cliente, ahora)
         cliente = pb_boehringer_nexgard_spectra_hasta_SEP(cliente, ahora)
         cliente = pb_elanco_hasta_JUN(cliente, ahora)
+        cliente = pb_stangest(cliente, ahora)
+
+
 
         # * Seguimos con la app
         random.shuffle(cliente)
@@ -789,6 +808,7 @@ def createCampaign(name, subject, content, date_send):
         from_email (string): El email desde el que se enviará la campaña, se puede usar Nombre <email@dominio.com>
         tracking_urls (integer): (Opcional) Sustituir enlaces para seguimiento de clicks. Por defecto=1
         complete_json (integer): Para que devuelva un json completo con formato completo. Por defecto=0
+        https: Activa "1" o desactiva "0" usando http
 
     Returns:
         respuesta (json)
@@ -798,12 +818,13 @@ def createCampaign(name, subject, content, date_send):
     # Parámetros de la solicitud
     params = {
         "auth_token": datos_de_acceso.TOKEN_ACUMBAMAIL,
-        "name": name,  # "prueba",
+        "name": name,
         "from_name": "Suscripciones",
         "from_email": "suscripciones@axoncomunicacion.net",
         "subject": subject,
         "content": content,
-        "date_send": date_send
+        "https": "1",
+        "date_send": date_send,
     }
     # añadimos las listas necesarias
     params_combinado = params | datos_de_acceso.DICCIONARIO_DE_LISTAS
@@ -847,7 +868,7 @@ def print_response(response):
     print(f'{response.headers=}')
 
 
-def obtener_asunto(html):
+def obtener_asunto(html_content, hay_noticia_destacada):
     """Obtiene de la bbdd el asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañia
 
     Args:
@@ -856,26 +877,35 @@ def obtener_asunto(html):
     Returns:
         str: Asunto de la campaña si encuentra la etiqueta, si no, solamente 'In-formaVET: ' pero avista del error
     """
+    numero = 0
+    if hay_noticia_destacada == True:
+        os.system(ALERTA)
+        pregunta_asunto = input('Hay una noticia destacada: ¿Qué asunto quieres usar (0: destacada o 1: primer trabajo -por defecto-)?: ')
+        if int(pregunta_asunto) == 0:
+            numero = 0
+        else:
+            numero = 1
     pattern = r'<td\s[^>]*class="heading"[^>]*>(.*?)<\/td>'
-    match = re.search(pattern, html)
-    if match:
-        asunto = match.group(1)
-        asunto = asunto.replace("&aacute;", "á")
-        asunto = asunto.replace("&eacute;", "é")
-        asunto = asunto.replace("&iacute;", "í")
-        asunto = asunto.replace("&oacute;", "ó")
-        asunto = asunto.replace("&uacute;", "ú")
-        asunto = asunto.replace("&Aacute;", "Á")
-        asunto = asunto.replace("&Eacute;", "É")
-        asunto = asunto.replace("&Iacute;", "Í")
-        asunto = asunto.replace("&Oacute;", "Ó")
-        asunto = asunto.replace("&Uacute;", "Ú")
-        asunto = asunto.replace("&ntilde;", "ñ")
-        asunto = asunto.replace("&Ntilde;", "Ñ")
-        asunto = asunto.replace("&iexcl;", "¡")
-        asunto = asunto.replace("&iquest;", "¿")
-        asunto = asunto.replace("&quot;", "â€œ")
-        asunto = asunto.replace("&quot;", "â€")
+    coincidencias = re.findall(pattern, html_content)
+    if coincidencias:
+        asunto = coincidencias[numero]
+        asunto = html.unescape(asunto)
+        # asunto = asunto.replace("&aacute;", "á")
+        # asunto = asunto.replace("&eacute;", "é")
+        # asunto = asunto.replace("&iacute;", "í")
+        # asunto = asunto.replace("&oacute;", "ó")
+        # asunto = asunto.replace("&uacute;", "ú")
+        # asunto = asunto.replace("&Aacute;", "Á")
+        # asunto = asunto.replace("&Eacute;", "É")
+        # asunto = asunto.replace("&Iacute;", "Í")
+        # asunto = asunto.replace("&Oacute;", "Ó")
+        # asunto = asunto.replace("&Uacute;", "Ú")
+        # asunto = asunto.replace("&ntilde;", "ñ")
+        # asunto = asunto.replace("&Ntilde;", "Ñ")
+        # asunto = asunto.replace("&iexcl;", "¡")
+        # asunto = asunto.replace("&iquest;", "¿")
+        # asunto = asunto.replace("&quot;", "â€œ")
+        # asunto = asunto.replace("&quot;", "â€")
     else:
         print()
         logging.warning('❌ Cuidado: No hay asunto.')
@@ -985,7 +1015,7 @@ if __name__ == '__main__':
     print()
     print('Los trabajos/noticias separadas con espacios.')
     print()
-    noticias_destacadas = noticias_destacadas(axon)  # type: ignore
+    noticias_destacadas, existe_noticia_destacada = noticias_destacadas(axon) # type: ignore
     print()
     logging.debug('Trabajos de animales de compañia y producción')
     trabajos_compania = input_trabajos_a_publicar('compania')
@@ -1053,23 +1083,24 @@ if __name__ == '__main__':
     # * Codificamos a html
     logging.debug('Codificamos a html')
     # ? para cuerpos de email charset=ISO-8859-1
-    resultado = resultado.replace("á", "&aacute;")
-    resultado = resultado.replace("é", "&eacute;")
-    resultado = resultado.replace("í", "&iacute;")
-    resultado = resultado.replace("ó", "&oacute;")
-    resultado = resultado.replace("ú", "&uacute;")
-    resultado = resultado.replace("Á", "&Aacute;")
-    resultado = resultado.replace("É", "&Eacute;")
-    resultado = resultado.replace("Í", "&Iacute;")
-    resultado = resultado.replace("Ó", "&Oacute;")
-    resultado = resultado.replace("Ú", "&Uacute;")
-    resultado = resultado.replace("ñ", "&ntilde;")
-    resultado = resultado.replace("Ñ", "&Ntilde;")
-    resultado = resultado.replace("¡", "&iexcl;")
-    resultado = resultado.replace("¿", "&iquest;")
-    resultado = resultado.replace("Â", "")
-    resultado = resultado.replace("â€œ", "&quot;")
-    resultado = resultado.replace("â€", "&quot;")
+    resultado = html.unescape(resultado)
+    # resultado = resultado.replace("á", "&aacute;")
+    # resultado = resultado.replace("é", "&eacute;")
+    # resultado = resultado.replace("í", "&iacute;")
+    # resultado = resultado.replace("ó", "&oacute;")
+    # resultado = resultado.replace("ú", "&uacute;")
+    # resultado = resultado.replace("Á", "&Aacute;")
+    # resultado = resultado.replace("É", "&Eacute;")
+    # resultado = resultado.replace("Í", "&Iacute;")
+    # resultado = resultado.replace("Ó", "&Oacute;")
+    # resultado = resultado.replace("Ú", "&Uacute;")
+    # resultado = resultado.replace("ñ", "&ntilde;")
+    # resultado = resultado.replace("Ñ", "&Ntilde;")
+    # resultado = resultado.replace("¡", "&iexcl;")
+    # resultado = resultado.replace("¿", "&iquest;")
+    # resultado = resultado.replace("Â", "")
+    # resultado = resultado.replace("â€œ", "&quot;")
+    # resultado = resultado.replace("â€", "&quot;")
 
     # * Creamos el archivo
     logging.debug('Creamos el archivo')
@@ -1104,16 +1135,15 @@ if __name__ == '__main__':
         salir_app()
     html_content = html_content.text.replace(
         '<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
-    subject = obtener_asunto(html_content)
+    subject = obtener_asunto(html_content, existe_noticia_destacada)
     respuesta = createCampaign(name, subject, html_content, date_send)
-    # Solo continua si la campaña se creo con exito, si no fue así en la función createCampaign se salio de la aplicación
+    #* Solo continua si la campaña se creo con exito, si no fue así en la función createCampaign se salio de la aplicación
     url = 'https://acumbamail.com/app/campaign/' + \
         str(respuesta['id']) + '/summary/'  # type: ignore
     print()
     print('Esperando dos segundos a que Acumbamail cree la campaña.')
     time.sleep(2)
     abrir_pagina_web(url)
-    print('Recuerda cambiar a HTTPS en Acumba')
 
     print()
     print('Fin de la aplicación: 👍')
