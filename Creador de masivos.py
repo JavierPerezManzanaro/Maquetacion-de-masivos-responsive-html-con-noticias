@@ -512,7 +512,7 @@ def creacion_lista_noticias(numero_registros: int, noticias: list) -> list:
         axon.append({'id': numero_registros,
                      'url': noticia['link'],
                      'imagen': noticia['yoast_head_json']['og_image'][0]['url'],
-                     'titulo': titulo, #noticia['title']['rendered'],
+                     'titulo': titulo,
                      'contenido': contenido_tratado})
         numero_registros += 1
     return axon
