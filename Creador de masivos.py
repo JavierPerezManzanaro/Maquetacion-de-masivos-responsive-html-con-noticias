@@ -4,7 +4,7 @@
 # todo Por hacer
 # ? Aviso
 # * Explicación
-
+# *
 
 import errno
 import locale
