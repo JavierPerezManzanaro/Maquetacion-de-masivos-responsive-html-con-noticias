@@ -581,31 +581,30 @@ fin = '''
                         <!--TABLE RIGHT-->
 
                          <!--cys-->
-
-<table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                        <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys103.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cys104.jpg" alt="" width="320" height="307"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Cría y Salud, Nº 103</td>
+                              <td align="left" bgcolor="#ffffff" class="heading" style="color: #000000; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Cría y Salud, Nº 104</td>
                             </tr>
                             <tr>
                               <td height="15" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>OVINO
+                                  <li>PORCINO 
                                     <ul>
-                                      <li>La agricultura de conservación no tiene un impacto significativo en el parasitismo digestivo de las ovejas</li>
+                                      <li>Análisis transcriptómico y metabolómico exhaustivo de las células epiteliales intestinales porcinas después de la infección por PDCoV </li>
                                     </ul>
                                   </li>
-                                  <li>PORCINO
+                                  <li>BOVINO 
                                     <ul>
-                                      <li>Desarrollo de lesiones en el flanco en cerdos en crecimiento después del destete: un estudio de caso</li>
+                                      <li>Utilidad limitada de la PCR de aterrizaje IS6110 en sangre para la prueba cutánea de la tuberculina en bovinos falsos negativos con respuesta serológica a<em> Mycobacterium bovis</em>                                  </li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -614,10 +613,11 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-103-cria-y-salud-sumario/no-103-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-104-cria-y-salud-sumario/no-104-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
+
 
 
 

@@ -4,7 +4,8 @@
 # todo Por hacer
 # ? Aviso
 # * Explicación
-# *
+# * 2024-06-06
+
 
 import errno
 import locale
@@ -668,7 +669,7 @@ def banners_gestion(ahora) -> list:
     Después manda la lista a cada una de las funciones que gestionan los banners de las empresas que estan en el archivo 'banners_gestion.py'. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, etc.
 
     Returns:
-        list: Lista ordenada con los banners a publicar en el día
+        list: Lista ordenada con los banners a publicar en el día 
     """
     DIA = str
     if ahora.isoweekday() == 1:
