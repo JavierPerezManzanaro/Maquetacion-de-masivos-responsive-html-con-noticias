@@ -160,6 +160,10 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+# 6.3.4
+- Mejoramos el funcionamiento de la función "descarga_imagen". Se simplifica y se avisa de que hay una imagen webp para cambiarla manualmente.
+- Pequeñas mejoras.
+
 # 6.3.3
 - Mejoras menores.
 - Mejoramos como se muestran las noticias en el terminal. Ahora las comillas de sargento se muestran como comilas simples, los dobles espacios y los espacios antes y después desaparecen.
@@ -167,7 +171,6 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 # 6.3.2
 - Si hay una noticia destacada da a elgir que asunto hay que usar.
 - Importamos el módulo "html" para mejorar la codificación. Se usa en el asunto y en cuerpo.
-
 
 # 6.3.1
 - Añando otro criterio para la ordenación de los banner: 'interno destacado': ver nota de la versión 5.2

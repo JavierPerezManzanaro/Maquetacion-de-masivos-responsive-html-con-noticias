@@ -4,7 +4,7 @@
 # todo Por hacer
 # ? Aviso
 # * Explicación
-# * 2024-06-06
+
 
 
 import errno
@@ -126,19 +126,18 @@ def descarga_imagen(url: str, nombre: int):
     """
     try:
         extension = url[len(url)-4:len(url)]
+        if extension == "webp":
+            print()
+            print('Imagen webp a cambiar')
+            print()
+            exit()
         if extension == "jpeg":
             extension = ".jpg"
-        else:
-            pass
         imagen_local = nombre_archivo+'/'+str(nombre)+extension
         imagen = requests.get(url).content
         with open(imagen_local, 'wb') as handler:
             handler.write(imagen)
         imagen = cv2.imread(imagen_local)
-    except:
-        imagen_local = 'spacer.gif'
-        imagen = cv2.imread(imagen_local)
-    finally:
         imagen_salida = imutils.resize(imagen, width=320)
         # todo pasar a rgb
         # todo https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html#ga4e0972be5de079fed4e3a10e24ef5ef0
@@ -148,6 +147,9 @@ def descarga_imagen(url: str, nombre: int):
         # alto = int((int(imagen.size[1]) * ancho) / int(imagen.size[0]))
         # imagen = imagen.resize((ancho, alto))
         # imagen.save(imagen_local)
+    except:
+        imagen_local = '/axon_news/imagenes/spacer.gif'
+        
     return imagen_local
 
 
