@@ -4,9 +4,9 @@
 
 ---
 
-# Maquetación de masivos *resposive* para campañas de e-mail
+# Maquetación de masivos *responsive* para campañas de e-mail
 ## Descripción
-Este proyecto surge de la necesidad de automatizar la creación de un masivo para campañas de e-mail *responsive* (se adapta a todas las pantallas) diario.
+Este proyecto surge de la necesidad de automatizar la creación de masivos para campañas de e-mail *responsive* (se adapta a todas las pantallas) diarias.
 
 La aplicación recopila trabajos (de una bbdd sqlite3), una serie de noticias de un blog de la empresa y los banners que tienen que salir publicados.
 
@@ -16,19 +16,16 @@ Al final del proceso se obtiene:
 
 Esta aplicación esta pensada para funcionar bajo la estructura de archivos de mi empresa, por lo que para otros casos abra que realizar modificaciones.
 
-Si se abre el archivo nada mas generarlo se veran algunos vínculos que fallan en su ordenador (y en local). Obviamente son imágenes comunes que no se copian en cada masivo, se enlazan a un repositorio general.
+Si se abre el archivo html nada mas generarlo vera que algunos vínculos fallan en su ordenador (y en local). Obviamente son imágenes comunes que no se copian en cada masivo, se enlazan a un repositorio general.
 
 
 ---
 ## Instrucciones de configuración
-### Datos_de_acceso.py
+### datos_de_acceso.py
 Tenemos que crear un archivo con ese nombre.
-
-Dentro tenemos que definir estas variables
-- usuario y contrasena (sin ñ): deben ser los datos de acceso al blog de WordPress.
-- sitio: Tenemos que poner el string de la url del archivo xmlrpc.php del blog de Wordpress. Suele ser esta dirección: 'https://dominio.net/xmlrpc.php'
+Dentro tenemos que definir estas variables:
 - url_general = String del blog: 'https://dominio.net'
-- imagen_en_blanco = tiene que ser una url (string) que apunte a una imagen en blanco. Suelo usar un gif de 1x1 px en transparente.
+- imagen_en_blanco = tiene que ser una url (str) que apunte a una imagen en blanco. Suelo usar un gif de 1x1 px en transparente.
 - ruta_local: carpeta local donde se almacenan los documentos.
 
 ---
@@ -56,37 +53,35 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### Creación del masivo
 1. Ejecuto la aplicación principal: 'Creador de masivos.py':
 
-    1.1. La aplicación nos pregunta por el día. Si no introducimos nada se entiene que es para el día de hoy. Si ponemos "+1", "1" o "mañana" a el día actual se le suma uno.
+    1.1. La aplicación nos pregunta por el día. Si no introducimos nada se entiende que es para el día de hoy. Si ponemos "+1", "1" o "mañana" a el día actual se le suma uno.
 
-    1.2. La aplicación nos pregunta por el número del masivo: **'¿Qué número vas a publicar? '**. Hay que introducir un número. La aplicación creara la carpeta y el archivo html según ese número añadiendo una 'c' al nombre.
-
-    1.3. La aplicación va a mostrar tres listas:
+    1.2. La aplicación va a mostrar tres listas:
 
       - Trabajos de compañía (extraídos de la bbdd.sqlite3).
       - Trabajos de producción (extraídos de la bbdd.sqlite3).
       - Últimas noticias y/o trabajos de Axón comunicación (extraídos de la web basada en WordPress).
 
-    1.4. La aplicación pregunta (**'¿Qué noticia es la destacada? '**) para colocar la primera noticia que va a salir. Esta sale publicada a dos columnas.
+    1.3. La aplicación pregunta (**'¿Qué noticia es la destacada? '**) para colocar la primera noticia que va a salir. Esta sale publicada a dos columnas.
 
       - Si introducimos algo que no sea un número de una noticia la aplicación se salta este paso.
 
-    1.5. **'¿Trabajos de animales de compañía para publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    1.4. **'¿Trabajos de animales de compañía para publicar? '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos solamente un 0 la aplicación se salta este paso.
 
       - Si introducimos un 0 junto con otros trabajos la aplicación dejara en esa posición un hueco para un banner vertical.
 
-      - Si el número esta en la lista de noticias y/o trabajos de la web nos abrira una ventana para introducir el cuerpo de esa noticia en la bbdd de forma automática
+      - Si el número esta en la lista de noticias y/o trabajos de la web nos abrirá una ventana para introducir el cuerpo de esa noticia en la bbdd de forma automática.
 
       - Al final, en el archivo html, se verán todos los trabajos de animales de compañía en la columna de la izquierda.
 
-    1.6. **'¿Trabajos de animales de producción para publicar?  '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
+    1.5. **'¿Trabajos de animales de producción para publicar?  '** Introducimos uno a uno, separados por espacios (sin comas), cada uno de los trabajos.
 
       - Si introducimos solamente un 0 la aplicación se salta este paso.
 
       - Si introducimos un 0 junto con otros trabajos la aplicación dejara en esa posición un hueco para un banner vertical.
 
-      - Si el número esta en la lista de noticias y/o trabajos de la web nos abrira una ventana para introducir el cuerpo de esa noticia en la bbdd de forma automática
+      - Si el número esta en la lista de noticias y/o trabajos de la web nos abrirá una ventana para introducir el cuerpo de esa noticia en la bbdd de forma automática
 
       - Al final, en el archivo html, se verán todos los trabajos de animales de producción en la columna de la derecha.
 
@@ -100,7 +95,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 2. La aplicación genera el archivo html con los trabajos, los banner, las noticias y el bloque final (hemerotecas).
 
-3. Hay que editar este archivo con cualquier editor html (Dreamweaver, por ejemplo) para enfrentar las noticias (las filas y columnas son celdas de tablas) y colocar los banners en su sitio.
+3. Hay que editar este archivo con cualquier editor html (Dreamweaver, por ejemplo) para enfrentar las noticias (las filas y columnas son celdas de tablas) y colocar los banners en su sitio si fuera necesario.
 
 
 ---
@@ -111,7 +106,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 - bbdd.sqlite3
 
-  Base de datos que contiene los trabajos publicados y los banners publicitarios.
+  Base de datos que contiene los trabajos y los banners publicados.
 
 - bloques.py
 
@@ -119,7 +114,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 - datos_de_acceso.py
 
-  Archivo donde se guardan las claves y otra infomación privada para entrar el blog basado en WordPress.
+  Archivo donde se guardan las claves y otra información privada.
 
 - 'Creador de masivos.py'
 
@@ -148,7 +143,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ---
 ## Errores conocidos
-- A la hora de añadir trabajos que estan como noticias se abre: por una parte en el navegador con el trabajo; y por otra, -en una ventana de "Python Launcher"- una ventana de dialogo para introducir el cuerpo de la noticia. Pues bien, en esa ventana de dialogo (por lo menos sobre Mac con el sistema Sonoma (14.0)) no se activa siempre el botón de "Introducir datos". Parece que es un problema más de "Python Launcher" que de la aplicación. En cualquier caso con cambiar el tamaño de la ventana queda solucionado.
+- A la hora de añadir trabajos que están como noticias se abre: por una parte en el navegador con el trabajo; y por otra, -en una ventana de "Python Launcher"- una ventana de dialogo para introducir el cuerpo de la noticia. Pues bien, en esa ventana de dialogo (por lo menos sobre Mac con el sistema Sonoma (14.0) y superiores) no se activa siempre el botón de "Introducir datos". Parece que es un problema más de "Python Launcher" que de la aplicación. En cualquier caso con cambiar el tamaño de la ventana queda solucionado.
 - [SOLUCIONADO]: Al acceder a las noticias publicadas en el blog los borradores generar un error. La solución temporal consiste en entrar en el blog como administrador y eliminar esas noticias. Después las podemos sacar de la papelera y dejarlas como borrador otra vez.
 
 
@@ -160,25 +155,32 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+# 6.3.5
+- Unificamos el tipo de comillas (simple, dobles, de sargento, etc) que se muestran. Todas pasan a ser comillas dobles: ".
+- Mejoras menores.
+- Correcciones ortográficas.
+- Correcciones y actualización de README.md
+
+
 # 6.3.4
 - Mejoramos el funcionamiento de la función "descarga_imagen". Se simplifica y se avisa de que hay una imagen webp para cambiarla manualmente.
 - Pequeñas mejoras.
 
 # 6.3.3
 - Mejoras menores.
-- Mejoramos como se muestran las noticias en el terminal. Ahora las comillas de sargento se muestran como comilas simples, los dobles espacios y los espacios antes y después desaparecen.
+- Mejoramos como se exportan las noticias. Ahora las comillas de sargento se muestran como comillas simples, los dobles espacios y los espacios antes y después desaparecen.
 
 # 6.3.2
-- Si hay una noticia destacada da a elgir que asunto hay que usar.
+- Si hay una noticia destacada da a elegir que asunto hay que usar.
 - Importamos el módulo "html" para mejorar la codificación. Se usa en el asunto y en cuerpo.
 
 # 6.3.1
-- Añando otro criterio para la ordenación de los banner: 'interno destacado': ver nota de la versión 5.2
-- Abrimos la página web del masivo para en local para comprobar si es correcta
+- Añado otro criterio para la ordenación de los banner: 'interno destacado': ver nota de la versión 5.2
+- Abrimos la página web del masivo (en local) para comprobar si es correcto.
 
 ### 6.3
 - Cambio de año de forma automática.
-- Añando otro criterio para la ordenación de los banner: 'cliente final': ver nota de la versión 5.2
+- Añado otro criterio para la ordenación de los banner: 'cliente final': ver nota de la versión 5.2
 - Correcciones de errores menores.
 
 
@@ -189,28 +191,28 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ### 6.1
 - Aplico formato Autopep8.
 - Otras mejoras menores.
-- Corrrijo la función obtener_asunto().
+- Corrijo la función obtener_asunto().
 - Correcciones de errores menores.
 
 ### 6
 - Añadimos la API de Acumbamail (empresa con la que tenemos la gestión de los masivos) para la creación automática de cada campaña. Para impedir su lanzamiento se programa para finales de año. Esto abra que cambiarlo desde la web cuando queramos lanzar la campaña. Documentación oficial: https://acumbamail.com/apidoc/
-- Renombro las variables globales que estan definidas en "datos_de_acceso.py" (no esta subido al repositorio) a MAYÚSCULAS.
+- Renombro las variables globales que están definidas en "datos_de_acceso.py" (no esta subido al repositorio) a MAYÚSCULAS.
 - Cambio la obtención del último trabajo añadido mediante un "SELECT MAX(id)" para optimizar la lista de trabajos y noticias.
 - Creamos la función limpiar_input para limpiar y depurar las listas de noticias o trabajos.
 - Otras mejoras menores.
 
 ### 5.5.2
-- Cambio el orden a la hora de mostar los datos en la terminal.
-- Ya no es necesario introducir el nombre del archivo html. Ahora lee la carpera que los contiene y saca el siguente número.
-- La fecha de salida: Reflactorizo la parte de la fecha y creo una función.
+- Cambio el orden a la hora de mostrar los datos en la terminal.
+- Ya no es necesario introducir el nombre del archivo html. Ahora lee la carpeta que los contiene y saca el siguiente número.
+- La fecha de salida: Refactorizo la parte de la fecha y creo una función.
 - Otras mejoras menores.
 
 ### 5.5.1
 - Añado la función de "+1", "1" o "mañana" a la hora de introducir la fecha de lanzamiento del masivo.
 
 ### 5.5
-- Mejoro y unfifico la gestión de los banners: Ahora los tres funcionan igual:
-    De la bbdd pasan todos los modelos de cada empresa a la lista. En cada función (una por cada empresa) se selcciona un banner por alguno de los criterios (o bien al azar, o por fechas, etc) y se borran el resto de banner de esa empresa.
+- Mejoro y unifico la gestión de los banners: Ahora los tres funcionan igual:
+    De la bbdd pasan todos los modelos de cada empresa a la lista. En cada función (una por cada empresa) se selecciona un banner por alguno de los criterios (o bien al azar, o por fechas, etc) y se borran el resto de banner de esa empresa.
 - Cambio la forma de modificar el día de creación. Antes era una variable, ahora pregunta. Si no se pone nada se entiende que el dia actual.
 - Añado un archivo de preferencias en JSON para gestionar mejor los banners. Todavía sin uso.
 - Otras mejoras menores.
@@ -229,13 +231,13 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Correcciones de errores menores.
 
 ### 5.3.1
-- Refactorización la función que gentiona banners de dos empresas y los separo en dos funciones.
+- Refactorizo la función que gestiona banners de dos empresas y los separo en dos funciones.
 - Otras mejoras menores.
 - Correcciones de errores menores.
 
 ### 5.3
-- Cambio el módulo encargado del tratamiento de las imagenes. El módulo anterior, Pillow, no esta actualixzados para el procesador M2 de Apple. Lo cambio por el módulo CV2.
-- Reflactorizo la función: descarga_imagen. Arora trabajo con encho fijo de 320px y quito el atributo de altura de la imagen en el archibo "bloques.py".
+- Cambio el módulo encargado del tratamiento de las imagenes. El módulo anterior, Pillow, no esta actualizados para el procesador M2 de Apple. Lo cambio por el módulo CV2.
+- Refactorizo la función: descarga_imagen. Ahora trabajo con ancho fijo de 320px y quito el atributo de altura de la imagen en el archivo "bloques.py".
 - Correcciones de errores menores.
 
 ### 5.2.1
@@ -244,9 +246,9 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ### 5.2
 - Ordenar los banners por grupos según su importancia. Hay cuatro grupos:
-  -"destacado": los destacados que van a salir arriba, estos salen por orden de aparición en la bbdd
-  -"cliente": estos se seleccionan al azar dentro del día que les toque
-  -"interno": estos se seleccionan al azar dentro del día que les toque
+  -"destacado": los destacados que van a salir arriba, estos salen por orden de aparición en la bbdd.
+  -"cliente": estos se seleccionan al azar dentro del día que les toque.
+  -"interno": estos se seleccionan al azar dentro del día que les toque.
   -"final": Los últimos. Van en orden
 - Correcciones de errores menores.
 
@@ -258,9 +260,9 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ya no es necesario usar "Inserción de noticias en bbdd.py"
 
 ### 5.01
-- Si noticias son impares en el último hueco metemos banner cuadrado del laser.
+- Si la lista de noticias son impares en el último hueco metemos banner cuadrado del láser.
 - Mejoramos la documentación de las funciones.
-- Modificar la ubicación de algunas variables según su ambito.
+- Modificar la ubicación de algunas variables según su ámbito.
 - Correcciones de errores menores.
 
 ### 5
@@ -273,7 +275,7 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 
 ### Cambios necesarios en python-wordpress-xmlrpc si se usan versiones anteriores a la 5
 Este módulo no es compatible con la versión Python 3.10. Hay que realizar un pequeño cambio en el código.
-En el archivo "wordpress_xmlrpc/base.py" hay que modificar dos liéas:
+En el archivo "wordpress_xmlrpc/base.py" hay que modificar dos lineas:
 1: pasa a ser: **import collections.abc**
 128: pasa a ser: **elif isinstance(raw_result, collections.abc.Iterable):**
 Explicación:
@@ -284,7 +286,7 @@ Explicación:
 - Correcciones de errores menores.
 
 ### 4.6.2
-- Si, por equivocación, el usuario mete dos espación para separar las noticias ya no da error.
+- Si, por equivocación, el usuario mete dos espacios para separar las noticias ya no da error.
 - Añado requirements.txt
 - Se mejora la documentación.
 - Se unifica el sonido de ALERTA.
@@ -305,7 +307,7 @@ Explicación:
 
 ### 4.5.3
 - Mejoras:
-  - Las variable que son de paso (varibles semaforo) ahora son booleanas.
+  - Las variable que son de paso (variables semáforo) ahora son booleanas.
 - Correcciones de errores menores.
 
 ### 4.5.2
@@ -330,26 +332,26 @@ Explicación:
 
 ### 4.4
 - Novedades:
-  - Uno, en una función, el imput de trabajos de compañia y producción para no repetir código. La nueva función se llama 'trabajos_a_mostrar' y se encarga de preguntar por los trabajo/noticias de cada una de las secciones: Animales de compañia o animales de producción.
+  - Uno, en una función, el imput de trabajos de compañía y producción para no repetir código. La nueva función se llama 'trabajos_a_mostrar' y se encarga de preguntar por los trabajo/noticias de cada una de las secciones: Animales de compañía o animales de producción.
   - Añado Type hints a las funciones.
-  - Refractoración de la función tabla_interior con respecto al origen de las imágenes.
+  - Refactorización de la función tabla_interior con respecto al origen de las imágenes.
 - Mejoras:
   - Amplio, unifico y mejoro la documentación de la app.
 - Correcciones de errores menores.
 
 ### 4.3
 - Novedades:
-  - Ahora es posible introducir en el apartado de trabajos de animales de compañia y de producción una noticia. Se podria automatizar su inclusión en la bbdd pero no lo realizo porque siempre hay que modificar el texto.
+  - Ahora es posible introducir en el apartado de trabajos de animales de compañía y de producción una noticia. Se podría automatizar su inclusión en la bbdd pero no lo realizo porque siempre hay que modificar el texto.
   - Cambio de nombre el archivo principal. Ahora se llama: 'Creador de masivos.py'
-- Aplico la función strip() a los inputs para evitar este tipo de errores devidos a los espacios en blanco.
+- Aplico la función strip() a los inputs para evitar este tipo de errores debidos a los espacios en blanco.
 - Correcciones de errores menores.
 
 ### 4.2.2
-- Llevo a datos_de_acceso.py las urls de la empresa por temas de privadad.
+- Llevo a datos_de_acceso.py las urls de la empresa por temas de privacidad.
 
 ### 4.2.1
 - Gestión de un tipo de trabajo de animales de producción que se repite semanalmente.
-- Solución del error: la entrada no tiene imágen.
+- Solución del error: la entrada no tiene imagen.
 - Correcciones de errores menores.
 
 ### 4.2
@@ -374,7 +376,7 @@ Explicación:
 
 ### 3.1.2
 - Mejoras en 'Inserción de noticias en bbdd.py':
-  - Ahora se puenden incluir etiquetas html (cursivas o subindices, por ejemplo) en el título o en el texto.
+  - Ahora se pueden incluir etiquetas html (cursivas o subindices, por ejemplo) en el título o en el texto.
 - Correcciones en el README.md
 
 ### 3.1.1
@@ -410,18 +412,18 @@ Explicación:
 Existen varios tipos de banners:
 
 ### Horizontales con repetición semanal
-- Estos se gestionan de forma automátca. Solamente es necesario introducirlos en la bbdd sqlite3, tabla Publicidad. En el campo del día de la semana abra que poner un '1' si queremos que salga ese día.
+- Estos se gestionan de forma automática. Solamente es necesario introducirlos en la bbdd sqlite3, tabla Publicidad. En el campo del día de la semana abra que poner un '1' si queremos que salga ese día.
 - Si estos banners son rotativos (según días o semanas, por ejemplo): se crean los dos modelos en la bbdd y después del SELECT que hace la selección de los banners es donde son borrados, según los criterios del <code>if</code>, el que no se use.
 
 ### Horizontales de forma aislada
 - Estos salen unos días en concreto y son tratados de forma manual.
-- El formato de la fecha es aaaa-mm-dd. Realiceros una lista con los días que queremos que sean publicados y al comparar con día actual los pondra o no.
+- El formato de la fecha es aaaa-mm-dd. Se realizara una lista con los días que queremos que sean publicados y al comparar con día actual se incluirán o no.
 - Tenemos que crear el html del banner y pegarlo en el archivo 'banners.py'.
 - Buscar en la aplicación: '#* Banners Horizontales de forma aislada.' para ver los casos.
 
 ### Verticales
 - Actualmente son pocos y diarios y su gestión es manual.
-- En próximas versiones se meteran en la bbdd.
+- En próximas versiones se incluirán en la bbdd.
 
 
 ---

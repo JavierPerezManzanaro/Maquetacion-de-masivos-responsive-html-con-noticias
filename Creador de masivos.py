@@ -29,7 +29,7 @@ import html
 
 
 
-# * librerias propias
+# * librerías propias
 import bloques
 import datos_de_acceso
 import banners
@@ -73,7 +73,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     """Genera la tabla html que contiene un trabajo o la noticia
 
     Args:
-        tipo (str): el tipo que es: compania, produccion, comun
+        tipo (str): el tipo que es: compania, produccion, común
         imagen (str): url local (bbdd, trabajos) o absoluta (noticias)
         titular (str)
         texto (str)
@@ -84,13 +84,13 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
         (str): tabla en html con el trabajo o la noticia
     """
     tabla_interior = bloques.noticia_funcion_raw
-    if tipo == 'compania':  # izq, compañia
+    if tipo == 'compania':  # izq, compañía
         tabla_interior = tabla_interior.replace('##color##', '#881288')
         tabla_interior = tabla_interior.replace('##posicion##', 'left')
     elif tipo == 'produccion':  # der. producción
         tabla_interior = tabla_interior.replace('##color##', '#0F7888')
         tabla_interior = tabla_interior.replace('##posicion##', 'right')
-    elif tipo == 'comun':  # noticias genericas, comunes
+    elif tipo == 'comun':  # noticias genéricas, comunes
         tabla_interior = tabla_interior.replace('##color##', '#000000')
     else:
         logging.warning(
@@ -112,7 +112,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
 
 
 def descarga_imagen(url: str, nombre: int):
-    """Descarga las imagenes y las ajusta al tamaño
+    """Descarga las imágenes y las ajusta al tamaño
 
     Args:
         url (str): es la url: axon[noticia]['imagen']
@@ -122,7 +122,7 @@ def descarga_imagen(url: str, nombre: int):
     Returns:
         imagen_local (str): ruta de la imagen
         ancho (int): ancho de la imagen 320px
-        alto (int): alto de la imágen
+        alto (int): alto de la imagen
     """
     try:
         extension = url[len(url)-4:len(url)]
@@ -212,7 +212,7 @@ def input_trabajos_a_publicar(tipo: str) -> list:
 
 
 def limpiar_input(texto) -> list:
-    """Deja la lista que el usuario intordce peparada: quita espacios antes y despues, elminia espacios dobles y separa el resultado conviertiendolo en un alista
+    """Deja la lista que el usuario introduce preparada: quita espacios antes y después, elimina espacios dobles y separa el resultado
 
     Args:
         texto (str): cadena que introduce el usuario
@@ -227,7 +227,7 @@ def limpiar_input(texto) -> list:
 
 
 def trabajos_a_mostrar(tipo: str, trabajos: list, numero_registros: int) -> list:
-    """Crea el código html con los trabajos o noticias de compañia y de producción
+    """Crea el código html con los trabajos o noticias de compañía y de producción
 
     Args:
         tipo (str): _description_
@@ -311,15 +311,15 @@ def ventana_para_noticia():
 
 
 def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> list:
-    """Gestiona los trabajos que estan en la web. Los inserta en la bbdd y los pone en la lista para publicar
+    """Gestiona los trabajos que están en la web. Los inserta en la bbdd y los pone en la lista para publicar
 
     Args:
         tipo (str): si es de compañía o de producción
         trabajo_seleccionado (int): Trabajo a tratar
-        trabajos_lista (list): Lista de tabajos a publicar
+        trabajos_lista (list): Lista de trabajos a publicar
 
     Returns:
-        list: Lista de tabajos a publicar
+        list: Lista de trabajos a publicar
     """
     def criterio(axon): return axon["id"] == trabajo_seleccionado
     noticia_filtrada = list(filter(criterio, axon))
@@ -342,7 +342,7 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
     datos = (noticia_filtrada[0]['titulo'], noticia_filtrada[0]['url'],
              imagen_bbdd, tipo_bbdd, noticia_filtrada[0]['contenido'])
     sql_insert(datos)  # type: ignore
-    # * Incluimos la noticia en la lista para mostar en el masivo
+    # * Incluimos la noticia en la lista para mostrar en el masivo
     trabajos_lista.append(tabla_interior(tipo,
                                          noticia_filtrada[0]['imagen'],
                                          noticia_filtrada[0]['titulo'],
@@ -369,11 +369,11 @@ def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
     """Iguala las dos listas
 
     Args:
-        trabajos_compania (list): trabajos de animales de compañia
-        trabajos_produccion (list): trabajops de animales de producción
+        trabajos_compania (list): trabajos de animales de compañía
+        trabajos_produccion (list): trabajos de animales de producción
 
     Returns:
-        trabajos_compania, trabajos_produccion: las dos listas con la misma longuitud
+        trabajos_compania, trabajos_produccion: las dos listas con la misma longitud
     """
     while len(trabajos_compania) > len(trabajos_produccion):
         logging.info(
@@ -388,7 +388,7 @@ def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
 
 
 def recuperar_trabajos():
-    """Recuperamos de la bbdd en sql3 los trabajos de animales de compañia (pequeños) y los de producción (grandes)
+    """Recuperamos de la bbdd en sql3 los trabajos de animales de compañía (pequeños) y los de producción (grandes)
 
     Returns:
         list:
@@ -399,7 +399,7 @@ def recuperar_trabajos():
     trabajos_en_bbdd_produccion = []
     try:
         con = sqlite3.connect('bbdd.sqlite3')
-        # trabajos de compañia
+        # trabajos de compañía
         cursorObj = con.cursor()
         cursorObj.execute(
             'SELECT * FROM hemeroteca WHERE tipo = "p" ORDER BY "titular";')
@@ -441,7 +441,7 @@ def noticias_destacadas(axon: list):
         for noticia in noticias:
             noticia_destacada = bloques.noticia_destacada
             noticia = int(noticia)
-            logging.info(f'Tratanto la noticia destacada: {noticia}')
+            logging.info(f'Tratando la noticia destacada: {noticia}')
             def criterio(axon): return axon["id"] == noticia
             noticia_filtrada = list(filter(criterio, axon))
             imagen_local = descarga_imagen(
@@ -473,8 +473,8 @@ def read_wordpress(api_url: str) -> list:
     Returns:
         list: Lista en bruto con todos los post solicitados
     """
-    wordpress_credentials = datos_de_acceso.WORDPRESS_USER + \
-        ":" + datos_de_acceso.WORDPRESS_PASSWORD
+    # wordpress_credentials = datos_de_acceso.WORDPRESS_USER + \
+    #     ":" + datos_de_acceso.WORDPRESS_PASSWORD
     # wordpress_token = base64.b64encode(wordpress_credentials.encode())
     # wordpress_header = {'Authorization': 'Basic ' + wordpress_token.decode('utf-8')}
     response = requests.get(api_url)
@@ -497,12 +497,12 @@ def creacion_lista_noticias(numero_registros: int, noticias: list) -> list:
     for noticia in noticias:
         titulo = noticia['title']['rendered'].strip()
         titulo = titulo.replace("  "," ")
-        titulo = titulo.replace("&#8216;","'")
-        titulo = titulo.replace("&#8217;","'")
-        titulo = titulo.replace("&#171;","'") # comillas angulaes apertura
-        titulo = titulo.replace("&#187;","'") # comillas angulaes cierre
-        titulo = titulo.replace("«","'") # comillas angulaes apertura
-        titulo = titulo.replace("»","'") # comillas angulaes cierre
+        titulo = titulo.replace("&#8216;","\"")
+        titulo = titulo.replace("&#8217;","\"")
+        titulo = titulo.replace("&#171;","\"") # comillas angulares apertura
+        titulo = titulo.replace("&#187;","\"") # comillas angulares cierre
+        titulo = titulo.replace("«","\"") # comillas angulares apertura
+        titulo = titulo.replace("»","\"") # comillas angulares cierre
         contenido_tratado = ''
         contenido_tratado = noticia['content']['rendered']
         contenido_tratado = strip_tags(contenido_tratado)
@@ -525,7 +525,7 @@ def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion: list
     """Fusionamos los trabajos_compania y de trabajos_produccion y entre cada tabla horizontal colocamos un banner
 
     Args:
-        trabajos_compania (list): lista de trabajos a publicar de animales de compañia
+        trabajos_compania (list): lista de trabajos a publicar de animales de compañía
         trabajos_produccion (list): lista de trabajos a publicar de animales de produccion
         publicidad_horizontal (list): Lista de banners a incluir
 
@@ -545,7 +545,7 @@ def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion: list
 
 
 def eliminar_noticias_duplicadas(bbdd_a_tratar: list) -> list:
-    """Eliminamos las noticias y trabajos que estan en la lista de noticias
+    """Eliminamos las noticias y trabajos que están en la lista de noticias
 
     Args:
         bbdd_a_tratar (list): _description_
@@ -577,7 +577,7 @@ def gestion_noticias(axon: list) -> str:
         pase = 1
         for noticia in noticias:
             noticia = int(noticia)
-            logging.info(f'Tratanto la noticia: {noticia}')
+            logging.info(f'Tratando la noticia: {noticia}')
             if noticia == 0:
                 # * Si es 0 es un bloque de pb cuadrado
                 if pase % 2 != 0:
@@ -619,7 +619,7 @@ def gestion_noticias(axon: list) -> str:
         ultimo_si_es_impar = ultimo_si_es_impar.replace(
             '##bloque der##', banners.banner_kit_digital_cuadrado)
         logging.warning(
-            'Eliminar el banner del laser porque usamos el banner cuadrado')
+            'Eliminar el banner del láser porque usamos el banner cuadrado')
         longitud -= 1
     # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
     bloque_final_con_noticias = ''
@@ -668,7 +668,7 @@ def leer_preferencias():
 
 def banners_gestion(ahora) -> list:
     """Se conecta a la bbdd sqlite3 (tabla de "publicidad"), para recoger todos los banner que se publican ese día y los ordena según su prioridad.
-    Después manda la lista a cada una de las funciones que gestionan los banners de las empresas que estan en el archivo 'banners_gestion.py'. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, etc.
+    Después manda la lista a cada una de las funciones que gestionan los banners de las empresas que están en el archivo 'banners_gestion.py'. Estas funciones, si encuentran su banner en la lista ejecutan su lógica para mostrarlos de forma aleatoria, por periodos, etc.
 
     Returns:
         list: Lista ordenada con los banners a publicar en el día 
@@ -793,7 +793,7 @@ def nombre_del_archivo():
 
 def createCampaign(name, subject, content, date_send):
     """Crea y manda (a no ser que la fecha sea diferente) una campaña. Solo se pide los argumentos que cambian de una campaña a otra.
-    Una vez creada la campaña se lanza automaticamente a no ser que se ponga una date_send.
+    Una vez creada la campaña se lanza automáticamente a no ser que se ponga una date_send.
     https://acumbamail.com/apidoc/function/createCampaign/
 
     Esta es la ayuda que manda Acumbamail: https://acumbamail.com/api/1/createCampaign/?auth_token=XXXXX&name=XXXXXX&from_name=my_name&from_email=XXXXXX&subject=XXXXX&lists[0]=XXXX
@@ -809,7 +809,7 @@ def createCampaign(name, subject, content, date_send):
         from_name (string): Nombre del remitente de la campaña
         listas (dict): Los identificadores de las listas a las que se enviará la campaña, o de los segmentos a los que se quiera enviar precedidos de s. No se puede enviar a más de un segmento de una misma lista, ni a un segmento y a una lista a la que pertenezca
         from_email (string): El email desde el que se enviará la campaña, se puede usar Nombre <email@dominio.com>
-        tracking_urls (integer): (Opcional) Sustituir enlaces para seguimiento de clicks. Por defecto=1
+        tracking_urls (integer): (Opcional) Sustituir enlaces para seguimiento de clics. Por defecto=1
         complete_json (integer): Para que devuelva un json completo con formato completo. Por defecto=0
         https: Activa "1" o desactiva "0" usando http
 
@@ -837,7 +837,7 @@ def createCampaign(name, subject, content, date_send):
         # Verificar el estado de la respuesta
         if response.status_code == 200:
             print()
-            print("Campaña creada en Acumbamail con exito")
+            print("Campaña creada en Acumbamail con éxito")
             # Puedes imprimir o manejar la respuesta de la API aquí
             respuesta = json.loads(response.text)
         else:
@@ -851,7 +851,7 @@ def createCampaign(name, subject, content, date_send):
 
 
 def salir_app():
-    """Sale de la aplicación si ocurre un error grave y emite un solnido de alerta
+    """Sale de la aplicación si ocurre un error grave y emite un sonido de alerta
     """
     logging.warning(
         '❌ Cuidado: Hay un error grave. Se procede a salir de la aplicación.')
@@ -872,7 +872,7 @@ def print_response(response):
 
 
 def obtener_asunto(html_content, hay_noticia_destacada):
-    """Obtiene de la bbdd el asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañia
+    """Obtiene de la bbdd el asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañía
 
     Args:
         html (str): html del archivo
@@ -1020,7 +1020,7 @@ if __name__ == '__main__':
     print()
     noticias_destacadas, existe_noticia_destacada = noticias_destacadas(axon) # type: ignore
     print()
-    logging.debug('Trabajos de animales de compañia y producción')
+    logging.debug('Trabajos de animales de compañía y producción')
     trabajos_compania = input_trabajos_a_publicar('compania')
     trabajos_compania = trabajos_a_mostrar(
         'compania', trabajos_compania, numero_registros)
@@ -1066,7 +1066,7 @@ if __name__ == '__main__':
     resultado += comienzo_en_curso + noticias_destacadas  # type: ignore
     resultado += bloques.pb_laservet + html_trabajos
 
-    # * Chequea si todos los banner estan publicados. Si no lo estan se publican y avisa
+    # * Chequea si todos los banner están publicados. Si no lo están se publican y avisa
     if len(publicidad_horizontal) >= 1:
         print()
         print()
@@ -1121,7 +1121,7 @@ if __name__ == '__main__':
     subprocess.run(["open", "-a", "Safari", f'{datos_de_acceso.RUTA_LOCAL}{archivo}'])
 
     print()
-    print('Archivo generado con exito: 👍')
+    print('Archivo generado con éxito: 👍')
     print()
     print('Edita el archivo abierto en Dreamweaver.')
     print()
@@ -1140,7 +1140,7 @@ if __name__ == '__main__':
         '<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
     subject = obtener_asunto(html_content, existe_noticia_destacada)
     respuesta = createCampaign(name, subject, html_content, date_send)
-    #* Solo continua si la campaña se creo con exito, si no fue así en la función createCampaign se salio de la aplicación
+    #* Solo continua si la campaña se creo con éxito, si no fue así en la función createCampaign se salio de la aplicación
     url = 'https://acumbamail.com/app/campaign/' + \
         str(respuesta['id']) + '/summary/'  # type: ignore
     print()
