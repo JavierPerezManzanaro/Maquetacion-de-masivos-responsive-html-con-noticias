@@ -430,7 +430,7 @@ vetnova = '''
 
 
 # * Banners cuadrados
-banner_kit_digital_cuadrado = """
+banner_kit_digital_cuadrado_viejo = """
 <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
   <tbody>
     <tr>
@@ -439,3 +439,12 @@ banner_kit_digital_cuadrado = """
   </tbody>
 </table>
 """
+
+banner_kit_digital_cuadrado = """
+<table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+        <tbody>
+          <tr>
+            <td align="left" valign="middle" style="color:#666666;"><a href="https://axoncomunicacion.net/pequenos-animales-revolution/"><img src="pb/peq_ani_rev-320x320.gif" alt="Peque&ntilde;os Animales (R)evolution" width="320" height="320"   style="margin:0; padding:0; width:100%; height:auto;" /></a></td>
+          </tr>
+        </tbody>
+      </table>"""

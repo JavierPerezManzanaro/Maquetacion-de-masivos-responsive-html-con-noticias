@@ -13,6 +13,7 @@ La aplicación recopila trabajos (de una bbdd sqlite3), una serie de noticias de
 Al final del proceso se obtiene:
 - un **archivo html**
 - una **carpeta con las imágenes nuevas**.
+- una campaña creada en Acumbamail con ese masivo
 
 Esta aplicación esta pensada para funcionar bajo la estructura de archivos de mi empresa, por lo que para otros casos abra que realizar modificaciones.
 
@@ -27,6 +28,7 @@ Dentro tenemos que definir estas variables:
 - url_general = String del blog: 'https://dominio.net'
 - imagen_en_blanco = tiene que ser una url (str) que apunte a una imagen en blanco. Suelo usar un gif de 1x1 px en transparente.
 - ruta_local: carpeta local donde se almacenan los documentos.
+- datos de acceso y gestión en Acumbamail.
 
 ---
 ## Instrucciones de instalación
@@ -36,6 +38,7 @@ Dentro tenemos que definir estas variables:
     - Para 'Creador de masivos.py':
       - [cv2](https://pypi.org/project/opencv-python/) Tratamiento de las imágenes.
       - [imutils](https://github.com/PyImageSearch/imutils) Ayuda para el tratamiento de las imágenes.
+      - [tkinter](https://docs.python.org/es/3/library/tkinter.html) para mostrar la ventana donde pegaremos el código html que contiene el trabajo que queremos añadir a la bbdd.
       - Para versión menores de la 5:
           - [python-wordpress-xmlrpc 2.3](https://pypi.org/project/python-wordpress-xmlrpc/) Puente entre Python y WordPress.
           - [requests 2.28.1](https://pypi.org/project/requests/)
@@ -150,31 +153,47 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ---
 ## Historial de versiones
 
+### Funciones para añadir más urgentes
+- Si las noticias son impares deja el segundo hueco para el banner de peq ani rev. Si se de este caso hay que borrar el banner horizontal.
+- Calcular el numero de noticias necesarias para el numero de banners del día. Si faltan noticias meter banners cuadrados de forma automática.
+
 ### Funciones para añadir
-- Añadir formato de imagen webp que pasara a ser jpg.
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
-# 6.3.5
+
+# 7
+- Usar la Agenda del número anterior en vez de una variable.
+- Ahora busca en el escritorio el archivo de Word donde estan los titulares de las noticias. Si no lo encuentra no realiza la búsqueda. Esto esta adaptado al flujo de trabajo de mi empresa pero se puede cambiar. Esta comentado la opción de que se muestre un cuadro de dialogo para seleccionar el archivo de Word que contiene los titulares (pasa a manual si Cancelamos el cuadro de selección de archivo de Word). 
+- Se admite 0 como entrada en "¿Fecha de emisión? (nada o para otro día: aaaa/mm/dd ó +1): ". Equivale a la fecha actual.
+- Se mejora el tratamiento de los errores.
+
+### 6.3.6 -> actual
+- Refactorización: Función "descarga_imagen" -> ahora admite imágenes en formato webp que transforma a formato jpg.
+- Refactorización: Modifico la parte del código que coloca el banner cuadrado si son impares. Antes se colocaba al final y ahora se coloca en segunda posición con un banner especifico que esta en la variable.
+- Ahora se admite guiones '-' a la hora de meter la fecha.
+- Correcciones menores.
+
+
+### 6.3.5
 - Unificamos el tipo de comillas (simple, dobles, de sargento, etc) que se muestran. Todas pasan a ser comillas dobles: ".
 - Mejoras menores.
 - Correcciones ortográficas.
 - Correcciones y actualización de README.md
 
-
-# 6.3.4
+### 6.3.4
 - Mejoramos el funcionamiento de la función "descarga_imagen". Se simplifica y se avisa de que hay una imagen webp para cambiarla manualmente.
 - Pequeñas mejoras.
 
-# 6.3.3
+### 6.3.3
 - Mejoras menores.
 - Mejoramos como se exportan las noticias. Ahora las comillas de sargento se muestran como comillas simples, los dobles espacios y los espacios antes y después desaparecen.
 
-# 6.3.2
+### 6.3.2
 - Si hay una noticia destacada da a elegir que asunto hay que usar.
 - Importamos el módulo "html" para mejorar la codificación. Se usa en el asunto y en cuerpo.
 
-# 6.3.1
+### 6.3.1
 - Añado otro criterio para la ordenación de los banner: 'interno destacado': ver nota de la versión 5.2
 - Abrimos la página web del masivo (en local) para comprobar si es correcto.
 
