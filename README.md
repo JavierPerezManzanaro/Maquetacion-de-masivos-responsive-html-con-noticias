@@ -33,6 +33,7 @@ Dentro tenemos que definir estas variables:
 ---
 ## Instrucciones de instalación
 - Clonar el repositorio en local.
+- Recomiendo modifificar esta preferencia en VSC: terminal.integrated.scrollback para que nos muestre todos los registros de las bbdd que tiene que mostrar. Por defecto viene 1000 pero se peude ampliar: https://code.visualstudio.com/docs/terminal/basics
 - Tener instalado Python 3.10.
 - Módulos a importar:
     - Para 'Creador de masivos.py':
@@ -153,22 +154,28 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ---
 ## Historial de versiones
 
-### Funciones para añadir más urgentes
-- Si las noticias son impares deja el segundo hueco para el banner de peq ani rev. Si se de este caso hay que borrar el banner horizontal.
-- Calcular el numero de noticias necesarias para el numero de banners del día. Si faltan noticias meter banners cuadrados de forma automática.
 
-### Funciones para añadir
+### Funciones para añadir por orden
+- Calcular el numero de noticias necesarias para el numero de banners del día. Si faltan noticias se deben meter banners cuadrados de forma automática.
+- ¿Y si no encuentra algún trabajo o noticia? Por ahora avisa, en próximas versiones se modificara.
+- Unificar g o p de grandes o de producción en bbdd (mejor opción) y en aplicación. 
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
 
-# 7
+# 7 -> actual
+- En esta versión se presentan muchas mejoras y novedades.
+- Ahora busca en el escritorio el archivo de Word donde estan los titulares de las noticias y trabajos. Si no lo encuentra  pasa a modo manual. Esto esta adaptado al flujo de trabajo de mi empresa pero se puede cambiar. Esta comentada la opción de que se muestre un cuadro de dialogo para seleccionar el archivo de Word que contiene los titulares (pasa a manual si Cancelamos el cuadro de selección de archivo de Word). 
+- Se mejora la función que crea la carpeta donde se almacenan las imágenes.
 - Usar la Agenda del número anterior en vez de una variable.
-- Ahora busca en el escritorio el archivo de Word donde estan los titulares de las noticias. Si no lo encuentra no realiza la búsqueda. Esto esta adaptado al flujo de trabajo de mi empresa pero se puede cambiar. Esta comentado la opción de que se muestre un cuadro de dialogo para seleccionar el archivo de Word que contiene los titulares (pasa a manual si Cancelamos el cuadro de selección de archivo de Word). 
+- Borra las imagenes png
+- La inclusión en la bbdd no se realiza bien cuando es un trabajo de Grandes animales. Solucionado.
+- Si las noticias son impares deja el segundo hueco para el banner de peq ani rev. Ahora ademas borra ese banner horizontal.
 - Se admite 0 como entrada en "¿Fecha de emisión? (nada o para otro día: aaaa/mm/dd ó +1): ". Equivale a la fecha actual.
 - Se mejora el tratamiento de los errores.
 
-### 6.3.6 -> actual
+
+### 6.3.6
 - Refactorización: Función "descarga_imagen" -> ahora admite imágenes en formato webp que transforma a formato jpg.
 - Refactorización: Modifico la parte del código que coloca el banner cuadrado si son impares. Antes se colocaba al final y ahora se coloca en segunda posición con un banner especifico que esta en la variable.
 - Ahora se admite guiones '-' a la hora de meter la fecha.

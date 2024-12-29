@@ -275,7 +275,7 @@ table[class=main] {
                     </tr>
                     <tr>
                       <td width="7%" align="center" class="MsoNormal" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; "></td>
-                      <td width="93%" align="left" style="color:#0F7888; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:12px; " >N&uacute;mero ##numero## - ##mes## 2024</td>
+                      <td width="93%" align="left" style="color:#0F7888; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:12px; " >N&uacute;mero ##numero## - ##mes## 2025</td>
                     </tr>
                     <tr>
                       <td height="10" colspan="2"></td>
@@ -309,34 +309,43 @@ fin = '''
                       <td><!--TABLE LEFT-->
 
                         <!--cv-->
+                     
                      <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv120.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv121.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, Nº 120</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, Nº 121</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Editorial </li>
-                                  <li>Casos clínicos: 
+                                  <li>Editorial  </li>
+                                  <li>Caso clínico: 
                                     <ul>
-                                      <li>Triaje en consulta de pequeños animales (II) </li>
-                                      <li>Actualización de las recomendaciones clínicas de RCP en pequeños animales RECOVER (RECOVER 2024) (I) </li>
+                                      <li>Actualización de las recomendaciones clínicas de RCP en pequeños animales recover (recover 2024) (II)  </li>
                                     </ul>
                                   </li>
-                                  <li>Trucos Veterinarios </li>
+                                  <li>Entrevista: 
+                                    <ul>
+                                      <li>¿Medimos el dolor adecuadamente en nuestros pacientes? </li>
+                                    </ul>
+                                  </li>
+                                  <li>Trucos Veterinarios  </li>
                                   <li>VETMADRID 2025: 
                                     <ul>
-                                      <li>Avance programa Vetmadrid 2025 </li>
-                                      <li>Normas para la presentación de Comunicaciones Libres </li>
+                                      <li>Avance programa Vetmadrid 2025  </li>
+                                      <li>II Congreso de Congreso Formación Empresarial  </li>
+                                      <li>II Congreso de Fisioterapia y Rehabilitación  </li>
+                                      <li>II Pre-Congreso de Medicina y Cirugía felina  </li>
+                                      <li>Taller Formación Empresarial  </li>
+                                      <li>Congreso de Asistentes a la Atención Clínica en Centros Veterinarios </li>
                                     </ul>
                                   </li>
                                   <li>Noticias de Empresa</li>
@@ -346,7 +355,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no120-centro-veterinario/no120-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no121-centro-veterinario/no121-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -371,23 +380,22 @@ fin = '''
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av108.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av109.jpg" alt="" width="320" height="275"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Asistente en Centro Veterinario, Nº 108</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Asistente en Centro Veterinario, Nº 109</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas  </li>
-                                  <li>Patologías infecciosas habituales en peces ornamentales (I)  </li>
-                                  <li>Fármacos: no todo vale  </li>
-                                  <li>ANAVET  </li>
+                                  <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas </li>
+                                  <li>Patologías infecciosas habituales en peces ornamentales (y II) </li>
+                                  <li>La clonación ANAVET: Anestesia en pacientes braquicefálicos, como mejorar su bienestar </li>
                                   <li>Noticias</li>
                                 </ul></td>
                             </tr>
@@ -395,11 +403,10 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no108-asistente-en-centro-veterinario/no108-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no109-asistente-en-centro-veterinario/no109-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
-
 
 
 
@@ -434,7 +441,7 @@ fin = '''
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par9.jpg" alt="Pequeños Animales (R)evolution" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par10.jpg" alt="Pequeños Animales (R)evolution" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
@@ -457,27 +464,25 @@ fin = '''
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Pequeños Animales (R)evolution, Nº9</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Pequeños Animales (R)evolution, Nº10</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Cirugía de Mínima Invasión  </li>
-                                  <li>Entrevista a Jorge García  </li>
-                                  <li>Abordaje de un caso practico en lebrel italiano, hembra no castrada: Tratamiento de uréteres ectópicos en perros con Laservet I-VET  </li>
-                                  <li>Entrevista a D. José Ramón Becerra  </li>
-                                  <li>Entrevista a Joan Lleó </li>
-                                  <li>Comparativa entre SDMA y creatinina séricos como biomarcadores para la detección de daño renal inducido por meloxicam en gatos  </li>
-                                  <li>Caso clínico: Quemodectoma maligno con metástasis hepática en un gato</li>
+                                  <li>Cirugía de <strong>Mínima Invasión </strong></li>
+                                  <li>Caso clínico:<strong> Luxación medial de rótula en caniche toy </strong></li>
+                                  <li><strong>Evaluación del rascado no deseado en gatos domésticos:</strong> un enfoque multifactorial para comprender los factores de riesgo </li>
+                                  <li><strong>¿Mejora el «Dr. Google» el debate y las decisiones en la clínica de pequeños animales? </strong></li>
+                                  <li><strong>Dietas gastrointestinales de primera respuesta</strong></li>
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no9-pequenos-animales-revolution/no9-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no10-pequenos-animales-revolution/no10-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table></td>
@@ -514,13 +519,13 @@ fin = '''
                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_115.jpg" alt="" width="320" height="451"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_116.jpg" alt="" width="320" height="451"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno Más, Nº 115 </td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno Más, Nº 116 </td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -529,13 +534,12 @@ fin = '''
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                  <li>Nutrición: 
                                    <ul>
-                                     <li>Binomio: raza-nutrición </li>
+                                     <li>Requisitos nutricionales para perros y gatos </li>
                                     </ul>
                                  </li>
                                  <li>Salud: 
                                    <ul>
-                                     <li>Ventajas e inconvenientes de la castración en perros y gatos </li>
-                                     <li>Castración en: conejos, roedores y hurones</li>
+                                     <li>Urolitiasis canina                                 </li>
                                    </ul>
                                  </li>
                               </ul></td>
@@ -544,7 +548,7 @@ fin = '''
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no115-uno-mas/no115-uno-mas/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no116-uno-mas/no116-uno-mas/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -651,6 +655,37 @@ fin = '''
   </tbody>
 </table>
 
+<table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
+        <tbody>
+          <tr>
+            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+              <tbody>
+                <tr>
+                  <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                      <tr>
+                        <td><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><a href="https://www.setna.com/presentacion.htm"><img src="pb/setna_novalsam.jpg" alt="" style="margin: 0pt; padding: 0pt; display: block; width: 100%; height: auto;" height="90" width="700" /></a></span></td>
+                      </tr>
+                      <tr>
+                        <td height="30"></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+              </tbody>
+            </table></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
 
 <table align="center" bgcolor="#006580" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
@@ -756,15 +791,23 @@ fin = '''
                         <td height="20" ></td>
                       </tr>
                       <tr>
-                        <td align="center"><table align="center" border="0" cellspacing="0" cellpadding="0" width="25%" style="width:auto !important;">
+                        <td align="center">
+                        <table align="center" border="0" cellspacing="0" cellpadding="0" width="40%" style="width:auto !important;">
                           <tr>
-                            <td align="center" style="color:#ffffff;" width="48"><a href="http://www.facebook.com/pages/AXÃŒÃ’N-COMUNICACIÃŒÃ’N/193140240787561" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/facebook-f_2024-07.png" alt="Axon en Facebook" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                              <td align="center" style="color:#ffffff;" width="48"><a href="https://www.linkedin.com/in/enrique-marcos-456b3925/" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/in.png" alt="Axon en linkedin" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                            <td width="10"></td>
+                            <td align="center" style="color:#ffffff;" width="48"><a href="https://www.facebook.com/axoncomunicacio" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/facebook-f_2024-07.png" alt="Axon en Facebook" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
                             <td width="10"></td>
                             <td align="center" style="color:#ffffff;" width="48"><a href="https://x.com/AxonComunicacio?s=20" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/twitter-f_2024-07.png" alt="Axon en twitter" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
                             <td width="10"></td>
                             <td align="center" style="color:#ffffff;" width="48"><a href="https://www.instagram.com/axon_vet/" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/instagram-f_2024-07.png" alt="Axon en instagram" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                              <td width="10"></td>
+                            <td align="center" style="color:#ffffff;" width="48"><a href="https://bsky.app/profile/axonvet.bsky.social" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/bluesky.png" alt="Axon en instagram" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
                           </tr>
-                        </table></td>
+                        </table>
+                        
+                        
+                        </td>
                       </tr>
                       <tr>
                         <td height="10" ></td>

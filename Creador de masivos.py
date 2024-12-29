@@ -140,6 +140,8 @@ def descarga_imagen(url: str, nombre: int):
         imagen_local = nombre_archivo+'/'+str(nombre)+'.jpg'
         cv2.imwrite(imagen_local, imagen)
         if extension == ".webp":
+            os.remove(imagen_local_generica)
+        elif extension == ".png":
             os.remove(imagen_local_generica)          
     except:
         imagen_local = '/axon_news/imagenes/spacer.gif'
@@ -306,7 +308,11 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
     ventana_para_noticia()
     # * preparamos los datos para meter en la bbdd
     noticia_filtrada[0]['contenido'] = resultado
-    tipo_bbdd = 'p' if 'compania' else 'g'
+    
+    # * cambiamos la variable tipo para la bbdd
+    print(f'{tipo=}') # ? control
+    tipo = 'p' if tipo == 'compania' else 'g'
+    print(f'{tipo=}') # ? control
     extension_imagen = ''
     if noticia_filtrada[0]['imagen'][-5:] == '.jepg':
         extension_imagen = 'jpg'
@@ -316,8 +322,11 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
         extension_imagen = 'png'
     imagen_bbdd = f'{boletin}c/{trabajo_seleccionado}.{extension_imagen}'
     datos = (noticia_filtrada[0]['titulo'], noticia_filtrada[0]['url'],
-             imagen_bbdd, tipo_bbdd, noticia_filtrada[0]['contenido'])
+             imagen_bbdd, tipo, noticia_filtrada[0]['contenido'])
     sql_insert(datos)  # type: ignore
+    # * Cambiamos la variable tipo para el resto de la app
+    tipo = 'compania' if tipo == 'p' else 'produccion'
+
     # * Incluimos la noticia en la lista para mostrar en el masivo
     trabajos_lista.append(tabla_interior(tipo,
                                          noticia_filtrada[0]['imagen'],
@@ -325,6 +334,7 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
                                          noticia_filtrada[0]['contenido'],
                                          noticia_filtrada[0]['url'],
                                          trabajo_seleccionado))
+    print(f'{tipo=}') # ? control
     return trabajos_lista
 
 
@@ -364,7 +374,8 @@ def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
 
 
 def recuperar_trabajos():
-    """Recuperamos de la bbdd en sql3 los trabajos de animales de compañía (pequeños) y los de producción (grandes)
+    """Recuperamos de la bbdd en sql3 los trabajos de animales de compañía (pequeños) y los de producción (grandes).
+    El formato es: (id, 'titular', 'url', 'imagen, 'tipo: p o g', 'noticia')
 
     Returns:
         list:
@@ -586,6 +597,12 @@ def gestion_noticias(axon: list) -> str:
         print()
         logging.warning(
             'Eliminar el banner de "Peq Ani Rev" porque usamos el banner cuadrado')
+        publicidad_horizontal_temp = publicidad_horizontal
+        for banner in publicidad_horizontal_temp:
+            if banner[1] == 'Pequeños Animales (R)evolution':
+                publicidad_horizontal.remove(banner)
+        publicidad_horizontal_temp = ''
+
         print()
         
     # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
@@ -642,7 +659,6 @@ def leer_preferencias():
         os.system(ALERTA)
     finally:
         pass
-        # todo: que hacer al final
 
 
 def banners_gestion(ahora) -> list:
@@ -674,8 +690,8 @@ def banners_gestion(ahora) -> list:
             'SELECT * FROM publicidad WHERE ' + DIA + ' = "1" and exclusiva = "horizontal";')  # type: ignore
         publicidad_horizontal = cursorObj.fetchall()
         cursorObj.close()
-        # * desglosamos la lista en los 4 grupos
-        # ? se puede hacer por filter o por comprension
+        # * Desglosamos la lista en los 4 grupos
+        # ? Se puede hacer por filter o por comprension
         # publicidad_final = [publicidad for publicidad in publicidad_horizontal if publicidad_horizontal[2] == 'final']
         # criterio = lambda prioridad: publicidad_horizontal[2] == 'final'
         # # Filtrar elementos utilizando la función lambda
@@ -760,14 +776,17 @@ def nombre_del_archivo():
     archivos_html.sort()
     ultimo_publicado = archivos_html[-1]
     nombre_archivo = str(ultimo_publicado+1)+'c'
-
+    nombre_carpeta = nombre_archivo
     try:
-        os.mkdir(nombre_archivo)
-    except OSError as e:
-        print("Error creando la carpeta.")
-        if e.errno != errno.EEXIST:
-            raise
-        salir_app()
+        os.mkdir(nombre_carpeta)
+    except FileExistsError:
+        if not os.listdir(nombre_carpeta):
+            os.rmdir(nombre_carpeta)
+            print(f"Carpeta '{nombre_carpeta}' estaba vacía y fue eliminada.")
+            os.makedirs(nombre_carpeta)
+        else:
+            print(f"Carpeta '{nombre_carpeta}' ya existe y no está vacía.")
+            salir_app()
     return nombre_archivo, ultimo_publicado+1
 
 
@@ -897,6 +916,38 @@ def obtener_asunto(html_content, hay_noticia_destacada):
     return 'In-formaVET: ' + asunto
 
 
+def extraer_agenda(numero_anterior: int) -> str:
+    """
+    Extrae el contenido entre los comentarios HTML <!-- agenda --> y <!-- fin agenda -->
+    
+    Args:
+        numero_anterior (int): Número anterior que contiene la agenda
+        
+    Returns:
+        str: Contenido encontrado entre los comentarios, o '' si no se encuentra
+    """
+    nombre_numero_anterior =str(numero_anterior)+"c.html"
+    try:
+        with open(datos_de_acceso.RUTA_LOCAL+nombre_numero_anterior, 'r', encoding='utf-8') as file:
+            content = file.read()
+        pattern = r'<!--\s*agenda\s*-->(.*?)<!--\s*fin agenda\s*-->'
+        match = re.search(pattern, content, re.DOTALL)
+        if match:
+            return match.group(1).strip()
+        else:
+            logging.warning(f'❌ Cuidado: la agenda no se encontro en el archivo: {nombre_numero_anterior}')
+            os.system(ALERTA)
+            return ''
+    except FileNotFoundError:
+        logging.warning(f'❌ Cuidado: la agenda no se sale publicada. No encontro se encontró el archivo               {nombre_numero_anterior}')
+        os.system(ALERTA)
+        return ''
+    except Exception as e:
+        logging.warning(f'❌ Cuidado: la agenda no se sale publicada. Error al procesar el archivo: {str(e)}')
+        os.system(ALERTA)
+        return ''
+
+
 def limpieza_de_tituares(titular: str) -> str:
     """Limpia una cadena de texto. Códigos sacados de: https://ascii.cl/es/codigos-html.htm#google_vignette
 
@@ -993,16 +1044,15 @@ def buscar_seccion(contenido: list, cadena: str) -> int:
             break
     else:
         print()
-        logging.warning(f'❌ La sección {cadena} NO está en la lista"')
+        logging.warning(f'❌ La sección: "{cadena}" NO está en la lista.')
         os.system(ALERTA)
         modo_manual = True
-        #todo ver que pasa
         print()
     return indice
 
 
 def limpiar_lista(lista: list) -> list:
-    """Limpua el contenido de una lista que solo contien str
+    """Limpia el contenido de una lista que solo contien str
 
     Args:
         lista (list): _description_
@@ -1013,19 +1063,56 @@ def limpiar_lista(lista: list) -> list:
     contenido = []
     for elemento in lista:
         elemento = limpieza_de_tituares(elemento)
-        if elemento != '':
+        if elemento == ' ':
+            pass
+        elif elemento != '':
             contenido.append(elemento)
         else:
             pass
     lista = contenido
     return lista
+      
+
+def chequeo_de_titulares(seccion_word: list, seccion:list):
+    """Resta los titulares que hay en el word con los que se han encontrado. Si son diferentes avisa y suena la alarma.
+
+    Args:
+        seccion_word (list): Es la lista que esta en el word.
+        seccion (list): Lista encontrada.
+    """
+    if len(seccion_word) != len(seccion):
+        logging.warning(f'❌ {len(seccion_word)-len(seccion)} noticia(s) falta(n).')
+        os.system(ALERTA)
+        print()
+    return
 
 
-def imprimir_titulares(titulares: list, seccion: str):
-    print()
-    print(f'Hay {len(titulares)} {seccion}:')
-    for entrada in titulares:
-            print(f'- {entrada}')
+def comprobar_si_estan_todos(coincidencias: list, titulares: list):
+    """Revisa que esten todos los titulares del word metidos en el document html-
+
+    Args:
+        coincidencias (list): Lista de artículos encontrados
+        titulares (list): Lista de artículos del Word
+    """   
+    if len(coincidencias) < len(titulares):
+        logging.warning(f'❌ Error: Hay noticias que no se encuantran.')
+        os.system(ALERTA)
+    elif len(coincidencias) == len(titulares):
+        print('Todos los titulares se encontraron.')
+    else:
+        logging.warning(f'❌ Error: Hay noticias de mas.')
+        os.system(ALERTA)  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1125,70 +1212,103 @@ if __name__ == '__main__':
     print(f'Se va a publicar: {nombre_archivo}')
     print()
     print(
-        f'Hoy salen publicados {str(len(publicidad_horizontal))} banners (sin contar con los extras):')
+        f'Hoy salen publicados {len(publicidad_horizontal)} banners (sin contar con los extras):')
     for banner in publicidad_horizontal:
         print(f'  -{banner[1]}')
 
-    print()
     print()
     
     # * Leemos el archivo de Word del escritorio
     try:
         archivo_docx = leer_docx(datos_de_acceso.RUTA_AL_WORD_INFORMAVET)
-    except Exception as e:
-        print()
         """Este código abre el cuadro de dialogo para leer el word con las noticias
         archivo_docx = abrir_archivo()
         archivo_docx = leer_docx(archivo_docx)"""
+    except Exception as e:
+        print()
         logging.warning('Exception occurred while code execution: ' + repr(e))    
         logging.warning(f'❌ No esta el archivo en el escritorio, pasas a modo manual.')
         os.system(ALERTA)
         modo_manual = True
     
-    if modo_manual == False:
-        # * Analizamos el archivo de Word     
+    # * Analizamos el archivo de Word 
+    if modo_manual == False:    
         titular_compania = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE COMPAÑÍA')
         titular_produccion = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE PRODUCCIÓN')
         titular_noticias = buscar_seccion(archivo_docx, 'NOTICIAS GENERALEs ')
-        titulares_compania = archivo_docx[titular_compania+1:titular_produccion]
-        titulares_compania = limpiar_lista(titulares_compania)
-        imprimir_titulares(titulares_compania, 'titulares pequeños')
-        titulares_produccion = archivo_docx[titular_produccion+1:titular_noticias]
-        titulares_produccion = limpiar_lista(titulares_produccion)
-        imprimir_titulares(titulares_produccion, 'titulares producción')
-        titulares_noticias = archivo_docx[titular_noticias+1:]
-        titulares_noticias = limpiar_lista(titulares_noticias)
-        imprimir_titulares(titulares_noticias, 'noticias')    
-        
-        # * Busca un titular del word dentro de la lista de noticias
+        """
+        Esquems de datos usados:
+        -trabajos_en_bbdd_compania: (id, 'titular', 'url', 'imagen, 'tipo: p o g', 'noticia')
+        -noticias_web: {'id': número, 'url': '…', 'imagen': '…', 'titulo': '…', 'contenido': '…'}
+        """
+        # * Animales de compañia        
+        titulares_compania_word = archivo_docx[titular_compania+1:titular_produccion]
+        titulares_compania_word = limpiar_lista(titulares_compania_word)
+        print()
+        print(f'Hay {len(titulares_compania_word)} titulares de Animales de Compañia incorporados:')
         coincidencias_compania = []
-        for trabajo in trabajos_en_bbdd_compania:
-            if trabajo[1] in titulares_compania:
-                coincidencias_compania.append(trabajo[0])
-                
-        coincidencias_produccion = []
-        for trabajo in trabajos_en_bbdd_produccion:        
-            if trabajo[1][0:25] == 'Opinión de Antonio Palomo':
-                coincidencias_produccion.append(144)
-            if trabajo[1] in titulares_produccion:
-                coincidencias_produccion.append(trabajo[0])
-
-
-        coincidencias_noticias = []
-        for titular in titulares_noticias:    
+        esta_ya = False
+        for titular in titulares_compania_word:
+            for trabajo in trabajos_en_bbdd_compania:
+                if titular in trabajo[1]:
+                    coincidencias_compania.append(trabajo[0])
+                    print(f'- {titular}')  
+                    esta_ya = True
             for noticia in noticias_web:
-                #print(f"{noticia['id']:>4} | {noticia['titulo'][0:130]}")
-                if titular in noticia['titulo']:
-                    coincidencias_noticias.append(noticia['id'])           
+                if titular in noticia['titulo'] and esta_ya == False:
+                    coincidencias_compania.append(noticia['id'])
+                    print(f'- {titular}')  
+                    esta_ya = True
+        comprobar_si_estan_todos(coincidencias_compania, titulares_compania_word)             
+        print(f'Coincidencias_compania = {" ".join(map(str, coincidencias_compania))}')
 
+        # * Animales de producción
+        titulares_produccion_word = archivo_docx[titular_produccion+1:titular_noticias]
+        titulares_produccion_word = limpiar_lista(titulares_produccion_word)
+        print()
+        print(f'Hay {len(titulares_compania_word)} titulares de Animales de Producción incorporados:')        
+        coincidencias_produccion = []
+        esta_ya = False
+        for titular in titulares_produccion_word:
+            if 'Opinión de Antonio Palomo' in titular:
+                coincidencias_produccion.append(144)
+                print(f'- {titular}')  
+                esta_ya = True
+                continue 
+            for trabajo in trabajos_en_bbdd_produccion:
+                if titular in trabajo[1]:
+                    coincidencias_produccion.append(trabajo[0])
+                    print(f'- {titular}')  
+                    esta_ya = True                       
+            for noticia in noticias_web:
+                if titular in noticia['titulo'] and esta_ya == False:
+                    coincidencias_produccion.append(noticia['id'])    
+                    print(f'- {titular}')  
+                    esta_ya = True        
+        comprobar_si_estan_todos(coincidencias_produccion, titulares_produccion_word)        
+        print(f'Coincidencias_produccion = {" ".join(map(str, coincidencias_produccion))}')
+
+        # * Noticias    
+        titulares_noticias_word = archivo_docx[titular_noticias+1:]
+        titulares_noticias_word = limpiar_lista(titulares_noticias_word)
+        print()
+        print(f'Hay {len(titulares_noticias_word)} titulares de Noticias incorporados:')      
+        coincidencias_noticias = []
+        esta_ya = False
+        for titular in titulares_noticias_word:    
+            for noticia in noticias_web:
+                if titular in noticia['titulo']:
+                    coincidencias_noticias.append(noticia['id'])       
+                    print(f'- {titular}')  
+                    esta_ya = True     
+        comprobar_si_estan_todos(coincidencias_noticias, titulares_noticias_word)        
+        print(f'Coincidencias_noticias = {" ".join(map(str, coincidencias_noticias))}')
+
+        # * Resumen
         print()        
-        print(f'{coincidencias_compania=}')
-        print(f'{coincidencias_produccion=}')
-        print(f'{coincidencias_noticias=}')
+        print(f'Se van a publicar {len(coincidencias_compania)+len(coincidencias_produccion)+len(coincidencias_noticias)} noticias y {len(publicidad_horizontal)} banners.')
+        # * fin modo_manual = False
         
-        salir_app()
-    
-    #! a partir de aquí es manual
     print()
     print('Los trabajos/noticias separadas con espacios.')
     print()
@@ -1233,14 +1353,14 @@ if __name__ == '__main__':
     }
     comienzo_en_curso = comienzo_en_curso.replace(
         '##mes##', meses[str(ahora.month)])  # type: ignore
-    # todo: añadir año
 
     # * Vamos uniendo las partes
     resultado = ''
-    resultado += comienzo_en_curso + bloques.pb_laservet   
-    resultado += bloques.agenda + noticias_destacadas + html_trabajos # type: ignore
+    resultado += comienzo_en_curso + bloques.pb_laservet 
+    resultado += '<!-- agenda -->' + extraer_agenda(boletin-1) + '<!-- fin agenda -->'
+    resultado += noticias_destacadas + html_trabajos
 
-    # * Chequea si todos los banner están publicados. Si no lo están se publican y avisa
+    # * Chequea si todos los banner están publicados. Si no lo están se publican juntos y se avisa
     if len(publicidad_horizontal) >= 1:
         print()
         print()
@@ -1254,7 +1374,6 @@ if __name__ == '__main__':
 
     # * Vamos uniendo las partes
     resultado += bloque_final_con_noticias
-    resultado += banners.setna
     resultado += bloques.fin
 
     # * Codificamos a html
@@ -1304,7 +1423,7 @@ if __name__ == '__main__':
 
     # * Creamos la campaña
     name = 'Informa-vet ' + str(boletin)
-    date_send = '2024-12-30 23:00'
+    date_send = '2025-12-30 23:00'
     # Guardamos el archivo que esta en la web (después de su edición en Dreamweaver)
     html_content = requests.get(datos_de_acceso.RUTA_PLANTILAS + archivo)
     if html_content.status_code != 200:
@@ -1314,7 +1433,8 @@ if __name__ == '__main__':
         '<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
     subject = obtener_asunto(html_content, existe_noticia_destacada)
     respuesta = createCampaign(name, subject, html_content, date_send)
-    #* Solo continua si la campaña se creo con éxito, si no fue así en la función createCampaign se salio de la aplicación
+    
+    # * Solo continua si la campaña se creo con éxito, si no fue así en la función createCampaign se salio de la aplicación
     url = 'https://acumbamail.com/app/campaign/' + \
         str(respuesta['id']) + '/summary/'  # type: ignore
     print()
