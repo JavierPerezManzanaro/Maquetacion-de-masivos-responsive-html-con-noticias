@@ -29,7 +29,7 @@ import html
 import tkinter as tk
 from tkinter import filedialog
 from docx import Document
-
+from colorama import Fore, Style, init # https://pypi.org/project/colorama/
 
 # * librerías propias
 import bloques
@@ -310,9 +310,7 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
     noticia_filtrada[0]['contenido'] = resultado
     
     # * cambiamos la variable tipo para la bbdd
-    print(f'{tipo=}') # ? control
     tipo = 'p' if tipo == 'compania' else 'g'
-    print(f'{tipo=}') # ? control
     extension_imagen = ''
     if noticia_filtrada[0]['imagen'][-5:] == '.jepg':
         extension_imagen = 'jpg'
@@ -334,7 +332,6 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
                                          noticia_filtrada[0]['contenido'],
                                          noticia_filtrada[0]['url'],
                                          trabajo_seleccionado))
-    print(f'{tipo=}') # ? control
     return trabajos_lista
 
 
@@ -543,11 +540,12 @@ def eliminar_noticias_duplicadas(bbdd_a_tratar: list) -> list:
     return lista_de_noticias_unicas
 
 
-def gestion_noticias(axon: list) -> str:
+def gestion_noticias(axon: list, publicidad_horizontal: list) -> str:
     """Es función se encarga de toda la gestión de las noticias: desde su introducción hasta el final, cuando sale como html con los banners
 
     Args:
         axon (list): Lista de las noticias
+        publicidad_horizontal (list): lista de los banners
 
     Returns:
         str: El html de las noticias con los banners
@@ -590,19 +588,15 @@ def gestion_noticias(axon: list) -> str:
     longitud = len(noticias_colocadas)
     print(f"Noticias generadas: {longitud}")
     
-    # * Vemos si son impares las noticias y si lo son mete en el segundo hueco el banner del laser
+    # * Vemos si son impares las noticias y si lo son mete en el segundo hueco el banner del Peq Ani Rev
     if longitud % 2 != 0:
         noticias_colocadas = noticias_impares(noticias_colocadas) # type: ignore
         longitud += 1
-        print()
-        logging.warning(
-            'Eliminar el banner de "Peq Ani Rev" porque usamos el banner cuadrado')
         publicidad_horizontal_temp = publicidad_horizontal
         for banner in publicidad_horizontal_temp:
             if banner[1] == 'Pequeños Animales (R)evolution':
-                publicidad_horizontal.remove(banner)
-        publicidad_horizontal_temp = ''
-
+                publicidad_horizontal_temp.remove(banner)
+        publicidad_horizontal = publicidad_horizontal_temp
         print()
         
     # * Creamos el cuerpo sin las noticias: esqueleto de par de noticias y debajo un banner
@@ -626,7 +620,7 @@ def gestion_noticias(axon: list) -> str:
             bloque_final_con_noticias = bloque_final_con_noticias.replace(
                 '##posicion##', 'right')
 
-    return bloque_final_con_noticias
+    return bloque_final_con_noticias, publicidad_horizontal
 
 
 def noticias_impares(noticias_colocadas: list) -> list:
@@ -715,7 +709,7 @@ def banners_gestion(ahora) -> list:
                 final.append(publicidad)
             else: # publicidad[2] == 'interno'
                 interno.append(publicidad)
-        # * Añadimos las funciones importadas que modifican los banners de algunas campañas publicitarias: alatorios, según fechas, etc
+        # * Añadimos las funciones importadas que modifican los banners de algunas campañas publicitarias: aletorios, según fechas, etc
         #cliente = pb_talleres_del_sur(cliente, ahora)
         #cliente = pb_boehringer_combo_hasta_SEP(cliente, ahora)
         #cliente = pb_boehringer_nexgard_spectra_hasta_SEP(cliente, ahora)
@@ -892,22 +886,6 @@ def obtener_asunto(html_content, hay_noticia_destacada):
     if coincidencias:
         asunto = coincidencias[numero]
         asunto = html.unescape(asunto)
-        # asunto = asunto.replace("&aacute;", "á")
-        # asunto = asunto.replace("&eacute;", "é")
-        # asunto = asunto.replace("&iacute;", "í")
-        # asunto = asunto.replace("&oacute;", "ó")
-        # asunto = asunto.replace("&uacute;", "ú")
-        # asunto = asunto.replace("&Aacute;", "Á")
-        # asunto = asunto.replace("&Eacute;", "É")
-        # asunto = asunto.replace("&Iacute;", "Í")
-        # asunto = asunto.replace("&Oacute;", "Ó")
-        # asunto = asunto.replace("&Uacute;", "Ú")
-        # asunto = asunto.replace("&ntilde;", "ñ")
-        # asunto = asunto.replace("&Ntilde;", "Ñ")
-        # asunto = asunto.replace("&iexcl;", "¡")
-        # asunto = asunto.replace("&iquest;", "¿")
-        # asunto = asunto.replace("&quot;", "â€œ")
-        # asunto = asunto.replace("&quot;", "â€")
     else:
         print()
         logging.warning('❌ Cuidado: No hay asunto.')
@@ -957,20 +935,21 @@ def limpieza_de_tituares(titular: str) -> str:
     Returns:
         str: Titular limpio
     """
-    titular = titular.replace("  "," ")
-    titular = titular.replace("&#8216;","\"")
-    titular = titular.replace("&#8217;","\"")
+    titular = titular.replace("&#8216;","\"") # comillas simples
+    titular = titular.replace("&#8217;","\"") # comillas simples
     titular = titular.replace('ASUNTO','')
     titular = titular.strip()       
     titular = titular.replace('Espacio ECCOA','')
     titular = titular.replace('\'','\"')
-    titular = re.sub(r'\.$', '', titular)
+    titular = re.sub(r'\.$', '', titular) # elimina el punto final, si lo hay
     titular = titular.replace('&#171;','«') # comillas anguladas de apertura
     titular = titular.replace('&#187;','»') # comillas anguladas de cierre
     titular = titular.replace('&#8220;','“') # comillas de citación - arriba izquierda
     titular = titular.replace('&#8221;','”') # comillas de citación - arriba derecha
     titular = titular.replace('&#8211;','–') # guión corto
-    titular = re.sub(r'\s{2,}', ' ', titular)
+    titular = re.sub(r'\s{2,}', ' ', titular) # espacios dobles
+    titular = titular.replace('«','\"') # comillas anguladas a comillas dobles
+    titular = titular.replace('»','\"') # comillas anguladas a comillas dobles
     titular = titular.strip()       
     return titular
 
@@ -1040,13 +1019,12 @@ def buscar_seccion(contenido: list, cadena: str) -> int:
         int: Línea en la que esta el titular
     """
     for indice, elemento in enumerate(contenido):
-        if elemento == cadena:
+        if elemento.strip() == cadena.strip():
             break
     else:
         print()
         logging.warning(f'❌ La sección: "{cadena}" NO está en la lista.')
         os.system(ALERTA)
-        modo_manual = True
         print()
     return indice
 
@@ -1064,6 +1042,7 @@ def limpiar_lista(lista: list) -> list:
     for elemento in lista:
         elemento = limpieza_de_tituares(elemento)
         if elemento == ' ':
+            print(f'-{elemento}-')
             pass
         elif elemento != '':
             contenido.append(elemento)
@@ -1088,23 +1067,21 @@ def chequeo_de_titulares(seccion_word: list, seccion:list):
 
 
 def comprobar_si_estan_todos(coincidencias: list, titulares: list):
-    """Revisa que esten todos los titulares del word metidos en el document html-
+    """Revisa que esten todos los titulares del word metidos en el documento html
 
     Args:
         coincidencias (list): Lista de artículos encontrados
         titulares (list): Lista de artículos del Word
     """   
     if len(coincidencias) < len(titulares):
-        logging.warning(f'❌ Error: Hay noticias que no se encuantran.')
+        print(f'❌ Error: Hay noticias que no se encuantran: {" ".join(map(str, coincidencias))}')
         os.system(ALERTA)
     elif len(coincidencias) == len(titulares):
-        print('Todos los titulares se encontraron.')
+        print(f'✅ Todos los titulares se encontraron: {" ".join(map(str, coincidencias))}')
     else:
-        logging.warning(f'❌ Error: Hay noticias de mas.')
+        print(f'❌ Error: Hay noticias de más: {" ".join(map(str, coincidencias))}')
         os.system(ALERTA)  
-
-
-
+      
 
 
 
@@ -1117,6 +1094,9 @@ def comprobar_si_estan_todos(coincidencias: list, titulares: list):
 
 
 if __name__ == '__main__':
+
+    # * Inicializar colorama
+    init()
 
     # * Configuración de logging
     logging.basicConfig(level=logging.INFO,
@@ -1233,76 +1213,91 @@ if __name__ == '__main__':
     
     # * Analizamos el archivo de Word 
     if modo_manual == False:    
-        titular_compania = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE COMPAÑÍA')
-        titular_produccion = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE PRODUCCIÓN')
-        titular_noticias = buscar_seccion(archivo_docx, 'NOTICIAS GENERALEs ')
+        titulares_destacados = buscar_seccion(archivo_docx, 'NOTICIAS DESTACADAS')
+        titulares_compania = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE COMPAÑÍA')
+        titulares_produccion = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE PRODUCCIÓN')
+        titulares_noticias = buscar_seccion(archivo_docx, 'NOTICIAS GENERALEs')
         """
-        Esquems de datos usados:
+        Esquemas de datos usados:
         -trabajos_en_bbdd_compania: (id, 'titular', 'url', 'imagen, 'tipo: p o g', 'noticia')
         -noticias_web: {'id': número, 'url': '…', 'imagen': '…', 'titulo': '…', 'contenido': '…'}
         """
+
+        # * Noticias destacadas        
+        titulares_destacados_word = archivo_docx[titulares_destacados+1:titulares_compania]
+        titulares_destacados_word = limpiar_lista(titulares_destacados_word)
+        print()
+        print(f'{Fore.GREEN}Hay {len(titulares_destacados_word)} noticia destacada:{Style.RESET_ALL}')
+        coincidencias_destacados = []
+        esta_ya = False
+        for titular in titulares_destacados_word:
+            for noticia in noticias_web:
+                if titular in noticia['titulo'] and esta_ya == False:
+                    coincidencias_destacados.append(noticia['id'])
+                    print(f'- {noticia["id"]} : {titular}')  
+                    esta_ya = True
+        comprobar_si_estan_todos(coincidencias_destacados, titulares_destacados_word)             
+        
         # * Animales de compañia        
-        titulares_compania_word = archivo_docx[titular_compania+1:titular_produccion]
+        titulares_compania_word = archivo_docx[titulares_compania+1:titulares_produccion]
         titulares_compania_word = limpiar_lista(titulares_compania_word)
         print()
-        print(f'Hay {len(titulares_compania_word)} titulares de Animales de Compañia incorporados:')
+        print(f'{Fore.GREEN}Hay {len(titulares_compania_word)} titulares de Animales de Compañia incorporados:{Style.RESET_ALL}')
         coincidencias_compania = []
         esta_ya = False
         for titular in titulares_compania_word:
             for trabajo in trabajos_en_bbdd_compania:
                 if titular in trabajo[1]:
                     coincidencias_compania.append(trabajo[0])
-                    print(f'- {titular}')  
+                    print(f'- {trabajo[0]} : {titular}')  
                     esta_ya = True
             for noticia in noticias_web:
                 if titular in noticia['titulo'] and esta_ya == False:
                     coincidencias_compania.append(noticia['id'])
-                    print(f'- {titular}')  
+                    print(f'- {noticia["id"]} : {titular}')  
                     esta_ya = True
         comprobar_si_estan_todos(coincidencias_compania, titulares_compania_word)             
-        print(f'Coincidencias_compania = {" ".join(map(str, coincidencias_compania))}')
 
         # * Animales de producción
-        titulares_produccion_word = archivo_docx[titular_produccion+1:titular_noticias]
+        titulares_produccion_word = archivo_docx[titulares_produccion+1:titulares_noticias]
         titulares_produccion_word = limpiar_lista(titulares_produccion_word)
         print()
-        print(f'Hay {len(titulares_compania_word)} titulares de Animales de Producción incorporados:')        
+        print(f'{Fore.GREEN}Hay {len(titulares_compania_word)} titulares de Animales de Producción incorporados:{Style.RESET_ALL}')        
         coincidencias_produccion = []
         esta_ya = False
         for titular in titulares_produccion_word:
             if 'Opinión de Antonio Palomo' in titular:
                 coincidencias_produccion.append(144)
-                print(f'- {titular}')  
+                print(f'- 144 : {titular}')  
                 esta_ya = True
                 continue 
             for trabajo in trabajos_en_bbdd_produccion:
                 if titular in trabajo[1]:
                     coincidencias_produccion.append(trabajo[0])
-                    print(f'- {titular}')  
+                    print(f'- {trabajo[0]} : {titular}')
                     esta_ya = True                       
             for noticia in noticias_web:
                 if titular in noticia['titulo'] and esta_ya == False:
                     coincidencias_produccion.append(noticia['id'])    
-                    print(f'- {titular}')  
+                    print(f'- {noticia["id"]} : {titular}')  
                     esta_ya = True        
         comprobar_si_estan_todos(coincidencias_produccion, titulares_produccion_word)        
-        print(f'Coincidencias_produccion = {" ".join(map(str, coincidencias_produccion))}')
 
         # * Noticias    
-        titulares_noticias_word = archivo_docx[titular_noticias+1:]
+        titulares_noticias_word = archivo_docx[titulares_noticias+1:]
         titulares_noticias_word = limpiar_lista(titulares_noticias_word)
         print()
-        print(f'Hay {len(titulares_noticias_word)} titulares de Noticias incorporados:')      
+        print(f'{Fore.GREEN}Hay {len(titulares_noticias_word)} titulares de Noticias incorporados:{Style.RESET_ALL}')      
         coincidencias_noticias = []
         esta_ya = False
         for titular in titulares_noticias_word:    
             for noticia in noticias_web:
-                if titular in noticia['titulo']:
+                titular = limpieza_de_tituares(titular)
+                if titular[0:100] in noticia['titulo'][0:100]:
                     coincidencias_noticias.append(noticia['id'])       
-                    print(f'- {titular}')  
-                    esta_ya = True     
+                    print(f'- {noticia["id"]} : {titular}')  
+                    esta_ya = True   
         comprobar_si_estan_todos(coincidencias_noticias, titulares_noticias_word)        
-        print(f'Coincidencias_noticias = {" ".join(map(str, coincidencias_noticias))}')
 
         # * Resumen
         print()        
@@ -1318,6 +1313,7 @@ if __name__ == '__main__':
     trabajos_compania = input_trabajos_a_publicar('compania')
     trabajos_compania = trabajos_a_mostrar(
         'compania', trabajos_compania, numero_registros)
+    print()
     trabajos_produccion = input_trabajos_a_publicar('produccion')
     trabajos_produccion = trabajos_a_mostrar(
         'produccion', trabajos_produccion, numero_registros)
@@ -1330,7 +1326,7 @@ if __name__ == '__main__':
     html_trabajos = fusion_trabajos_y_banners(
         trabajos_compania, trabajos_produccion, publicidad_horizontal)
 
-    bloque_final_con_noticias = gestion_noticias(noticias_web)
+    bloque_final_con_noticias, publicidad_horizontal = gestion_noticias(noticias_web, publicidad_horizontal)
 
     # * Gestionamos la cabecera
     comienzo_en_curso = bloques.comienzo
@@ -1378,25 +1374,7 @@ if __name__ == '__main__':
 
     # * Codificamos a html
     logging.debug('Codificamos a html')
-    # ? para cuerpos de email charset=ISO-8859-1
     resultado = html.unescape(resultado)
-    # resultado = resultado.replace("á", "&aacute;")
-    # resultado = resultado.replace("é", "&eacute;")
-    # resultado = resultado.replace("í", "&iacute;")
-    # resultado = resultado.replace("ó", "&oacute;")
-    # resultado = resultado.replace("ú", "&uacute;")
-    # resultado = resultado.replace("Á", "&Aacute;")
-    # resultado = resultado.replace("É", "&Eacute;")
-    # resultado = resultado.replace("Í", "&Iacute;")
-    # resultado = resultado.replace("Ó", "&Oacute;")
-    # resultado = resultado.replace("Ú", "&Uacute;")
-    # resultado = resultado.replace("ñ", "&ntilde;")
-    # resultado = resultado.replace("Ñ", "&Ntilde;")
-    # resultado = resultado.replace("¡", "&iexcl;")
-    # resultado = resultado.replace("¿", "&iquest;")
-    # resultado = resultado.replace("Â", "")
-    # resultado = resultado.replace("â€œ", "&quot;")
-    # resultado = resultado.replace("â€", "&quot;")
 
     # * Creamos el archivo
     logging.debug('Creamos el archivo')
@@ -1414,7 +1392,7 @@ if __name__ == '__main__':
     subprocess.run(["open", "-a", "Safari", f'{datos_de_acceso.RUTA_LOCAL}{archivo}'])
 
     print()
-    print('Archivo generado con éxito: 👍')
+    print('✅ Archivo generado con éxito: 👍')
     print()
     print('Edita el archivo abierto en Dreamweaver.')
     print()
@@ -1443,5 +1421,5 @@ if __name__ == '__main__':
     abrir_pagina_web(url)
 
     print()
-    print('Fin de la aplicación: 👍')
+    print('✅ Fin de la aplicación: 👍')
     print()

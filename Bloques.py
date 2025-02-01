@@ -306,66 +306,46 @@ fin = '''
                     </tr>
                     <!-- ROW-1 START -->
                     <tr>
-                      <td><!--TABLE LEFT-->
-
-                        <!--cv-->
-                     
-                     <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <td><!--TABLE LEFT--> 
+                        
+                        <!--par-->
+                        
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv121.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par10.jpg" alt="Pequeños Animales (R)evolution" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, Nº 121</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Pequeños Animales (R)evolution, Nº10</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Editorial  </li>
-                                  <li>Caso clínico: 
-                                    <ul>
-                                      <li>Actualización de las recomendaciones clínicas de RCP en pequeños animales recover (recover 2024) (II)  </li>
-                                    </ul>
-                                  </li>
-                                  <li>Entrevista: 
-                                    <ul>
-                                      <li>¿Medimos el dolor adecuadamente en nuestros pacientes? </li>
-                                    </ul>
-                                  </li>
-                                  <li>Trucos Veterinarios  </li>
-                                  <li>VETMADRID 2025: 
-                                    <ul>
-                                      <li>Avance programa Vetmadrid 2025  </li>
-                                      <li>II Congreso de Congreso Formación Empresarial  </li>
-                                      <li>II Congreso de Fisioterapia y Rehabilitación  </li>
-                                      <li>II Pre-Congreso de Medicina y Cirugía felina  </li>
-                                      <li>Taller Formación Empresarial  </li>
-                                      <li>Congreso de Asistentes a la Atención Clínica en Centros Veterinarios </li>
-                                    </ul>
-                                  </li>
-                                  <li>Noticias de Empresa</li>
+                                  <li>Cirugía de <strong>Mínima Invasión </strong></li>
+                                  <li>Caso clínico:<strong> Luxación medial de rótula en caniche toy </strong></li>
+                                  <li><strong>Evaluación del rascado no deseado en gatos domésticos:</strong> un enfoque multifactorial para comprender los factores de riesgo </li>
+                                  <li><strong>¿Mejora el «Dr. Google» el debate y las decisiones en la clínica de pequeños animales? </strong></li>
+                                  <li><strong>Dietas gastrointestinales de primera respuesta</strong></li>
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no121-centro-veterinario/no121-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no10-pequenos-animales-revolution/no10-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
-
-
-                        <!--cv fin-->
-
-
+                        
+                        <!--par fin--> 
+                        
                         <!--TABLE MIDDLE-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -373,10 +353,11 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
-                        <!--TABLE RIGHT-->
-
+                        
+                        <!--TABLE RIGHT--> 
+                        
                         <!--av-->
+                        
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -407,9 +388,8 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
-
-
+                        
+                        <!-- fin av-->
                         </td>
                     </tr>
                     <!-- ROW-1 END -->
@@ -422,7 +402,7 @@ fin = '''
   </tbody>
 </table>
 
-<!--- Pequeños Animales (R)evolution-->
+<!--- cv-->
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
@@ -437,20 +417,20 @@ fin = '''
                     <!-- ROW-1 START -->
                     <tr>
                       <td><!--TABLE LEFT-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par10.jpg" alt="Pequeños Animales (R)evolution" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv121.jpg" alt="Centro Veterinario" width="320" height="343"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                           </tbody>
                         </table>
-
+                        
                         <!--TABLE MIDDLE-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -458,31 +438,49 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
+                        
                         <!--TABLE RIGHT-->
-
+                        
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Pequeños Animales (R)evolution, Nº10</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, Nº 121</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Cirugía de <strong>Mínima Invasión </strong></li>
-                                  <li>Caso clínico:<strong> Luxación medial de rótula en caniche toy </strong></li>
-                                  <li><strong>Evaluación del rascado no deseado en gatos domésticos:</strong> un enfoque multifactorial para comprender los factores de riesgo </li>
-                                  <li><strong>¿Mejora el «Dr. Google» el debate y las decisiones en la clínica de pequeños animales? </strong></li>
-                                  <li><strong>Dietas gastrointestinales de primera respuesta</strong></li>
+                                  <li>Editorial </li>
+                                  <li>Caso clínico:
+                                    <ul>
+                                      <li>Actualización de las recomendaciones clínicas de RCP en pequeños animales recover (recover 2024) (II) </li>
+                                    </ul>
+                                  </li>
+                                  <li>Entrevista:
+                                    <ul>
+                                      <li>¿Medimos el dolor adecuadamente en nuestros pacientes? </li>
+                                    </ul>
+                                  </li>
+                                  <li>Trucos Veterinarios </li>
+                                  <li>VETMADRID 2025:
+                                    <ul>
+                                      <li>Avance programa Vetmadrid 2025 </li>
+                                      <li>II Congreso de Congreso Formación Empresarial </li>
+                                      <li>II Congreso de Fisioterapia y Rehabilitación </li>
+                                      <li>II Pre-Congreso de Medicina y Cirugía felina </li>
+                                      <li>Taller Formación Empresarial </li>
+                                      <li>Congreso de Asistentes a la Atención Clínica en Centros Veterinarios </li>
+                                    </ul>
+                                  </li>
+                                  <li>Noticias de Empresa</li>
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no10-pequenos-animales-revolution/no10-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no121-centro-veterinario/no121-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table></td>
@@ -497,7 +495,9 @@ fin = '''
   </tbody>
 </table>
 
-<!--- fin de Pequeños Animales (R)evolution-->
+<!--- fin de cv-->
+
+
 
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
@@ -512,11 +512,11 @@ fin = '''
                     </tr>
                     <!-- ROW-1 START -->
                     <tr>
-                      <td><!--TABLE LEFT-->
-
+                      <td><!--TABLE LEFT--> 
+                        
                         <!--uno mas-->
-
-                 <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                        
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
                               <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_116.jpg" alt="" width="320" height="451"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
@@ -532,17 +532,17 @@ fin = '''
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                 <li>Nutrición: 
-                                   <ul>
-                                     <li>Requisitos nutricionales para perros y gatos </li>
+                                  <li>Nutrición:
+                                    <ul>
+                                      <li>Requisitos nutricionales para perros y gatos </li>
                                     </ul>
-                                 </li>
-                                 <li>Salud: 
-                                   <ul>
-                                     <li>Urolitiasis canina                                 </li>
-                                   </ul>
-                                 </li>
-                              </ul></td>
+                                  </li>
+                                  <li>Salud:
+                                    <ul>
+                                      <li>Urolitiasis canina </li>
+                                    </ul>
+                                  </li>
+                                </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -552,15 +552,11 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
-                        <!--fin de uno mas-->
-
-
-
-
-
+                        
+                        <!--fin de uno mas--> 
+                        
                         <!--TABLE MIDDLE-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -568,10 +564,11 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
-                        <!--TABLE RIGHT-->
-
-                         <!--cys-->
+                        
+                        <!--TABLE RIGHT--> 
+                        
+                        <!--cys-->
+                        
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -588,14 +585,14 @@ fin = '''
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>PORCINO 
+                                  <li>PORCINO
                                     <ul>
-                                      <li>Análisis transcriptómico y metabolómico exhaustivo de las células epiteliales intestinales porcinas después de la infección por PDCoV </li>
+                                      <li>Análisis transcriptómico y metabolómico exhaustivo de las células epiteliales intestinales porcinas después de la infección por PDCoV </li>
                                     </ul>
                                   </li>
-                                  <li>BOVINO 
+                                  <li>BOVINO
                                     <ul>
-                                      <li>Utilidad limitada de la PCR de aterrizaje IS6110 en sangre para la prueba cutánea de la tuberculina en bovinos falsos negativos con respuesta serológica a<em> Mycobacterium bovis</em>                                  </li>
+                                      <li>Utilidad limitada de la PCR de aterrizaje IS6110 en sangre para la prueba cutánea de la tuberculina en bovinos falsos negativos con respuesta serológica a<em> Mycobacterium bovis</em> </li>
                                     </ul>
                                   </li>
                                 </ul></td>
@@ -607,18 +604,7 @@ fin = '''
                               <td align="left" bgcolor="#ffffff" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/cria-y-salud/no-104-cria-y-salud-sumario/no-104-cria-y-salud/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
-                        </table>
-
-
-
-
-
-
-
-
-
-
-                        </td>
+                        </table></td>
                     </tr>
                     <!-- ROW-1 END -->
                   </tbody>
@@ -654,39 +640,37 @@ fin = '''
     </tr>
   </tbody>
 </table>
-
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
       <td align="center"><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-        <tbody>
-          <tr>
-            <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-              <tbody>
-                <tr>
-                  <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
-                    <tbody>
-                      <tr>
-                        <td height="30"></td>
-                      </tr>
-                      <tr>
-                        <td><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><a href="https://www.setna.com/presentacion.htm"><img src="pb/setna_novalsam.jpg" alt="" style="margin: 0pt; padding: 0pt; display: block; width: 100%; height: auto;" height="90" width="700" /></a></span></td>
-                      </tr>
-                      <tr>
-                        <td height="30"></td>
-                      </tr>
-                    </tbody>
-                  </table></td>
-                </tr>
-              </tbody>
-            </table></td>
-          </tr>
-        </tbody>
-      </table></td>
+          <tbody>
+            <tr>
+              <td align="center" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="middle" style="color:#1f2532;"><table width="700" border="0" cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <tr>
+                              <td height="30"></td>
+                            </tr>
+                            <tr>
+                              <td><span class="heading" style="color: #FFFFFF; font-family: 'Segoe UI',Arial,Verdana,Trebuchet MS,sans-serif; font-size: 23px; line-height: 26px; font-weight: 400; letter-spacing: 1px; "><a href="https://www.setna.com/presentacion.htm"><img src="pb/setna_novalsam.jpg" alt="" style="margin: 0pt; padding: 0pt; display: block; width: 100%; height: auto;" height="90" width="700" /></a></span></td>
+                            </tr>
+                            <tr>
+                              <td height="30"></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+          </tbody>
+        </table></td>
     </tr>
   </tbody>
 </table>
-
 <table align="center" bgcolor="#006580" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
@@ -701,11 +685,11 @@ fin = '''
                     <!-- ROW-1 START -->
                     <tr>
                       <td><!--TABLE LEFT-->
-
+                        
                         <table width="60%" border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="center" class="heading" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:26px; line-height:30px; font-weight:400; letter-spacing:1px;"><span class="heading" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:26px; line-height:30px; font-weight:400; letter-spacing:1px;">Para suscribirte pulsa <a href="https://axoncomunicacion.net/informavet/" style="text-decoration:none; color:#ffffff; "><strong>aqu&iacute;</strong></a></span></td>
+                              <td align="center" class="heading" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:26px; line-height:30px; font-weight:400; letter-spacing:1px;"><span class="heading" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:26px; line-height:30px; font-weight:400; letter-spacing:1px;">Para suscribirte pulsa <a href="https://axoncomunicacion.net/informavet/" style="text-decoration:none; color:#ffffff; "><strong>aquí</strong></a></span></td>
                             </tr>
                             <tr>
                               <td height="5" align="center" class="heading" style="color:#ffffff; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:26px; line-height:30px; font-weight:400; letter-spacing:1px;"></td>
@@ -715,9 +699,9 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
+                        
                         <!--TABLE MIDDLE-->
-
+                        
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -725,9 +709,9 @@ fin = '''
                             </tr>
                           </tbody>
                         </table>
-
+                        
                         <!--TABLE RIGHT-->
-
+                        
                         <table width="30%" border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
@@ -748,9 +732,6 @@ fin = '''
     </tr>
   </tbody>
 </table>
-
-
-
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
@@ -770,107 +751,97 @@ fin = '''
     </tr>
   </tbody>
 </table>
-
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
       <td align="center"><table align="center" bgcolor="#ffffff"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
-        <tbody>
-          <tr>
-            <td align="center"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
-              <tbody>
-                <tr>
-                  <td class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tbody>
-                      <!-- SOCIAL ICONS START -->
-                      <!-- SOCIAL ICONS END -->
-                      <tr>
-                        <td height="60" style="border-bottom:1px solid #dddddd;"></td>
-                      </tr>
-                      <tr>
-                        <td height="20" ></td>
-                      </tr>
-                      <tr>
-                        <td align="center">
-                        <table align="center" border="0" cellspacing="0" cellpadding="0" width="40%" style="width:auto !important;">
-                          <tr>
-                              <td align="center" style="color:#ffffff;" width="48"><a href="https://www.linkedin.com/in/enrique-marcos-456b3925/" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/in.png" alt="Axon en linkedin" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
-                            <td width="10"></td>
-                            <td align="center" style="color:#ffffff;" width="48"><a href="https://www.facebook.com/axoncomunicacio" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/facebook-f_2024-07.png" alt="Axon en Facebook" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
-                            <td width="10"></td>
-                            <td align="center" style="color:#ffffff;" width="48"><a href="https://x.com/AxonComunicacio?s=20" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/twitter-f_2024-07.png" alt="Axon en twitter" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
-                            <td width="10"></td>
-                            <td align="center" style="color:#ffffff;" width="48"><a href="https://www.instagram.com/axon_vet/" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/instagram-f_2024-07.png" alt="Axon en instagram" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
-                              <td width="10"></td>
-                            <td align="center" style="color:#ffffff;" width="48"><a href="https://bsky.app/profile/axonvet.bsky.social" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/bluesky.png" alt="Axon en instagram" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
-                          </tr>
-                        </table>
-                        
-                        
-                        </td>
-                      </tr>
-                      <tr>
-                        <td height="10" ></td>
-                      </tr>
-                      <tr>
-                        <td align="center"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+          <tbody>
+            <tr>
+              <td align="center"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="700">
+                  <tbody>
+                    <tr>
+                      <td class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                           <tbody>
-                            <!-- ROW-1 START -->
+                            <!-- SOCIAL ICONS START --> 
+                            <!-- SOCIAL ICONS END -->
                             <tr>
-                             <td  valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;"><p>De conformidad con lo dispuesto en la Ley Org&aacute;nica 3/2018, 5 de diciembre, de Protecci&oacute;n de Datos Personales y garant&iacute;a de los derechos digitales y el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016, informamos que los datos personales se encuentran en un fichero titularidad y responsabilidad de GRUPO AX&Oacute;N VET con la finalidad de posibilitar las comunicaciones a trav&eacute;s del correo electr&oacute;nico de la misma con los distintos contactos que &eacute;sta mantiene dentro del ejercicio de su actividad. Podr&aacute; ejercer los derechos de acceso, rectificaci&oacute;n, supresi&oacute;n y dem&aacute;s derechos reconocidos en la normativa mencionada, en la siguiente direcci&oacute;n: C/ Camino de los Vinateros, 71, PLTA. 1&ordf;, puerta A -(Madrid - 28030), o a trav&eacute;s de la siguiente direcci&oacute;n de correo electr&oacute;nico: axonvet@axonvet.es Solicite m&aacute;s informaci&oacute;n al correo indicado.  </p>
-                                        <p>En virtud de la Ley 34/2002 de 11 de julio de Servicios de la Sociedad de la Informaci&oacute;n y Correo Electr&oacute;nico (LSSI-CE), este mensaje y sus archivos adjuntos pueden contener informaci&oacute;n confidencial, por lo que se informa de que su uso no autorizado est&aacute; prohibido por la ley. Si ha recibido este mensaje por equivocaci&oacute;n, por favor notif&iacute;quelo inmediatamente a trav&eacute;s de esta misma v&iacute;a y borre el mensaje original junto con sus ficheros adjuntos sin leerlo o grabarlo total o parcialmente.  </p>
-                                        <p>En caso de que sienta vulnerados sus derechos en lo concerniente a la protecci&oacute;n de sus datos personales, especialmente cuando no haya obtenido satisfacci&oacute;n en el ejercicio de sus derechos, puede presentar una reclamaci&oacute;n ante la Autoridad de Control en materia de Protecci&oacute;n de Datos competente (Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos), a trav&eacute;s de su sitio web: <a href="https://www.aepd.es">www.agpd.es</a></p>
-                                          <p>Si no desea seguir recibiendo informaci&oacute;n o ha recibido este mensaje por error, rogamos remita un correo a <a href="mailto:axonvet@axonvet.es" >axonvet@axonvet.es</a> y daremos de baja su direcci&oacute;n de correo electr&oacute;nico o puede responder a este correo electr&oacute;nico indicando &ldquo;Baja&rdquo; en el Asunto. </p>
-                                        <p>Si usted no desea recibir m&aacute;s correos como este, puede darse de baja pinchando <a href="*|UNSUBSCRIBE_URL|*">aqu&iacute;.</a> </p>                               
-                                        </td>
+                              <td height="60" style="border-bottom:1px solid #dddddd;"></td>
                             </tr>
-                            <!-- ROW-1 END -->
-                          </tbody>
-                        </table>
-                          <hr />
-                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                              <tr>
-                                <td align="center" valign="middle" bgcolor="#FFFFFF"><table width="376" border="0" cellspacing="0" cellpadding="5">
-                                  <tr bgcolor="#FFFFFF">
-                                    <td width="55" valign="top"><a href="http://www.axoncomunicacion.net"><img src="../imagenes_comunes/axonvet_e_impulso.png" alt="AXON VET / Impulso vet" width="167" height="83" border="0" /></a></td>
-                                    <td width="301" align="center" valign="top" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><p><span class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><span class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><a href="mailto:axonvet@axonvet.es">axonvet@axonvet.es</a><br />
-                                      <a href="https://axoncomunicacion.net">https://axoncomunicacion.net</a></span></span></p></td>
+                            <tr>
+                              <td height="20" ></td>
+                            </tr>
+                            <tr>
+                              <td align="center"><table align="center" border="0" cellspacing="0" cellpadding="0" width="40%" style="width:auto !important;">
+                                  <tr>
+                                    <td align="center" style="color:#ffffff;" width="48"><a href="https://www.linkedin.com/in/enrique-marcos-456b3925/" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/in.png" alt="Axon en linkedin" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                                    <td width="10"></td>
+                                    <td align="center" style="color:#ffffff;" width="48"><a href="https://www.facebook.com/axoncomunicacio" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/facebook-f_2024-07.png" alt="Axon en Facebook" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                                    <td width="10"></td>
+                                    <td align="center" style="color:#ffffff;" width="48"><a href="https://x.com/AxonComunicacio?s=20" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/twitter-f_2024-07.png" alt="Axon en twitter" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                                    <td width="10"></td>
+                                    <td align="center" style="color:#ffffff;" width="48"><a href="https://www.instagram.com/axon_vet/" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/instagram-f_2024-07.png" alt="Axon en instagram" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
+                                    <td width="10"></td>
+                                    <td align="center" style="color:#ffffff;" width="48"><a href="https://bsky.app/profile/axonvet.bsky.social" style="color:#ffffff; text-decoration:none;"><img src="../imagenes_comunes/bluesky.png" alt="Axon en instagram" width="48" height="48" style="height:auto; margin:0; border:0; padding:0; width:100%; display:block;" /></a></td>
                                   </tr>
                                 </table></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                              <tr>
-                                <td align="center" valign="middle" bgcolor="#FFFFFF">&nbsp;</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <hr /></td>
-                      </tr>
-                      <tr>
-                        <td align="center" valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;">Si te quieres dar de baja <a href="*|UNSUBSCRIBE_URL|*">pulsa este enlace.</a></td>
-                      </tr>
-                    </tbody>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td height="50"></td>
-                </tr>
-              </tbody>
-            </table></td>
-          </tr>
-        </tbody>
-      </table></td>
+                            </tr>
+                            <tr>
+                              <td height="10" ></td>
+                            </tr>
+                            <tr>
+                              <td align="center"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+                                  <tbody>
+                                    <!-- ROW-1 START -->
+                                    <tr>
+                                      <td  valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;"><p>De conformidad con lo dispuesto en la Ley Orgánica 3/2018, 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales y el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016, informamos que los datos personales se encuentran en un fichero titularidad y responsabilidad de GRUPO AXÓN VET con la finalidad de posibilitar las comunicaciones a través del correo electrónico de la misma con los distintos contactos que ésta mantiene dentro del ejercicio de su actividad. Podrá ejercer los derechos de acceso, rectificación, supresión y demás derechos reconocidos en la normativa mencionada, en la siguiente dirección: C/ Camino de los Vinateros, 71, PLTA. 1ª, puerta A -(Madrid - 28030), o a través de la siguiente dirección de correo electrónico: axonvet@axonvet.es Solicite más información al correo indicado. </p>
+                                        <p>En virtud de la Ley 34/2002 de 11 de julio de Servicios de la Sociedad de la Información y Correo Electrónico (LSSI-CE), este mensaje y sus archivos adjuntos pueden contener información confidencial, por lo que se informa de que su uso no autorizado está prohibido por la ley. Si ha recibido este mensaje por equivocación, por favor notifíquelo inmediatamente a través de esta misma vía y borre el mensaje original junto con sus ficheros adjuntos sin leerlo o grabarlo total o parcialmente. </p>
+                                        <p>En caso de que sienta vulnerados sus derechos en lo concerniente a la protección de sus datos personales, especialmente cuando no haya obtenido satisfacción en el ejercicio de sus derechos, puede presentar una reclamación ante la Autoridad de Control en materia de Protección de Datos competente (Agencia Española de Protección de Datos), a través de su sitio web: <a href="https://www.aepd.es">www.agpd.es</a></p>
+                                        <p>Si no desea seguir recibiendo información o ha recibido este mensaje por error, rogamos remita un correo a <a href="mailto:axonvet@axonvet.es" >axonvet@axonvet.es</a> y daremos de baja su dirección de correo electrónico o puede responder a este correo electrónico indicando “Baja” en el Asunto. </p>
+                                        <p>Si usted no desea recibir más correos como este, puede darse de baja pinchando <a href="*|UNSUBSCRIBE_URL|*">aquí.</a> </p></td>
+                                    </tr>
+                                    <!-- ROW-1 END -->
+                                  </tbody>
+                                </table>
+                                <hr />
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="center" valign="middle" bgcolor="#FFFFFF"><table width="376" border="0" cellspacing="0" cellpadding="5">
+                                          <tr bgcolor="#FFFFFF">
+                                            <td width="55" valign="top"><a href="http://www.axoncomunicacion.net"><img src="../imagenes_comunes/axonvet_e_impulso.png" alt="AXON VET / Impulso vet" width="167" height="83" border="0" /></a></td>
+                                            <td width="301" align="center" valign="top" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><p><span class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><span class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 400; line-height: 12px; text-align: left;"><a href="mailto:axonvet@axonvet.es">axonvet@axonvet.es</a><br />
+                                                <a href="https://axoncomunicacion.net">https://axoncomunicacion.net</a></span></span></p></td>
+                                          </tr>
+                                        </table></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="center" valign="middle" bgcolor="#FFFFFF"> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <hr /></td>
+                            </tr>
+                            <tr>
+                              <td align="center" valign="top" class="MsoNormal" style="color:#666666; font-family:'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size:10px; font-weight:400; line-height:12px;">Si te quieres dar de baja <a href="*|UNSUBSCRIBE_URL|*">pulsa este enlace.</a></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                    <tr>
+                      <td height="50"></td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+          </tbody>
+        </table></td>
     </tr>
   </tbody>
 </table>
-
-
-
-
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
@@ -880,7 +851,7 @@ fin = '''
               <td align="center" bgcolor="#0F7888" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
                   <tbody>
                     <tr bgcolor="#0F7888">
-                      <td ><img src="comun/fin_3.png" alt="Ax&oacute;n IN-FORMAvet" width="800" height="110" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                      <td ><img src="comun/fin_3.png" alt="Axón IN-FORMAvet" width="800" height="110" style="margin:0; padding:0; width:100%; height:auto;" /></td>
                     </tr>
                   </tbody>
                 </table></td>
@@ -1129,6 +1100,9 @@ pb_laservet = '''
                             </tr>
                             <tr>
                               <td><a href="https://axoncomunicacion.net/masivos/laservet/formulario.html"><img src="pb/laservet_700x250px_ivet_ver_7.gif" alt="LaserVet" width="700" height="250" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
+                            </tr>
+                                     <tr>
+                              <td><a href="https://axoncomunicacion.net/masivos/laservet/formulario.html"><img src="pb/laservet_congreso_2025.png" alt="LaserVet" width="700" height="90" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
                             </tr>
                             <tr>
                               <td height="30"></td>

@@ -162,15 +162,19 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+# 7.1
+- Añadimos la busqueda en el Word de las noticias destacadas.
+- Ponemos color en la terminal para facilitar el uso de la aplicación usando "colorama".
+- Si las noticias son impares deja el segundo hueco para el banner de Peq Ani Rev. Ahora ademas borra ese banner horizontal.
+- Mejoro el algoritmo de búsqueda de titulares del Word. Unifico el uso de « y » a " (comillas dobles).
 
-# 7 -> actual
+# 7
 - En esta versión se presentan muchas mejoras y novedades.
 - Ahora busca en el escritorio el archivo de Word donde estan los titulares de las noticias y trabajos. Si no lo encuentra  pasa a modo manual. Esto esta adaptado al flujo de trabajo de mi empresa pero se puede cambiar. Esta comentada la opción de que se muestre un cuadro de dialogo para seleccionar el archivo de Word que contiene los titulares (pasa a manual si Cancelamos el cuadro de selección de archivo de Word). 
 - Se mejora la función que crea la carpeta donde se almacenan las imágenes.
 - Usar la Agenda del número anterior en vez de una variable.
 - Borra las imagenes png
 - La inclusión en la bbdd no se realiza bien cuando es un trabajo de Grandes animales. Solucionado.
-- Si las noticias son impares deja el segundo hueco para el banner de peq ani rev. Ahora ademas borra ese banner horizontal.
 - Se admite 0 como entrada en "¿Fecha de emisión? (nada o para otro día: aaaa/mm/dd ó +1): ". Equivale a la fecha actual.
 - Se mejora el tratamiento de los errores.
 
