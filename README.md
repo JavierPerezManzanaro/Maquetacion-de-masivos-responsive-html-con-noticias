@@ -162,6 +162,9 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+# 7.2
+
+
 # 7.1
 - Añadimos la busqueda en el Word de las noticias destacadas.
 - Ponemos color en la terminal para facilitar el uso de la aplicación usando "colorama".
