@@ -155,23 +155,31 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 ## Historial de versiones
 
 
-### Funciones para añadir por orden
-- Calcular el numero de noticias necesarias para el numero de banners del día. Si faltan noticias se deben meter banners cuadrados de forma automática.
+### Características para añadir por orden
+- Calcular el numero de noticias necesarias para el numero de banners del día. Si faltan noticias se deben meter banners cuadrados de forma automática. La formula es: (trabajos + noticias) / 2 = número optimo de banners
 - ¿Y si no encuentra algún trabajo o noticia? Por ahora avisa, en próximas versiones se modificara.
 - Unificar g o p de grandes o de producción en bbdd (mejor opción) y en aplicación. 
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
-# 7.2
+### 7.2
+- Cambio el criterio para completar el contenido de las noticias. Antes era por caracteres, ahora es por palabras.
+- Bug solucionado: Ahora gestiona de forma correcta las noticias destacadas.
+- Bug solucionado: Si el titular termina con " -" esto se borra.
+- Bug solucionado: Se selecciona el asunto de forma correcta.
+- En la función "limpieza_de_tituares" se añade el comando para sustituir caracteres no imprimibles por espacios.
+- Se añade la carpeta "Utilidades Unicode" para poder ver y cambiar en la bbdd los caracteres Unicode.
+- En la función "comprobar_si_estan_todos" ahora muestra los titulares no encontrados, si existen.
+- Automatiza la pregunta de trabajos y de noticias: Si se han encontrado se rellena automaticamente.
+- Unificación de nombre de algunas variables y funciones.
 
-
-# 7.1
+### 7.1
 - Añadimos la busqueda en el Word de las noticias destacadas.
 - Ponemos color en la terminal para facilitar el uso de la aplicación usando "colorama".
 - Si las noticias son impares deja el segundo hueco para el banner de Peq Ani Rev. Ahora ademas borra ese banner horizontal.
 - Mejoro el algoritmo de búsqueda de titulares del Word. Unifico el uso de « y » a " (comillas dobles).
 
-# 7
+### 7
 - En esta versión se presentan muchas mejoras y novedades.
 - Ahora busca en el escritorio el archivo de Word donde estan los titulares de las noticias y trabajos. Si no lo encuentra  pasa a modo manual. Esto esta adaptado al flujo de trabajo de mi empresa pero se puede cambiar. Esta comentada la opción de que se muestre un cuadro de dialogo para seleccionar el archivo de Word que contiene los titulares (pasa a manual si Cancelamos el cuadro de selección de archivo de Word). 
 - Se mejora la función que crea la carpeta donde se almacenan las imágenes.
