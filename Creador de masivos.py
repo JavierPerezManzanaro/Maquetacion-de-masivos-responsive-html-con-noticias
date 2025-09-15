@@ -1,4 +1,5 @@
 # source 'venv_informavet/bin/activate'
+# https://github.com/JavierPerezManzanaro/Maquetacion-de-masivos-responsive-html-con-noticias
 
 #! CUIDADO
 # todo Por hacer
@@ -30,6 +31,8 @@ import tkinter as tk
 from tkinter import filedialog
 from docx import Document
 from colorama import Fore, Style, init # https://pypi.org/project/colorama/
+from premailer import transform, Premailer # https://github.com/peterbe/premailer
+
 
 # * librerías propias
 import bloques
@@ -37,7 +40,7 @@ import datos_de_acceso
 import banners
 
 # * Importar modulos que gestionan los banner si es necesario
-#from banners_gestion import pb_ecuphar
+from banners_gestion import pb_ecuphar
 
 
 def execution_time(func):
@@ -118,31 +121,20 @@ def descarga_imagen(url: str, nombre: int):
     Args:
         url (str): es la url: axon[noticia]['imagen']
         nombre (int): número de la noticia/trabajo que sera el nombre del archivo
-        ancho (int): ancho a usar
-
     Returns:
         imagen_local (str): ruta de la imagen
-        ancho (int): ancho de la imagen 320px
-        alto (int): alto de la imagen
     """
     try:
-        extension = url[len(url)-4:len(url)]
-        if extension == "webp":
-            extension = ".webp"
-        if extension == "jpeg":
-            extension = ".jpg"
-        imagen_local_generica = nombre_archivo+'/'+str(nombre)+extension
+        imagen_temp = nombre_archivo + '/' + str(nombre) + '_temp'
         imagen = requests.get(url).content
-        with open(imagen_local_generica, 'wb') as handler:
+        with open(imagen_temp, 'wb') as handler:
             handler.write(imagen)
-        imagen = cv2.imread(imagen_local_generica)
+        imagen = cv2.imread(imagen_temp)
         imagen = imutils.resize(imagen, width=320)
-        imagen_local = nombre_archivo+'/'+str(nombre)+'.jpg'
+        imagen_local = nombre_archivo + '/' + str(nombre) + '.jpg'
         cv2.imwrite(imagen_local, imagen)
-        if extension == ".webp":
-            os.remove(imagen_local_generica)
-        elif extension == ".png":
-            os.remove(imagen_local_generica)          
+        os.remove(imagen_temp)
+        
     except:
         imagen_local = '/axon_news/imagenes/spacer.gif'
     return imagen_local
@@ -309,14 +301,7 @@ def trabajo_web(tipo: str, trabajo_seleccionado: int, trabajos_lista: list)-> li
     noticia_filtrada[0]['contenido'] = resultado
     # * Cambiamos la variable tipo para la bbdd
     tipo = 'p' if tipo == 'compania' else 'g'
-    extension_imagen = ''
-    if noticia_filtrada[0]['imagen'][-5:] == '.jepg':
-        extension_imagen = 'jpg'
-    if noticia_filtrada[0]['imagen'][-4:] == '.jpg':
-        extension_imagen = 'jpg'
-    if noticia_filtrada[0]['imagen'][-4:] == '.png':
-        extension_imagen = 'png'
-    imagen_bbdd = f'{boletin}c/{trabajo_seleccionado}.{extension_imagen}'
+    imagen_bbdd = f'{boletin}c/{trabajo_seleccionado}.jpg'
     datos = (noticia_filtrada[0]['titulo'], noticia_filtrada[0]['url'],
              imagen_bbdd, tipo, noticia_filtrada[0]['contenido'])
     sql_insert(datos)  # type: ignore
@@ -377,27 +362,22 @@ def recuperar_trabajos():
             trabajos_en_bbdd_produccion -> lista con todos los trabajos
             ultimo_id: último registro 
     """
-    trabajos_en_bbdd_compania = []
-    trabajos_en_bbdd_produccion = []
+    trabajos_en_bbdd = []
     try:
         con = sqlite3.connect('bbdd.sqlite3')
         # trabajos de compañía
         cursorObj = con.cursor()
         cursorObj.execute(
-            'SELECT * FROM hemeroteca WHERE tipo = "p" ORDER BY "titular";')
-        trabajos_en_bbdd_compania = cursorObj.fetchall()
-        # trabajos de producción
-        cursorObj = con.cursor()
-        cursorObj.execute(
-            'SELECT * FROM hemeroteca WHERE tipo = "g" ORDER BY "titular";')
-        trabajos_en_bbdd_produccion = cursorObj.fetchall()
+            'SELECT * FROM hemeroteca ORDER BY "titular";')
+        trabajos_en_bbdd = cursorObj.fetchall()
+        
         # obtenemos el registro mas alto
         cursorObj = con.cursor()
         cursorObj.execute(
             'SELECT max(id) FROM hemeroteca;')
         ultimo_id = cursorObj.fetchone()[0]
         cursorObj.close()
-        return trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion, ultimo_id
+        return trabajos_en_bbdd, ultimo_id
     except Exception as e:
         logging.warning('❌ No se pudo acceder a la tabla de trabajos SQL3')
         logging.warning('Exception occurred while code execution: ' + repr(e))
@@ -707,7 +687,7 @@ def banners_gestion(ahora) -> list:
         # * Añadimos las funciones importadas que modifican los banners de algunas campañas publicitarias: aletorios, según fechas, etc
         #cliente = pb_talleres_del_sur(cliente, ahora)
         #cliente = pb_boehringer_combo_hasta_SEP(cliente, ahora)
-        #cliente = pb_ecuphar(cliente, ahora)
+        cliente = pb_ecuphar(cliente, ahora)
         random.shuffle(cliente)
         random.shuffle(interno)
         publicidad_horizontal = destacado + cliente + cliente_final + interno_destacado + interno + final
@@ -777,63 +757,57 @@ def nombre_del_archivo():
     return nombre_archivo, ultimo_publicado+1
 
 
-def createCampaign(name, subject, content, date_send):
-    """Crea y manda (a no ser que la fecha sea diferente) una campaña. Solo se pide los argumentos que cambian de una campaña a otra.
-    Una vez creada la campaña se lanza automáticamente a no ser que se ponga una date_send.
-    https://acumbamail.com/apidoc/function/createCampaign/
-
-    Esta es la ayuda que manda Acumbamail: https://acumbamail.com/api/1/createCampaign/?auth_token=XXXXX&name=XXXXXX&from_name=my_name&from_email=XXXXXX&subject=XXXXX&lists[0]=XXXX
-
+def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmentos: str, fecha_iso: datetime):
+    """Crear una campaña programada en MailerLite
+    https://developers.mailerlite.com/docs/campaigns.html#get-a-campaign
+    
     Args:
-        name (string): Nombre de la campaña (no es público)
-        subject (string): El asunto de la campaña
-        content (string): El html que contendrá la campaña
-        date_send (date): (Opcional) Fecha de comienzo del envío. Sólo para envíos programados. (YYYY-MM-DD HH:MM)
-
-    Args que son comunes y no se piden:
-        auth_token (string): Tu token de autenticación de cliente
-        from_name (string): Nombre del remitente de la campaña
-        listas (dict): Los identificadores de las listas a las que se enviará la campaña, o de los segmentos a los que se quiera enviar precedidos de s. No se puede enviar a más de un segmento de una misma lista, ni a un segmento y a una lista a la que pertenezca
-        from_email (string): El email desde el que se enviará la campaña, se puede usar Nombre <email@dominio.com>
-        tracking_urls (integer): (Opcional) Sustituir enlaces para seguimiento de clics. Por defecto=1
-        complete_json (integer): Para que devuelva un json completo con formato completo. Por defecto=0
-        https: Activa "1" o desactiva "0" usando http
-
+        nombre: str, 
+        asunto: str, 
+        contenido: str, es html
+        segmentos: str, 
+        fecha_iso: datetime
     Returns:
-        respuesta (json)
+        _type_: _description_
     """
-    respuesta = ''
-    api_url = "https://acumbamail.com/api/1/createCampaign/"
-    # Parámetros de la solicitud
-    params = {
-        "auth_token": datos_de_acceso.TOKEN_ACUMBAMAIL,
-        "name": name,
-        "from_name": "Suscripciones",
-        "from_email": "suscripciones@axoncomunicacion.net",
-        "subject": subject,
-        "content": content,
-        "https": "1",
-        "date_send": date_send,
+    url = "https://connect.mailerlite.com/api/campaigns"
+    headers = {
+        "Authorization": f"Bearer {datos_de_acceso.MAILERLITE_API_KEY}",
+        "Content-Type": "application/json"
     }
-    # añadimos las listas necesarias
-    params_combinado = params | datos_de_acceso.DICCIONARIO_DE_LISTAS
+    # Estructura correcta para MailerLite
+    data = {
+        "name": nombre,
+        "language_id": 8,
+        "type": "regular",
+        "emails": [
+            {
+                "subject": asunto,
+                "from": "suscripciones@axoncomunicacion.net",
+                "from_name": "Impulso vet S. L.",
+                "content": contenido
+            }
+        ],
+        "segments": segmentos,
+        "delivery_schedule": {
+            "type": "scheduled",
+            "date": fecha_iso
+        }
+    }
+        
     try:
-        # Realizar la solicitud POST a la API
-        response = requests.post(api_url, data=params_combinado)
-        # Verificar el estado de la respuesta
-        if response.status_code == 200:
-            print()
-            print("Campaña creada en Acumbamail con éxito")
-            # Puedes imprimir o manejar la respuesta de la API aquí
-            respuesta = json.loads(response.text)
-        else:
-            print(
-                f"Error en la solicitud. Código de estado: {response.status_code}")
-            salir_app()
-    except Exception as e:
-        print(f"Error a la hora de solicitar POST a la API: {str(e)}")
-        salir_app()
-    return respuesta
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+        print("Creando campaña en MailerLite")
+        # print("Tipo de contenido:", type(contenido))
+        # print("Datos enviados (corregidos):", json.dumps(data, indent=2, ensure_ascii=False))
+        return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"Error HTTP {e.response.status_code}: {e.response.text}")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Error de conexión: {e}")
+        return None
 
 
 def salir_app():
@@ -1087,7 +1061,38 @@ def comprobar_si_estan_todos(coincidencias: list, titulares: list, titlulares_en
     return estan_todas
       
 
+def busqueda_de_titulares(titulares_del_word: list, trabajos_en_bbdd: list):
+    """Función que busca dentro de los trabajos_en_bbdd y noticias_web cada trabajo del word.
 
+    Args:
+        titulares_del_word (list): _description_
+        trabajos_en_bbdd (list): _description_
+        
+    Returns:
+        _type_: _description_
+    """
+    coincidencias = []
+    titulares_encontrados = []
+    esta_ya = False
+    for titular in titulares_del_word:
+        if 'Opinión Antonio' in titular[0:18]:
+            coincidencias.append(144)
+            titulares_encontrados.append(titular)
+            print(f'- 144 : {titular}')  
+            esta_ya = True
+        for trabajo in trabajos_en_bbdd:
+            if titular in limpieza_de_titulares(trabajo[1]): 
+                coincidencias.append(trabajo[0])
+                titulares_encontrados.append(titular)
+                print(f'- {trabajo[0]} : {titular}')  
+                esta_ya = True
+        for noticia in noticias_web:
+            if titular in noticia['titulo'] and esta_ya == False:
+                coincidencias.append(noticia['id'])
+                titulares_encontrados.append(titular)
+                print(f'- {noticia["id"]} : {titular}')  
+                esta_ya = True
+    return coincidencias, titulares_encontrados
 
 
 
@@ -1133,27 +1138,26 @@ if __name__ == '__main__':
     print("Nº  | Título")
     print()
 
-    trabajos_en_bbdd_compania, trabajos_en_bbdd_produccion, ultimo_id = recuperar_trabajos()  # type: ignore
-    print('Trabajos de compañía:')
+    trabajos_en_bbdd, ultimo_id = recuperar_trabajos()
+    print('Trabajos de compañía y producción:')
     print(f"-----|-{'-'*110}")
-    for trabajo in trabajos_en_bbdd_compania:
+    for trabajo in trabajos_en_bbdd:
         print(f"{trabajo[0]:>4} | {trabajo[1][0:130]}")
     print()
-    print('Trabajos de producción:')
-    print(f"-----|-{'-'*110}")
-    for trabajo in trabajos_en_bbdd_produccion:
-        print(f"{trabajo[0]:>4} | {trabajo[1][0:130]}")
+   
 
-    TRABAJOS_A_MOSTRAR = 35
+    TRABAJOS_A_MOSTRAR = 100
     #todo &offset=10") # con esta añadido nos saltamos los 10 primeros porque siempre hay un desfase. ¿Merece la pena usarlo?: Por ejemplo si no la encuentra a lo mejor si es buena idea añadirlo
     # * Recogemos los últimos trabajos de pequeños animales de la web
     trabajos_web_peq = read_wordpress(
         f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=477&page=1&per_page={TRABAJOS_A_MOSTRAR}")
 
     # * Recogemos los últimos trabajos de producción de la web
-    trabajos_web_gra = read_wordpress(
+    trabajos_web_gra_1 = read_wordpress(
         f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=476&page=1&per_page={TRABAJOS_A_MOSTRAR}")
-
+    trabajos_web_gra_2 = read_wordpress(
+        f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=476&page=2&per_page={TRABAJOS_A_MOSTRAR}")
+    trabajos_web_gra = trabajos_web_gra_1 + trabajos_web_gra_2
     """Si en un futuro vemos necesario separa la lista de noticias completas en tres
     print()
     print(f"Últimos {TRABAJOS_A_MOSTRAR} trabajos de pequeños animales:")
@@ -1201,7 +1205,7 @@ if __name__ == '__main__':
         print(f'  -{banner[1]}')
 
     print()
-    
+      
     # * Leemos el archivo de Word del escritorio
     try:
         archivo_docx = leer_docx(datos_de_acceso.RUTA_AL_WORD_INFORMAVET)
@@ -1211,10 +1215,12 @@ if __name__ == '__main__':
     except Exception as e:
         print()
         logging.warning('Exception occurred while code execution: ' + repr(e))    
-        logging.warning(f'❌ No esta el archivo en el escritorio, pasas a modo manual.')
+        logging.warning(f'❌ El archivo no esta en el escritorio, o algo salio mal. Pasas a modo manual.')
         os.system(ALERTA)
         modo_manual = True
         existe_noticia_destacada = False
+        estan_todas_compania = False
+        estan_todas_produccion = False
     
     # * Analizamos el archivo de Word 
     if modo_manual == False:
@@ -1225,7 +1231,7 @@ if __name__ == '__main__':
         titulares_noticias = buscar_seccion(archivo_docx, 'NOTICIAS GENERALEs')
         """
         Esquemas de datos usados:
-        -trabajos_en_bbdd_compania: (id, 'titular', 'url', 'imagen, 'tipo: p o g', 'noticia')
+        -trabajos_en_bbdd: (id, 'titular', 'url', 'imagen, 'tipo: p o g', 'noticia')
         -noticias_web: {'id': número, 'url': '…', 'imagen': '…', 'titulo': '…', 'contenido': '…'}
         """
 
@@ -1249,58 +1255,21 @@ if __name__ == '__main__':
             estan_todas_destacadas = comprobar_si_estan_todos(coincidencias_destacados, titulares_destacados_word, destacados_encontrados) 
             existe_noticia_destacada = True
                 
-        
         # * Analizamos el archivo de Word: Animales de compañia        
         titulares_compania_word = archivo_docx[titulares_compania+1:titulares_produccion]
         titulares_compania_word = creacion_lista_titulares(titulares_compania_word)
         print()
         print(f'{Fore.GREEN}Hay {len(titulares_compania_word)} titulares de Animales de Compañia incorporados:{Style.RESET_ALL}')
-        coincidencias_compania = []
-        titulares_encontrados = []
-        esta_ya = False
-        for titular in titulares_compania_word:
-            for trabajo in trabajos_en_bbdd_compania:
-                if titular in limpieza_de_titulares(trabajo[1]): 
-                    coincidencias_compania.append(trabajo[0])
-                    titulares_encontrados.append(titular)
-                    print(f'- {trabajo[0]} : {titular}')  
-                    esta_ya = True
-            for noticia in noticias_web:
-                if titular in noticia['titulo'] and esta_ya == False:
-                    coincidencias_compania.append(noticia['id'])
-                    titulares_encontrados.append(titular)
-                    print(f'- {noticia["id"]} : {titular}')  
-                    esta_ya = True
-        estan_todas_compania = comprobar_si_estan_todos(coincidencias_compania, titulares_compania_word, titulares_encontrados)             
+        coincidencias_compania, titulares_encontrados_peq = busqueda_de_titulares(titulares_compania_word, trabajos_en_bbdd)
+        estan_todas_compania = comprobar_si_estan_todos(coincidencias_compania, titulares_compania_word, titulares_encontrados_peq)             
 
         # * Analizamos el archivo de Word: Animales de producción
         titulares_produccion_word = archivo_docx[titulares_produccion+1:titulares_noticias]
         titulares_produccion_word = creacion_lista_titulares(titulares_produccion_word)
         print()
-        print(f'{Fore.GREEN}Hay {len(titulares_produccion_word)} titulares de Animales de Producción incorporados:{Style.RESET_ALL}')        
-        coincidencias_produccion = []
-        titulares_encontrados = []
-        esta_ya = False
-        for titular in titulares_produccion_word:
-            if 'Opinión de Antonio Palomo' in titular:
-                coincidencias_produccion.append(144)
-                titulares_encontrados.append(titular)
-                print(f'- 144 : {titular}')  
-                esta_ya = True
-                continue 
-            for trabajo in trabajos_en_bbdd_produccion:
-                if titular in limpieza_de_titulares(trabajo[1]):
-                    coincidencias_produccion.append(trabajo[0])
-                    titulares_encontrados.append(titular)
-                    print(f'- {trabajo[0]} : {titular}')
-                    esta_ya = True                       
-            for noticia in noticias_web:
-                if titular in noticia['titulo'] and esta_ya == False:
-                    coincidencias_produccion.append(noticia['id'])    
-                    titulares_encontrados.append(titular)
-                    print(f'- {noticia["id"]} : {titular}')  
-                    esta_ya = True        
-        estan_todas_produccion = comprobar_si_estan_todos(coincidencias_produccion, titulares_produccion_word, titulares_encontrados)        
+        print(f'{Fore.GREEN}Hay {len(titulares_produccion_word)} titulares de Animales de Producción incorporados:{Style.RESET_ALL}')
+        coincidencias_produccion, titulares_encontrados_produccion = busqueda_de_titulares(titulares_produccion_word, trabajos_en_bbdd)
+        estan_todas_produccion = comprobar_si_estan_todos(coincidencias_produccion, titulares_produccion_word, titulares_encontrados_produccion)        
 
         # * Analizamos el archivo de Word: Noticias    
         titulares_noticias_word = archivo_docx[titulares_noticias+1:]
@@ -1324,10 +1293,11 @@ if __name__ == '__main__':
         print(f'Se van a publicar {len(coincidencias_compania)+len(coincidencias_produccion)+len(coincidencias_noticias)} noticias y {len(publicidad_horizontal)} banners.')
         # * fin modo_manual = False
         
-    # * En este bloque preguntamos por las noticias de cada sección. 
-    # * En el caso de que esten encontadas se salta la pregunta y se generan solas.
+    # * En este bloque preguntamos por las noticias de cada sección
+    # * En el caso de que esten encontadas se salta la pregunta y se generan solas
     print()
     print('Introducir, si son pedidos, los trabajos/noticias separadas por espacios.')
+    print()
     print()
     # * Noticias destacadas
     if existe_noticia_destacada == True:
@@ -1338,19 +1308,29 @@ if __name__ == '__main__':
     else:
         noticias_destacadas = ''
     
-
-    print()
     # * Trabajos compañia
     if estan_todas_compania == False:
         coincidencias_compania = input_trabajos_a_publicar('compania')
     trabajos_compania = trabajos_a_mostrar(
             'compania', coincidencias_compania, numero_registros)
     print()
+    
     # * Trabajos producción
     if estan_todas_produccion == False:
         coincidencias_produccion = input_trabajos_a_publicar('produccion')
+    
+    # * Si hay pocas noticias y trabajos metemos un banner cuadrado en la primera posición de los trabajos de produccion
+    filas : int = len(coincidencias_produccion)+len(coincidencias_noticias)/2
+    if filas < len(publicidad_horizontal):
+        print(f'Número de filas de contenido editorial: {filas}')
+        print(f'Númeor de banners: {len(publicidad_horizontal)}')
+        print('Insertamos un banner cuadrado en la primera posición de Animales de Producción')
+        coincidencias_produccion.insert(0, 0)
+
+    # * Trabajos producción, segunda parte
     trabajos_produccion = trabajos_a_mostrar(
         'produccion', coincidencias_produccion, numero_registros)
+            
     # * Igualamos las listas de compañia y de producción
     if len(trabajos_compania) != len(trabajos_produccion):  # type: ignore
         trabajos_compania, trabajos_produccion = igualar_listas(
@@ -1358,6 +1338,7 @@ if __name__ == '__main__':
     html_trabajos = fusion_trabajos_y_banners(
         trabajos_compania, trabajos_produccion, publicidad_horizontal)
     print()
+    
     # * Noticias
     if estan_todas_noticias == False:
         coincidencias_noticias = input("¿Qué noticias quieres publicar? ")
@@ -1388,7 +1369,7 @@ if __name__ == '__main__':
 
     # * Vamos uniendo las partes
     resultado = ''
-    resultado += comienzo_en_curso + bloques.pb_laservet 
+    resultado += comienzo_en_curso + bloques.pb_primer_banner 
     resultado += '<!-- agenda -->' + extraer_agenda(boletin-1) + '<!-- fin agenda -->'
     resultado += noticias_destacadas + html_trabajos
 
@@ -1436,26 +1417,55 @@ if __name__ == '__main__':
     input('Pulsa RETORNO cuanto termines de editar y guardar el archivo en Dreamweaver. ')
 
     # * Creamos la campaña
-    name = 'Informa-vet ' + str(boletin)
-    date_send = '2025-12-30 23:00'
+    nombre_campaña = 'Informa-vet ' + str(boletin)
     # Guardamos el archivo que esta en la web (después de su edición en Dreamweaver)
-    html_content = requests.get(datos_de_acceso.RUTA_PLANTILAS + archivo)
-    if html_content.status_code != 200:
+    contenido_html = requests.get(datos_de_acceso.RUTA_PLANTILAS + archivo)
+    if contenido_html.status_code != 200:
         print('❌ Cuidado: Error al leer la plantilla de la web. Sigue de forma manual.')
         salir_app()
-    html_content = html_content.text.replace(
-        '<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
-    subject = obtener_asunto(html_content, existe_noticia_destacada)
-    respuesta = createCampaign(name, subject, html_content, date_send)
+     
+    # * Chequeamos mediante Premailer: no activado, no estoy seguro de las ventajas y me deja un margen que no se como quitar
+    """
+    p = Premailer(
+        base_url= datos_de_acceso.RUTA_PLANTILAS,   # Para URLs absolutas
+        preserve_internal_links=False,              # Para anchors internos
+        strip_important=True,                       # Eliminar !important
+        keep_style_tags=False,                      # Eliminar tags <style>
+        remove_classes=True,                        # Limpiar atributos class
+        allow_network=False,                        # Evitar descargas externas
+        exclude_pseudoclasses=True,                 # Ignorar :hover, etc.
+    )
+    contenido_html : str = contenido_html.text
+    contenido_html : str = p.transform(contenido_html)
+    """
     
-    # * Solo continua si la campaña se creo con éxito, si no fue así en la función createCampaign se salio de la aplicación
-    url = 'https://acumbamail.com/app/campaign/' + \
-        str(respuesta['id']) + '/summary/'  # type: ignore
-    print()
-    print('Esperando a que Acumbamail cree la campaña.')
-    time.sleep(1)
-    abrir_pagina_web(url)
+    contenido_html = contenido_html.text.replace(
+         '<img src="', '<img src="https://axoncomunicacion.net/masivos/axon_news/')
 
-    print()
-    print('✅ Fin de la aplicación: 👍')
-    print()
+
+    asunto = obtener_asunto(contenido_html, existe_noticia_destacada) 
+    segmentos = ["158082924495766841"] # segmento de Informavet
+    fecha_iso = datetime(2025, 12, 30, 23, 0, 0).isoformat()
+
+    resultado = crear_campaña_mailerlite(
+        nombre_campaña,
+        asunto,
+        contenido_html,
+        segmentos,
+        fecha_iso
+    )
+    
+    if resultado:
+        print("✅ Campaña creada exitosamente!")
+        #print(json.dumps(resultado, indent=2))
+        print()
+        print('Esperando a que Mailerlite cree la campaña')
+        time.sleep(1)
+        abrir_pagina_web("https://dashboard.mailerlite.com/campaigns/status/draft")
+        print()
+        print('✅ Fin de la aplicación: 👍')
+        print()
+    else:
+        print("❌ Error al crear la campaña")
+
+

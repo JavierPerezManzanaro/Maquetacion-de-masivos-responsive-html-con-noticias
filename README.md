@@ -162,6 +162,20 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+
+### 7.3
+- Dejamos de trabajar con Acumbamail y nos pasamos a Mailerlite vía requests
+- Estudio la posivilidad de chequear el documento con Premailer pero al final lo desactivo (dejo el cídogo para un estudio posterior). Al ya partir de una plantilla entiendo que esta bien. Ademas me deja un margen. Estos abra que probarlo mas adelante
+- Primera aproximación a la colocación de banners cuadrados si son necesarios. En este caso en Animales de Producción
+- Bug solucionado: Todas las imagenes se guadan como JPG 
+- Bug solucionado: Ahora funciona en modo manual
+- Otras mejoras mejores
+
+### 7.2.1
+- Carateristica nueva: Se puede dar el caso de que el trabajo no salga ni en la lista de trabajos ni en la lista de los últimos 100 post de la web. Hasta ahora habia que poner un numemor falso para modificarlo despues en el html. Ahora basta con poner la url en cuestión para que acceda a esa noticia/trabajo y la trate (la muestre y la incluya en la bbdd).
+- Bug solucionado: Ahora si lee los trabajos de los animales de producción en la función busqueda_de_titulares.
+- Bug solucionado: Unifico las listas de trabajos de animales de compañía y deproducción para facilitar las busquedas. Ahora solo se muestra una lista sobre la que busca los trabajos.
+
 ### 7.2
 - Cambio el criterio para completar el contenido de las noticias. Antes era por caracteres, ahora es por palabras.
 - Bug solucionado: Ahora gestiona de forma correcta las noticias destacadas.
