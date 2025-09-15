@@ -1323,7 +1323,7 @@ if __name__ == '__main__':
     filas : int = len(coincidencias_produccion)+len(coincidencias_noticias)/2
     if filas < len(publicidad_horizontal):
         print(f'Número de filas de contenido editorial: {filas}')
-        print(f'Númeor de banners: {len(publicidad_horizontal)}')
+        print(f'Número de banners: {len(publicidad_horizontal)}')
         print('Insertamos un banner cuadrado en la primera posición de Animales de Producción')
         coincidencias_produccion.insert(0, 0)
 
