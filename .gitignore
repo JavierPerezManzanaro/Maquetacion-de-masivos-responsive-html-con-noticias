@@ -10,3 +10,19 @@ banners_gestion.py
 mailer.py
 mailler_de_ia.py
 notas.txt
+
+
+
+
+# Cachés y archivos temporales
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+
+# Archivos de entorno
+.env
+
+# Configuraciones de IDE
+.vscode/
+.idea/

@@ -115,7 +115,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     return tabla_interior
 
 
-def descarga_imagen(url: str, nombre: int):
+def descarga_imagen(url: str, nombre: int) -> str:
     """Descarga las imágenes y las ajusta al tamaño
 
     Args:
@@ -134,7 +134,6 @@ def descarga_imagen(url: str, nombre: int):
         imagen_local = nombre_archivo + '/' + str(nombre) + '.jpg'
         cv2.imwrite(imagen_local, imagen)
         os.remove(imagen_temp)
-        
     except:
         imagen_local = '/axon_news/imagenes/spacer.gif'
     return imagen_local
@@ -784,7 +783,7 @@ def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmento
             {
                 "subject": asunto,
                 "from": "suscripciones@axoncomunicacion.net",
-                "from_name": "Impulso vet S. L.",
+                "from_name": "Canal Veterinario",
                 "content": contenido
             }
         ],
@@ -839,7 +838,7 @@ def obtener_asunto(html_content: str, existe_noticia_destacada: bool) -> str:
         existe_noticia_destacada (bool): indica si hay o no noticias destacadas.
 
     Returns:
-        str: Asunto de la campaña si encuentra la etiqueta, si no, solamente 'In-formaVET: ' pero avista del error.
+        str: Asunto de la campaña si encuentra la etiqueta, si no, avista del error
     """
     numero = 0
     if existe_noticia_destacada == True:
@@ -858,8 +857,8 @@ def obtener_asunto(html_content: str, existe_noticia_destacada: bool) -> str:
         print()
         logging.warning('❌ Cuidado: No hay asunto.')
         os.system(ALERTA)
-        return 'In-formaVET: '
-    return 'In-formaVET: ' + asunto
+        return ' '
+    return asunto
 
 
 def extraer_agenda(numero_anterior: int) -> str:
@@ -1297,7 +1296,7 @@ if __name__ == '__main__':
     # * En el caso de que esten encontadas se salta la pregunta y se generan solas
     print()
     print('Introducir, si son pedidos, los trabajos/noticias separadas por espacios.')
-    print()
+    print('Poner pb si es necesario.')
     print()
     # * Noticias destacadas
     if existe_noticia_destacada == True:
@@ -1417,7 +1416,7 @@ if __name__ == '__main__':
     input('Pulsa RETORNO cuanto termines de editar y guardar el archivo en Dreamweaver. ')
 
     # * Creamos la campaña
-    nombre_campaña = 'Informa-vet ' + str(boletin)
+    nombre_campaña = f'Informa-vet {boletin} - {ahora.strftime("%A")}'
     # Guardamos el archivo que esta en la web (después de su edición en Dreamweaver)
     contenido_html = requests.get(datos_de_acceso.RUTA_PLANTILAS + archivo)
     if contenido_html.status_code != 200:

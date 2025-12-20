@@ -162,13 +162,18 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Ordenar de forma natural (contando los acentos y otros caracteres) los trabajos.
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
+### 7.3.2
+-Se elimina todo lo relativo a grandes animales
+
+
 ### 7.3.1
+- Añado el día de la semana en el nombre de la campaña
 
 ### 7.3
 - Dejamos de trabajar con Acumbamail y nos pasamos a Mailerlite vía requests.
 - Estudio la posibilidad de chequear el documento con Premailer pero al final lo desactivo (dejo el código para un estudio posterior). Al partir de una plantilla entiendo que esta bien. Además me deja un margen. Abra que probarlo mas adelante.
 - Primera aproximación a la colocación de banners cuadrados si son necesarios. En este caso en Animales de Producción.
-- Bug solucionado: Todas las imagenes se guadan como JPG .
+- Bug solucionado: Todas las imagenes se guadan como JPG.
 - Bug solucionado: Ahora funciona en modo manual.
 - Otras mejoras.
 

@@ -252,7 +252,7 @@ table[class=main] {
               <td align="center" bgcolor="#006580" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
                   <tbody>
                     <tr bgcolor="#006580">
-                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3.png" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3_navidad25-26.gif" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
                     </tr>
                   </tbody>
                 </table></td>
@@ -288,6 +288,7 @@ table[class=main] {
     </tr>
   </tbody>
 </table>
+<!--fin de seccion: comienzo-->
 '''
 
 
@@ -309,41 +310,42 @@ fin = '''
                       <td><!--TABLE LEFT--> 
                         
                         <!--par-->
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par14.gif" alt="Pequeños Animales (R)evolution" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/par16.jpg" alt="Pequeños Animales (R)evolution" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Pequeños Animales (R)evolution, Nº 14</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Pequeños Animales (R)evolution, Nº 16</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li>Editorial </li>
+                                  <li>Editorial</li>
                                   <li>Cirugía de <strong>Mínima Invasión</strong></li>
-                                  <li>Caso clínico:<strong> Discusión y complicaciones de un caso clínico por una fractura abierta bilateral </strong></li>
-                                  <li><strong>Fidelización sin gastar un € </strong></li>
-                                  <li>Manejo multimodal de la osteoartritis canina: <strong>el rol clave de la rehabilitación </strong></li>
-                                  <li>Manejo nutricional de la<strong> Lipidosis Hepática Felina </strong></li>
-                                  <li>Entrevista:<strong> Juan José Rincón Marketing Brand Manager en Elanco </strong></li>
-                                  <li>Los compromisos de <strong>Purina</strong> hacia un futuro más sostenible y amable con las mascotas</li>
+                                  <li><strong>Tumores de mama en perros y gatos.</strong> Toma de decisiones de cara a la cirugía</li>
+                                  <li><strong>El decálogo del líder perfecto</strong> (y otras herramientas de coaching)</li>
+                                  <li>Resultados clínicos de perros con <strong>mastocitomas cutáneos de alto grado</strong></li>
+                                  <li>El <strong>III Simposio Vetnia </strong>refuerza el liderazgo de <strong>Elanco</strong> en innovación y estrena oficialmente <strong>Zenrelia®</strong></li>
+                                  <li><strong>Pancreatitis Canina:</strong> Un desafío clínico en medicina veterinaria</li>
+                                  <li><strong>Estrategias</strong> para <strong>reducir el estrés en gatos</strong> durante las visitas al veterinario</li>
+                                  <li><strong>Purina</strong> comprometida en avanzar en la regeneración de los ecosistemas terrestres y océanos</li>
+                                  <li><strong>Descifrando la Endocrinología</strong> en animales de compañía: Una charla con <strong>Carlos Melian </strong>sobre<strong> Hipertiroidismo </strong>y<strong> Síndrome de Cushing</strong></li>
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no14-pequenos-animales-revolution/no14-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/pequenos-animales-revolution/no15-pequenos-animales-revolution/no15-pequenos-animales-revolution-publicacion/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
-                        
                         
                         <!--par fin--> 
                         
@@ -360,17 +362,17 @@ fin = '''
                         <!--TABLE RIGHT--> 
                         
                         <!--av-->
-                       <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                      <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av113.jpg" alt="" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/av114.jpg" alt="" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
                               <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Asistente en Centro Veterinario,<br />
-Nº 113</td>
+Nº 114</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -378,13 +380,13 @@ Nº 113</td>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Enfermedades congénitas y hereditarias de las razas caninas y felinas</li>
-                                  <li>Hibernación en tortugas</li>
-                                  <li>Prevención y manejo de emergencias es esencial en la atención veterinaria</li>
-                                  <li>Royal Canin: Importancia del soporte nutricional en los pacientes hospitalizados y en estado crítico</li>
-                                  <li>La atención al cliente veterinario es clave para el bienestar de mascotas y propietarios</li>
-                                  <li>El manejo del estrés en animales de compañía: estrategias para mejorar la experiencia en el veterinario</li>
-                                  <li>Los compromisos de PURINA hacia un futuro más sostenible y amable con las mascotas</li>
-                                  <li>ANAVET: Caso clínico de Homer sobre la parálisis laríngea</li>
+                                  <li>Monitorización anestésica en aves</li>
+                                  <li>El papel esencial del ACV en el éxito del tratamiento con CBD</li>
+                                  <li>Un Asistente en Centro Veterinario (ACV) debe poseer habilidades diversas para brindar un excelente cuidado animal</li>
+                                  <li>El crecimiento de los cachorros</li>
+                                  <li>Cannabidiol en veterinaria:  lo que la ciencia dice (y lo que aún no sabemos)</li>
+                                  <li>NESTLÉ PURINA lanza PRO PLAN LIVECLEAR: Una avance revolucionario para el manejo de los alérgenos en el pelo de los gatos</li>
+                                  <li>ANAVET</li>
                                   <li>Noticias</li>
                                 </ul></td>
                             </tr>
@@ -392,7 +394,7 @@ Nº 113</td>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no113-asistente-en-centro-veterinario/no113-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/asistente-veterinario/no114-asistente-en-centro-veterinario/no114-asistente-en-centro-veterinario-sumario/"  style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -412,6 +414,7 @@ Nº 113</td>
 </table>
 
 <!--- cv-->
+
 <table align="center" bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
@@ -430,7 +433,7 @@ Nº 113</td>
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv125.jpg" alt="Centro Veterinario" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/cv126.jpg" alt="Centro Veterinario" width="320" height="455"  style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
@@ -453,7 +456,7 @@ Nº 113</td>
                         <table align="right" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, Nº 125</td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Centro Veterinario, Nº 126</td>
                             </tr>
                             <tr>
                               <td height="15"></td>
@@ -461,20 +464,19 @@ Nº 113</td>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
                                   <li>Editorial</li>
-                                  <li>Caso clínico:
+                                  <li>Caso clínico: 
                                     <ul>
-                                      <li>Colecistectomía por litiasis biliar canina</li>
+                                      <li>Tratamiento de la peritonitis infecciosa felina (I).  Revisión y actualización de la literatura  </li>
                                     </ul>
                                   </li>
-                                  <li>Revisión de artículo científico:
+                                  <li>Abstracts Vetmadrid 2025  </li>
+                                  <li>Normas para la presentación de comunicaciones libres para VETMADRID 2026  </li>
+                                  <li><strong>I Congreso Vet Cats Medicina y Cirugía Felina:
+                                    </strong>
                                     <ul>
-                                      <li>Influencia del estrés inducido por la visita al hospital sobre la concentración de glucosa sanguínea, las concentraciones séricas de cortisol, tiroxina y ácidos biliares, y el comportamiento en gatos</li>
-                                    </ul>
-                                  </li>
-                                  <li>Abstracts Vetmadrid 2025</li>
-                                  <li><strong>I Congreso Vet Cats Medicina y Cirugía Felina:</strong>
-                                    <ul>
-                                      <li>Avance ponencias</li>
+                                      <li> Entrevista a Víctor Fernández, Presidente de AMVAC  </li>
+                                      <li>Programa  </li>
+                                      <li>Ponentes  </li>
                                     </ul>
                                   </li>
                                   <li>Noticias de Empresa</li>
@@ -484,8 +486,9 @@ Nº 113</td>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no125-centro-veterinario/no125-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/centro-veterinario/no126-centro-veterinario/no126-centro-veterinario-sumario/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
+                            
                           </tbody>
                         </table></td>
                     </tr>
@@ -498,6 +501,7 @@ Nº 113</td>
     </tr>
   </tbody>
 </table>
+
 
 <!--- fin de cv-->
 
@@ -522,41 +526,37 @@ Nº 113</td>
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="46%" style=" border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                           <tbody>
                             <tr>
-                               <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_120.jpg" alt="Uno Más" width="320" height="451"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                              <td align="left" valign="middle" bgcolor="#ffffff" style="color:#666666;"><img src="ultimas_publicaciones/uno_mas_122.jpg" alt="Uno Más" width="320" height="451"   style="margin:0; padding:0; width:100%; height:auto;" /></td>
                             </tr>
                             <tr>
                               <td height="25" bgcolor="#ffffff"></td>
                             </tr>
                             <tr>
-                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno Más, Nº 120 </td>
+                              <td align="left" class="heading" style="color: #00; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 18px; line-height: 26px; font-weight: 400; letter-spacing: 1px;">Uno Más, Nº 122 </td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
                               <td align="left" class="MsoNormal" style="color: #666666; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; font-weight: 400; line-height: normal;"><ul>
-                                  <li><strong>Consejo:</strong>
-                                    <ul>
-                                      <li><strong>Viajar con mascotas</strong>: consejos esenciales para unas vacaciones sin sorpresas</li>
-                                    </ul>
-                                  </li>
-                                  <li><strong>Salud:</strong>
-                                    <ul>
-                                      <li>Todo lo que necesitas saber sobre los<strong> golpes de calor en las mascotas</strong></li>
-                                    </ul>
-                                  </li>
-                                  <li><strong>Recuerda:</strong>
-                                    <ul>
-                                      <li><strong>Socialización y comportamiento</strong> de nuestras mascotas en verano</li>
-                                    </ul>
-                                  </li>
+                                  <li><strong>Especial Navidad:  
+                                  Cuidado de nuestros perros y gatos durante la Navidad  </strong></li>
+                                  <li>La Navidad con nuestros perros y gatos </li>
+                                  <li>Pautas de actuación </li>
+                                  <li>Decoraciones y seguridad del hogar </li>
+                                  <li>Problemas digestivos en Navidad en perros y gatos </li>
+                                  <li>Manejo del estrés por ruidos de petardos en Navidad para perros y gatos </li>
+                                  <li>Seguridad en el hogar </li>
+                                  <li>Control de parásitos:  una prioridad durante la Navidad </li>
+                                  <li>Viajes y visitas </li>
+                                  <li>Temperaturas extremas                                  </li>
                                 </ul></td>
                             </tr>
                             <tr>
                               <td height="15"></td>
                             </tr>
                             <tr>
-                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no120-uno-mas/no120-uno-mas/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
+                              <td align="left" style="color: #1ec6bc; font-family: 'Segoe UI', Arial, Verdana, Trebuchet MS, sans-serif; font-size: 10px; font-weight: 700; line-height: 24px; text-transform: uppercase; letter-spacing: 1px;"><p><a href="https://axoncomunicacion.net/portfolio/uno-mas/no122-uno-mas/no122-uno-mas/" style="color: #000000; text-decoration: none;">Seguir leyendo</a></p></td>
                             </tr>
                           </tbody>
                         </table>
@@ -1108,7 +1108,7 @@ pb_primer_banner = '''
                               <td height="30"></td>
                             </tr>
                             <tr>
-                              <td><a href="https://www.syrexhealth.com"><img src="pb/CannaGel-con-producto_ver5.gif" alt="CannaGel" width="700" height="300" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
+                              <td><a href="https://www.syrexhealth.com"><img src="pb/CannaGel-con-producto_ver6.gif" alt="CannaGel" width="700" height="300" style="margin:0; padding:0; display:block; width:100%; height:auto;" border="0" /></a></td>
                             </tr>
                             <tr>
                               <td height="30"></td>
