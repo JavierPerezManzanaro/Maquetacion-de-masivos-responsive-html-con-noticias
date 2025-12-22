@@ -1285,25 +1285,46 @@ if __name__ == '__main__':
         coincidencias_noticias = limpiar_input(coincidencias_noticias)
     bloque_final_con_noticias, publicidad_horizontal = noticias_a_mostrar(coincidencias_noticias, noticias_web, publicidad_horizontal)
     
-    """    # * Si hay pocas noticias y trabajos metemos banners cuadrados
-    filas_contenido : int = (len(trabajos_compania)+len(coincidencias_noticias)) // 2
-    print(f'Número de filas de contenido editorial: {filas_contenido}')
-    print(f'Número de banners: {len(publicidad_horizontal)}')
-    if filas_contenido == len(publicidad_horizontal)+1:
-        print('Insertamos UN banner cuadrado')
-        trabajos_compania.insert(0, 0)
-    elif filas_contenido == len(publicidad_horizontal)+2: 
-        print('Insertamos DOS banners cuadrado')
-        trabajos_compania.insert(0, 0)
-        trabajos_compania.insert(3, 0)
-    elif filas_contenido <= len(publicidad_horizontal)+3: 
-        print('Insertamos TRES banners cuadrados')
-        trabajos_compania.insert(0, 0)
-        trabajos_compania.insert(3, 0)
-        trabajos_compania.insert(5, 0) 
-    else: 
-        print('No añadimos banners cuadrados')    """  
+    # * Si hay pocas noticias y trabajos metemos banners cuadrados
+    print()
+    editorial_suma = len(trabajos_compania)+len(coincidencias_noticias)
+    if editorial_suma > 0:
+        pb_porcentaje = (len(publicidad_horizontal) / editorial_suma) * 100
+    else:
+        pb_porcentaje = 0.0
+    print(f'Porcentaje de banners sobre contenido editorial: {pb_porcentaje:.2f}%')
+    print(f'Número de noticias de contenido editorial: {editorial_suma}')
+    print(f'Número de banners: {len(publicidad_horizontal)}, {pb_porcentaje:.2f}%')
+    if pb_porcentaje < 50:
+        print('-  Menos del 50% - Insertamos UN banner cuadrado')
+        #todo: hacer funcion para insertar banner
+        trabajos_compania.insert(1, bloques.publicidad)
+    elif 50 <= pb_porcentaje < 53:
+        print('- Entre 50% y 53% - Insertamos DOS banners cuadrado')
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+    elif 53 <= pb_porcentaje < 60:
+        print('- Entre 53% y 60% - Insertamos TRES banners cuadrados')
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+        trabajos_compania.insert(5, bloques.publicidad) 
+    elif 60 <= pb_porcentaje < 64:
+        print('- Entre 60% y 64%" - Insertamos CUATRO banners cuadrados')
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+        trabajos_compania.insert(5, bloques.publicidad) 
+        trabajos_compania.insert(7, bloques.publicidad) 
+    else:
+        # pb_porcentaje >= 64
+        print("Más del 64%")
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+        trabajos_compania.insert(5, bloques.publicidad) 
+        trabajos_compania.insert(7, bloques.publicidad) 
+        trabajos_compania.insert(9, bloques.publicidad) 
+        trabajos_compania.insert(11, bloques.publicidad) 
     
+    print()
     html_trabajos = fusion_trabajos_y_banners(trabajos_compania, publicidad_horizontal)
     print()  
 
