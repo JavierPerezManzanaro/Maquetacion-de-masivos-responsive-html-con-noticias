@@ -252,7 +252,7 @@ table[class=main] {
               <td align="center" bgcolor="#006580" class="lrpadding"><table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="800">
                   <tbody>
                     <tr bgcolor="#006580">
-                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3_navidad25-26.gif" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
+                      <td bgcolor="#006580" ><img src="comun/cab-7_ver_2_pag_3.png" alt="Ax&oacute;n IN-FORMAvet" width="800" height="190" style="margin:0; padding:0; width:100%; height:auto;" /></td>
                     </tr>
                   </tbody>
                 </table></td>

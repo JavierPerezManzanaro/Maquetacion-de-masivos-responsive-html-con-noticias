@@ -759,7 +759,7 @@ def nombre_del_archivo():
     return nombre_archivo, ultimo_publicado+1
 
 
-def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmentos: str, fecha_iso: datetime):
+def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmentos: str):
     """Crear una campaña programada en MailerLite
     https://developers.mailerlite.com/docs/campaigns.html#get-a-campaign
     
@@ -768,7 +768,6 @@ def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmento
         asunto: str, 
         contenido: str, es html
         segmentos: str, 
-        fecha_iso: datetime
     Returns:
         _type_: _description_
     """
@@ -790,11 +789,7 @@ def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmento
                 "content": contenido
             }
         ],
-        "segments": segmentos,
-        "delivery_schedule": {
-            "type": "scheduled",
-            "date": fecha_iso
-        }
+        "segments": segmentos
     }
         
     try:
@@ -1412,14 +1407,12 @@ if __name__ == '__main__':
 
     asunto = obtener_asunto(contenido_html, existe_noticia_destacada) 
     segmentos = ["158082924495766841"] # segmento de Informavet
-    fecha_iso = datetime(2025, 12, 30, 23, 0, 0).isoformat()
 
     resultado = crear_campaña_mailerlite(
         nombre_campaña,
         asunto,
         contenido_html,
-        segmentos,
-        fecha_iso
+        segmentos
     )
     
     if resultado:
