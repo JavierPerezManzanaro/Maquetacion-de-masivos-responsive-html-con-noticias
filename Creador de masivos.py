@@ -1,7 +1,7 @@
 # source 'venv_informavet/bin/activate'
 # https://github.com/JavierPerezManzanaro/Maquetacion-de-masivos-responsive-html-con-noticias
 
-#! CUIDADO
+# ! CUIDADO
 # todo Por hacer
 # ? Aviso
 # * Explicación
@@ -77,7 +77,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     """Genera la tabla html que contiene un trabajo o la noticia
 
     Args:
-        tipo (str): el tipo que es: compania, produccion, común
+        tipo (str): el tipo que es: compania, común
         imagen (str): url local (bbdd, trabajos) o absoluta (noticias)
         titular (str)
         texto (str)
@@ -90,10 +90,7 @@ def tabla_interior(tipo: str, imagen: str, titular: str, texto: str, url: str, n
     tabla_interior = bloques.noticia_funcion_raw
     if tipo == 'compania':  # izq, compañía
         tabla_interior = tabla_interior.replace('##color##', '#881288')
-        tabla_interior = tabla_interior.replace('##posicion##', 'left')
-    elif tipo == 'produccion':  # der. producción
-        tabla_interior = tabla_interior.replace('##color##', '#0F7888')
-        tabla_interior = tabla_interior.replace('##posicion##', 'right')
+        # * La posición se define en la función fusion_trabajos_y_banners
     elif tipo == 'comun':  # noticias genéricas, comunes
         tabla_interior = tabla_interior.replace('##color##', '#000000')
     else:
@@ -329,7 +326,7 @@ def sql_insert(datos: str):
     con.commit()
 
 
-def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
+'''def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
     """Iguala las dos listas
 
     Args:
@@ -348,7 +345,7 @@ def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
         logging.info('Se añade una publicidad a la lista de trabajos_compania')
         publicidad = bloques.publicidad.replace('##posicion##', 'left')
         trabajos_compania.append(publicidad)
-    return trabajos_compania, trabajos_produccion
+    return trabajos_compania, trabajos_produccion'''
 
 
 def recuperar_trabajos():
@@ -367,7 +364,7 @@ def recuperar_trabajos():
         # trabajos de compañía
         cursorObj = con.cursor()
         cursorObj.execute(
-            'SELECT * FROM hemeroteca ORDER BY "titular";')
+            'SELECT * FROM hemeroteca WHERE tipo = "p" ORDER BY "titular";')
         trabajos_en_bbdd = cursorObj.fetchall()
         
         # obtenemos el registro mas alto
@@ -477,26 +474,32 @@ def creacion_lista_noticias(numero_registros: int, noticias: list) -> list:
     return axon
 
 
-def fusion_trabajos_y_banners(trabajos_compania: list, trabajos_produccion: list, publicidad_horizontal: list) -> str:
+def fusion_trabajos_y_banners(trabajos_compania: list, publicidad_horizontal: list) -> str:
     """Fusionamos los trabajos_compania y de trabajos_produccion y entre cada tabla horizontal colocamos un banner
 
     Args:
         trabajos_compania (list): lista de trabajos a publicar de animales de compañía
-        trabajos_produccion (list): lista de trabajos a publicar de animales de produccion
         publicidad_horizontal (list): Lista de banners a incluir
 
     Returns:
         str: el html de la parte de los trabajos
     """
     html_trabajos = ''
-    # creamos las que van enfrentadas
-    for enfrentadas in range(0, len(trabajos_compania)):
+    # * Creamos los pares de trabajos que van enfrentados
+    for enfrentadas in range(0, len(trabajos_compania), 2):
         html_trabajos = html_trabajos + bloques.bloque_exterior_funcion + \
             creacion_banners(publicidad_horizontal)  # type: ignore
         html_trabajos = html_trabajos.replace(
             '##bloque izq##', trabajos_compania[enfrentadas], 1)
-        html_trabajos = html_trabajos.replace(
-            '##bloque der##', trabajos_produccion[enfrentadas], 1)
+        html_trabajos = html_trabajos.replace('##posicion##', 'left')
+        # Verificar si existe el elemento derecho
+        if enfrentadas + 1 < len(trabajos_compania):
+            html_trabajos = html_trabajos.replace(
+                '##bloque der##', trabajos_compania[enfrentadas+1], 1)
+            html_trabajos = html_trabajos.replace('##posicion##', 'right')
+        else:
+            html_trabajos = html_trabajos.replace('##bloque der##', bloques.publicidad, 1)
+            html_trabajos = html_trabajos.replace('##posicion##', 'right')
     return html_trabajos
 
 
@@ -983,7 +986,7 @@ def leer_docx(nombre_archivo) -> list:
 
 
 def buscar_seccion(contenido: list, cadena: str) -> int:
-    """Busca dentro del Word (que es una lista de líneas) la cadena que es la linea que contiene el titular de la sección.
+    """Busca dentro del Word (que es una lista de líneas) la cadena que es la linea que contiene el titular de la sección
 
     Args:
         contenido (list): Archivo de Word
@@ -1137,48 +1140,27 @@ if __name__ == '__main__':
     print("Nº  | Título")
     print()
 
+    # * Se recojen tres bbdd: la bbdd local; los trabajos de pequeños animales de la web; y las noticias de la web
+    # * Recogemos los trabajos de animales de compañía de la bbdd local
     trabajos_en_bbdd, ultimo_id = recuperar_trabajos()
-    print('Trabajos de compañía y producción:')
+    print('Trabajos de animales de compañía:')
     print(f"-----|-{'-'*110}")
     for trabajo in trabajos_en_bbdd:
         print(f"{trabajo[0]:>4} | {trabajo[1][0:130]}")
     print()
-   
-
     TRABAJOS_A_MOSTRAR = 100
     #todo &offset=10") # con esta añadido nos saltamos los 10 primeros porque siempre hay un desfase. ¿Merece la pena usarlo?: Por ejemplo si no la encuentra a lo mejor si es buena idea añadirlo
-    # * Recogemos los últimos trabajos de pequeños animales de la web
+    # Recogemos los últimos trabajos de pequeños animales de la web
     trabajos_web_peq = read_wordpress(
         f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=477&page=1&per_page={TRABAJOS_A_MOSTRAR}")
-
-    # * Recogemos los últimos trabajos de producción de la web
-    trabajos_web_gra_1 = read_wordpress(
-        f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=476&page=1&per_page={TRABAJOS_A_MOSTRAR}")
-    trabajos_web_gra_2 = read_wordpress(
-        f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=476&page=2&per_page={TRABAJOS_A_MOSTRAR}")
-    trabajos_web_gra = trabajos_web_gra_1 + trabajos_web_gra_2
-    """Si en un futuro vemos necesario separa la lista de noticias completas en tres
-    print()
-    print(f"Últimos {TRABAJOS_A_MOSTRAR} trabajos de pequeños animales:")
-    print(f"----|-{'-'*104}")
-    for noticia in axon[0:TRABAJOS_A_MOSTRAR]:
-        print(f"{noticia['id']:>3} | {noticia['titulo'][0:130]}")
-
-    print()
-    print(f"Últimos {TRABAJOS_A_MOSTRAR} trabajos de producción:")
-    print(f"----|-{'-'*104}")
-    for noticia in axon[TRABAJOS_A_MOSTRAR:(TRABAJOS_A_MOSTRAR*2)]:
-        print(f"{noticia['id']:>3} | {noticia['titulo'][0:130]}")
-    """
-
-    # * Recogemos las noticias de la web
+    # Recogemos las noticias de la web
     NOTICIAS_MOSTRADAS = 100  # No puede ser mayor de 100
     noticias = read_wordpress(
         f'https://axoncomunicacion.net/wp-json/wp/v2/posts?page=1&per_page={NOTICIAS_MOSTRADAS}')
 
     # * Creamos el diccionario axon[noticia] y eliminamos duplicados
     numero_registros = ultimo_id + 1
-    bbdd_a_tratar = trabajos_web_peq + trabajos_web_gra + noticias
+    bbdd_a_tratar = trabajos_web_peq + noticias
     bbdd_a_tratar = eliminar_noticias_duplicadas(bbdd_a_tratar)
     noticias_web = creacion_lista_noticias(numero_registros, bbdd_a_tratar)
  
@@ -1226,7 +1208,6 @@ if __name__ == '__main__':
         print('Se encontro el Word con el material. Entramos en el modo automático.')    
         titulares_destacados = buscar_seccion(archivo_docx, 'NOTICIAS DESTACADAS')
         titulares_compania = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE COMPAÑÍA')
-        titulares_produccion = buscar_seccion(archivo_docx, 'TRABAJOS ANIMALES DE PRODUCCIÓN')
         titulares_noticias = buscar_seccion(archivo_docx, 'NOTICIAS GENERALEs')
         """
         Esquemas de datos usados:
@@ -1255,20 +1236,12 @@ if __name__ == '__main__':
             existe_noticia_destacada = True
                 
         # * Analizamos el archivo de Word: Animales de compañia        
-        titulares_compania_word = archivo_docx[titulares_compania+1:titulares_produccion]
+        titulares_compania_word = archivo_docx[titulares_compania+1:titulares_noticias]
         titulares_compania_word = creacion_lista_titulares(titulares_compania_word)
         print()
         print(f'{Fore.GREEN}Hay {len(titulares_compania_word)} titulares de Animales de Compañia incorporados:{Style.RESET_ALL}')
         coincidencias_compania, titulares_encontrados_peq = busqueda_de_titulares(titulares_compania_word, trabajos_en_bbdd)
-        estan_todas_compania = comprobar_si_estan_todos(coincidencias_compania, titulares_compania_word, titulares_encontrados_peq)             
-
-        # * Analizamos el archivo de Word: Animales de producción
-        titulares_produccion_word = archivo_docx[titulares_produccion+1:titulares_noticias]
-        titulares_produccion_word = creacion_lista_titulares(titulares_produccion_word)
-        print()
-        print(f'{Fore.GREEN}Hay {len(titulares_produccion_word)} titulares de Animales de Producción incorporados:{Style.RESET_ALL}')
-        coincidencias_produccion, titulares_encontrados_produccion = busqueda_de_titulares(titulares_produccion_word, trabajos_en_bbdd)
-        estan_todas_produccion = comprobar_si_estan_todos(coincidencias_produccion, titulares_produccion_word, titulares_encontrados_produccion)        
+        estan_todas_compania = comprobar_si_estan_todos(coincidencias_compania, titulares_compania_word, titulares_encontrados_peq)                  
 
         # * Analizamos el archivo de Word: Noticias    
         titulares_noticias_word = archivo_docx[titulares_noticias+1:]
@@ -1285,15 +1258,12 @@ if __name__ == '__main__':
                     noticias_encontradas.append(titular)       
                     print(f'- {noticia["id"]} : {titular}')  
                     esta_ya = True   
-        estan_todas_noticias = comprobar_si_estan_todos(coincidencias_noticias, titulares_noticias_word, noticias_encontradas)        
-
-        # * Resumen
-        print()        
-        print(f'Se van a publicar {len(coincidencias_compania)+len(coincidencias_produccion)+len(coincidencias_noticias)} noticias y {len(publicidad_horizontal)} banners.')
+        estan_todas_noticias = comprobar_si_estan_todos(coincidencias_noticias, titulares_noticias_word, noticias_encontradas)
         # * fin modo_manual = False
         
     # * En este bloque preguntamos por las noticias de cada sección
     # * En el caso de que esten encontadas se salta la pregunta y se generan solas
+    print()
     print()
     print('Introducir, si son pedidos, los trabajos/noticias separadas por espacios.')
     print('Poner pb si es necesario.')
@@ -1314,35 +1284,33 @@ if __name__ == '__main__':
             'compania', coincidencias_compania, numero_registros)
     print()
     
-    # * Trabajos producción
-    if estan_todas_produccion == False:
-        coincidencias_produccion = input_trabajos_a_publicar('produccion')
-    
-    # * Si hay pocas noticias y trabajos metemos un banner cuadrado en la primera posición de los trabajos de produccion
-    filas : int = len(coincidencias_produccion)+len(coincidencias_noticias)/2
-    if filas < len(publicidad_horizontal):
-        print(f'Número de filas de contenido editorial: {filas}')
-        print(f'Número de banners: {len(publicidad_horizontal)}')
-        print('Insertamos un banner cuadrado en la primera posición de Animales de Producción')
-        coincidencias_produccion.insert(0, 0)
-
-    # * Trabajos producción, segunda parte
-    trabajos_produccion = trabajos_a_mostrar(
-        'produccion', coincidencias_produccion, numero_registros)
-            
-    # * Igualamos las listas de compañia y de producción
-    if len(trabajos_compania) != len(trabajos_produccion):  # type: ignore
-        trabajos_compania, trabajos_produccion = igualar_listas(
-            trabajos_compania, trabajos_produccion)  # type: ignore
-    html_trabajos = fusion_trabajos_y_banners(
-        trabajos_compania, trabajos_produccion, publicidad_horizontal)
-    print()
-    
     # * Noticias
     if estan_todas_noticias == False:
         coincidencias_noticias = input("¿Qué noticias quieres publicar? ")
         coincidencias_noticias = limpiar_input(coincidencias_noticias)
     bloque_final_con_noticias, publicidad_horizontal = noticias_a_mostrar(coincidencias_noticias, noticias_web, publicidad_horizontal)
+    
+    """    # * Si hay pocas noticias y trabajos metemos banners cuadrados
+    filas_contenido : int = (len(trabajos_compania)+len(coincidencias_noticias)) // 2
+    print(f'Número de filas de contenido editorial: {filas_contenido}')
+    print(f'Número de banners: {len(publicidad_horizontal)}')
+    if filas_contenido == len(publicidad_horizontal)+1:
+        print('Insertamos UN banner cuadrado')
+        trabajos_compania.insert(0, 0)
+    elif filas_contenido == len(publicidad_horizontal)+2: 
+        print('Insertamos DOS banners cuadrado')
+        trabajos_compania.insert(0, 0)
+        trabajos_compania.insert(3, 0)
+    elif filas_contenido <= len(publicidad_horizontal)+3: 
+        print('Insertamos TRES banners cuadrados')
+        trabajos_compania.insert(0, 0)
+        trabajos_compania.insert(3, 0)
+        trabajos_compania.insert(5, 0) 
+    else: 
+        print('No añadimos banners cuadrados')    """  
+    
+    html_trabajos = fusion_trabajos_y_banners(trabajos_compania, publicidad_horizontal)
+    print()  
 
     # * Gestionamos la cabecera
     comienzo_en_curso = bloques.comienzo
