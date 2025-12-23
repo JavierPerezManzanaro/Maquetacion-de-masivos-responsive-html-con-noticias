@@ -325,7 +325,7 @@ def sql_insert(datos: str):
         'INSERT INTO hemeroteca(titular, url, imagen, tipo, contenido) VALUES(?, ?, ?, ?, ?)', datos)
     con.commit()
 
-
+    
 '''def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
     """Iguala las dos listas
 
@@ -1144,7 +1144,7 @@ if __name__ == '__main__':
         print(f"{trabajo[0]:>4} | {trabajo[1][0:130]}")
     print()
     TRABAJOS_A_MOSTRAR = 100
-    #todo &offset=10") # con esta añadido nos saltamos los 10 primeros porque siempre hay un desfase. ¿Merece la pena usarlo?: Por ejemplo si no la encuentra a lo mejor si es buena idea añadirlo
+    # * &offset=10") # con esta añadido nos saltamos los 10 primeros porque siempre hay un desfase. ¿Merece la pena usarlo?: Por ejemplo si no la encuentra a lo mejor si es buena idea añadirlo
     # Recogemos los últimos trabajos de pequeños animales de la web
     trabajos_web_peq = read_wordpress(
         f"https://axoncomunicacion.net/wp-json/wp/v2/posts?categories[]=477&page=1&per_page={TRABAJOS_A_MOSTRAR}")
@@ -1257,7 +1257,7 @@ if __name__ == '__main__':
         # * fin modo_manual = False
         
     # * En este bloque preguntamos por las noticias de cada sección
-    # * En el caso de que esten encontadas se salta la pregunta y se generan solas
+    # * En el caso de que esten localizadas se salta la pregunta y se generan solas
     print()
     print()
     print('Introducir, si son pedidos, los trabajos/noticias separadas por espacios.')
@@ -1285,6 +1285,7 @@ if __name__ == '__main__':
         coincidencias_noticias = limpiar_input(coincidencias_noticias)
     bloque_final_con_noticias, publicidad_horizontal = noticias_a_mostrar(coincidencias_noticias, noticias_web, publicidad_horizontal)
     
+    #todo: meter la función que crea las noticias "noticias_a_mostrar" y trabajos_compania para que los bannernes se puedan poner de forma continua
     # * Si hay pocas noticias y trabajos metemos banners cuadrados
     print()
     editorial_suma = len(trabajos_compania)+len(coincidencias_noticias)
@@ -1292,12 +1293,11 @@ if __name__ == '__main__':
         pb_porcentaje = (len(publicidad_horizontal) / editorial_suma) * 100
     else:
         pb_porcentaje = 0.0
-    print(f'Porcentaje de banners sobre contenido editorial: {pb_porcentaje:.2f}%')
-    print(f'Número de noticias de contenido editorial: {editorial_suma}')
-    print(f'Número de banners: {len(publicidad_horizontal)}, {pb_porcentaje:.2f}%')
+    print(f'Porcentaje de banners sobre contenido editorial:')
+    print(f'- Número de noticias de contenido editorial: {editorial_suma}')
+    print(f'- Número de banners: {len(publicidad_horizontal)}, {pb_porcentaje:.2f}%')
     if pb_porcentaje < 50:
         print('-  Menos del 50% - Insertamos UN banner cuadrado')
-        #todo: hacer funcion para insertar banner
         trabajos_compania.insert(1, bloques.publicidad)
     elif 50 <= pb_porcentaje < 53:
         print('- Entre 50% y 53% - Insertamos DOS banners cuadrado')
@@ -1315,7 +1315,6 @@ if __name__ == '__main__':
         trabajos_compania.insert(5, bloques.publicidad) 
         trabajos_compania.insert(7, bloques.publicidad) 
     else:
-        # pb_porcentaje >= 64
         print("Más del 64%")
         trabajos_compania.insert(1, bloques.publicidad)
         trabajos_compania.insert(3, bloques.publicidad)
