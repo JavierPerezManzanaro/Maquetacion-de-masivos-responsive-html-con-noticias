@@ -391,7 +391,7 @@ def destacadas_a_mostar(noticias_a_usar: list, axon: list):
         str: html con las noticias destacadas con banner entre medias
         existe_noticia_destacada: bool -> indica si hay o no noticia destacada
     """
-    noticias_destacadas = ''
+    noticias_destacadas_html = ''
     try:
         for noticia in noticias_a_usar:
             noticia_destacada = bloques.noticia_destacada
@@ -414,11 +414,11 @@ def destacadas_a_mostar(noticias_a_usar: list, axon: list):
                 '##noticia_enlace##', noticia_filtrada[0]['url'])
             noticia_destacada = noticia_destacada + \
                 creacion_banners(publicidad_horizontal)
-            noticias_destacadas = noticias_destacadas + noticia_destacada
+            noticias_destacadas_html = noticias_destacadas_html + noticia_destacada
     except Exception as e:
         logging.warning('❌ Esta sección no se va a publicar')
-        noticias_destacadas = ''
-    return noticias_destacadas
+        noticias_destacadas_html = ''
+    return noticias_destacadas_html
 
 
 def read_wordpress(api_url: str) -> list:
@@ -1268,9 +1268,9 @@ if __name__ == '__main__':
         if estan_todas_destacadas == False:
             coincidencias_destacados = input("¿Qué noticias son las destacadas?  ")
             coincidencias_destacados = limpiar_input(coincidencias_destacados)
-        noticias_destacadas = destacadas_a_mostar(coincidencias_destacados, noticias_web)
+        noticias_destacadas_html = destacadas_a_mostar(coincidencias_destacados, noticias_web)
     else:
-        noticias_destacadas = ''
+        noticias_destacadas_html = ''
     
     # * Trabajos compañia
     if estan_todas_compania == False:
@@ -1283,7 +1283,7 @@ if __name__ == '__main__':
     if estan_todas_noticias == False:
         coincidencias_noticias = input("¿Qué noticias quieres publicar? ")
         coincidencias_noticias = limpiar_input(coincidencias_noticias)
-    bloque_final_con_noticias, publicidad_horizontal = noticias_a_mostrar(coincidencias_noticias, noticias_web, publicidad_horizontal)
+    noticias_html, publicidad_horizontal = noticias_a_mostrar(coincidencias_noticias, noticias_web, publicidad_horizontal)
     
     #todo: meter la función que crea las noticias "noticias_a_mostrar" y trabajos_compania para que los bannernes se puedan poner de forma continua
     # * Si hay pocas noticias y trabajos metemos banners cuadrados
@@ -1324,7 +1324,7 @@ if __name__ == '__main__':
         trabajos_compania.insert(11, bloques.publicidad) 
     
     print()
-    html_trabajos = fusion_trabajos_y_banners(trabajos_compania, publicidad_horizontal)
+    trabajos_html = fusion_trabajos_y_banners(trabajos_compania, publicidad_horizontal)
     print()  
 
     # * Gestionamos la cabecera
@@ -1353,7 +1353,7 @@ if __name__ == '__main__':
     resultado = ''
     resultado += comienzo_en_curso + bloques.pb_primer_banner 
     resultado += '<!-- agenda -->' + extraer_agenda(boletin-1) + '<!-- fin agenda -->'
-    resultado += noticias_destacadas + html_trabajos
+    resultado += noticias_destacadas_html + trabajos_html
 
     # * Chequea si todos los banner están publicados. Si no lo están se publican juntos y se avisa
     if len(publicidad_horizontal) >= 1:
@@ -1367,8 +1367,8 @@ if __name__ == '__main__':
         for n in range(len(publicidad_horizontal)):
             resultado += creacion_banners(publicidad_horizontal)
 
-    # * Vamos uniendo las partes
-    resultado += bloque_final_con_noticias
+    # * Seguimos uniendo las partes
+    resultado += noticias_html
     resultado += bloques.fin
 
     # * Codificamos a html
