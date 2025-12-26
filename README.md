@@ -163,8 +163,8 @@ Las instrucciones puede variar según el flujo de trabajo de cada empresa. En mi
 - Actualizar el sistema de sonido para que sea compatible con el resto de sistemas.
 
 ### 7.3.2
--Se elimina todo lo relativo a grandes animales
-
+- Se elimina todo lo relativo a grandes animales
+- Si hay muchos banners se ponen a la derecha de los trabajos banners cuadrados
 
 ### 7.3.1
 - Añado el día de la semana en el nombre de la campaña

@@ -326,28 +326,6 @@ def sql_insert(datos: str):
     con.commit()
 
     
-'''def igualar_listas(trabajos_compania: list, trabajos_produccion: list) -> tuple:
-    """Iguala las dos listas
-
-    Args:
-        trabajos_compania (list): trabajos de animales de compañía
-        trabajos_produccion (list): trabajos de animales de producción
-
-    Returns:
-        trabajos_compania, trabajos_produccion: las dos listas con la misma longitud
-    """
-    while len(trabajos_compania) > len(trabajos_produccion):
-        logging.info(
-            'Se añade una publicidad a la lista de trabajos_produccion')
-        publicidad = bloques.publicidad.replace('##posicion##', 'right')
-        trabajos_produccion.append(publicidad)
-    while len(trabajos_compania) < len(trabajos_produccion):
-        logging.info('Se añade una publicidad a la lista de trabajos_compania')
-        publicidad = bloques.publicidad.replace('##posicion##', 'left')
-        trabajos_compania.append(publicidad)
-    return trabajos_compania, trabajos_produccion'''
-
-
 def recuperar_trabajos():
     """Recuperamos de la bbdd en sql3 los trabajos de animales de compañía (pequeños) y los de producción (grandes).
     El formato es: (id, 'titular', 'url', 'imagen, 'tipo: p o g', 'noticia')
@@ -427,10 +405,6 @@ def read_wordpress(api_url: str) -> list:
     Returns:
         list: Lista en bruto con todos los post solicitados
     """
-    # wordpress_credentials = datos_de_acceso.WORDPRESS_USER + \
-    #     ":" + datos_de_acceso.WORDPRESS_PASSWORD
-    # wordpress_token = base64.b64encode(wordpress_credentials.encode())
-    # wordpress_header = {'Authorization': 'Basic ' + wordpress_token.decode('utf-8')}
     response = requests.get(api_url)
     response_json = response.json()
     return response_json
@@ -791,7 +765,6 @@ def crear_campaña_mailerlite(nombre: str, asunto: str, contenido: str, segmento
         ],
         "segments": segmentos
     }
-        
     try:
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
@@ -829,14 +802,14 @@ def print_response(response):
 
 
 def obtener_asunto(html_content: str, existe_noticia_destacada: bool) -> str:
-    """Obtiene del html es asunto de la campaña. El asunto sera por defecto el primer trabajo de animales de compañía.
+    """Obtiene del html el asunto de la campaña. El asunto será por defecto el primer trabajo de animales de compañía.
 
     Args:
         html (str): html del archivo.
         existe_noticia_destacada (bool): indica si hay o no noticias destacadas.
 
     Returns:
-        str: Asunto de la campaña si encuentra la etiqueta, si no, avista del error
+        str: Asunto de la campaña si encuentra la etiqueta, si no, avista del error.
     """
     numero = 0
     if existe_noticia_destacada == True:
@@ -1285,53 +1258,11 @@ if __name__ == '__main__':
         coincidencias_noticias = limpiar_input(coincidencias_noticias)
     noticias_html, publicidad_horizontal = noticias_a_mostrar(coincidencias_noticias, noticias_web, publicidad_horizontal)
     
-    #todo: meter la función que crea las noticias "noticias_a_mostrar" y trabajos_compania para que los bannernes se puedan poner de forma continua
-    # * Si hay pocas noticias y trabajos metemos banners cuadrados
-    print()
-    editorial_suma = len(trabajos_compania)+len(coincidencias_noticias)
-    if editorial_suma > 0:
-        pb_porcentaje = (len(publicidad_horizontal) / editorial_suma) * 100
-    else:
-        pb_porcentaje = 0.0
-    print(f'Porcentaje de banners sobre contenido editorial:')
-    print(f'- Número de noticias de contenido editorial: {editorial_suma}')
-    print(f'- Número de banners: {len(publicidad_horizontal)}, {pb_porcentaje:.2f}%')
-    if pb_porcentaje < 50:
-        print('-  Menos del 50% - Insertamos UN banner cuadrado')
-        trabajos_compania.insert(1, bloques.publicidad)
-    elif 50 <= pb_porcentaje < 53:
-        print('- Entre 50% y 53% - Insertamos DOS banners cuadrado')
-        trabajos_compania.insert(1, bloques.publicidad)
-        trabajos_compania.insert(3, bloques.publicidad)
-    elif 53 <= pb_porcentaje < 60:
-        print('- Entre 53% y 60% - Insertamos TRES banners cuadrados')
-        trabajos_compania.insert(1, bloques.publicidad)
-        trabajos_compania.insert(3, bloques.publicidad)
-        trabajos_compania.insert(5, bloques.publicidad) 
-    elif 60 <= pb_porcentaje < 64:
-        print('- Entre 60% y 64%" - Insertamos CUATRO banners cuadrados')
-        trabajos_compania.insert(1, bloques.publicidad)
-        trabajos_compania.insert(3, bloques.publicidad)
-        trabajos_compania.insert(5, bloques.publicidad) 
-        trabajos_compania.insert(7, bloques.publicidad) 
-    else:
-        print("Más del 64%")
-        trabajos_compania.insert(1, bloques.publicidad)
-        trabajos_compania.insert(3, bloques.publicidad)
-        trabajos_compania.insert(5, bloques.publicidad) 
-        trabajos_compania.insert(7, bloques.publicidad) 
-        trabajos_compania.insert(9, bloques.publicidad) 
-        trabajos_compania.insert(11, bloques.publicidad) 
-    
-    print()
-    trabajos_html = fusion_trabajos_y_banners(trabajos_compania, publicidad_horizontal)
-    print()  
-
     # * Gestionamos la cabecera
-    comienzo_en_curso = bloques.comienzo
-    comienzo_en_curso = comienzo_en_curso.replace(
+    comienzo_html = bloques.comienzo
+    comienzo_html = comienzo_html.replace(
         '##nombre_archivo##', nombre_archivo)
-    comienzo_en_curso = comienzo_en_curso.replace('##numero##', str(boletin))
+    comienzo_html = comienzo_html.replace('##numero##', str(boletin))
     meses = {
         "1": 'Enero',
         "2": 'Febrero',
@@ -1346,14 +1277,50 @@ if __name__ == '__main__':
         "11": 'Noviembre',
         "12": 'Diciembre'
     }
-    comienzo_en_curso = comienzo_en_curso.replace(
+    comienzo_html = comienzo_html.replace(
         '##mes##', meses[str(ahora.month)])  # type: ignore
+
+    # * Si hay pocas noticias y trabajos metemos banners cuadrados
+    print()
+    editorial_suma = len(trabajos_compania)+len(coincidencias_noticias)
+    if editorial_suma > 0:
+        pb_porcentaje = (len(publicidad_horizontal) / editorial_suma) * 100
+    else:
+        pb_porcentaje = 0.0
+    print(f'Porcentaje de banners sobre contenido editorial:')
+    print(f'- Número de noticias de contenido editorial: {editorial_suma}')
+    print(f'- Número de banners: {len(publicidad_horizontal)}, {pb_porcentaje:.2f}%')
+    # trabajos con el número de trabajos de compañia
+    if len(trabajos_compania) == 0:
+        print("No hay trabajos de compañia")
+    elif len(trabajos_compania) == 1:
+        print("Hay 1 trabajo de compañia - Insertamos UN banner cuadrado")
+        trabajos_compania.insert(1, bloques.publicidad)
+    elif len(trabajos_compania) == 2:
+        print("Hay 2 trabajos de compañia - Insertamos DOS banners cuadrados")
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+    elif len(trabajos_compania) == 3:
+        print("Hay 3 trabajos de compañia - Insertamos TRES banners cuadrados")
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+        trabajos_compania.insert(5, bloques.publicidad)
+    else:
+        print("Hay 4 o más trabajos de compañia - Insertamos CUATRO banners cuadrados")
+        trabajos_compania.insert(1, bloques.publicidad)
+        trabajos_compania.insert(3, bloques.publicidad)
+        trabajos_compania.insert(5, bloques.publicidad) 
+        trabajos_compania.insert(7, bloques.publicidad) 
+    
+    print()
+    trabajos_html = fusion_trabajos_y_banners(trabajos_compania, publicidad_horizontal)
+    print()  
 
     # * Vamos uniendo las partes
     resultado = ''
-    resultado += comienzo_en_curso + bloques.pb_primer_banner 
+    resultado += comienzo_html + bloques.pb_primer_banner 
     resultado += '<!-- agenda -->' + extraer_agenda(boletin-1) + '<!-- fin agenda -->'
-    resultado += noticias_destacadas_html + trabajos_html
+    resultado += noticias_destacadas_html + trabajos_html + noticias_html
 
     # * Chequea si todos los banner están publicados. Si no lo están se publican juntos y se avisa
     if len(publicidad_horizontal) >= 1:
@@ -1368,7 +1335,6 @@ if __name__ == '__main__':
             resultado += creacion_banners(publicidad_horizontal)
 
     # * Seguimos uniendo las partes
-    resultado += noticias_html
     resultado += bloques.fin
 
     # * Codificamos a html
